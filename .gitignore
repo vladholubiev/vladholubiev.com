@@ -3,3 +3,4 @@ idea/
 *.tfstate
 *.tfstate.lock.info
 *.tfstate.backup
+*.backup
