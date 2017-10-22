@@ -22,7 +22,7 @@ resource "aws_codepipeline" "website" {
         Owner                = "vladgolubev"
         Repo                 = "vladholubiev.com"
         Branch               = "master"
-        PollForSourceChanges = "false"
+        PollForSourceChanges = "true"
       }
     }
   }
