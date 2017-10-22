@@ -23,6 +23,7 @@ resource "aws_codepipeline" "website" {
         Repo                 = "vladholubiev.com"
         Branch               = "master"
         PollForSourceChanges = "true"
+        OAuthToken           = "${data.aws_ssm_parameter.github_token.value}"
       }
     }
   }
@@ -48,6 +49,10 @@ resource "aws_codepipeline" "website" {
 
 data "aws_s3_bucket" "codepipeline" {
   bucket = "codepipeline-us-east-1-303900628897"
+}
+
+data "aws_ssm_parameter" "github_token" {
+  name = "/prod/ops/github_token"
 }
 
 resource "aws_iam_role" "codepipeline" {
