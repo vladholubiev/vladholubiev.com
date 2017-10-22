@@ -10,7 +10,7 @@ resource "aws_cloudfront_origin_access_identity" "prod" {
 resource "aws_cloudfront_distribution" "prod" {
   origin {
     domain_name = "${aws_s3_bucket.vladholubiev_com.website_endpoint}"
-    origin_id   = "${aws_s3_bucket.vladholubiev_com.bucket_domain_name}"
+    origin_id   = "S3-Website-${aws_s3_bucket.vladholubiev_com.bucket_domain_name}"
 
     custom_origin_config {
       http_port                = 80
