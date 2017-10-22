@@ -1,3 +1,55 @@
+resource "aws_codepipeline" "website" {
+  name     = "website"
+  role_arn = "${aws_iam_role.codepipeline.arn}"
+
+  artifact_store {
+    location = "${data.aws_s3_bucket.codepipeline.id}"
+    type     = "S3"
+  }
+
+  stage {
+    name = "Source"
+
+    action {
+      name             = "Source"
+      category         = "Source"
+      owner            = "ThirdParty"
+      provider         = "GitHub"
+      version          = "1"
+      output_artifacts = ["MyApp"]
+
+      configuration {
+        Owner                = "vladgolubev"
+        Repo                 = "vladholubiev.com"
+        Branch               = "master"
+        PollForSourceChanges = "false"
+      }
+    }
+  }
+
+  stage {
+    name = "Build"
+
+    action {
+      name             = "CodeBuild"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      input_artifacts  = ["MyApp"]
+      version          = "1"
+      output_artifacts = ["MyAppBuild"]
+
+      configuration {
+        ProjectName = "website"
+      }
+    }
+  }
+}
+
+data "aws_s3_bucket" "codepipeline" {
+  bucket = "codepipeline-us-east-1-303900628897"
+}
+
 resource "aws_iam_role" "codepipeline" {
   name = "prod_codepipeline_assume"
   path = "/"
@@ -18,50 +70,3 @@ resource "aws_iam_role" "codepipeline" {
 }
 POLICY
 }
-
-//resource "aws_codepipeline" "foo" {
-//  name     = "tf-test-pipeline"
-//  role_arn = "${aws_iam_role.foo.arn}"
-//
-//  artifact_store {
-//    location = "${aws_s3_bucket.foo.bucket}"
-//    type     = "S3"
-//  }
-//
-//  stage {
-//    name = "Source"
-//
-//    action {
-//      name             = "Source"
-//      category         = "Source"
-//      owner            = "ThirdParty"
-//      provider         = "GitHub"
-//      version          = "1"
-//      output_artifacts = ["test"]
-//
-//      configuration {
-//        Owner      = "my-organization"
-//        Repo       = "test"
-//        Branch     = "master"
-//      }
-//    }
-//  }
-//
-//  stage {
-//    name = "Build"
-//
-//    action {
-//      name            = "Build"
-//      category        = "Build"
-//      owner           = "AWS"
-//      provider        = "CodeBuild"
-//      input_artifacts = ["test"]
-//      version         = "1"
-//
-//      configuration {
-//        ProjectName = "test"
-//      }
-//    }
-//  }
-//}
-
