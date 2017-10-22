@@ -21,7 +21,7 @@ export default ({children, title = 'Vlad Holubiev'}) =>
       }}/>
 
       <meta name="author" content="Vladyslav Holubiev"/>
-      <meta name="description" content="TBD"/>
+      <meta name="description" content="I enjoy building hip back-end tech like Serverless λ with Node.js, Microservices in Docker, REST APIs on AWS, IaaC with Terraform, Elasticsearch with MongoDB, TDD with Wallaby."/>
       <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
 
       <link rel="stylesheet" href="https://unpkg.com/awsm.css@2.1.0/dist/awsm.min.css"/>
