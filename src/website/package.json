@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "pages/index.js",
   "author": "Vlad Holubiev",
   "license": "MIT",
   "private": true,
