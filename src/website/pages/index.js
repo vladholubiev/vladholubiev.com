@@ -7,7 +7,8 @@ export default () =>
       <meta charSet="utf-8"/>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108459948-1"/>
-      <script>{() => {
+      <script dangerouslySetInnerHTML={{
+        __html: `
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -16,7 +17,8 @@ export default () =>
 
         gtag('js', new Date());
         gtag('config', 'UA-108459948-1');
-      }}</script>
+        `
+      }}/>
 
       <meta name="author" content="Vladyslav Holubiev"/>
       <meta name="description" content="TBD"/>
