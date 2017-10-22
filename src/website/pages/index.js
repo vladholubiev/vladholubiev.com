@@ -41,19 +41,23 @@ export default () =>
             padding: 1em 0;
             position: -webkit-sticky;
             position: sticky;
+            text-align: center;
             top: 0;
             z-index: 1;
         }
     `}</style>
 
     <header>
-      <h1>Vlad <span>Holubiev</span></h1>
+      <h1>Vlad <span style={{color: '#ff5252'}}>Holubiev</span></h1>
 
       <p>Software Engineer</p>
     </header>
 
     <nav>
       <ul>
+        <li>
+          Social links:
+        </li>
         <li>
           <a href="https://twitter.com/vladholubiev" target="_blank">
             Twitter
