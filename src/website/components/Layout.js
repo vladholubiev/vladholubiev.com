@@ -22,7 +22,15 @@ export default ({children, title = 'Vlad Holubiev'}) =>
       <meta name="author" content="Vladyslav Holubiev"/>
       <meta name="description" content="TBD"/>
       <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+
       <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css"/>
+
+      <link rel="apple-touch-icon-precomposed" href="/static/favicon-256.png"/>
+      <meta name="msapplication-TileColor" content="#FFFFFF"/>
+      <meta name="msapplication-TileImage" content="/static/favicon-256.png"/>
+      <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-256.png"/>
+      <link rel="shortcut icon" type="image/x-icon" href="/static/favicon-256.png"/>
+
       <title>{title}</title>
     </Head>
 
