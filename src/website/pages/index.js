@@ -29,7 +29,7 @@ export default () =>
       </p>
 
       <p>
-        Find me one the web: &nbsp;
+        Find me on the web: &nbsp;
 
         <span onClick={() => trackSocialClick('Twitter')}>
           <a href="https://twitter.com/vladholubiev" target="_blank">
@@ -47,18 +47,17 @@ export default () =>
 
         <span>, </span>
 
-        <span onClick={() => trackSocialClick('StackOverflow')}>
-          <a href="https://stackoverflow.com/users/2727317/vlad-holubiev?tab=profile"
-             target="_blank">
-            StackOverflow
+        <span onClick={() => trackSocialClick('GitHub')}>
+          <a href="https://github.com/vladgolubev" target="_blank">
+            GitHub
           </a>
         </span>
 
         <span>, </span>
 
-        <span onClick={() => trackSocialClick('GitHub')}>
-          <a href="https://github.com/vladgolubev" target="_blank">
-            GitHub
+        <span onClick={() => trackSocialClick('LinkedIn')}>
+          <a href="https://linkedin.com/in/vlad-holubiev" target="_blank">
+            LinkedIn
           </a>
         </span>
       </p>
