@@ -1,5 +1,12 @@
 import Layout from '../components/Layout';
 
+function trackSocialClick(label) {
+  window.gtag && window.gtag('event', 'link_click', {
+    event_category: 'social_links',
+    event_label: label
+  });
+}
+
 export default () =>
   <Layout>
     {/*language=CSS*/}
@@ -35,23 +42,23 @@ export default () =>
         <li>
           Social links:
         </li>
-        <li>
+        <li onClick={() => trackSocialClick('Twitter')}>
           <a href="https://twitter.com/vladholubiev" target="_blank">
             Twitter
           </a>
         </li>
-        <li>
+        <li onClick={() => trackSocialClick('Medium')}>
           <a href="https://medium.com/@vladholubiev" target="_blank">
             Medium
           </a>
         </li>
-        <li>
+        <li onClick={() => trackSocialClick('StackOverflow')}>
           <a href="https://stackoverflow.com/users/2727317/vlad-holubiev?tab=profile"
              target="_blank">
             StackOverflow
           </a>
         </li>
-        <li>
+        <li onClick={() => trackSocialClick('GitHub')}>
           <a href="https://github.com/vladgolubev" target="_blank">
             GitHub
           </a>

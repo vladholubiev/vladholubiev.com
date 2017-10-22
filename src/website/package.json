@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "next",
     "build": "next build",
+    "dev": "next",
     "export": "next export",
     "start": "next start"
   },
