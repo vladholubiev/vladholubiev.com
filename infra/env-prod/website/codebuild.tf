@@ -1,3 +1,31 @@
+resource "aws_codebuild_project" "website" {
+  name          = "website"
+  description   = "Builds website and deploys static HTML to S3"
+  build_timeout = "5"
+  service_role  = "${aws_iam_role.codebuild.arn}"
+
+  artifacts {
+    type = "CODEPIPELINE"
+  }
+
+  environment {
+    compute_type    = "BUILD_GENERAL1_SMALL"
+    image           = "aws/codebuild/nodejs:6.3.1"
+    type            = "LINUX_CONTAINER"
+    privileged_mode = "false"
+  }
+
+  source {
+    type      = "CODEPIPELINE"
+    buildspec = "${file("buildspec.yml")}"
+  }
+
+  tags {
+    Environment = "Prod"
+    Terraform   = true
+  }
+}
+
 resource "aws_iam_role" "codebuild" {
   name = "code-build-website-service-role"
   path = "/service-role/"
@@ -77,31 +105,3 @@ resource "aws_iam_role_policy_attachment" "codebuild" {
   role       = "${aws_iam_role.codebuild.name}"
   policy_arn = "${aws_iam_policy.codebuild_trust.arn}"
 }
-
-//resource "aws_codebuild_project" "website" {
-//  name          = "${var.env}_website"
-//  description   = "Builds website and deploys static HTML to S3"
-//  build_timeout = "5"
-//  service_role  = "${aws_iam_role.codebuild_assume.arn}"
-//
-//  artifacts {
-//    type = "NO_ARTIFACTS"
-//  }
-//
-//  environment {
-//    compute_type = "BUILD_GENERAL1_SMALL"
-//    image        = "2"
-//    type         = "LINUX_CONTAINER"
-//  }
-//
-//  source {
-//    type     = "GITHUB"
-//    location = "https://github.com/vladgolubev/packer.git"
-//  }
-//
-//  tags {
-//    "Environment" = "Test"
-//  }
-//}
-//
-

@@ -40,7 +40,7 @@ resource "aws_codepipeline" "website" {
       output_artifacts = ["MyAppBuild"]
 
       configuration {
-        ProjectName = "website"
+        ProjectName = "${aws_codebuild_project.website.name}"
       }
     }
   }
