@@ -1,6 +1,10 @@
 export function trackSocialClick(label) {
+  return trackLinkClick('social', label);
+}
+
+export function trackLinkClick(kind, label) {
   const meta = {
-    event_category: 'social_links',
+    event_category: `${kind}_links`,
     event_label: label
   };
 

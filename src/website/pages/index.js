@@ -23,7 +23,13 @@ export default () =>
       <h2>Hello</h2>
 
       <p>
-        Find me on: &nbsp;
+        I enjoy building hip back-end tech like
+        Serverless λ with Node.js, Microservices in Docker, REST APIs on AWS,
+        IaaC with Terraform, Elasticsearch with MongoDB, TDD with Wallaby.
+      </p>
+
+      <p>
+        Find me one the web: &nbsp;
 
         <span onClick={() => trackSocialClick('Twitter')}>
           <a href="https://twitter.com/vladholubiev" target="_blank">
