@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Footer from './Footer';
 
 export default ({children, title = 'Vlad Holubiev'}) =>
   <div>
@@ -34,5 +35,9 @@ export default ({children, title = 'Vlad Holubiev'}) =>
       <title>{title}</title>
     </Head>
 
-    {children}
+    <main>
+      {children}
+    </main>
+
+    <Footer/>
   </div>
