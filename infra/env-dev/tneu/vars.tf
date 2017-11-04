@@ -3,7 +3,7 @@ variable "domain" {
 }
 
 variable "subdomain" {
-  default = "tneu-scores"
+  default = "tneu-api"
 }
 
 variable "env" {
@@ -16,4 +16,8 @@ variable "droplet_ip" {
 
 variable "droplet_port" {
   default = "9101"
+}
+
+variable "droplet_port_news" {
+  default = "9191"
 }
