@@ -63,8 +63,8 @@ resource "aws_cloudfront_distribution" "tneu_scores" {
 
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
-    default_ttl            = 10
-    max_ttl                = 300
+    default_ttl            = 0
+    max_ttl                = 0
     compress               = true
   }
 
