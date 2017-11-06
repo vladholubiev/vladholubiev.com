@@ -16,6 +16,16 @@ resource "aws_s3_bucket" "vladholubiev_com" {
     Terraform   = true
     Environment = "${var.env}"
   }
+
+  lifecycle_rule {
+    id      = "tmp"
+    prefix  = "tmp/"
+    enabled = true
+
+    expiration {
+      days = 3
+    }
+  }
 }
 
 resource "aws_s3_bucket_policy" "allow_public_read" {
