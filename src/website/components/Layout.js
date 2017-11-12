@@ -72,7 +72,7 @@ export default ({children, title = 'Vlad Holubiev'}) =>
         </Content>
 
         <Footer style={{textAlign: 'center'}}>
-          {new Date().getFullYear()}
+          {new Date().getFullYear()}, <a href="https://github.com/vladgolubev/vladholubiev.com" target="_blank">sources</a>
         </Footer>
       </Layout>
     </LocaleProvider>

@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import {Button, Icon, message, Progress, Table, Upload} from 'antd';
+import {Button, Icon, message, Progress, Table, Tag, Upload} from 'antd';
 
 const Dragger = Upload.Dragger;
 const props = {
@@ -95,7 +95,7 @@ export default () =>
       </p>
 
       <p>
-        Compressed it takes only 109 out of 250 MB max function <code>zip</code> artifact.
+        Compressed it takes only 109 out of 250 MB function's <code>zip</code> artifact.
         <Progress percent={Math.ceil(109 / 250 * 100)}/>
       </p>
 
@@ -105,10 +105,61 @@ export default () =>
       {/*</p>*/}
 
       <p>
-        It converts almost <strong>ANY</strong> office document to PDF in seconds.
+        And converts almost any office document to PDF:
       </p>
 
-      <Button type="primary" icon="github">Go to GitHub</Button>
+      <p>
+        <Tag>.doc</Tag>
+        <Tag>.docx</Tag>
+        <Tag>.ppt</Tag>
+        <Tag>.pptx</Tag>
+        <Tag>.xls</Tag>
+        <Tag>.xlsx</Tag>
+        <Tag>.numbers</Tag>
+        <Tag>.pages</Tag>
+        <Tag>.key</Tag>
+        <Tag>.csv</Tag>
+        <Tag>.txt</Tag>
+        <Tag>.odt</Tag>
+        <Tag>.ods</Tag>
+        <Tag>.odt</Tag>
+        <Tag>.odp</Tag>
+        <Tag>.html</Tag>
+        <Tag>.rtf</Tag>
+        <Tag>.xlt</Tag>
+        <Tag>.psd</Tag>
+        <Tag>.bmp</Tag>
+        <Tag>.png</Tag>
+        <Tag>.xml</Tag>
+        <Tag>.gif</Tag>
+        <Tag>.svg</Tag>
+        <Tag>.cdr</Tag>
+        <Tag>.cmx</Tag>
+        <Tag>.dif</Tag>
+        <Tag>.eps</Tag>
+        <Tag>.emf</Tag>
+        <Tag>.gpl</Tag>
+        <Tag>.gnm</Tag>
+        <Tag>.hwp</Tag>
+        <Tag>.plt</Tag>
+        <Tag>.jd</Tag>
+        <Tag>.jpg</Tag>
+        <Tag>.pct</Tag>
+        <Tag>.met</Tag>
+        <Tag>.pxl</Tag>
+        <Tag>.psw</Tag>
+        <Tag>.dot</Tag>
+        <Tag>.svm</Tag>
+        <Tag>.tiff</Tag>
+        <Tag>.wps</Tag>
+        <Tag>... and so on</Tag>
+      </p>
+
+      <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
+        <Button type="primary" icon="github">
+          Go to GitHub
+        </Button>
+      </a>
     </header>
 
     <section>
@@ -120,7 +171,7 @@ export default () =>
             <Icon type="inbox"/>
           </p>
           <p className="ant-upload-text">Click or drag file to this area to upload</p>
-          <p className="ant-upload-hint">Max 5MB. Your will be publicly accesible</p>
+          <p className="ant-upload-hint">Max 5MB. Your file will be publicly accessible and deleted in 24 hours</p>
         </Dragger>
       </div>
     </section>
