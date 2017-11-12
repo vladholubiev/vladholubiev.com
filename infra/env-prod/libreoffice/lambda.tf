@@ -6,7 +6,7 @@ resource "aws_lambda_function" "convert" {
   s3_bucket     = "${aws_s3_bucket.serverless_libreoffice_pdf.id}"
   s3_key        = "${aws_s3_bucket_object.package.key}"
   memory_size   = 1536
-  timeout       = 30
+  timeout       = 25
 
   environment {
     variables {
