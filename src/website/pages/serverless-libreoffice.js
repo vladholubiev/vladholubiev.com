@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import {Icon, message, Table, Upload} from 'antd';
+import {Button, Icon, message, Progress, Table, Upload} from 'antd';
 
 const Dragger = Upload.Dragger;
 const props = {
@@ -19,10 +19,6 @@ const props = {
     }
   },
 };
-
-const requestPrice = 0.0000002; // 1 Lambda invocation
-const gbsPrice = 0.00002501; // 1.5 GB memory 1 second of execution
-const averageConvertionTime = 3; // in seconds
 
 const columns = [{
   title: 'Resource',
@@ -94,18 +90,30 @@ export default () =>
       <h1>Serverless LibreOffice PDF Converter</h1>
 
       <p>
-        This is a demo of full featured <a href="https://www.libreoffice.org/">LibreOffice</a>&nbsp;
+        This is a full featured <a href="https://www.libreoffice.org/">LibreOffice </a>
         compiled to run in <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> environment.
       </p>
+
+      <p>
+        Compressed it takes only 109 out of 250 MB max function <code>zip</code> artifact.
+        <Progress percent={Math.ceil(109 / 250 * 100)}/>
+      </p>
+
+      {/*<p>*/}
+      {/*And unzipped it takes 340 of 512 ephemeral Lambda <code>/tmp</code> storage.*/}
+      {/*<Progress percent={Math.ceil(340 / 512 * 100)}/>*/}
+      {/*</p>*/}
 
       <p>
         It converts almost <strong>ANY</strong> office document to PDF in seconds.
       </p>
 
-      <p>Open-source on 👉🏻 <a href="https://github.com/vladgolubev">GitHub</a> 👈🏻</p>
+      <Button type="primary" icon="github">Go to GitHub</Button>
     </header>
 
     <section>
+      <h2>Demo</h2>
+
       <div style={{height: 180}}>
         <Dragger {...props}>
           <p className="ant-upload-drag-icon">
@@ -122,7 +130,8 @@ export default () =>
 
       <p>So you need to convert 1 million documents average of 5 MB size</p>
 
-      <p>This will result in 5 terrabytes of S3 storage per month. As you see this is the main driver of price, not computing cost.</p>
+      <p>This will result in 5 terabytes of S3 storage per month. As you see this is the main
+        driver of price, not computing cost.</p>
 
       <Table
         columns={columns}
