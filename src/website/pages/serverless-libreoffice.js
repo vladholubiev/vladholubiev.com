@@ -101,7 +101,8 @@ export default () =>
       </p>
 
       <p>
-        But stripped from useless stuff, so it takes only 109 out of 250 MB function's <code>zip</code> artifact.
+        But stripped from useless stuff, so it takes only 109 out of 250 MB function's&nbsp;
+        <code>zip</code> artifact.
         <Progress percent={Math.ceil(109 / 250 * 100)}/>
       </p>
 
@@ -197,5 +198,57 @@ export default () =>
           <strong>Total: </strong>
           <span style={{float: 'right'}}><strong>$150.61</strong></span>
         </span>}/>
+    </section>
+
+    <section>
+      <h2>Open Improvements</h2>
+
+      <h3>Reduce Cold Start Time</h3>
+
+      <p>
+        Currently ƛ unpacks 109 MB <code>.tar.gz</code> to <code>/tmp</code> folder which takes ~1-2
+        seconds on cold start.
+      </p>
+
+      <p>
+        Would be nice to create a single compressed executable to save unpack time and increase
+        portability.
+        I tried using <a href="http://www.magicermine.com/" target="_blank">Ermine</a> packager and
+        it works!!
+        But unfortunately this is commercial software. Similar open-source analogue
+        <a href="http://statifier.sourceforge.net/" target="_blank"> Statifier</a> produces broken
+        binaries.
+      </p>
+
+      <p>
+        Maybe someone has another idea how to create a single executable from a folder full of
+        shared objects.
+      </p>
+
+      <h3>Further Size Reduction</h3>
+
+      <p>
+        I am not a Linux or C++ expert, so for sure I missed some easy "hacks" to reduce size of
+        compiled LibreOffice.
+      </p>
+
+      <p>
+        Mostly I just excluded from compilation as much unrelated stuff as possible. And stripped
+        symbols from shared objects.
+      </p>
+
+      <p>
+        Here is the list of:&nbsp;
+        <a href="https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c"
+           target="_blank">
+          available RPM packages
+        </a>
+        &nbsp;and&nbsp;
+        <a href="https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319"
+           target="_blank">
+          libraries
+        </a>
+        &nbsp;available in AWS Lambda Environment, which can be helpful.
+      </p>
     </section>
   </Layout>
