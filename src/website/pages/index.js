@@ -7,14 +7,15 @@ export default () =>
     <style jsx>{`
         header {
             font-size: 1.75em;
-            margin: 4em 0;
+            margin: 1em 0;
             max-width: 100%;
             text-align: center;
         }
     `}</style>
 
     <header>
-      <h1>Vlad <span style={{color: '#ff5252'}}>Holubiev</span></h1>
+      <h1 style={{fontWeight: 600, marginBottom: '.25em'}}>Vlad <span style={{color: '#ff5252'}}>Holubiev</span>
+      </h1>
 
       <p>Software Engineer</p>
     </header>
