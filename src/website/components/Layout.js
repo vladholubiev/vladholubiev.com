@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import {Layout, LocaleProvider, Menu} from 'antd';
+import {Icon, Layout, LocaleProvider, Menu} from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import Link from 'next/link'
 
@@ -60,19 +60,36 @@ export default ({children, title = 'Vlad Holubiev'}) =>
             defaultSelectedKeys={['1']}
             style={{lineHeight: '64px'}}
           >
-            <Menu.Item key="/"><Link href="/">🏠 Home</Link></Menu.Item>
-            <Menu.Item key="/serverless-libreoffice"><Link href="/serverless-libreoffice">⚡️Serverless LibreOffice</Link></Menu.Item>
+            <Menu.Item key="/">
+              <Link href="/">
+                🏠 Home
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item key="/serverless-libreoffice">
+              <Link href="/serverless-libreoffice">
+                ⚡️Serverless LibreOffice
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item key="twitter" style={{float: 'right'}}>
+              <a href="https://twitter.com/vladholubiev" target="_blank">
+                <Icon type="twitter"/> Twitter
+              </a>
+            </Menu.Item>
           </Menu>
         </Header>
 
-        <Content style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900, width: '100%'}}>
+        <Content
+          style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900, width: '100%'}}>
           <div style={{background: '#fff', padding: 48, minHeight: 280}}>
             {children}
           </div>
         </Content>
 
         <Footer style={{textAlign: 'center'}}>
-          {new Date().getFullYear()}, <a href="https://github.com/vladgolubev/vladholubiev.com" target="_blank">sources</a>
+          {new Date().getFullYear()}, <a href="https://github.com/vladgolubev/vladholubiev.com"
+                                         target="_blank">sources</a>
         </Footer>
       </Layout>
     </LocaleProvider>
