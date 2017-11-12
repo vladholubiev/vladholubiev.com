@@ -49,7 +49,7 @@ const data = [
     key: '1',
     resource: 'S3 Storage',
     amount: '1,000,000 * 5MB',
-    price: '$0.023',
+    price: '$0.000023',
     sum: '$115.00'
   },
   {
@@ -169,7 +169,7 @@ export default () =>
         </Button>
       </a>
     </header>
-    `
+
     <section>
       <h2>Demo</h2>
 
@@ -188,10 +188,14 @@ export default () =>
     <section>
       <h2>Pricing Example</h2>
 
-      <p>So you need to convert 1 million documents average of 5 MB size</p>
+      <p>
+        So you need to convert 1 million documents average of 5 MB size.
+      </p>
 
-      <p>This will result in 5 terabytes of S3 storage per month. As you see this is the main
-        driver of price, not computing cost.</p>
+      <p>
+        This will result in 5 terabytes of S3 storage per month. As you see, this is the primary
+        driver of price, not computing cost.
+      </p>
 
       <Table
         columns={columns}
@@ -199,7 +203,7 @@ export default () =>
         pagination={false}
         footer={() => <span>
           <strong>Total: </strong>
-          <span style={{float: 'right'}}>$150.612</span>
+          <span style={{float: 'right'}}><strong>$150.61</strong></span>
         </span>}/>
     </section>
   </Layout>
