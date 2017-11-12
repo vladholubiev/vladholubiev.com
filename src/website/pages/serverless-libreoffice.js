@@ -44,37 +44,43 @@ const columns = [{
   }
 }];
 
-const data = [{
-  key: '1',
-  resource: 'Lambda Requests',
-  amount: '1,000,000',
-  price: '$0.0000002',
-  sum: '$0.20'
-}, {
-  key: '2',
-  resource: 'Lambda Executions',
-  amount: '1,000,000 * 1.5GB * 1.2s',
-  price: '$0.00002501',
-  sum: '$30.012'
-}, {
-  key: '3',
-  resource: 'S3 storage',
-  amount: '1,000,000 * 5MB',
-  price: '$0.023',
-  sum: '$115'
-}, {
-  key: '4',
-  resource: 'S3 PUT requests',
-  amount: '1,000,000',
-  price: '$0.000005',
-  sum: '$5'
-}, {
-  key: '5',
-  resource: 'S3 GET requests',
-  amount: '1,000,000',
-  price: '$0.0000004',
-  sum: '$0.40'
-}];
+const data = [
+  {
+    key: '1',
+    resource: 'S3 Storage',
+    amount: '1,000,000 * 5MB',
+    price: '$0.023',
+    sum: '$115.00'
+  },
+  {
+    key: '2',
+    resource: 'Lambda Runtime',
+    amount: '1,000,000 * 1.5GB * 1.2s',
+    price: '$0.00002501',
+    sum: '$30.01'
+  },
+  {
+    key: '3',
+    resource: 'S3 PUT Requests',
+    amount: '1,000,000',
+    price: '$0.000005',
+    sum: '$5.00'
+  },
+  {
+    key: '4',
+    resource: 'S3 GET Requests',
+    amount: '1,000,000',
+    price: '$0.0000004',
+    sum: '$0.40'
+  },
+  {
+    key: '5',
+    resource: 'Lambda Requests',
+    amount: '1,000,000',
+    price: '$0.0000002',
+    sum: '$0.20'
+  }
+];
 
 export default () =>
   <Layout>
@@ -163,7 +169,7 @@ export default () =>
         </Button>
       </a>
     </header>
-`
+    `
     <section>
       <h2>Demo</h2>
 
@@ -173,7 +179,8 @@ export default () =>
             <Icon type="inbox"/>
           </p>
           <p className="ant-upload-text">Click or drag file to this area to upload</p>
-          <p className="ant-upload-hint">Max 5MB. Your file will be publicly accessible and deleted in 24 hours</p>
+          <p className="ant-upload-hint">Max 5MB. Your file will be publicly accessible and deleted
+            in 24 hours</p>
         </Dragger>
       </div>
     </section>
