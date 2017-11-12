@@ -8,6 +8,10 @@ resource "aws_lambda_function" "convert" {
   memory_size   = 1536
   timeout       = 25
 
+  tracing_config {
+    mode = "Active"
+  }
+
   environment {
     variables {
       S3_BUCKET_NAME = "${aws_s3_bucket.serverless_libreoffice_pdf.id}"
