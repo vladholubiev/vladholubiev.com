@@ -3,11 +3,11 @@ import {Button, Icon, message, Progress, Table, Tag, Upload} from 'antd';
 
 const Dragger = Upload.Dragger;
 const props = {
-  name: 'file',
-  multiple: true,
+  multiple: false,
   showUploadList: false,
-  action: '//jsonplaceholder.typicode.com/posts/',
+  action: 'https://s3.amazonaws.com/serverless-libreoffice-pdf/tmp/uploads',
   onChange(info) {
+    console.log('info', info);
     const status = info.file.status;
     if (status !== 'uploading') {
       console.log(info.file, info.fileList);
@@ -83,7 +83,7 @@ const data = [
 ];
 
 export default () =>
-  <Layout>
+  <Layout title="Serverless LibreOffice">
     {/*language=CSS*/}
     <style jsx>{`
         section {
