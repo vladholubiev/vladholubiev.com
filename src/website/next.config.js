@@ -4,7 +4,8 @@ const {ANALYZE} = process.env;
 module.exports = {
   exportPathMap() {
     return {
-      '/': {page: '/'}
+      '/': {page: '/'},
+      '/serverless-libreoffice': {page: '/serverless-libreoffice'}
     }
   },
   webpack(config) {

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import {Layout, LocaleProvider, Menu} from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
+import Link from 'next/link'
 
 const {Header, Content, Footer} = Layout;
 
@@ -44,7 +45,6 @@ export default ({children, title = 'Vlad Holubiev'}) =>
       {/*language=CSS*/}
       <style jsx global>{`
           body {
-              font-family: "PT Serif", Georgia, serif;
               background: rgb(240, 242, 245);
               font-size: 1.1em;
           }
@@ -59,14 +59,13 @@ export default ({children, title = 'Vlad Holubiev'}) =>
             mode="horizontal"
             defaultSelectedKeys={['1']}
             style={{lineHeight: '64px'}}
-            onClick={console.log}
           >
-            <Menu.Item key="/">🏠 Home</Menu.Item>
-            <Menu.Item key="/serverless-libreoffice">⚡️Serverless LibreOffice</Menu.Item>
+            <Menu.Item key="/"><Link href="/">🏠 Home</Link></Menu.Item>
+            <Menu.Item key="/serverless-libreoffice"><Link href="/serverless-libreoffice">⚡️Serverless LibreOffice</Link></Menu.Item>
           </Menu>
         </Header>
 
-        <Content style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900}}>
+        <Content style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900, width: '100%'}}>
           <div style={{background: '#fff', padding: 48, minHeight: 280}}>
             {children}
           </div>
