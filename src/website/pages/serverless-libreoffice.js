@@ -109,50 +109,52 @@ export default () =>
       </p>
 
       <p>
-        <Tag>.doc</Tag>
-        <Tag>.docx</Tag>
-        <Tag>.ppt</Tag>
-        <Tag>.pptx</Tag>
-        <Tag>.xls</Tag>
-        <Tag>.xlsx</Tag>
-        <Tag>.numbers</Tag>
-        <Tag>.pages</Tag>
-        <Tag>.key</Tag>
-        <Tag>.csv</Tag>
-        <Tag>.txt</Tag>
-        <Tag>.odt</Tag>
-        <Tag>.ods</Tag>
-        <Tag>.odt</Tag>
-        <Tag>.odp</Tag>
-        <Tag>.html</Tag>
-        <Tag>.rtf</Tag>
-        <Tag>.xlt</Tag>
-        <Tag>.psd</Tag>
-        <Tag>.bmp</Tag>
-        <Tag>.png</Tag>
-        <Tag>.xml</Tag>
-        <Tag>.gif</Tag>
-        <Tag>.svg</Tag>
-        <Tag>.cdr</Tag>
-        <Tag>.cmx</Tag>
-        <Tag>.dif</Tag>
-        <Tag>.eps</Tag>
-        <Tag>.emf</Tag>
-        <Tag>.gpl</Tag>
-        <Tag>.gnm</Tag>
-        <Tag>.hwp</Tag>
-        <Tag>.plt</Tag>
-        <Tag>.jd</Tag>
-        <Tag>.jpg</Tag>
-        <Tag>.pct</Tag>
-        <Tag>.met</Tag>
-        <Tag>.pxl</Tag>
-        <Tag>.psw</Tag>
-        <Tag>.dot</Tag>
-        <Tag>.svm</Tag>
-        <Tag>.tiff</Tag>
-        <Tag>.wps</Tag>
-        <Tag>... and so on</Tag>
+        <div>
+          <Tag>.doc</Tag>
+          <Tag>.docx</Tag>
+          <Tag>.ppt</Tag>
+          <Tag>.pptx</Tag>
+          <Tag>.xls</Tag>
+          <Tag>.xlsx</Tag>
+          <Tag>.numbers</Tag>
+          <Tag>.pages</Tag>
+          <Tag>.key</Tag>
+          <Tag>.csv</Tag>
+          <Tag>.txt</Tag>
+          <Tag>.odt</Tag>
+          <Tag>.ods</Tag>
+          <Tag>.odt</Tag>
+          <Tag>.odp</Tag>
+          <Tag>.html</Tag>
+          <Tag>.rtf</Tag>
+          <Tag>.xlt</Tag>
+          <Tag>.psd</Tag>
+          <Tag>.bmp</Tag>
+          <Tag>.png</Tag>
+          <Tag>.xml</Tag>
+          <Tag>.gif</Tag>
+          <Tag>.svg</Tag>
+          <Tag>.cdr</Tag>
+          <Tag>.cmx</Tag>
+          <Tag>.dif</Tag>
+          <Tag>.eps</Tag>
+          <Tag>.emf</Tag>
+          <Tag>.gpl</Tag>
+          <Tag>.gnm</Tag>
+          <Tag>.hwp</Tag>
+          <Tag>.plt</Tag>
+          <Tag>.jd</Tag>
+          <Tag>.jpg</Tag>
+          <Tag>.pct</Tag>
+          <Tag>.met</Tag>
+          <Tag>.pxl</Tag>
+          <Tag>.psw</Tag>
+          <Tag>.dot</Tag>
+          <Tag>.svm</Tag>
+          <Tag>.tiff</Tag>
+          <Tag>.wps</Tag>
+          <Tag>... and so on</Tag>
+        </div>
       </p>
 
       <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
@@ -161,7 +163,7 @@ export default () =>
         </Button>
       </a>
     </header>
-
+`
     <section>
       <h2>Demo</h2>
 
