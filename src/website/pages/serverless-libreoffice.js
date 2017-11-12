@@ -92,6 +92,18 @@ export default () =>
         }
     `
     }</style>
+    {/*language=CSS*/}
+    <style jsx global>{`
+        .ant-progress-outer {
+            padding-right: calc(2em + 5em) !important;
+            margin-right: calc(-2em - 5em) !important;
+        }
+
+        .ant-progress-text {
+            width: auto;
+        }
+    `
+    }</style>
     <header>
       <h1>Serverless LibreOffice PDF Converter</h1>
 
@@ -103,46 +115,44 @@ export default () =>
       <p>
         But stripped from useless stuff, so it takes only 109 out of 250 MB function's&nbsp;
         <code>zip</code> artifact.
-        <Progress percent={Math.ceil(109 / 250 * 100)}/>
+        <Progress percent={Math.ceil(109 / 250 * 100)} format={() => '109 / 250 MB'}/>
       </p>
 
       <p>
         And converts almost any office document to PDF:
       </p>
 
-      <p>
-        <div>
-          <Tag>.doc</Tag>
-          <Tag>.docx</Tag>
-          <Tag>.ppt</Tag>
-          <Tag>.pptx</Tag>
-          <Tag>.xls</Tag>
-          <Tag>.xlsx</Tag>
-          <Tag>.numbers</Tag>
-          <Tag>.pages</Tag>
-          <Tag>.key</Tag>
-          <Tag>.csv</Tag>
-          <Tag>.txt</Tag>
-          <Tag>.odt</Tag>
-          <Tag>.ods</Tag>
-          <Tag>.odt</Tag>
-          <Tag>.odp</Tag>
-          <Tag>.html</Tag>
-          <Tag>.rtf</Tag>
-          <Tag>.xlt</Tag>
-          <Tag>.psd</Tag>
-          <Tag>.bmp</Tag>
-          <Tag>.png</Tag>
-          <Tag>.xml</Tag>
-          <Tag>.svg</Tag>
-          <Tag>.cdr</Tag>
-          <Tag>.eps</Tag>
-          <Tag>.psw</Tag>
-          <Tag>.dot</Tag>
-          <Tag>.tiff</Tag>
-          <Tag><em>and more</em></Tag>
-        </div>
-      </p>
+      <div style={{marginBottom: '1em'}}>
+        <Tag>.doc</Tag>
+        <Tag>.docx</Tag>
+        <Tag>.ppt</Tag>
+        <Tag>.pptx</Tag>
+        <Tag>.xls</Tag>
+        <Tag>.xlsx</Tag>
+        <Tag>.numbers</Tag>
+        <Tag>.pages</Tag>
+        <Tag>.key</Tag>
+        <Tag>.csv</Tag>
+        <Tag>.txt</Tag>
+        <Tag>.odt</Tag>
+        <Tag>.ods</Tag>
+        <Tag>.odt</Tag>
+        <Tag>.odp</Tag>
+        <Tag>.html</Tag>
+        <Tag>.rtf</Tag>
+        <Tag>.xlt</Tag>
+        <Tag>.psd</Tag>
+        <Tag>.bmp</Tag>
+        <Tag>.png</Tag>
+        <Tag>.xml</Tag>
+        <Tag>.svg</Tag>
+        <Tag>.cdr</Tag>
+        <Tag>.eps</Tag>
+        <Tag>.psw</Tag>
+        <Tag>.dot</Tag>
+        <Tag>.tiff</Tag>
+        <Tag><em>and more</em></Tag>
+      </div>
 
       <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
         <Button type="primary" icon="github">
