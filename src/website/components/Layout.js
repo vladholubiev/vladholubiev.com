@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import {Icon, Layout, LocaleProvider, Menu} from 'antd';
+import {trackLinkClick} from '../helpers/gtag';
 import enUS from 'antd/lib/locale-provider/en_US';
 import Link from 'next/link'
 
@@ -59,20 +60,21 @@ export default ({children, title = 'Vlad Holubiev'}) =>
             mode="horizontal"
             defaultSelectedKeys={['1']}
             style={{lineHeight: '64px'}}
+            onClick={(key) => trackLinkClick('navigation', key)}
           >
-            <Menu.Item key="/">
+            <Menu.Item key="Home">
               <Link href="/">
                 🏠 Home
               </Link>
             </Menu.Item>
 
-            <Menu.Item key="/serverless-libreoffice">
+            <Menu.Item key="Serverless LibreOffice">
               <Link href="/serverless-libreoffice">
                 ⚡️Serverless LibreOffice
               </Link>
             </Menu.Item>
 
-            <Menu.Item key="twitter" style={{float: 'right'}}>
+            <Menu.Item key="Twitter" style={{float: 'right'}}>
               <a href="https://twitter.com/vladholubiev" target="_blank">
                 <Icon type="twitter"/> Twitter
               </a>
