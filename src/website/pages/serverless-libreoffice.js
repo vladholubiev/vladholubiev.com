@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import Head from 'next/head';
 import {Button, Icon, message, Progress, Table, Tag, Upload} from 'antd';
 
 const Dragger = Upload.Dragger;
@@ -104,6 +105,17 @@ export default () =>
         }
     `
     }</style>
+
+    <Head>
+      <title>Serverless LibreOffice in AWS Lambda | Demo</title>
+      <meta property="og:title" content="Serverless LibreOffice in AWS Lambda | Demo"/>
+      <meta property="og:image"
+            content="https://cdn-images-1.medium.com/max/1600/1*4q_I8VM6Gtmtw6TAjORylA.png"/>
+      <meta property="og:image:width" content="1600"/>
+      <meta property="og:image:height" content="817"/>
+      <meta property="og:description" content="Try converting your document into PDF"/>
+    </Head>
+
     <header>
       <h1>Serverless LibreOffice PDF Converter</h1>
 
