@@ -24,6 +24,19 @@ data "aws_iam_policy_document" "convert" {
       "${aws_s3_bucket.serverless_libreoffice_pdf.arn}/tmp/*",
     ]
   }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "xray:PutTraceSegments",
+      "xray:PutTelemetryRecords",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
 }
 
 resource "aws_iam_role" "convert" {

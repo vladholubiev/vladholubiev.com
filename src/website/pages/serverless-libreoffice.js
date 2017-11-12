@@ -106,11 +106,6 @@ export default () =>
         <Progress percent={Math.ceil(109 / 250 * 100)}/>
       </p>
 
-      {/*<p>*/}
-      {/*And unzipped it takes 340 of 512 ephemeral Lambda <code>/tmp</code> storage.*/}
-      {/*<Progress percent={Math.ceil(340 / 512 * 100)}/>*/}
-      {/*</p>*/}
-
       <p>
         And converts almost any office document to PDF:
       </p>
