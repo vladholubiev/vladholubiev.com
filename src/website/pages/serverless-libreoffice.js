@@ -101,7 +101,7 @@ export default () =>
       </p>
 
       <p>
-        Compressed it takes only 109 out of 250 MB function's <code>zip</code> artifact.
+        But stripped from useless stuff, so it takes only 109 out of 250 MB function's <code>zip</code> artifact.
         <Progress percent={Math.ceil(109 / 250 * 100)}/>
       </p>
 
@@ -138,28 +138,13 @@ export default () =>
           <Tag>.bmp</Tag>
           <Tag>.png</Tag>
           <Tag>.xml</Tag>
-          <Tag>.gif</Tag>
           <Tag>.svg</Tag>
           <Tag>.cdr</Tag>
-          <Tag>.cmx</Tag>
-          <Tag>.dif</Tag>
           <Tag>.eps</Tag>
-          <Tag>.emf</Tag>
-          <Tag>.gpl</Tag>
-          <Tag>.gnm</Tag>
-          <Tag>.hwp</Tag>
-          <Tag>.plt</Tag>
-          <Tag>.jd</Tag>
-          <Tag>.jpg</Tag>
-          <Tag>.pct</Tag>
-          <Tag>.met</Tag>
-          <Tag>.pxl</Tag>
           <Tag>.psw</Tag>
           <Tag>.dot</Tag>
-          <Tag>.svm</Tag>
           <Tag>.tiff</Tag>
-          <Tag>.wps</Tag>
-          <Tag>... and so on</Tag>
+          <Tag><em>and more</em></Tag>
         </div>
       </p>
 
