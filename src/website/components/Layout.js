@@ -44,7 +44,7 @@ export default ({children, title = 'Vlad Holubiev'}) =>
       <meta name="author" content="Vladyslav Holubiev"/>
       <meta name="description"
             content="I enjoy building hip back-end tech like Serverless λ with Node.js, Microservices in Docker, REST APIs on AWS, IaaC with Terraform, Elasticsearch with MongoDB, TDD with Wallaby."/>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+      <meta name="viewport" content="width=900"/>
 
       <link rel="stylesheet"
             href='https://cdnjs.cloudflare.com/ajax/libs/antd/3.0.0-beta.6/antd.min.css'/>
