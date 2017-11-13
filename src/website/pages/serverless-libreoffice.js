@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 import React from 'react'
 import Head from 'next/head';
+import {trackSocialClick} from '../helpers/gtag';
 import {Button, Icon, message, Progress, Spin, Table, Tag, Upload} from 'antd';
 
 const API_URL = 'https://j7f5k92zof.execute-api.us-east-1.amazonaws.com/prod/pdf';
@@ -161,21 +162,26 @@ export default class extends React.Component {
         </div>
 
         <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
-          <Button type="primary" icon="github">
+          <Button type="primary" icon="github" onClick={() => trackSocialClick('GitHub')}>
             Go to GitHub
           </Button>
         </a>
 
         <a style={{marginLeft: 16}} target="_blank"
            href="#">
-          <Button icon="edit">
+          <Button icon="edit" onClick={() => trackSocialClick('Medium')}>
             Read on Medium
           </Button>
         </a>
 
         <a style={{marginLeft: 16}}
-           href="https://twitter.com/intent/tweet?via=vladholubiev&hashtags=lambda,serverless&url=https%3A%2F%2Fvladholubiev%2Fserverless-libreoffice&text=Run%20LibreOffice%20Inside%20AWS%20Lambda%3A%20create%20PDFs%20at%20scale">
-          <Button icon="twitter">
+           target="_blank"
+           onClick={(e) => {
+             e.preventDefault();
+             window.open(e.currentTarget.href, 'Twitter', 'height=285,width=550,resizable=1');
+           }}
+           href="https://twitter.com/intent/tweet?via=vladholubiev&hashtags=lambda,serverless&url=https%3A%2F%2Fvladholubiev%2Fserverless-libreoffice&text=Run%20LibreOffice%20Inside%20AWS%20Lambda">
+          <Button icon="twitter" onClick={() => trackSocialClick('Twitter')}>
             Tweet
           </Button>
         </a>
