@@ -234,7 +234,7 @@ export default class extends React.Component {
 
               reader.onload = function() {
                 const filename = file.name;
-                const base64File = reader.result.split(/^data:.+\/.+;base64,/)[1];
+                const base64File = reader.result.split('base64,')[1];
 
                 const options = {
                   method: 'POST',
@@ -267,7 +267,9 @@ export default class extends React.Component {
                   });
               };
 
-              reader.readAsDataURL(file);
+              setTimeout(() => {
+                reader.readAsDataURL(file);
+              }, 10);
 
               return false;
             }
