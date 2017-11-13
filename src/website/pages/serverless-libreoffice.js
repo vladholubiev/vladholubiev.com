@@ -168,7 +168,7 @@ export default class extends React.Component {
         </a>
 
         <a style={{marginLeft: 16}} target="_blank"
-           href="#">
+           href="https://medium.com/@vladholubiev/how-to-run-libreoffice-in-aws-lambda-for-dirty-cheap-pdfs-at-scale-b2c6b3d069b4">
           <Button icon="edit" onClick={() => trackSocialClick('Medium')}>
             Read on Medium
           </Button>
