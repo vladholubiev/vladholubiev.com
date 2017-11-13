@@ -172,6 +172,13 @@ export default () =>
         </Button>
       </a>
 
+      <a style={{marginLeft: 16}} target="_blank"
+         href="#">
+        <Button icon="edit">
+          Read on Medium
+        </Button>
+      </a>
+
       <a style={{marginLeft: 16}}
          href="https://twitter.com/intent/tweet?via=vladholubiev&hashtags=lambda,serverless&url=https%3A%2F%2Fvladholubiev%2Fserverless-libreoffice&text=Run%20LibreOffice%20Inside%20AWS%20Lambda%3A%20create%20PDFs%20at%20scale">
         <Button icon="twitter">
