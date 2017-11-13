@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import React from 'react'
 import Head from 'next/head';
-import {Button, Icon, message, Progress, Table, Tag, Upload} from 'antd';
+import {Button, Icon, message, Progress, Spin, Table, Tag, Upload} from 'antd';
 
 const API_URL = 'https://j7f5k92zof.execute-api.us-east-1.amazonaws.com/prod/pdf';
 const Dragger = Upload.Dragger;
@@ -196,13 +196,19 @@ export default class extends React.Component {
         }
 
         {!self.state.pdfFileURL &&
-        <div style={{height: 180}}>
+        <div style={{height: 180, textAlign: 'center', background: 'rgba(0,0,0,0.05)'}}>
+          {self.state.loading &&
+          <Spin size="large" style={{marginTop: 75, transform: 'scale(1.5)'}}/>}
+
+          {!self.state.loading &&
           <Dragger {...{
             multiple: false,
             showUploadList: false,
             action: API_URL,
             beforeUpload(file) {
               const reader = new FileReader();
+
+              self.setState({loading: true});
 
               reader.onload = function() {
                 const filename = file.name;
@@ -229,10 +235,12 @@ export default class extends React.Component {
                     self.setState({pdfFileURL});
 
                     message.success('Converted!');
+                    self.setState({loading: false});
                   })
                   .catch((error) => {
                     console.debug(error);
                     message.error(error);
+                    self.setState({loading: false});
                   });
               };
 
@@ -249,6 +257,7 @@ export default class extends React.Component {
               deleted
               in 24 hours</p>
           </Dragger>
+          }
         </div>
         }
       </section>
