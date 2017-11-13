@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import React from 'react'
 import Head from 'next/head';
-import {trackSocialClick, trackLinkClick} from '../helpers/gtag';
+import {trackLinkClick, trackSocialClick} from '../helpers/gtag';
 import {Button, Icon, message, Progress, Spin, Table, Tag, Upload} from 'antd';
 
 const API_URL = 'https://j7f5k92zof.execute-api.us-east-1.amazonaws.com/prod/pdf';
@@ -197,7 +197,8 @@ export default class extends React.Component {
           <Button style={{marginTop: 16}} icon="reload"
                   onClick={() => {
                     trackLinkClick('pdf_actions', 'One More!');
-                    self.setState({pdfFileURL: false})}
+                    self.setState({pdfFileURL: false})
+                  }
                   }>
             One more!
           </Button>
@@ -207,7 +208,8 @@ export default class extends React.Component {
         {!self.state.pdfFileURL &&
         <div style={{height: 180, textAlign: 'center', background: 'rgba(0,0,0,0.05)'}}>
           {self.state.loading &&
-          <Spin size="large" style={{marginTop: 75, transform: 'scale(1.5)'}}/>}
+          <Spin size="large" tip={self.state.loadingText}
+                style={{marginTop: 75, transform: 'scale(1.5)'}}/>}
 
           {!self.state.loading &&
           <Dragger {...{
@@ -216,8 +218,19 @@ export default class extends React.Component {
             action: API_URL,
             beforeUpload(file) {
               const reader = new FileReader();
+              self.setState({loading: true, loadingText: 'Reading file from your disk'});
 
-              self.setState({loading: true});
+              if (file.size > 1024 * 1024) {
+                message.error('Please select file <= 1MB');
+
+                self.setState({loading: true, loadingText: 'Please select file <= 1MB'});
+
+                setTimeout(() => {
+                  self.setState({loading: false});
+                }, 1500);
+
+                return false;
+              }
 
               reader.onload = function() {
                 const filename = file.name;
@@ -236,6 +249,7 @@ export default class extends React.Component {
                 };
 
                 message.info('Upload started...');
+                self.setState({loading: true, loadingText: 'Sending request to API'});
 
                 fetch(API_URL, options)
                   .then(resp => resp.json())
@@ -262,7 +276,7 @@ export default class extends React.Component {
               <Icon type="inbox"/>
             </p>
             <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">Max 5MB. Your file will be publicly accessible and
+            <p className="ant-upload-hint">Max 1MB. Your file will be publicly accessible and
               deleted
               in 24 hours</p>
           </Dragger>
