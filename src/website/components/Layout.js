@@ -56,14 +56,14 @@ export default ({children, title = 'Vlad Holubiev'}) =>
       <link rel="shortcut icon" type="image/x-icon" href="/static/favicon-256.png"/>
 
       <title>{title}</title>
-
-      {/*language=CSS*/}
-      <style jsx global>{`
-          body {
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        body {
               background: rgb(240, 242, 245);
               font-size: 1.1em;
           }
-      `}</style>
+        `
+      }}/>
     </Head>
 
     <LocaleProvider locale={enUS}>
