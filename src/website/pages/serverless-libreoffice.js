@@ -193,7 +193,7 @@ export default class extends React.Component {
         {self.state.pdfFileURL &&
         <p>
           <a target="_blank" href={self.state.pdfFileURL}>{self.state.pdfFileURL}</a>
-
+          <br/>
           <Button style={{marginTop: 16}} icon="reload"
                   onClick={() => self.setState({pdfFileURL: false})}>
             One more!
