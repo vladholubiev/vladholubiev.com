@@ -6,10 +6,17 @@ const Dragger = Upload.Dragger;
 const props = {
   multiple: false,
   showUploadList: false,
-  action: 'https://s3.amazonaws.com/serverless-libreoffice-pdf/tmp/uploads',
+  action: 'https://j7f5k92zof.execute-api.us-east-1.amazonaws.com/prod/pdf',
+  headers: {
+    // don't worry, it has restricted AWS API Gateway Usage Plan
+    // So this is for demo purposes only
+    'x-api-key': 'lFHtiYT6Kt5tAGU8YnUsX005zjsxsaaKnStu7B70'
+  },
   onChange(info) {
     console.log('info', info);
     const status = info.file.status;
+
+
     if (status !== 'uploading') {
       console.log(info.file, info.fileList);
     }
@@ -124,11 +131,12 @@ export default () =>
         compiled to run in <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> environment.
       </p>
 
-      <p>
+      <p style={{marginBottom: 0}}>
         But stripped from useless stuff, so it takes only 109 out of 250 MB function's&nbsp;
         <code>zip</code> artifact.
-        <Progress percent={Math.ceil(109 / 250 * 100)} format={() => '109 / 250 MB'}/>
       </p>
+
+      <Progress percent={Math.ceil(109 / 250 * 100)} format={() => '109 / 250 MB'}/>
 
       <p>
         And converts almost any office document to PDF:
