@@ -24,7 +24,6 @@ data "aws_iam_policy_document" "deploy_website" {
     ]
 
     resources = [
-      "arn:aws:s3:::codepipeline-us-east-1-*",
       "${aws_s3_bucket.vladholubiev_com.arn}*",
     ]
   }
