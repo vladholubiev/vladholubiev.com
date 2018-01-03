@@ -29,7 +29,7 @@ jobs:
       - persist_to_workspace:
           root: out
           paths:
-            - out
+            - src/website/out
 
   deploy:
     <<: *defaults
