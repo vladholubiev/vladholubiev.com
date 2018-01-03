@@ -2,12 +2,13 @@ version: 2
 
 defaults: &defaults
   working_directory: ~/website
-  docker:
-    - image: circleci/node:8
 
 jobs:
   build:
     <<: *defaults
+
+    docker:
+      - image: circleci/node:8
 
     steps:
       - checkout
