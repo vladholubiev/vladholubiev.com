@@ -19,7 +19,7 @@ jobs:
 
       - run: cd src/website && yarn install
       - run: cd src/website && yarn build
-      - run: cd src/website && mkdir -p ~/website/out && yarn export
+      - run: cd src/website && yarn export
 
       - save_cache:
           key: v2-dependencies-{{ checksum "src/website/yarn.lock" }}
@@ -27,7 +27,7 @@ jobs:
             - src/website/node_modules
 
       - persist_to_workspace:
-          root: out
+          root: ~/website
           paths:
             - src/website/out/*
 
@@ -36,9 +36,9 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: out
+          at: ~/website
 
-      - run: aws --version
+      - run: ls -al && aws --version
 
 workflows:
   version: 2
