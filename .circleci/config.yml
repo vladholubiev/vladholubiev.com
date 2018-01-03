@@ -19,7 +19,7 @@ jobs:
 
       - run: cd src/website && yarn install
       - run: cd src/website && yarn build
-      - run: cd src/website && yarn export
+      - run: cd src/website && mkdir -p ~/website/out && yarn export
 
       - save_cache:
           key: v2-dependencies-{{ checksum "src/website/yarn.lock" }}
