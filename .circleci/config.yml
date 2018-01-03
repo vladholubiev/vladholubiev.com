@@ -1,10 +1,13 @@
 version: 2
-jobs:
-  deploy_website:
-    docker:
-      - image: circleci/node:8
 
-    working_directory: ~/website
+defaults: &defaults
+  working_directory: /tmp
+  docker:
+    - image: circleci/node:8
+
+jobs:
+  build:
+    <<: *defaults
 
     steps:
       - checkout
@@ -17,9 +20,35 @@ jobs:
       - run: cd src/website && yarn install
       - run: cd src/website && yarn build
       - run: cd src/website && yarn export
-      - run: cd src/website && aws --version
 
       - save_cache:
           key: v2-dependencies-{{ checksum "src/website/yarn.lock" }}
           paths:
             - src/website/node_modules
+
+       - persist_to_workspace:
+          root: out
+          paths:
+            - out
+
+  deploy:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: out
+
+      - run: aws --version
+
+workflows:
+  version: 2
+
+  build_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
