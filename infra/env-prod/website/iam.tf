@@ -7,7 +7,7 @@ resource "aws_iam_user_policy" "deploy_website" {
   name = "deploy_website"
   user = "${aws_iam_user.circle_ci_website.name}"
 
-  policy = ""
+  policy = "${data.aws_iam_policy_document.deploy_website.json}"
 }
 
 data "aws_iam_policy_document" "deploy_website" {
