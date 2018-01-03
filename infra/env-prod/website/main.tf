@@ -1,6 +1,6 @@
 provider "aws" {
   region  = "us-east-1"
-  version = "~> 1.2.0"
+  version = "~> 1.6.0"
   profile = "vlad"
 }
 
