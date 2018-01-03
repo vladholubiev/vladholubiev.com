@@ -35,11 +35,14 @@ jobs:
   deploy:
     <<: *defaults
 
+    docker:
+      - image: cibuilds/aws
+
     steps:
       - attach_workspace:
           at: ~/website
 
-      - run: ls -al && aws --version
+      - run: cd src/website/out && ls -al && aws --version
 
 workflows:
   version: 2
