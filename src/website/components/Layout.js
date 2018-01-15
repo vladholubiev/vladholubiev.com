@@ -84,7 +84,7 @@ export default ({children, title = 'Vlad Holubiev'}) =>
 
             <Menu.Item key="Serverless LibreOffice">
               <Link href="/serverless-libreoffice">
-                <a>⚡️Serverless LibreOffice</a>
+                <a>⚡️ Serverless LibreOffice</a>
               </Link>
             </Menu.Item>
 
