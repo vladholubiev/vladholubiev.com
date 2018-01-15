@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const {ANALYZE} = process.env;
 
@@ -16,6 +17,8 @@ module.exports = {
         openAnalyzer: true
       }));
     }
+
+    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
 
     return config
   }
