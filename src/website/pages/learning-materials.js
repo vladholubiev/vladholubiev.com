@@ -3,11 +3,27 @@ import Layout from '../components/Layout';
 
 const data = [
   {
+    title: `Hello, Startup: A Programmer's Guide to Building Products, Technologies, and Teams`,
+    link: 'https://www.hello-startup.net/',
+    description: `This book will teach you how to build products, technologies, and teams in a startup environment.`,
+    icon: 'HS',
+    bgColor: '#59bb41'
+  },
+  {
+    title: 'Startup Resources',
+    link: 'https://www.hello-startup.net/resources',
+    description: `List of tools, links, and checklists to help you build a startup. Based on the book above`,
+    icon: 'SR',
+    bgColor: '#030102'
+  },
+  {
     title: 'JavaScript Weekly',
     link: 'http://javascriptweekly.com/',
     description: 'Weekly e-mail round-up of JavaScript news and articles',
     iconURL: 'https://hsto.org/webt/59/cc/76/59cc7600c78a2239379574.jpeg',
-    icon: 'JS'
+    icon: 'JS',
+    bgColor: '#f0db4f',
+    fgColor: 'black'
   },
   {
     title: 'Serverless Status',
@@ -27,12 +43,6 @@ const data = [
     link: 'http://wiki.c2.com/?AntiPatternsCatalog',
     description: '139 classical Anti Patterns',
     icon: 'X'
-  },
-  {
-    title: 'Startup Resources',
-    link: 'https://www.hello-startup.net/resources',
-    description: `List of tools, links, and checklists to help you build a startup. Based on the book "Hello, Startup: A Programmer's Guide to Building Products, Technologies, and Teams" by Yevgeniy Brikman`,
-    icon: 'S'
   },
   {
     title: '97 Things Every Programmer Should Know',
@@ -118,7 +128,15 @@ export default () => (
           <List.Item>
             <div className="list-item__wrapper">
               <List.Item.Meta
-                avatar={<Avatar shape="square">{item.icon}</Avatar>}
+                avatar={
+                  <Avatar
+                    size="large"
+                    style={{backgroundColor: item.bgColor, color: item.fgColor || 'white'}}
+                    shape="square"
+                  >
+                    {item.icon}
+                  </Avatar>
+                }
                 title={
                   <a href={item.link} target="_blank">
                     {item.title}
