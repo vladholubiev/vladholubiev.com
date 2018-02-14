@@ -3,16 +3,17 @@ import Layout from '../components/Layout';
 
 const data = [
   {
-    title: 'Ant Design Title 1'
+    title: 'JavaScript Weekly',
+    link: 'http://javascriptweekly.com/',
+    description: 'Weekly e-mail round-up of JavaScript news and articles',
+    iconURL: 'https://hsto.org/webt/59/cc/76/59cc7600c78a2239379574.jpeg'
   },
   {
-    title: 'Ant Design Title 2'
-  },
-  {
-    title: 'Ant Design Title 3'
-  },
-  {
-    title: 'Ant Design Title 4'
+    title: 'Serverless Status',
+    link: 'https://serverless.email/',
+    description:
+      'A weekly newsletter about serverless architectures and paradigms, function-as-a-service, AWS Lambda, etc.',
+    iconURL: 'https://serverless.email/images/serverlesskeith.png'
   }
 ];
 
@@ -40,11 +41,13 @@ export default () => (
           <List.Item>
             <div className="list-item__wrapper">
               <List.Item.Meta
-                avatar={
-                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                avatar={<Avatar shape="square" src={item.iconURL} />}
+                title={
+                  <a href={item.link} target="_blank">
+                    {item.title}
+                  </a>
                 }
-                title={<a href="https://ant.design">{item.title}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                description={item.description}
               />
             </div>
           </List.Item>
