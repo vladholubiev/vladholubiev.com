@@ -118,7 +118,22 @@ const data = [
 ];
 
 export default () => (
-  <Layout>
+  <Layout
+    ogImage={[
+      <meta property="og:image" content="/static/og-images/learning-materials-1200x630.png" />,
+      <meta
+        property="og:image:secure_url"
+        content="/static/og-images/learning-materials-1200x630.png"
+      />,
+      <meta property="og:image:type" content="image/png" />,
+      <meta property="og:image:width" content="1200" />,
+      <meta property="og:image:height" content="630" />,
+      <meta
+        property="og:image:alt"
+        content="Learning Materials: Which I recommend to developers who apply for a Back-end Developer role at Shelf"
+      />
+    ]}
+  >
     <header>
       <h2>Learning Materials</h2>
 

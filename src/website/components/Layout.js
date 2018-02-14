@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const {Header, Content, Footer} = Layout;
 
-export default ({children, title = 'Vlad Holubiev'}) => (
+export default ({children, title = 'Vlad Holubiev', ogImage}) => (
   <div>
     <Head>
       <meta charSet="utf-8" />
@@ -62,6 +62,7 @@ export default ({children, title = 'Vlad Holubiev'}) => (
       <meta name="msapplication-TileImage" content="/static/favicon-256.png" />
       <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-256.png" />
       <link rel="shortcut icon" type="image/x-icon" href="/static/favicon-256.png" />
+      {ogImage}
 
       <title>{title}</title>
       <style
