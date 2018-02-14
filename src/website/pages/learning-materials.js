@@ -127,7 +127,10 @@ export default () => (
       <meta property="og:type" content="website" />,
       <meta property="og:url" content="https://vladholubiev.com/learning-materials/" />,
       <meta property="og:description" content="Books, e-mail newsletters, online resources" />,
-      <meta property="og:image" content="/static/og-images/learning-materials-1200x630.png" />,
+      <meta
+        property="og:image"
+        content="https://vladholubiev.com/static/og-images/learning-materials-1200x630.png"
+      />,
       <meta
         property="og:image:secure_url"
         content="/static/og-images/learning-materials-1200x630.png"
