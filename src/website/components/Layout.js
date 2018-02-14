@@ -62,6 +62,11 @@ export default ({children, title = 'Vlad Holubiev', ogTags}) => (
       <meta name="msapplication-TileImage" content="/static/favicon-256.png" />
       <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-256.png" />
       <link rel="shortcut icon" type="image/x-icon" href="/static/favicon-256.png" />
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@vladholubiev" />
+      <meta name="twitter:creator" content="@vladholubiev" />
+
       {ogTags}
 
       <title>{title}</title>
