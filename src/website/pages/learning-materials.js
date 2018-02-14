@@ -17,19 +17,10 @@ const data = [
     bgColor: '#030102'
   },
   {
-    title: 'JavaScript Weekly',
-    link: 'http://javascriptweekly.com/',
-    description: 'Weekly e-mail round-up of JavaScript news and articles',
-    iconURL: 'https://hsto.org/webt/59/cc/76/59cc7600c78a2239379574.jpeg',
-    icon: 'JS',
-    bgColor: '#f0db4f',
-    fgColor: 'black'
-  },
-  {
     title: 'Serverless Status',
     link: 'https://serverless.email/',
     description:
-      'A weekly newsletter about serverless architectures and paradigms, function-as-a-service, AWS Lambda, etc.',
+      'A weekly newsletter about serverless architectures, function-as-a-service, AWS Lambda, etc.',
     icon: 'ƛ',
     bgColor: '#e36b38'
   },
@@ -44,8 +35,15 @@ const data = [
     title: 'Anti Patterns Catalog',
     link: 'http://wiki.c2.com/?AntiPatternsCatalog',
     description: '139 classical Anti Patterns',
-    icon: 'X',
+    icon: 'AP',
     bgColor: '#042fee'
+  },
+  {
+    title: 'Hacker News',
+    link: 'https://news.ycombinator.com/',
+    description: `¯\\_(ツ)_/¯`,
+    icon: 'HN',
+    bgColor: '#ff6600'
   },
   {
     title: '97 Things Every Programmer Should Know',
@@ -54,6 +52,13 @@ const data = [
     description: 'Pearls of wisdom for programmers collected from leading practitioners',
     icon: '97',
     bgColor: '#4183c4'
+  },
+  {
+    title: 'Last Week in AWS',
+    link: 'https://lastweekinaws.com/',
+    description: `A weekly roundup of news from Amazon's cloud ecosystem- sprinkled with snark.`,
+    icon: 'AWS',
+    bgColor: '#f2cd00'
   },
   {
     title: '97 Things Every Software Architect Should Know',
@@ -65,12 +70,21 @@ const data = [
     fgColor: 'white'
   },
   {
-    title: `The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses`,
+    title: `The Lean Startup`,
     link: 'https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898',
     description:
       'Validated learning, rapid scientific experimentation, shorten product development cycles, measure actual progress without resorting to vanity metrics, and learn what customers really want',
     icon: 'LS',
     bgColor: '#027ac4'
+  },
+  {
+    title: 'JavaScript Weekly',
+    link: 'http://javascriptweekly.com/',
+    description: 'Weekly e-mail round-up of JavaScript news and articles',
+    iconURL: 'https://hsto.org/webt/59/cc/76/59cc7600c78a2239379574.jpeg',
+    icon: 'JS',
+    bgColor: '#f0db4f',
+    fgColor: 'black'
   },
   {
     title: `mongoDB Weekly`,
@@ -100,20 +114,6 @@ const data = [
     description: `A weekly newsletter on Web operations, infrastructure, performance, the backend, and tooling, from the browser down to the metal`,
     icon: 'SLS',
     bgColor: '#0093b1'
-  },
-  {
-    title: 'Last Week in AWS',
-    link: 'https://lastweekinaws.com/',
-    description: `A weekly roundup of news from Amazon's cloud ecosystem- sprinkled with snark.`,
-    icon: 'AWS',
-    bgColor: '#f2cd00'
-  },
-  {
-    title: 'Hacker News',
-    link: 'https://news.ycombinator.com/',
-    description: `¯\\_(ツ)_/¯`,
-    icon: 'HN',
-    bgColor: '#ff6600'
   }
 ];
 
