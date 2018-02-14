@@ -119,7 +119,14 @@ const data = [
 
 export default () => (
   <Layout
-    ogImage={[
+    ogTags={[
+      <meta
+        property="og:title"
+        content="Learning Materials for back-end devs I recommend after interviews"
+      />,
+      <meta property="og:type" content="website" />,
+      <meta property="og:url" content="https://vladholubiev.com/learning-materials/" />,
+      <meta property="og:description" content="Books, e-mail newsletters, online resources" />,
       <meta property="og:image" content="/static/og-images/learning-materials-1200x630.png" />,
       <meta
         property="og:image:secure_url"
