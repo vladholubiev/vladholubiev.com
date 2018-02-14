@@ -133,7 +133,7 @@ export default () => (
       />,
       <meta
         property="og:image:secure_url"
-        content="/static/og-images/learning-materials-1200x630.png"
+        content="https://vladholubiev.com/static/og-images/learning-materials-1200x630.png"
       />,
       <meta property="og:image:type" content="image/png" />,
       <meta property="og:image:width" content="1200" />,
