@@ -98,6 +98,12 @@ export default ({children, title = 'Vlad Holubiev'}) => (
               </Link>
             </Menu.Item>
 
+            <Menu.Item key="Learning Materials">
+              <Link href="/learning-materials">
+                <a>📚 Learning Materials</a>
+              </Link>
+            </Menu.Item>
+
             <Menu.Item key="Twitter" style={{float: 'right'}}>
               <a href="https://twitter.com/vladholubiev" target="_blank">
                 <Icon type="twitter" /> Twitter

@@ -1,8 +1,8 @@
-import Layout from '../components/Layout';
 import React from 'react';
 import Head from 'next/head';
-import {trackLinkClick, trackSocialClick} from '../helpers/gtag';
 import {Button, Icon, message, Progress, Spin, Table, Tag, Upload} from 'antd';
+import {trackLinkClick, trackSocialClick} from '../helpers/gtag';
+import Layout from '../components/Layout';
 
 const API_URL = 'https://j7f5k92zof.execute-api.us-east-1.amazonaws.com/prod/pdf';
 const Dragger = Upload.Dragger;

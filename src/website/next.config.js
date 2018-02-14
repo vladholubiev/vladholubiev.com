@@ -6,7 +6,8 @@ module.exports = {
   exportPathMap() {
     return {
       '/': {page: '/'},
-      '/serverless-libreoffice': {page: '/serverless-libreoffice'}
+      '/serverless-libreoffice': {page: '/serverless-libreoffice'},
+      '/learning-materials': {page: '/learning-materials'}
     };
   },
   webpack(config) {
