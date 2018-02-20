@@ -101,6 +101,14 @@ const data = [
     bgColor: '#449a45'
   },
   {
+    title: 'Startup Playbook',
+    link: 'http://playbook.samaltman.com/',
+    description:
+      'Distilled advice from Y Combinator for startups on how to find the idea, build a great team and launch an excellent product',
+    icon: 'SP',
+    bgColor: '#ec6812'
+  },
+  {
     title: `DB Weekly`,
     link: 'https://dbweekly.com',
     description:
