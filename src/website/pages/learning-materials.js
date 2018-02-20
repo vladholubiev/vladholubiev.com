@@ -137,7 +137,7 @@ export default () => (
     ogTags={[
       <meta
         property="og:title"
-        content="Learning Materials for back-end devs I recommend after interviews"
+        content="Learning Materials about back-end and startups I recommend after interviews"
       />,
       <meta property="og:type" content="website" />,
       <meta property="og:url" content="https://vladholubiev.com/learning-materials/" />,
@@ -174,7 +174,7 @@ export default () => (
       `}</style>
 
       <List
-        header={'In no particular order'}
+        header={'In no particular order. About back-end and startups'}
         itemLayout="horizontal"
         dataSource={data}
         renderItem={item => (
