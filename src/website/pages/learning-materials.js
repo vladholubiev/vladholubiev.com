@@ -25,6 +25,13 @@ const data = [
     bgColor: '#e36b38'
   },
   {
+    title: 'Coding Tech',
+    link: 'https://www.youtube.com/channel/UCtxCXg-UvSnTKPOzLH4wJaQ/featured',
+    description: 'Best videos from best tech conferences',
+    icon: 'CT',
+    bgColor: '#31517e'
+  },
+  {
     title: 'Node Weekly',
     link: 'https://nodeweekly.com',
     description: 'Weekly e-mail round-up of Node.js news and articles.',
