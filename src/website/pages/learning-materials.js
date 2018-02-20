@@ -134,14 +134,15 @@ const data = [
 
 export default () => (
   <Layout
+    title="Learning Materials about back-end and startups"
     ogTags={[
-      <meta
-        property="og:title"
-        content="Learning Materials about back-end and startups I recommend after interviews"
-      />,
+      <meta property="og:title" content="Learning Materials about back-end and startups" />,
       <meta property="og:type" content="website" />,
       <meta property="og:url" content="https://vladholubiev.com/learning-materials/" />,
-      <meta property="og:description" content="Books, e-mail newsletters, online resources" />,
+      <meta
+        property="og:description"
+        content="Books, e-mail newsletters, videos, online resources"
+      />,
       <meta
         property="og:image"
         content="https://vladholubiev.com/static/og-images/learning-materials-1200x630.png"
@@ -161,8 +162,6 @@ export default () => (
   >
     <header>
       <h2>Learning Materials</h2>
-
-      <p>Which I recommend to developers who apply for a Back-end Developer role at Shelf</p>
     </header>
 
     <section>
