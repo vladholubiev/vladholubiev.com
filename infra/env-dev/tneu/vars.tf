@@ -14,6 +14,10 @@ variable "droplet_ip" {
   default = "138.68.77.58"
 }
 
+variable "tneu_edu_ua_ip" {
+  default = "193.104.213.106"
+}
+
 variable "droplet_port" {
   default = "9101"
 }
