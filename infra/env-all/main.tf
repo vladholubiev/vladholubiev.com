@@ -20,6 +20,19 @@ resource "aws_s3_bucket" "vladholubiev_tf_state" {
   }
 }
 
+resource "aws_s3_bucket" "vladholubiev_sls" {
+  bucket = "vladholubiev-sls"
+  region = "us-east-1"
+
+  tags {
+    Terraform = true
+  }
+
+  versioning {
+    enabled = true
+  }
+}
+
 terraform {
   backend "s3" {
     acl     = "private"
