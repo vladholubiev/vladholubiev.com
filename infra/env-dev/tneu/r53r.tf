@@ -9,17 +9,6 @@ resource "aws_route53_record" "tneu_droplet" {
   ]
 }
 
-resource "aws_route53_record" "tneu_edu_ua" {
-  zone_id = "${data.aws_route53_zone.vladholubiev_com.zone_id}"
-  name    = "tneu-edu-ua.${var.domain}"
-  type    = "A"
-  ttl     = "60"
-
-  records = [
-    "${var.tneu_edu_ua_ip}",
-  ]
-}
-
 resource "aws_route53_record" "tneu_scores" {
   zone_id = "${data.aws_route53_zone.vladholubiev_com.zone_id}"
   name    = "${var.subdomain}.${var.domain}"
