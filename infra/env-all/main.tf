@@ -1,11 +1,18 @@
 provider "aws" {
   region  = "eu-central-1"
-  version = "~> 1.2.0"
+  version = "~> 1.11"
+  profile = "vlad"
+}
+
+provider "aws.us_east_1" {
+  region  = "us-east-1"
+  version = "~> 1.11"
   profile = "vlad"
 }
 
 resource "aws_s3_bucket" "vladholubiev_tf_state" {
-  bucket = "vladholubiev-tf-state"
+  bucket   = "vladholubiev-tf-state"
+  provider = "aws"
 
   lifecycle {
     prevent_destroy = true
@@ -21,8 +28,9 @@ resource "aws_s3_bucket" "vladholubiev_tf_state" {
 }
 
 resource "aws_s3_bucket" "vladholubiev_sls" {
-  bucket = "vladholubiev-sls"
-  region = "us-east-1"
+  bucket   = "vladholubiev-serverless"
+  region   = "us-east-1"
+  provider = "aws.us_east_1"
 
   tags {
     Terraform = true
