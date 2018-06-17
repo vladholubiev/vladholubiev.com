@@ -129,7 +129,7 @@ export default class extends React.Component {
             <code>zip</code> artifact.
           </p>
 
-          <Progress percent={Math.ceil(109 / 250 * 100)} format={() => '109 / 250 MB'} />
+          <Progress percent={Math.ceil((109 / 250) * 100)} format={() => '109 / 250 MB'} />
 
           <p>And converts almost any office document to PDF:</p>
 
