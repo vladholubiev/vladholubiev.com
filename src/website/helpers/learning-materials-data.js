@@ -126,5 +126,12 @@ export default [
     description: `A weekly newsletter on Web operations, infrastructure, performance, the backend, and tooling, from the browser down to the metal`,
     icon: 'SLS',
     bgColor: '#0093b1'
+  },
+  {
+    title: `Paul Graham's Essays`,
+    link: 'http://www.paulgraham.com/articles.html',
+    description: `They never get old, one of the first and probably the most cited blog in startup scene`,
+    icon: 'PG',
+    bgColor: '#797ba9'
   }
 ];
