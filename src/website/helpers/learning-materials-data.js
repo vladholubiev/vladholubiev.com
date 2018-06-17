@@ -74,6 +74,15 @@ export default [
     fgColor: 'white'
   },
   {
+    title: 'The Open Guide to Amazon Web Services',
+    link: 'https://github.com/open-guides/og-aws',
+    description:
+      'This guide is by and for engineers who use AWS. It aims to be a useful, living reference that consolidates links, tips, gotchas, and best practices.',
+    icon: 'OG',
+    bgColor: '#f19e00',
+    fgColor: 'white'
+  },
+  {
     title: `The Lean Startup`,
     link: 'https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898',
     description:
