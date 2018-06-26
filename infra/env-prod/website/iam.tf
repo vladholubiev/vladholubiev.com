@@ -25,6 +25,11 @@ data "aws_iam_policy_document" "deploy_website" {
 
     resources = [
       "${aws_s3_bucket.vladholubiev_com.arn}*",
+      "${data.aws_s3_bucket.gdg_lviv_demo.arn}*",
     ]
   }
+}
+
+data "aws_s3_bucket" "gdg_lviv_demo" {
+  bucket = "gdg-lviv-appsync-demo"
 }
