@@ -26,7 +26,7 @@
     "prettier": "1.14.2",
     "react": "16.5.0",
     "react-dom": "16.5.0",
-    "webpack-bundle-analyzer": "2.13.1"
+    "webpack-bundle-analyzer": "3.0.1"
   },
   "husky": {
     "hooks": {
