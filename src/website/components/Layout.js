@@ -54,7 +54,7 @@ export default ({children, title = 'Vlad Holubiev', ogTags}) => (
 
       <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.0.0-beta.6/antd.min.css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.9.2/antd.min.css"
       />
 
       <link rel="apple-touch-icon-precomposed" href="/static/favicon-256.png" />

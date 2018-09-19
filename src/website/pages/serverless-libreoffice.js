@@ -168,7 +168,8 @@ export default class extends React.Component {
           </div>
 
           <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
-            <Button type="primary" icon="github" onClick={() => trackSocialClick('GitHub')}>
+            <Button type="primary" htmlType="button" onClick={() => trackSocialClick('GitHub')}>
+              <Icon type="github" />
               Go to GitHub
             </Button>
           </a>
@@ -178,7 +179,8 @@ export default class extends React.Component {
             target="_blank"
             href="https://medium.com/@vladholubiev/how-to-run-libreoffice-in-aws-lambda-for-dirty-cheap-pdfs-at-scale-b2c6b3d069b4"
           >
-            <Button icon="edit" onClick={() => trackSocialClick('Medium')}>
+            <Button htmlType="button" onClick={() => trackSocialClick('Medium')}>
+              <Icon type="edit" />
               Read on Medium
             </Button>
           </a>
@@ -192,8 +194,8 @@ export default class extends React.Component {
             }}
             href="https://twitter.com/intent/tweet?via=vladholubiev&hashtags=lambda,serverless&url=https%3A%2F%2Fvladholubiev%2Fserverless-libreoffice&text=Run%20LibreOffice%20Inside%20AWS%20Lambda"
           >
-            <Button icon="twitter" onClick={() => trackSocialClick('Twitter')}>
-              Tweet
+            <Button htmlType="button" onClick={() => trackSocialClick('Twitter')}>
+              <Icon type="twitter" /> Tweet
             </Button>
           </a>
         </header>
@@ -296,7 +298,7 @@ export default class extends React.Component {
                   }}
                 >
                   <p className="ant-upload-drag-icon">
-                    <Icon type="inbox" />
+                    <Icon type="inbox" theme="filled" />
                   </p>
                   <p className="ant-upload-text">Click or drag file to this area to upload</p>
                   <p className="ant-upload-hint">
