@@ -11,7 +11,7 @@ variable "env" {
 }
 
 variable "droplet_ip" {
-  default = "138.68.77.58"
+  default = "18.196.197.131"
 }
 
 variable "tneu_edu_ua_ip" {

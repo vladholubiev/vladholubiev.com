@@ -82,7 +82,7 @@ resource "aws_cloudfront_distribution" "tneu_scores" {
     compress               = true
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     allowed_methods = [
       "GET",
       "HEAD",
@@ -116,7 +116,7 @@ resource "aws_cloudfront_distribution" "tneu_scores" {
     compress               = true
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     allowed_methods = [
       "GET",
       "HEAD",
@@ -150,7 +150,7 @@ resource "aws_cloudfront_distribution" "tneu_scores" {
     compress               = true
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     allowed_methods = [
       "GET",
       "HEAD",
@@ -184,7 +184,7 @@ resource "aws_cloudfront_distribution" "tneu_scores" {
     compress               = true
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     allowed_methods = [
       "GET",
       "HEAD",
