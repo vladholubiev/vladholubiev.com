@@ -3,6 +3,7 @@ import {Icon, Layout, LocaleProvider, Menu} from 'antd';
 import {trackLinkClick} from '../helpers/gtag';
 import enUS from 'antd/lib/locale-provider/en_US';
 import Link from 'next/link';
+import './Layout.css';
 
 const {Header, Content, Footer} = Layout;
 
@@ -70,16 +71,6 @@ export default ({children, title = 'Vlad Holubiev', ogTags}) => (
       {ogTags}
 
       <title>{title}</title>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        body {
-              background: rgb(240, 242, 245);
-              font-size: 1.1em;
-          }
-        `
-        }}
-      />
     </Head>
 
     <LocaleProvider locale={enUS}>

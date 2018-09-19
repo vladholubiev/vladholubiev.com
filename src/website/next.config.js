@@ -1,8 +1,10 @@
 const webpack = require('webpack');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const withCSS = require('@zeit/next-css');
+
 const {ANALYZE} = process.env;
 
-module.exports = {
+module.exports = withCSS({
   exportPathMap() {
     return {
       '/': {page: '/'},
@@ -25,4 +27,4 @@ module.exports = {
 
     return config;
   }
-};
+});
