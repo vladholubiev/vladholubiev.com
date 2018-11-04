@@ -29,6 +29,13 @@ export default [
     bgColor: '#31517e'
   },
   {
+    title: 'Awesome Scalability',
+    link: 'https://github.com/binhnguyennus/awesome-scalability',
+    description: 'Scalable, Available, Stable, Performant, and Intelligent System Design Patterns',
+    icon: 'AS',
+    bgColor: '#3c7e5f'
+  },
+  {
     title: 'Node Weekly',
     link: 'https://nodeweekly.com',
     description: 'Weekly e-mail round-up of Node.js news and articles.',
