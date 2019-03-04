@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/plugin-proposal-decorators": "7.3.0",
     "@zeit/next-css": "1.0.1",
-    "antd": "3.10.9",
+    "antd": "3.14.1",
     "babel-plugin-import": "1.11.0",
     "eslint": "5.15.0",
     "eslint-config-prettier": "4.1.0",
