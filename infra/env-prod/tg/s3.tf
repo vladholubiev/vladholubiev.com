@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "main" {
   bucket = "tg-march2019-contest"
+  acl    = "private"
 
   website {
     index_document = "index.html"
