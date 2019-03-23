@@ -8,7 +8,7 @@ terraform {
   backend "s3" {
     acl     = "private"
     bucket  = "vladholubiev-tf-state"
-    key     = "env-prod/website/main.tfstate"
+    key     = "env-prod/tg/main.tfstate"
     encrypt = "true"
     region  = "eu-central-1"
     profile = "vlad"
