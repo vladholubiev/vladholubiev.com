@@ -24,7 +24,7 @@
     "husky": "2.2.0",
     "lint-staged": "8.2.0",
     "next": "8.1.0",
-    "prettier": "1.17.1",
+    "prettier": "1.18.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "webpack-bundle-analyzer": "3.3.2"
