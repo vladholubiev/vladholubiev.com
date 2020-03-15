@@ -168,7 +168,7 @@ export default class extends React.Component {
           </div>
 
           <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
-            <Button type="primary" htmlType="button" onClick={() => trackSocialClick('GitHub')}>
+            <Button href="#" type="primary" htmlType="button" onClick={() => trackSocialClick('GitHub')}>
               <Icon type="github" />
               Go to GitHub
             </Button>
@@ -203,10 +203,10 @@ export default class extends React.Component {
         <section>
           <h2>Demo</h2>
 
-          {self.state.pdfFileURL && (
+          {(self.state as any).pdfFileURL && (
             <p>
-              <a target="_blank" href={self.state.pdfFileURL}>
-                {self.state.pdfFileURL}
+              <a target="_blank" href={(self.state as any).pdfFileURL}>
+                {(self.state as any).pdfFileURL}
               </a>
               <br />
               <Button
@@ -222,17 +222,17 @@ export default class extends React.Component {
             </p>
           )}
 
-          {!self.state.pdfFileURL && (
+          {!(self.state as any).pdfFileURL && (
             <div style={{height: 180, textAlign: 'center', background: 'rgba(0,0,0,0.05)'}}>
-              {self.state.loading && (
+              {(self.state as any).loading && (
                 <Spin
                   size="large"
-                  tip={self.state.loadingText}
+                  tip={(self.state as any).loadingText}
                   style={{marginTop: 75, transform: 'scale(1.5)'}}
                 />
               )}
 
-              {!self.state.loading && (
+              {!(self.state as any).loading && (
                 <Dragger
                   {...{
                     multiple: false,
@@ -256,7 +256,7 @@ export default class extends React.Component {
 
                       reader.onload = function() {
                         const filename = file.name;
-                        const base64File = reader.result.split('base64,')[1];
+                        const base64File = (reader.result as any).split('base64,')[1];
 
                         const options = {
                           method: 'POST',
@@ -273,7 +273,7 @@ export default class extends React.Component {
                         message.info('Upload started...');
                         self.setState({loading: true, loadingText: 'Sending request to API'});
 
-                        fetch(API_URL, options)
+                        fetch(API_URL, options as any)
                           .then(resp => resp.json())
                           .then(({pdfFileURL}) => {
                             console.debug('[converted]', pdfFileURL);

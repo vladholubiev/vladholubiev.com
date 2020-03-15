@@ -9,5 +9,5 @@ export function trackLinkClick(kind, label) {
   };
 
   console.debug('link_click', meta);
-  window.gtag && window.gtag('event', 'link_click', meta);
+  (window as any).gtag && (window as any).gtag('event', 'link_click', meta);
 }
