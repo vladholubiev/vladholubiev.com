@@ -1,4 +1,26 @@
-.next/
+.vscode/
+.serverless/
+coverage/
+lib/
 node_modules/
-out/
+
 *.log
+junit.xml
+draft.js
+*.draft.js
+
+.env
+.DS_Store
+
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/shelf
+
+# File-based project format
+*.iws
+
+.idea/$CACHE_FILE$
+.idea/$PRODUCT_WORKSPACE_FILE$
+.idea/.gitignore
