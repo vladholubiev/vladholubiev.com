@@ -66,6 +66,8 @@ export default () => (
         <ExternalLink url={'https://www.instagram.com/vladholubiev/'} text={'Instagram'} />
         <span>, </span>
         <ExternalLink url={'https://hackerone.com/vladholubiev'} text={'HackerOne'} />
+        <span>, </span>
+        <ExternalLink url={'https://getmakerlog.com/@vladholubiev'} text={'Makerlog'} />
       </p>
 
       <p>
