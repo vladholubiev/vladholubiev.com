@@ -137,9 +137,9 @@ export default [
     bgColor: '#FD5750'
   },
   {
-    title: 'WebOps Weekly',
-    link: 'https://webopsweekly.com',
-    description: `A weekly newsletter on Web operations, infrastructure, performance, the backend, and tooling, from the browser down to the metal`,
+    title: 'StatusCode Weekly',
+    link: 'https://weekly.statuscode.com/',
+    description: `A weekly newsletter covering software development, Web operations, infrastructure, platforms, and performance, from browser down to the metal.`,
     icon: 'SLS',
     bgColor: '#0093b1'
   },
