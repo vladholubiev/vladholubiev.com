@@ -26,8 +26,13 @@ export default () => (
       <h2>Hello</h2>
 
       <p>
-        I enjoy building hip back-end tech like Serverless λ with Node.js, Microservices in Docker,
-        REST APIs on AWS, IaaC with Terraform, Elasticsearch with MongoDB, TDD with Wallaby.
+        I enjoy building hip back-end tech using Node.js, TypeScript and AWS. Most of the time I
+        design serverless event-driven architectures and REST/GraphQL APIs.
+      </p>
+
+      <p>
+        Fun fact - I made $2,500 by reporting 2 serious bugs to GitHub via{' '}
+        <ExternalLink url={'https://hackerone.com/vladholubiev'} text={'HackerOne'} />.
       </p>
 
       <p>
@@ -55,6 +60,8 @@ export default () => (
         />
         <span>, </span>
         <ExternalLink url={'https://www.instagram.com/vladholubiev/'} text={'Instagram'} />
+        <span>, </span>
+        <ExternalLink url={'https://hackerone.com/vladholubiev'} text={'HackerOne'} />
       </p>
 
       <p>
