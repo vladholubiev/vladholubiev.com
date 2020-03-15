@@ -1,3 +1,4 @@
+import React from 'react';
 import {Avatar, List} from 'antd';
 import Layout from '../components/Layout';
 import data from '../helpers/learning-materials-data';
@@ -6,25 +7,37 @@ export default () => (
   <Layout
     title="Learning Materials about back-end and startups"
     ogTags={[
-      <meta property="og:title" content="Learning Materials about back-end and startups" />,
-      <meta property="og:type" content="website" />,
-      <meta property="og:url" content="https://vladholubiev.com/learning-materials/" />,
       <meta
+        key={'og:title'}
+        property="og:title"
+        content="Learning Materials about back-end and startups"
+      />,
+      <meta key={'og:type'} property="og:type" content="website" />,
+      <meta
+        key={'og:url'}
+        property="og:url"
+        content="https://vladholubiev.com/learning-materials/"
+      />,
+      <meta
+        key={'og:description'}
         property="og:description"
         content="Books, e-mail newsletters, videos, online resources"
       />,
       <meta
+        key={'og:image'}
         property="og:image"
         content="https://vladholubiev.com/static/og-images/learning-materials-1200x630.png"
       />,
       <meta
+        key={'og:image:secure_url'}
         property="og:image:secure_url"
         content="https://vladholubiev.com/static/og-images/learning-materials-1200x630.png"
       />,
-      <meta property="og:image:type" content="image/png" />,
-      <meta property="og:image:width" content="1200" />,
-      <meta property="og:image:height" content="630" />,
+      <meta key={'og:image:type'} property="og:image:type" content="image/png" />,
+      <meta key={'og:image:width'} property="og:image:width" content="1200" />,
+      <meta key={'og:image:height'} property="og:image:height" content="630" />,
       <meta
+        key={'og:image:alt'}
         property="og:image:alt"
         content="Learning Materials: Which I recommend to developers who apply for a Back-end Developer role at Shelf"
       />
@@ -60,7 +73,7 @@ export default () => (
                   </Avatar>
                 }
                 title={
-                  <a href={item.link} target="_blank">
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
                     {item.title}
                   </a>
                 }

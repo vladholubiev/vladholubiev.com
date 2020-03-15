@@ -9,6 +9,7 @@
     }
   },
   "rules": {
-    "react/prop-types": "warn"
+    "react/prop-types": "warn",
+    "react/display-name": "warn"
   }
 }

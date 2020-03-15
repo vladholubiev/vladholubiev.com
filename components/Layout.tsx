@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import {Icon, Layout, LocaleProvider, Menu} from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
@@ -110,7 +111,7 @@ export default ({
             </Menu.Item>
 
             <Menu.Item key="Twitter" style={{float: 'right'}}>
-              <a href="https://twitter.com/vladholubiev" target="_blank">
+              <a href="https://twitter.com/vladholubiev" target="_blank" rel="noopener noreferrer">
                 <Icon type="twitter" /> Twitter
               </a>
             </Menu.Item>
@@ -126,7 +127,11 @@ export default ({
 
         <Footer style={{textAlign: 'center'}} tagName={'footer'}>
           {new Date().getFullYear()},{' '}
-          <a href="https://github.com/vladgolubev/vladholubiev.com" target="_blank">
+          <a
+            href="https://github.com/vladgolubev/vladholubiev.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             sources
           </a>
         </Footer>

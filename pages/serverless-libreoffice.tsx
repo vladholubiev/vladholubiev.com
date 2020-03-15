@@ -81,6 +81,7 @@ export default class extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     return (
@@ -125,7 +126,8 @@ export default class extends React.Component {
           </p>
 
           <p style={{marginBottom: 0}}>
-            But stripped from useless stuff, so it takes only 109 out of 250 MB function's&nbsp;
+            But stripped from useless stuff, so it takes only 109 out of 250 MB
+            function&#039;s&nbsp;
             <code>zip</code> artifact.
           </p>
 
@@ -167,7 +169,11 @@ export default class extends React.Component {
             </Tag>
           </div>
 
-          <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
+          <a
+            href="https://github.com/vladgolubev/serverless-libreoffice"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button
               href="#"
               type="primary"
@@ -182,6 +188,7 @@ export default class extends React.Component {
           <a
             style={{marginLeft: 16}}
             target="_blank"
+            rel="noopener noreferrer"
             href="https://medium.com/@vladholubiev/how-to-run-libreoffice-in-aws-lambda-for-dirty-cheap-pdfs-at-scale-b2c6b3d069b4"
           >
             <Button htmlType="button" onClick={() => trackSocialClick('Medium')}>
@@ -193,6 +200,7 @@ export default class extends React.Component {
           <a
             style={{marginLeft: 16}}
             target="_blank"
+            rel="noopener noreferrer"
             onClick={e => {
               e.preventDefault();
               window.open(e.currentTarget.href, 'Twitter', 'height=285,width=550,resizable=1');
@@ -210,7 +218,7 @@ export default class extends React.Component {
 
           {(self.state as any).pdfFileURL && (
             <p>
-              <a target="_blank" href={(self.state as any).pdfFileURL}>
+              <a target="_blank" rel="noopener noreferrer" href={(self.state as any).pdfFileURL}>
                 {(self.state as any).pdfFileURL}
               </a>
               <br />
@@ -353,12 +361,12 @@ export default class extends React.Component {
           <p>
             Would be nice to create a single compressed executable to save unpack time and increase
             portability. I tried using{' '}
-            <a href="http://www.magicermine.com/" target="_blank">
+            <a href="http://www.magicermine.com/" target="_blank" rel="noopener noreferrer">
               Ermine
             </a>{' '}
             packager and it works!! But unfortunately this is commercial software. Similar
             open-source analogue
-            <a href="http://statifier.sourceforge.net/" target="_blank">
+            <a href="http://statifier.sourceforge.net/" target="_blank" rel="noopener noreferrer">
               {' '}
               Statifier
             </a>{' '}
@@ -373,8 +381,8 @@ export default class extends React.Component {
           <h3>Further Size Reduction</h3>
 
           <p>
-            I am not a Linux or C++ expert, so for sure I missed some easy "hacks" to reduce size of
-            compiled LibreOffice.
+            I am not a Linux or C++ expert, so for sure I missed some easy &quot;hacks&quot; to
+            reduce size of compiled LibreOffice.
           </p>
 
           <p>
@@ -387,6 +395,7 @@ export default class extends React.Component {
             <a
               href="https://gist.github.com/vladgolubev/1dac4ed47a5febf110c668074c6b671c"
               target="_blank"
+              rel="noopener noreferrer"
             >
               available RPM packages
             </a>
@@ -394,6 +403,7 @@ export default class extends React.Component {
             <a
               href="https://gist.github.com/vladgolubev/439559fc7597a4fb51eaa9e97b72f319"
               target="_blank"
+              rel="noopener noreferrer"
             >
               libraries
             </a>
