@@ -31,7 +31,7 @@ export default () => (
       </p>
 
       <p>
-        Fun fact - I made $2,555 from GitHub by reporting them 2 bugs via{' '}
+        Fun fact - I made $2,555 from GitHub&apos;s bug bounty program on{' '}
         <ExternalLink url={'https://hackerone.com/vladholubiev'} text={'HackerOne'} />.
       </p>
 
