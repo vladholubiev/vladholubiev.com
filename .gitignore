@@ -1,5 +1,6 @@
 .vscode/
 .serverless/
+.next/
 coverage/
 lib/
 node_modules/
