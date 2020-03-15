@@ -68,6 +68,8 @@ export default () => (
         <ExternalLink url={'https://hackerone.com/vladholubiev'} text={'HackerOne'} />
         <span>, </span>
         <ExternalLink url={'https://getmakerlog.com/@vladholubiev'} text={'Makerlog'} />
+        <span>, </span>
+        <ExternalLink url={'https://www.codementor.io/@golubevvld'} text={'CodeMentor'} />
       </p>
 
       <p>
