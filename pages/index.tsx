@@ -40,6 +40,22 @@ export default () => (
         <span>, </span>
         <ExternalLink url={'https://linkedin.com/in/vlad-holubiev'} text={'LinkedIn'} />
       </p>
+      <p>
+        Also: &nbsp;
+        <ExternalLink
+          url={'https://stackoverflow.com/users/2727317/vlad-holubiev'}
+          text={'StackOverflow'}
+        />
+        <span>, </span>
+        <ExternalLink url={'https://medium.com/@vladholubiev'} text={'Medium'} />
+        <span>, </span>
+        <ExternalLink
+          url={'https://scholar.google.com.ua/citations?hl=en&user=s1YepGMAAAAJ'}
+          text={'Google Scholar'}
+        />
+        <span>, </span>
+        <ExternalLink url={'https://www.instagram.com/vladholubiev/'} text={'Instagram'} />
+      </p>
 
       <p>
         Or drop me a line at <a href={'mailto:hello@vladholubiev.com'}>hello@vladholubiev.com</a>
