@@ -110,6 +110,12 @@ export default ({
               </Link>
             </Menu.Item>
 
+            <Menu.Item key="Useful Stuff">
+              <Link href="/useful">
+                <a>💡 Useful Stuff</a>
+              </Link>
+            </Menu.Item>
+
             <Menu.Item key="Twitter" style={{float: 'right'}}>
               <a href="https://twitter.com/vladholubiev" target="_blank" rel="noopener noreferrer">
                 <Icon type="twitter" /> Twitter
