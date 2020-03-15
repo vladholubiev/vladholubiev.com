@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography} from 'antd';
+import {Icon, Typography} from 'antd';
 import Layout from '../components/Layout';
 import ExternalLink from '../components/ExternalLink';
 
@@ -69,7 +69,12 @@ export default () => (
       </p>
 
       <p>
-        Or drop me a line at <a href={'mailto:hello@vladholubiev.com'}>hello@vladholubiev.com</a>
+        Or drop me a line at{' '}
+        <Text>
+          <a href={'mailto:hello@vladholubiev.com'}>
+            <Icon type="mail" theme="twoTone" style={{fontSize: '14px'}} /> hello@vladholubiev.com
+          </a>
+        </Text>
       </p>
     </section>
   </Layout>
