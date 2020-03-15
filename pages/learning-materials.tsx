@@ -1,7 +1,7 @@
 import React from 'react';
 import {Avatar, List} from 'antd';
 import Layout from '../components/Layout';
-import data from '../helpers/learning-materials-data';
+import {newsletters, other} from '../helpers/learning-materials-data';
 
 export default () => (
   <Layout
@@ -44,7 +44,7 @@ export default () => (
     ]}
   >
     <header>
-      <h2>Learning Materials</h2>
+      <h1>Learning Materials</h1>
     </header>
 
     <section>
@@ -56,9 +56,37 @@ export default () => (
       `}</style>
 
       <List
-        header={'In no particular order. About back-end and startups'}
+        header={'Weekly email newsletters'}
         itemLayout="horizontal"
-        dataSource={data}
+        dataSource={newsletters}
+        renderItem={item => (
+          <List.Item>
+            <div className="list-item__wrapper">
+              <List.Item.Meta
+                avatar={
+                  <Avatar
+                    size="large"
+                    style={{backgroundColor: item.bgColor, color: item.fgColor || 'white'}}
+                    shape="square"
+                  >
+                    {item.icon}
+                  </Avatar>
+                }
+                title={
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                    {item.title}
+                  </a>
+                }
+                description={item.description}
+              />
+            </div>
+          </List.Item>
+        )}
+      />
+      <List
+        header={'Other'}
+        itemLayout="horizontal"
+        dataSource={other}
         renderItem={item => (
           <List.Item>
             <div className="list-item__wrapper">

@@ -1,4 +1,60 @@
-export default [
+export const newsletters = [
+  {
+    title: 'Serverless Status',
+    link: 'https://serverless.email/',
+    description:
+      'A weekly newsletter about serverless architectures, function-as-a-service, AWS Lambda, etc.',
+    icon: 'ƛ',
+    bgColor: '#e36b38'
+  },
+  {
+    title: 'Node Weekly',
+    link: 'https://nodeweekly.com',
+    description: 'Weekly e-mail round-up of Node.js news and articles.',
+    icon: 'NODE',
+    bgColor: '#55bb22'
+  },
+  {
+    title: 'Last Week in AWS',
+    link: 'https://lastweekinaws.com/',
+    description: `A weekly roundup of news from Amazon's cloud ecosystem- sprinkled with snark.`,
+    icon: 'AWS',
+    bgColor: '#f2cd00'
+  },
+  {
+    title: 'JavaScript Weekly',
+    link: 'http://javascriptweekly.com/',
+    description: 'Weekly e-mail round-up of JavaScript news and articles',
+    iconURL: 'https://hsto.org/webt/59/cc/76/59cc7600c78a2239379574.jpeg',
+    icon: 'JS',
+    bgColor: '#f0db4f',
+    fgColor: 'black'
+  },
+  {
+    title: `mongoDB Weekly`,
+    link: 'https://mongodb.email',
+    description: 'Weekly e-mail round-up of MongoDB news and articles.',
+    icon: 'MG',
+    bgColor: '#449a45'
+  },
+  {
+    title: `DB Weekly`,
+    link: 'https://dbweekly.com',
+    description:
+      'A weekly round-up of database technology news and articles covering new developments, SQL, NoSQL, document databases, graph databases, and more',
+    icon: 'DB',
+    bgColor: '#478dda'
+  },
+  {
+    title: 'StatusCode Weekly',
+    link: 'https://weekly.statuscode.com/',
+    description: `A weekly newsletter covering software development, Web operations, infrastructure, platforms, and performance, from browser down to the metal.`,
+    icon: 'SLS',
+    bgColor: '#0093b1'
+  }
+];
+
+export const other = [
   {
     title: `Hello, Startup: A Programmer's Guide to Building Products, Technologies, and Teams`,
     link: 'https://www.hello-startup.net/',
@@ -14,14 +70,6 @@ export default [
     bgColor: '#030102'
   },
   {
-    title: 'Serverless Status',
-    link: 'https://serverless.email/',
-    description:
-      'A weekly newsletter about serverless architectures, function-as-a-service, AWS Lambda, etc.',
-    icon: 'ƛ',
-    bgColor: '#e36b38'
-  },
-  {
     title: 'Coding Tech',
     link: 'https://www.youtube.com/channel/UCtxCXg-UvSnTKPOzLH4wJaQ/featured',
     description: 'Best videos from best tech conferences',
@@ -34,13 +82,6 @@ export default [
     description: 'Scalable, Available, Stable, Performant, and Intelligent System Design Patterns',
     icon: 'AS',
     bgColor: '#3c7e5f'
-  },
-  {
-    title: 'Node Weekly',
-    link: 'https://nodeweekly.com',
-    description: 'Weekly e-mail round-up of Node.js news and articles.',
-    icon: 'NODE',
-    bgColor: '#55bb22'
   },
   {
     title: 'Anti Patterns Catalog',
@@ -63,13 +104,6 @@ export default [
     description: 'Pearls of wisdom for programmers collected from leading practitioners',
     icon: '97',
     bgColor: '#4183c4'
-  },
-  {
-    title: 'Last Week in AWS',
-    link: 'https://lastweekinaws.com/',
-    description: `A weekly roundup of news from Amazon's cloud ecosystem- sprinkled with snark.`,
-    icon: 'AWS',
-    bgColor: '#f2cd00'
   },
   {
     title: '97 Things Every Software Architect Should Know',
@@ -98,22 +132,6 @@ export default [
     bgColor: '#027ac4'
   },
   {
-    title: 'JavaScript Weekly',
-    link: 'http://javascriptweekly.com/',
-    description: 'Weekly e-mail round-up of JavaScript news and articles',
-    iconURL: 'https://hsto.org/webt/59/cc/76/59cc7600c78a2239379574.jpeg',
-    icon: 'JS',
-    bgColor: '#f0db4f',
-    fgColor: 'black'
-  },
-  {
-    title: `mongoDB Weekly`,
-    link: 'https://mongodb.email',
-    description: 'Weekly e-mail round-up of MongoDB news and articles.',
-    icon: 'MG',
-    bgColor: '#449a45'
-  },
-  {
     title: 'Startup Playbook',
     link: 'http://playbook.samaltman.com/',
     description:
@@ -122,26 +140,11 @@ export default [
     bgColor: '#ec6812'
   },
   {
-    title: `DB Weekly`,
-    link: 'https://dbweekly.com',
-    description:
-      'A weekly round-up of database technology news and articles covering new developments, SQL, NoSQL, document databases, graph databases, and more',
-    icon: 'DB',
-    bgColor: '#478dda'
-  },
-  {
     title: 'Serverless Blog',
     link: 'https://serverless.com/blog',
     description: 'The blog on serverless & event-driven compute',
     icon: 'SLS',
     bgColor: '#FD5750'
-  },
-  {
-    title: 'StatusCode Weekly',
-    link: 'https://weekly.statuscode.com/',
-    description: `A weekly newsletter covering software development, Web operations, infrastructure, platforms, and performance, from browser down to the metal.`,
-    icon: 'SLS',
-    bgColor: '#0093b1'
   },
   {
     title: `Paul Graham's Essays`,
