@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import {trackSocialClick} from '../helpers/gtag';
+import ExternalLink from '../components/ExternalLink';
 
 export default () => (
   <Layout>
@@ -32,29 +32,13 @@ export default () => (
 
       <p>
         Find me on the web: &nbsp;
-        <span onClick={() => trackSocialClick('Twitter')}>
-          <a href="https://twitter.com/vladholubiev" target="_blank" rel="noopener noreferrer">
-            Twitter
-          </a>
-        </span>
+        <ExternalLink url={'https://twitter.com/vladholubiev'} text={'Twitter'} />
         <span>, </span>
-        <span onClick={() => trackSocialClick('Medium')}>
-          <a href="https://medium.com/@vladholubiev" target="_blank" rel="noopener noreferrer">
-            Medium
-          </a>
-        </span>
+        <ExternalLink url={'https://medium.com/@vladholubiev'} text={'Medium'} />
         <span>, </span>
-        <span onClick={() => trackSocialClick('GitHub')}>
-          <a href="https://github.com/vladgolubev" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-        </span>
+        <ExternalLink url={'https://github.com/vladgolubev'} text={'GitHub'} />
         <span>, </span>
-        <span onClick={() => trackSocialClick('LinkedIn')}>
-          <a href="https://linkedin.com/in/vlad-holubiev" target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-        </span>
+        <ExternalLink url={'https://linkedin.com/in/vlad-holubiev'} text={'LinkedIn'} />
       </p>
 
       <p>
