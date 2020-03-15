@@ -1,6 +1,9 @@
 import React from 'react';
+import {Typography} from 'antd';
 import Layout from '../components/Layout';
 import ExternalLink from '../components/ExternalLink';
+
+const {Text} = Typography;
 
 export default () => (
   <Layout>
@@ -26,12 +29,13 @@ export default () => (
       <h2>Hello</h2>
 
       <p>
-        I enjoy building hip back-end tech using Node.js, TypeScript and AWS. Most of the time I
-        design serverless event-driven architectures and REST/GraphQL APIs.
+        I enjoy building hip back-end tech using <Text mark>Node.js</Text>,{' '}
+        <Text mark>TypeScript</Text> and <Text mark>AWS</Text>. Most of the time I design serverless
+        event-driven architectures and REST/GraphQL APIs.
       </p>
 
       <p>
-        Fun fact - I made $2,555 from GitHub&apos;s bug bounty program on{' '}
+        Fun fact - I made <Text mark>$2,555</Text> from GitHub&apos;s bug bounty program on{' '}
         <ExternalLink url={'https://hackerone.com/vladholubiev'} text={'HackerOne'} />.
       </p>
 

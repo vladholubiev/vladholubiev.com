@@ -64,7 +64,7 @@ export default ({
 
       <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.9.2/antd.min.css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.26.12/antd.min.css"
       />
 
       <link rel="apple-touch-icon-precomposed" href="/static/favicon-256.png" />
