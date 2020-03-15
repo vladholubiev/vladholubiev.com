@@ -55,6 +55,10 @@ export default () => (
           </a>
         </span>
       </p>
+
+      <p>
+        Or drop me a line at <a href={"mailto:hello@vladholubiev.com"}>hello@vladholubiev.com</a>
+      </p>
     </section>
   </Layout>
 );
