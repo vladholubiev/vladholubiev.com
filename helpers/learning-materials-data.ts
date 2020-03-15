@@ -23,12 +23,20 @@ export const newsletters = [
   },
   {
     title: 'JavaScript Weekly',
-    link: 'http://javascriptweekly.com/',
+    link: 'https://javascriptweekly.com/',
     description: 'Weekly e-mail round-up of JavaScript news and articles',
     iconURL: 'https://hsto.org/webt/59/cc/76/59cc7600c78a2239379574.jpeg',
     icon: 'JS',
     bgColor: '#f0db4f',
     fgColor: 'black'
+  },
+  {
+    title: 'TypeScript Weekly',
+    link: 'https://www.typescript-weekly.com//',
+    description: 'The best TypeScript links every week, right in your inbox.',
+    icon: 'TS',
+    bgColor: '#007ACC',
+    fgColor: 'white'
   },
   {
     title: `mongoDB Weekly`,
