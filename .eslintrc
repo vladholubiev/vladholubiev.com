@@ -1,18 +1,14 @@
 {
   "root": true,
-  "env": {
-    "node": true,
-    "es6": true,
-    "jest": true
-  },
   "extends": [
-    "plugin:prettier/recommended"
+    "@shelf/eslint-config/frontend-typescript"
   ],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
+  "settings": {
+    "react": {
+      "version": "16.13.0"
     }
+  },
+  "rules": {
+    "react/prop-types": "warn"
   }
 }

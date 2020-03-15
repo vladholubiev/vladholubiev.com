@@ -1,11 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
-import {Button, Icon, message, Progress, Spin, Table, Tag, Upload} from 'antd';
+import {Button, Icon, Progress, Spin, Table, Tag, Upload, message} from 'antd';
 import {trackLinkClick, trackSocialClick} from '../helpers/gtag';
 import Layout from '../components/Layout';
 
 const API_URL = 'https://j7f5k92zof.execute-api.us-east-1.amazonaws.com/prod/pdf';
-const Dragger = Upload.Dragger;
+const {Dragger} = Upload;
 
 const columns = [
   {
@@ -168,7 +168,12 @@ export default class extends React.Component {
           </div>
 
           <a href="https://github.com/vladgolubev/serverless-libreoffice" target="_blank">
-            <Button href="#" type="primary" htmlType="button" onClick={() => trackSocialClick('GitHub')}>
+            <Button
+              href="#"
+              type="primary"
+              htmlType="button"
+              onClick={() => trackSocialClick('GitHub')}
+            >
               <Icon type="github" />
               Go to GitHub
             </Button>

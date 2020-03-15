@@ -9,8 +9,18 @@
       "major": {
         "automerge": false
       },
-      "packagePatterns": ["^@babel/", "^babel-", "^eslint", "^jest"],
-      "packageNames": ["lint-staged", "prettier", "eslint", "jest"]
+      "packagePatterns": [
+        "^@babel/",
+        "^babel-",
+        "^eslint",
+        "^jest"
+      ],
+      "packageNames": [
+        "lint-staged",
+        "prettier",
+        "eslint",
+        "jest"
+      ]
     }
   ]
 }

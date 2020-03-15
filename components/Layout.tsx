@@ -1,13 +1,21 @@
 import Head from 'next/head';
 import {Icon, Layout, LocaleProvider, Menu} from 'antd';
-import {trackLinkClick} from '../helpers/gtag';
 import enUS from 'antd/lib/locale-provider/en_US';
 import Link from 'next/link';
+import {trackLinkClick} from '../helpers/gtag';
 import './Layout.css';
 
 const {Header, Content, Footer} = Layout;
 
-export default ({children, title = 'Vlad Holubiev', ogTags}: {children:any, title?:string, ogTags?:any[]}) => (
+export default ({
+  children,
+  title = 'Vlad Holubiev',
+  ogTags
+}: {
+  children: any;
+  title?: string;
+  ogTags?: any[];
+}) => (
   <div>
     <Head>
       <meta charSet="utf-8" />
@@ -74,8 +82,8 @@ export default ({children, title = 'Vlad Holubiev', ogTags}: {children:any, titl
     </Head>
 
     <LocaleProvider locale={enUS}>
-      <Layout className="layout" style={{height: '100%'}} tagName={"main"}>
-        <Header style={{background: 'white'}} tagName={"header"}>
+      <Layout className="layout" style={{height: '100%'}} tagName={'main'}>
+        <Header style={{background: 'white'}} tagName={'header'}>
           <Menu
             theme="light"
             mode="horizontal"
@@ -111,11 +119,12 @@ export default ({children, title = 'Vlad Holubiev', ogTags}: {children:any, titl
 
         <Content
           style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900, width: '100%'}}
-         tagName={"section"}>
+          tagName={'section'}
+        >
           <div style={{background: '#fff', padding: 48, minHeight: 280}}>{children}</div>
         </Content>
 
-        <Footer style={{textAlign: 'center'}} tagName={"footer"}>
+        <Footer style={{textAlign: 'center'}} tagName={'footer'}>
           {new Date().getFullYear()},{' '}
           <a href="https://github.com/vladgolubev/vladholubiev.com" target="_blank">
             sources
