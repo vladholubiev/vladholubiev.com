@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import {Icon, Layout, LocaleProvider, Menu} from 'antd';
+import {ConfigProvider, Icon, Layout, Menu} from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import Link from 'next/link';
 import {trackLinkClick} from '../helpers/gtag';
@@ -82,9 +82,9 @@ export default ({
       <title>{title}</title>
     </Head>
 
-    <LocaleProvider locale={enUS}>
-      <Layout className="layout" style={{height: '100%'}} tagName={'main'}>
-        <Header style={{background: 'white'}} tagName={'header'}>
+    <ConfigProvider locale={enUS}>
+      <Layout className="layout" style={{height: '100%'}}>
+        <Header style={{background: 'white'}}>
           <Menu
             theme="light"
             mode="horizontal"
@@ -120,12 +120,11 @@ export default ({
 
         <Content
           style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900, width: '100%'}}
-          tagName={'section'}
         >
           <div style={{background: '#fff', padding: 48, minHeight: 280}}>{children}</div>
         </Content>
 
-        <Footer style={{textAlign: 'center'}} tagName={'footer'}>
+        <Footer style={{textAlign: 'center'}}>
           {new Date().getFullYear()},{' '}
           <a
             href="https://github.com/vladgolubev/vladholubiev.com"
@@ -136,6 +135,6 @@ export default ({
           </a>
         </Footer>
       </Layout>
-    </LocaleProvider>
+    </ConfigProvider>
   </div>
 );
