@@ -10,7 +10,9 @@ module.exports = withCSS({
     return {
       '/': {page: '/'},
       '/serverless-libreoffice': {page: '/serverless-libreoffice'},
-      '/learning-materials': {page: '/learning-materials'}
+      '/learning-materials': {page: '/learning-materials'},
+      '/useful': {page: '/useful'},
+      '/github-productivity': {page: '/github-productivity'}
     };
   },
   webpack(config) {
