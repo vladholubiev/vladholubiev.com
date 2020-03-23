@@ -31,7 +31,7 @@
     ]
   },
   "dependencies": {
-    "antd": "3.26.13",
+    "antd": "4.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
