@@ -267,7 +267,7 @@ export default class extends React.Component {
                         return false;
                       }
 
-                      reader.onload = function() {
+                      reader.onload = function () {
                         const filename = file.name;
                         const base64File = (reader.result as any).split('base64,')[1];
 
