@@ -1,7 +1,7 @@
 import React from 'react';
 import {Avatar, List} from 'antd';
-import Layout from '../components/Layout';
-import {newsletters, other} from '../helpers/learning-materials-data';
+import Layout from '../../components/Layout';
+import {newsletters, other} from '../../helpers/learning-materials-data';
 
 export default () => (
   <Layout

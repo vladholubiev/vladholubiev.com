@@ -122,13 +122,13 @@ export default ({
               </Menu.ItemGroup>
               <Menu.ItemGroup title="Other">
                 <Menu.Item key="Useful Stuff">
-                  <Link href="/useful">
-                    <a>💡 Useful Stuff</a>
+                  <Link href="/projects/webstorm-live-templates-for-jest">
+                    <a>WebStorm Live Templates for Jest</a>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="Learning Materials">
-                  <Link href="/learning-materials">
-                    <a>📚 Learning Materials</a>
+                  <Link href="/projects/learning-materials">
+                    <a>Learning Materials</a>
                   </Link>
                 </Menu.Item>
               </Menu.ItemGroup>

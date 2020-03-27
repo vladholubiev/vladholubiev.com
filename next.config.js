@@ -10,8 +10,10 @@ module.exports = withCSS({
     return {
       '/': {page: '/'},
       '/serverless-libreoffice': {page: '/serverless-libreoffice'},
-      '/learning-materials': {page: '/learning-materials'},
-      '/useful': {page: '/useful'},
+      '/projects/learning-materials': {page: '/projects/learning-materials'},
+      '/projects/webstorm-live-templates-for-jest': {
+        page: '/projects/webstorm-live-templates-for-jest'
+      },
       '/projects/quickreview-for-github': {page: '/projects/quickreview-for-github'}
     };
   },

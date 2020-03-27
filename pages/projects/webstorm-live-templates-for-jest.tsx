@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, List, Typography} from 'antd';
-import Layout from '../components/Layout';
+import {Card} from 'antd';
+import Layout from '../../components/Layout';
 
 const data = [
   {shortcut: 'jr', code: `($VAR0$ as jest.Mock).mockResolvedValue($END$);`},
