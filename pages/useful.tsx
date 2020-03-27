@@ -1,5 +1,5 @@
 import React from 'react';
-import {List, Typography} from 'antd';
+import {Card, List, Typography} from 'antd';
 import Layout from '../components/Layout';
 
 const data = [
@@ -63,20 +63,13 @@ export default () => (
   <Layout>
     <h1>WebStorm Live Templates for Jest</h1>
 
-    <List
-      size="large"
-      dataSource={data}
-      renderItem={item => (
-        <List.Item>
-          <Typography.Paragraph code copyable>
-            {item.shortcut}
-          </Typography.Paragraph>
-
-          <Typography.Paragraph code copyable>
-            {item.code}
-          </Typography.Paragraph>
-        </List.Item>
-      )}
-    />
+    {data.map(item => (
+      <>
+        <Card title={item.shortcut} key={item.shortcut}>
+          <pre>{item.code}</pre>
+        </Card>
+        <br />
+      </>
+    ))}
   </Layout>
 );
