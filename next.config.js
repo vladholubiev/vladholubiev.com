@@ -12,7 +12,7 @@ module.exports = withCSS({
       '/serverless-libreoffice': {page: '/serverless-libreoffice'},
       '/learning-materials': {page: '/learning-materials'},
       '/useful': {page: '/useful'},
-      '/github-productivity': {page: '/github-productivity'}
+      '/projects/quickreview-for-github': {page: '/projects/quickreview-for-github'}
     };
   },
   webpack(config) {
