@@ -7,6 +7,7 @@ import {trackLinkClick} from '../helpers/gtag';
 import './Layout.css';
 
 const {Header, Content, Footer} = Layout;
+const {SubMenu} = Menu;
 
 export default ({
   children,
@@ -103,6 +104,23 @@ export default ({
                 <a>⚡️ Serverless LibreOffice</a>
               </Link>
             </Menu.Item>
+
+            <SubMenu
+              title={
+                <span className="submenu-title-wrapper">
+                  <Icon type="project" />
+                  Projects
+                </span>
+              }
+            >
+              <Menu.ItemGroup title="Chrome Extensions">
+                <Menu.Item key="quickreview">
+                  <Link href="/projects/quickreview-for-github">
+                    <a>QuickReview for GitHub</a>
+                  </Link>
+                </Menu.Item>
+              </Menu.ItemGroup>
+            </SubMenu>
 
             <Menu.Item key="Learning Materials">
               <Link href="/learning-materials">
