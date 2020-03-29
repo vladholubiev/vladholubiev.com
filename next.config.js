@@ -20,5 +20,6 @@ module.exports = withCSS({
     config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
 
     return config;
-  }
+  },
+  exportTrailingSlash: true
 });
