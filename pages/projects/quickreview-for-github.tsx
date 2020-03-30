@@ -44,11 +44,11 @@ export default () => (
         rel="noopener noreferrer"
       >
         <Button
-          href="https://chrome.google.com/webstore/detail/quick-review-for-github/phbjldbcohafhmephgklhbleplhchofm?ref=website"
+          href="https://github.com/vladgolubev/quickreview-for-github/releases"
           type="primary"
           target="_blank"
           htmlType="button"
-          onClick={() => trackSocialClick('Chrome Web Store')}
+          onClick={() => trackSocialClick('GitHub')}
         >
           <Icon type="chrome" theme="filled" />
           Install for Google Chrome &rarr;
@@ -80,20 +80,6 @@ export default () => (
       </div>
     </Carousel>
     <Paragraph>
-      <br />
-      <a
-        href="https://www.producthunt.com/posts/quickreview-for-github?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-quickreview-for-github"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=190007&theme=light"
-          alt="QuickReview for GitHub - Keyboard shortcuts for Pull Request review | Product Hunt Embed"
-          style={{width: '250px', height: '54px', marginBottom: '20px'}}
-          width="250px"
-          height="54px"
-        />
-      </a>
       <br />
       <a
         href="https://github.com/vladgolubev/quickreview-for-github"
