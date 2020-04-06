@@ -44,7 +44,7 @@ export default () => (
         rel="noopener noreferrer"
       >
         <Button
-          href="https://github.com/vladgolubev/quickreview-for-github/releases"
+          href="https://chrome.google.com/webstore/detail/quick-review-for-github/phbjldbcohafhmephgklhbleplhchofm"
           type="primary"
           target="_blank"
           htmlType="button"
