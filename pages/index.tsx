@@ -56,8 +56,6 @@ export default () => (
           text={'StackOverflow'}
         />
         <span>, </span>
-        <ExternalLink url={'https://medium.com/@vladholubiev'} text={'Medium'} />
-        <span>, </span>
         <ExternalLink
           url={'https://scholar.google.com.ua/citations?hl=en&user=s1YepGMAAAAJ'}
           text={'Google Scholar'}
@@ -66,8 +64,6 @@ export default () => (
         <ExternalLink url={'https://www.instagram.com/vladholubiev/'} text={'Instagram'} />
         <span>, </span>
         <ExternalLink url={'https://hackerone.com/vladholubiev'} text={'HackerOne'} />
-        <span>, </span>
-        <ExternalLink url={'https://getmakerlog.com/@vladholubiev'} text={'Makerlog'} />
         <span>, </span>
         <ExternalLink url={'https://www.codementor.io/@golubevvld'} text={'CodeMentor'} />
       </p>
