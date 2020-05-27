@@ -37,7 +37,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "7.10.0",
+    "@babel/plugin-proposal-decorators": "7.10.1",
     "@shelf/eslint-config": "0.14.2",
     "@shelf/prettier-config": "0.0.7",
     "@types/node": "12",
