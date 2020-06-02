@@ -32,7 +32,7 @@
   },
   "prettier": "@shelf/prettier-config",
   "dependencies": {
-    "antd": "3.26.13",
+    "antd": "4.3.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
