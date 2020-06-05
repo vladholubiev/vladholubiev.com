@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Divider, List, Space} from 'antd';
+import {Avatar, List, Space} from 'antd';
 import Head from 'next/head';
 import {newsletters, other} from '../learning-materials-data';
 
@@ -12,7 +12,7 @@ export default () => (
         property="og:title"
         content="Learning Materials about back-end and startups"
       />
-      <meta key={'og:type'} property="og:type" content="website" />,
+      <meta key={'og:type'} property="og:type" content="website" />
       <meta
         key={'og:url'}
         property="og:url"
@@ -61,7 +61,6 @@ export default () => (
           dataSource={newsletters}
           renderItem={renderItem}
         />
-        <Divider />
         <List header={'Other'} itemLayout="horizontal" dataSource={other} renderItem={renderItem} />
       </Space>
     </section>

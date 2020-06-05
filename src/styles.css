@@ -10,6 +10,18 @@
 }
 
 body {
-  background: rgb(240, 242, 245);
   font-size: 1.1em;
+}
+
+.ant-layout {
+  height: 100%;
+  background: white;
+}
+
+.ant-layout-footer {
+  background: white;
+}
+
+.ant-layout-content {
+  min-height: fit-content;
 }

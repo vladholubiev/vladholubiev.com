@@ -11,7 +11,7 @@ const MyApp = function ({Component, pageProps, router}: AppProps) {
   return (
     <ConfigProvider locale={enUS}>
       <Head />
-      <Layout className="layout" style={{height: '100%'}}>
+      <Layout>
         <NavBar currentRoute={router.route} />
 
         <Layout.Content
