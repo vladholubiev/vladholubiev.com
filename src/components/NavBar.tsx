@@ -42,6 +42,11 @@ export default function ({currentRoute}: {currentRoute: string}) {
               <a>Learning Materials</a>
             </Link>
           </Menu.Item>
+          <Menu.Item key="/sort-json">
+            <Link href="/sort-json">
+              <a>Sort JSON</a>
+            </Link>
+          </Menu.Item>
         </Menu.SubMenu>
 
         <Menu.Item key="Twitter" style={{float: 'right'}}>
