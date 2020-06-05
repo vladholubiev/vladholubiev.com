@@ -14,10 +14,8 @@ const MyApp = function ({Component, pageProps, router}: AppProps) {
       <Layout>
         <NavBar currentRoute={router.route} />
 
-        <Layout.Content
-          style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900, width: '100%'}}
-        >
-          <div style={{background: '#fff', padding: 48, minHeight: 280}}>
+        <Layout.Content>
+          <div className="content-wrapper">
             <Component {...pageProps} router={router} />
           </div>
         </Layout.Content>
