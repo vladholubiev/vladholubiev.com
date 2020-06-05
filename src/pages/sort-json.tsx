@@ -32,7 +32,7 @@ const Page: FC<any> = function () {
             <Button
               type="primary"
               onClick={() => {
-                copy(JSON.stringify(prettifyJSON(inputJSON), null, 2));
+                copy(prettifyJSON(inputJSON));
                 message.success('Copied', 1);
               }}
             >
@@ -49,7 +49,7 @@ const Page: FC<any> = function () {
             customStyle={{margin: 0}}
             showLineNumbers={true}
           >
-            {JSON.stringify(prettifyJSON(inputJSON), null, 2)}
+            {prettifyJSON(inputJSON)}
           </SyntaxHighlighter>
         </Col>
       </Row>
@@ -67,13 +67,13 @@ function isValidJSON(json: string): boolean {
   }
 }
 
-function prettifyJSON(json: string): Record<string, unknown> {
+function prettifyJSON(json: string): string {
   try {
     const obj = JSON.parse(json);
 
-    return sortKeys(obj, sortOrder.ASC) as Record<string, unknown>;
+    return JSON.stringify(sortKeys(obj, sortOrder.ASC) as Record<string, unknown>, null, 2);
   } catch {
-    return {};
+    return '{}';
   }
 }
 
