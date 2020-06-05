@@ -34,7 +34,8 @@
     "@ant-design/icons": "4.2.1",
     "antd": "4.3.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "sort-o": "1.7.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.10.1",
