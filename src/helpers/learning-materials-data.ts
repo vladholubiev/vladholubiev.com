@@ -32,7 +32,7 @@ export const newsletters = [
   },
   {
     title: 'TypeScript Weekly',
-    link: 'https://www.typescript-weekly.com//',
+    link: 'https://www.typescript-weekly.com/',
     description: 'The best TypeScript links every week, right in your inbox.',
     icon: 'TS',
     bgColor: '#007ACC',

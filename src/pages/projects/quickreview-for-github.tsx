@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button, Carousel, Divider, Icon, Typography} from 'antd';
+import {Button, Carousel, Divider, Typography} from 'antd';
+import {ChromeFilled, GithubOutlined} from '@ant-design/icons';
 import Layout from '../../components/Layout';
 import {trackSocialClick} from '../../helpers/gtag';
 
@@ -50,7 +51,7 @@ export default () => (
           htmlType="button"
           onClick={() => trackSocialClick('GitHub')}
         >
-          <Icon type="chrome" theme="filled" />
+          <ChromeFilled />
           Install for Google Chrome &rarr;
         </Button>
       </a>
@@ -86,7 +87,7 @@ export default () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon type="github" />
+        <GithubOutlined />
         &nbsp;Source Code
       </a>
     </Paragraph>

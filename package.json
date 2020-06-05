@@ -4,7 +4,6 @@
   "private": true,
   "license": "MIT",
   "author": "Vlad Holubiev",
-  "main": "pages/index.js",
   "scripts": {
     "analyze": "ANALYZE=1 next build",
     "build": "next build",
