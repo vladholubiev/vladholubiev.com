@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, List} from 'antd';
+import {Avatar, Divider, List, Space} from 'antd';
 import Head from 'next/head';
 import {newsletters, other} from '../learning-materials-data';
 
@@ -54,62 +54,42 @@ export default () => (
         }
       `}</style>
 
-      <List
-        header={'Weekly email newsletters'}
-        itemLayout="horizontal"
-        dataSource={newsletters}
-        renderItem={item => (
-          <List.Item>
-            <div className="list-item__wrapper">
-              <List.Item.Meta
-                avatar={
-                  <Avatar
-                    size="large"
-                    style={{backgroundColor: item.bgColor, color: item.fgColor || 'white'}}
-                    shape="square"
-                  >
-                    {item.icon}
-                  </Avatar>
-                }
-                title={
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.title}
-                  </a>
-                }
-                description={item.description}
-              />
-            </div>
-          </List.Item>
-        )}
-      />
-      <List
-        header={'Other'}
-        itemLayout="horizontal"
-        dataSource={other}
-        renderItem={item => (
-          <List.Item>
-            <div className="list-item__wrapper">
-              <List.Item.Meta
-                avatar={
-                  <Avatar
-                    size="large"
-                    style={{backgroundColor: item.bgColor, color: item.fgColor || 'white'}}
-                    shape="square"
-                  >
-                    {item.icon}
-                  </Avatar>
-                }
-                title={
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.title}
-                  </a>
-                }
-                description={item.description}
-              />
-            </div>
-          </List.Item>
-        )}
-      />
+      <Space direction="vertical">
+        <List
+          header={'Weekly email newsletters'}
+          itemLayout="horizontal"
+          dataSource={newsletters}
+          renderItem={renderItem}
+        />
+        <Divider />
+        <List header={'Other'} itemLayout="horizontal" dataSource={other} renderItem={renderItem} />
+      </Space>
     </section>
   </>
 );
+
+function renderItem(item): JSX.Element {
+  return (
+    <List.Item>
+      <div className="list-item__wrapper">
+        <List.Item.Meta
+          avatar={
+            <Avatar
+              size="large"
+              style={{backgroundColor: item.bgColor, color: item.fgColor || 'white'}}
+              shape="square"
+            >
+              {item.icon}
+            </Avatar>
+          }
+          title={
+            <a href={item.link} target="_blank" rel="noopener noreferrer">
+              {item.title}
+            </a>
+          }
+          description={item.description}
+        />
+      </div>
+    </List.Item>
+  );
+}
