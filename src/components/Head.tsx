@@ -26,7 +26,7 @@ export default function () {
       <meta name="author" content="Vladyslav Holubiev" />
       <meta
         name="description"
-        content="I enjoy building hip back-end tech like Serverless λ with Node.js, Microservices in Docker, REST APIs on AWS, IaaC with Terraform, Elasticsearch with MongoDB, TDD with Wallaby."
+        content="I enjoy building hip back-end tech using Node.js, TypeScript and AWS. Most of the time I design serverless event-driven architectures and REST/GraphQL APIs."
       />
       <meta name="viewport" content="width=900" />
 
