@@ -1,31 +1,33 @@
 import React from 'react';
 import {Button, Carousel, Divider, Typography} from 'antd';
+import Head from 'next/head';
 import {ChromeFilled, GithubOutlined} from '@ant-design/icons';
-import Layout from '../../components/Layout';
 import {trackSocialClick} from '../../helpers/gtag';
 
 const {Paragraph} = Typography;
 
 export default () => (
-  <Layout
-    title="QuickReview for GitHub"
-    ogTags={[
+  <>
+    <Head>
       <meta key={'og:title'} property="og:title" content="QuickReview for GitHub" />,
       <meta
         key={'og:description'}
         property="og:description"
         content="Shortcuts for GitHub PR reviews"
-      />,
+      />
+      ,
       <meta
         key={'og:image'}
         property="og:image"
         content="https://vladholubiev.com/static/og-images/quickreview-for-github/large-promo-tile.png"
-      />,
+      />
+      ,
       <meta
         key={'og:image:secure_url'}
         property="og:image:secure_url"
         content="https://vladholubiev.com/static/og-images/quickreview-for-github/large-promo-tile.png"
-      />,
+      />
+      ,
       <meta key={'og:image:type'} property="og:image:type" content="image/png" />,
       <meta key={'og:image:width'} property="og:image:width" content="920" />,
       <meta key={'og:image:height'} property="og:image:height" content="680" />,
@@ -34,8 +36,8 @@ export default () => (
         property="og:image:alt"
         content="Shortcuts for GitHub PR reviews"
       />
-    ]}
-  >
+      <title>QuickReview for GitHub</title>
+    </Head>
     <h1>QuickReview for GitHub</h1>
     <p>Reviewing 50+ Pull Requests a day is no fun. Automate it with keyboard shortcuts. </p>
     <Divider>
@@ -91,5 +93,5 @@ export default () => (
         &nbsp;Source Code
       </a>
     </Paragraph>
-  </Layout>
+  </>
 );

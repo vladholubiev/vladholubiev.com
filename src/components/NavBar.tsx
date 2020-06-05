@@ -32,25 +32,16 @@ export default function () {
             </span>
           }
         >
-          <Menu.ItemGroup title="Chrome Extensions">
-            <Menu.Item key="quickreview">
-              <Link href="/projects/quickreview-for-github">
-                <a>QuickReview for GitHub</a>
-              </Link>
-            </Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Other">
-            <Menu.Item key="Useful Stuff">
-              <Link href="/projects/webstorm-live-templates-for-jest">
-                <a>WebStorm Live Templates for Jest</a>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="Learning Materials">
-              <Link href="/projects/learning-materials">
-                <a>Learning Materials</a>
-              </Link>
-            </Menu.Item>
-          </Menu.ItemGroup>
+          <Menu.Item key="/projects/quickreview-for-github">
+            <Link href="/projects/quickreview-for-github">
+              <a>QuickReview for GitHub</a>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="/projects/learning-materials">
+            <Link href="/projects/learning-materials">
+              <a>Learning Materials</a>
+            </Link>
+          </Menu.Item>
         </Menu.SubMenu>
 
         <Menu.Item key="Twitter" style={{float: 'right'}}>
