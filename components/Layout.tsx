@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import {ConfigProvider, Icon, Layout, Menu} from 'antd';
+import {ConfigProvider, Layout, Menu} from 'antd';
+import {RocketOutlined, TwitterOutlined} from '@ant-design/icons';
 import enUS from 'antd/lib/locale-provider/en_US';
 import Link from 'next/link';
 import {trackLinkClick} from '../helpers/gtag';
@@ -91,7 +92,7 @@ export default ({
             <SubMenu
               title={
                 <span className="submenu-title-wrapper">
-                  <Icon type="project" />
+                  <RocketOutlined />
                   Projects
                 </span>
               }
@@ -119,7 +120,7 @@ export default ({
 
             <Menu.Item key="Twitter" style={{float: 'right'}}>
               <a href="https://twitter.com/vladholubiev" target="_blank" rel="noopener noreferrer">
-                <Icon type="twitter" /> Twitter
+                <TwitterOutlined /> Twitter
               </a>
             </Menu.Item>
           </Menu>
