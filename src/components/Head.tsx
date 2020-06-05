@@ -28,7 +28,7 @@ export default function () {
         name="description"
         content="I enjoy building hip back-end tech using Node.js, TypeScript and AWS. Most of the time I design serverless event-driven architectures and REST/GraphQL APIs."
       />
-      <meta name="viewport" content="width=900" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <link rel="apple-touch-icon-precomposed" href="/static/favicon-256.png" />
       <meta name="msapplication-TileColor" content="#FFFFFF" />
