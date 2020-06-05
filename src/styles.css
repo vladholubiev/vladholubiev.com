@@ -1,0 +1,15 @@
+#__next {
+  height: 100%;
+}
+
+.home header {
+  font-size: 1.75em;
+  margin: 1em 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+body {
+  background: rgb(240, 242, 245);
+  font-size: 1.1em;
+}

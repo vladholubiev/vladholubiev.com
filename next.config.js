@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require('webpack');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
-const withCSS = require('@zeit/next-css');
 
 const {ANALYZE} = process.env;
 
-module.exports = withCSS({
+module.exports = {
   webpack(config) {
     if (ANALYZE) {
       config.plugins.push(
@@ -22,4 +21,4 @@ module.exports = withCSS({
     return config;
   },
   exportTrailingSlash: true
-});
+};

@@ -1,22 +1,12 @@
 import React from 'react';
-import {Icon, Typography} from 'antd';
-import Layout from '../components/Layout';
+import {Typography} from 'antd';
+import {MailTwoTone} from '@ant-design/icons';
 import ExternalLink from '../components/ExternalLink';
 
 const {Text} = Typography;
 
 export default () => (
-  <Layout>
-    {/*language=CSS*/}
-    <style jsx>{`
-      header {
-        font-size: 1.75em;
-        margin: 1em 0;
-        max-width: 100%;
-        text-align: center;
-      }
-    `}</style>
-
+  <div className="home">
     <header>
       <h1 style={{fontWeight: 600, marginBottom: '.25em'}}>
         Vlad <span style={{color: '#ff5252'}}>Holubiev</span>
@@ -72,10 +62,10 @@ export default () => (
         Or drop me a line at{' '}
         <Text>
           <a href={'mailto:hello@vladholubiev.com'}>
-            <Icon type="mail" theme="twoTone" style={{fontSize: '14px'}} /> hello@vladholubiev.com
+            <MailTwoTone style={{fontSize: '14px'}} /> hello@vladholubiev.com
           </a>
         </Text>
       </p>
     </section>
-  </Layout>
+  </div>
 );
