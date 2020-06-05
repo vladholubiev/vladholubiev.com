@@ -9,28 +9,25 @@ const {Paragraph} = Typography;
 export default () => (
   <>
     <Head>
-      <meta key={'og:title'} property="og:title" content="QuickReview for GitHub" />,
+      <meta key={'og:title'} property="og:title" content="QuickReview for GitHub" />
       <meta
         key={'og:description'}
         property="og:description"
         content="Shortcuts for GitHub PR reviews"
       />
-      ,
       <meta
         key={'og:image'}
         property="og:image"
         content="https://vladholubiev.com/static/og-images/quickreview-for-github/large-promo-tile.png"
       />
-      ,
       <meta
         key={'og:image:secure_url'}
         property="og:image:secure_url"
         content="https://vladholubiev.com/static/og-images/quickreview-for-github/large-promo-tile.png"
       />
-      ,
-      <meta key={'og:image:type'} property="og:image:type" content="image/png" />,
-      <meta key={'og:image:width'} property="og:image:width" content="920" />,
-      <meta key={'og:image:height'} property="og:image:height" content="680" />,
+      <meta key={'og:image:type'} property="og:image:type" content="image/png" />
+      <meta key={'og:image:width'} property="og:image:width" content="920" />
+      <meta key={'og:image:height'} property="og:image:height" content="680" />
       <meta
         key={'og:image:alt'}
         property="og:image:alt"
