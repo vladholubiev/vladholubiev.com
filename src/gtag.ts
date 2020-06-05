@@ -1,8 +1,8 @@
-export function trackSocialClick(label) {
+export function trackSocialClick(label: string): void {
   return trackLinkClick('social', label);
 }
 
-export function trackLinkClick(kind, label) {
+export function trackLinkClick(kind: string, label: string): void {
   const meta = {
     event_category: `${kind}_links`,
     event_label: label

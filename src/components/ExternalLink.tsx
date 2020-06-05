@@ -1,5 +1,5 @@
 import React from 'react';
-import {trackSocialClick} from '../helpers/gtag';
+import {trackSocialClick} from '../gtag';
 
 export default ({url, text}: {url: string; text: string}) => {
   return (

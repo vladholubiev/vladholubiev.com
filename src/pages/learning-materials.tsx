@@ -1,7 +1,7 @@
 import React from 'react';
 import {Avatar, List} from 'antd';
 import Head from 'next/head';
-import {newsletters, other} from '../../helpers/learning-materials-data';
+import {newsletters, other} from '../learning-materials-data';
 
 export default () => (
   <>

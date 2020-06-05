@@ -12,7 +12,7 @@ const MyApp = function ({Component, pageProps, router}: AppProps) {
     <ConfigProvider locale={enUS}>
       <Head />
       <Layout className="layout" style={{height: '100%'}}>
-        <NavBar />
+        <NavBar currentRoute={router.route} />
 
         <Layout.Content
           style={{margin: '24px auto', padding: 24, height: '100%', maxWidth: 900, width: '100%'}}

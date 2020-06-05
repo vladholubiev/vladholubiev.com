@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Carousel, Divider, Typography} from 'antd';
 import Head from 'next/head';
 import {ChromeFilled, GithubOutlined} from '@ant-design/icons';
-import {trackSocialClick} from '../../helpers/gtag';
+import {trackSocialClick} from '../gtag';
 
 const {Paragraph} = Typography;
 

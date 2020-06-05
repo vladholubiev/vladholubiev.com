@@ -3,16 +3,16 @@ import Link from 'next/link';
 import {RocketOutlined, TwitterOutlined} from '@ant-design/icons';
 import React from 'react';
 
-export default function () {
+export default function ({currentRoute}: {currentRoute: string}) {
   return (
     <Layout.Header style={{background: 'white'}}>
       <Menu
         theme="light"
         mode="horizontal"
-        defaultSelectedKeys={['Home']}
+        defaultSelectedKeys={[currentRoute]}
         style={{lineHeight: '64px'}}
       >
-        <Menu.Item key="Home">
+        <Menu.Item key="/">
           <Link href="/">
             <a>🏠 Home</a>
           </Link>
@@ -32,13 +32,13 @@ export default function () {
             </span>
           }
         >
-          <Menu.Item key="/projects/quickreview-for-github">
-            <Link href="/projects/quickreview-for-github">
+          <Menu.Item key="/quickreview-for-github">
+            <Link href="/quickreview-for-github">
               <a>QuickReview for GitHub</a>
             </Link>
           </Menu.Item>
-          <Menu.Item key="/projects/learning-materials">
-            <Link href="/projects/learning-materials">
+          <Menu.Item key="/learning-materials">
+            <Link href="/learning-materials">
               <a>Learning Materials</a>
             </Link>
           </Menu.Item>
