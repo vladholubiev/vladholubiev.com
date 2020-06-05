@@ -82,11 +82,11 @@ export default ({
               </Link>
             </Menu.Item>
 
-            <Menu.Item key="Serverless LibreOffice">
-              <Link href="/serverless-libreoffice">
-                <a>⚡️ Serverless LibreOffice</a>
-              </Link>
-            </Menu.Item>
+            {/*<Menu.Item key="Serverless LibreOffice">*/}
+            {/*  <Link href="/serverless-libreoffice">*/}
+            {/*    <a>⚡️ Serverless LibreOffice</a>*/}
+            {/*  </Link>*/}
+            {/*</Menu.Item>*/}
 
             <SubMenu
               title={
