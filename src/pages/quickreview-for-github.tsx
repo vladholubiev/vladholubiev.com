@@ -7,7 +7,7 @@ import {trackSocialClick} from '../gtag';
 const {Paragraph} = Typography;
 
 export default () => (
-  <>
+  <div className="max-width900">
     <Head>
       <meta key={'og:title'} property="og:title" content="QuickReview for GitHub" />
       <meta
@@ -90,5 +90,5 @@ export default () => (
         &nbsp;Source Code
       </a>
     </Paragraph>
-  </>
+  </div>
 );

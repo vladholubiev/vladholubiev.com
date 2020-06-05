@@ -33,13 +33,17 @@ body {
   margin: 24px auto;
   padding: 24px;
   height: 100%;
-  max-width: 900px;
   width: 100%;
 }
 
 .ant-layout-content .content-wrapper .home {
   padding: 48px;
   min-height: 280px;
+}
+
+.max-width900 {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 @media (max-width: 600px) {

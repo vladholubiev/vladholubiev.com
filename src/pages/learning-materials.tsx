@@ -4,7 +4,7 @@ import Head from 'next/head';
 import {newsletters, other} from '../learning-materials-data';
 
 export default () => (
-  <>
+  <div className="max-width900">
     <Head>
       <title>Learning Materials about back-end and startups</title>
       <meta
@@ -64,7 +64,7 @@ export default () => (
         <List header={'Other'} itemLayout="horizontal" dataSource={other} renderItem={renderItem} />
       </Space>
     </section>
-  </>
+  </div>
 );
 
 function renderItem(item): JSX.Element {

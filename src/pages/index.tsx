@@ -6,7 +6,7 @@ import ExternalLink from '../components/ExternalLink';
 const {Text} = Typography;
 
 export default () => (
-  <div className="home">
+  <div className="home max-width900">
     <header>
       <h1 style={{fontWeight: 600, marginBottom: '.25em'}}>
         Vlad <span style={{color: '#ff5252'}}>Holubiev</span>
