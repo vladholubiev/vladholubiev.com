@@ -31,7 +31,7 @@
   },
   "prettier": "@shelf/prettier-config",
   "dependencies": {
-    "@ant-design/icons": "4.2.1",
+    "@ant-design/icons": "4.3.0",
     "antd": "4.3.3",
     "copy-to-clipboard": "3.3.1",
     "react": "16.13.1",
