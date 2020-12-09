@@ -36,7 +36,7 @@
     "copy-to-clipboard": "3.3.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-syntax-highlighter": "12.2.1",
+    "react-syntax-highlighter": "15.4.3",
     "sort-o": "1.7.1"
   },
   "devDependencies": {
