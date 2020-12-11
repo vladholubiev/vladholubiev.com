@@ -1505,10 +1505,10 @@
     eslint-plugin-react "7.20.0"
     eslint-plugin-vue "6.2.2"
 
-"@shelf/prettier-config@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@shelf/prettier-config/-/prettier-config-0.0.7.tgz#b081d07bfc88e06981e8e207490b7189affeb71c"
-  integrity sha512-T931rkdqMq2OWKoocQYxAryLrtqQ7jh642hBo1fDJWNVAWzgenQVpl7smlyXlQr79ti5Nx/vUUfo+4F5Hvnk7Q==
+"@shelf/prettier-config@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@shelf/prettier-config/-/prettier-config-1.0.0.tgz#810e7191aa44899737ce3bec0cc0b73d205f8763"
+  integrity sha512-XA+bjQ8LlXo/M+rQ13wrN2CgAdwydgxg2crLy8CWq0lxaUgG61Rngvp5DAP7qU4MrOk+WmBYbKzbZVsi58lWCg==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
