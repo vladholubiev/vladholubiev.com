@@ -32,7 +32,7 @@
   "prettier": "@shelf/prettier-config",
   "dependencies": {
     "@ant-design/icons": "4.2.1",
-    "antd": "4.3.3",
+    "antd": "4.9.4",
     "copy-to-clipboard": "3.3.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
