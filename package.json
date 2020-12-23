@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.12.12",
-    "@shelf/eslint-config": "0.16.0",
+    "@shelf/eslint-config": "0.25.2",
     "@shelf/prettier-config": "0.0.7",
     "@types/node": "12",
     "@types/react": "16.9.35",
