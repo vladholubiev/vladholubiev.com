@@ -34,6 +34,14 @@ function Article({ article }) {
   )
 }
 
+/*
+Refresh Medium Stats:
+1. Open https://medium.com/me/stats
+2. Grab `stats` endpoint response from Network tab
+3. Assign both pages to `asd` variable
+4. Run this in console: `asd.payload.value.map(i => i.views+i.syndicatedViews).reduce((value, memo) => memo + value, 0)`
+ */
+
 export default function ArticlesIndex({ articles }) {
   return (
     <>
@@ -41,12 +49,12 @@ export default function ArticlesIndex({ articles }) {
         <title>Articles - Vlad Holubiev</title>
         <meta
           name="description"
-          content="All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order."
+          content="I write mostly about interesting problems I solve to spread the knowledge and help others. My articles on Medium were viewed over 284,685 times so far."
         />
       </Head>
       <SimpleLayout
         title="Blog"
-        intro="I write mostly about interesting problems I solve to spread the knowledge and help others."
+        intro="I write mostly about interesting problems I solve to spread the knowledge and help others. My articles on Medium were viewed over 284,685 times so far."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
