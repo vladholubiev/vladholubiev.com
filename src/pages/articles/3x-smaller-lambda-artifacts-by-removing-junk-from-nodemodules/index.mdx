@@ -1,0 +1,157 @@
+import {ArticleLayout} from '@/components/ArticleLayout';
+import Image from 'next/image';
+import image01 from './image-01.webp';
+import image02 from './image-02.webp';
+import image03 from './image-03.webp';
+import image04 from './image-04.webp';
+import image05 from './image-05.webp';
+
+
+export const meta = {
+  author: 'Vlad Holubiev',
+  date: '2020-11-02',
+  title: '3x Smaller Lambda Artifacts by Removing Junk From node_modules',
+  description: 'The most obvious way would be to use webpack and do tree shaking. But I’m not a fan of that approach. It’s cumbersome to set up and has significant dev effort, especially when you face issues with…',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+Reducing artifact size proportionally correlates with the cold start latency.
+
+The most obvious way would be to use webpack and do tree shaking.
+But I’m not a fan of that approach.
+It’s cumbersome to set up and has significant dev effort, especially when you face issues with bundling some backend dependencies.
+
+I’ll talk about some “quick wins” instead.
+
+<Image src={image01} alt="" className="no-rounding"/>
+
+> We’ll use a tool called [fdu](https://github.com/amio/flaming-disk-usage) to inspect junk in `node_modules`.
+
+We’ll take one of my repos as an example
+When installing only production dependencies, the size of `node_modules` folder is 149.62 MB (36.1 MB zipped).
+At the end of the article, we’ll reduce it down to 62.12 MB (12.2 MB zipped).
+
+<Image src={image02} alt="" className="no-rounding"/>
+
+## Don’t bundle aws-sdk
+
+This is the most obvious suggestion but still brings the most value.
+It helped me to reduce my zip artifact size **by 7 MB**.
+
+<Image src={image03} alt="" className="no-rounding"/>
+
+In case you don’t need the latest version of `aws-sdk` — just drop it from your artifact size.
+
+Not adding it to `package.json` is not an option, because your tests might depend on it,
+and additionally, other dependencies might still install `aws-sdk` without you knowing it.
+
+We’ll combat this problem in three steps.
+
+## Track currently available aws-sdk version in Lambda runtime
+
+AWS maintains a page with the current aws-sdk version here: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+
+I’ve created an automatic alert to notify me when AWS puts a new `aws-sdk` version inside Lambda runtime.
+I like the [Distill Chrome Extension](https://distill.io/), it’s free.
+
+Now we know for sure on which `aws-sdk` version we can rely upon in our code.
+
+## Use [yarn resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions/) to ensure only 1 version of aws-sdk is installed
+
+This is a wonderful feature if you’re using yarn.
+Add these lines to your `package.json` and yarn will install only 1 instance of `aws-sdk` dependency, regardless of what other packages require.
+
+```json
+"resolutions": {
+  "aws-sdk": "2.712.0"
+}
+```
+
+## Exclude aws-sdk from final artifact zip
+
+This step might depend on the way you create a zip artifact, but it looks for me as:
+
+```bash
+zip --quiet -r --exclude="node_modules/aws-sdk/*" \
+  artifact.zip \
+  lib node_modules
+```
+
+## Exclude TypeScript typings
+
+This step helped me to remove **16 MB** of junk (**2.2 MB** zipped) from the final artifact zip.
+
+Whether you use TypeScript or not, many package ship typings to the NPM.
+They’re useful during development but have no impact on the runtime.
+
+Here is a command to remove them:
+
+```bash
+npx del-cli \
+  "node_modules/**/@types/**" \
+  "node_modules/**/*.d.ts" \
+  "node_modules/**/.yarn-integrity" \
+  "node_modules/**/.bin"
+```
+
+## Exclude tests & browser builds with .yarnclean
+
+This step reduced node_modules size by **19.5 MB** (**14.6 MB** zipped).
+
+Another great yarn feature — [.yarnclean](https://classic.yarnpkg.com/en/docs/cli/autoclean/) file.
+You define glob patterns and yarn removes them from `node_modules` when running `yarn install`.
+
+What type of stuff is useful to remove?
+
+- test files (`*.test.js`) — surprisingly many npm packages publish their tests to NPM.
+And you keep deploying this junk to Lambda runtime.
+- IDE configurations: `.idea/*` , `.vscode/*`, `.eslintrc`, etc
+- Graphic assets used for illustration purposes in `README.md`
+- Browser builds: `*.min.js`, `dist/*.js` , etc
+
+Just add a `.yarnclean` file to your repository with the list of glob patterns and enjoy size savings out of the box!
+
+You can initialize a fresh config by running `yarn autoclean --init`, or use my own collection of junk patterns I collected over the past year below.
+
+> I compiled my own `.yarnclean` file with the junk I found in my repos: https://gist.github.com/vladgolubev/1c0e9fd4d569446cada21e4a3c64d0f8
+
+## Before & After
+
+<Image src={image04} alt="" className="no-rounding"/>
+
+## Bonus: Add more dependencies to yarn resolutions
+
+It might depend on the codebase, but my projects and the dependencies I use depend on `lodash` a lot.
+When running `yarn install` I end up with many different versions of `lodash` installed, which differ only by patch increment.
+
+Here how it looks like in my `yarn.lock` file.
+
+```
+lodash@4.17.15:
+  version "4.17.15"
+  ...
+
+lodash@^4.17.11
+  version "4.17.11"
+  ...
+lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19:
+  version "4.17.20"
+  ...
+```
+
+This is slightly risky, but I am ok with using 1 single lodash version in my repo to reduce Lambda size.
+Just update your `resolutions` section of the `package.json` file to look like:
+
+```json
+"resolutions": {
+  "aws-sdk": "2.712.0",
+  "lodash": "4.17.20"
+}
+```
+
+After this change, I won another 15.5 MB of space!
+
+<Image src={image05} alt="" className="no-rounding"/>
+
+Keep lurking inside your `yarn.lock` file to find other inefficiencies.
