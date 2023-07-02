@@ -56,13 +56,13 @@ export default function About() {
               About me
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              <p>
+              <p className="prose">
                 I’ve loved tinkering with computers for as long as I can remember, and
                 wrote my first program when I was 14 years old right after I got my first computer.
                 I began my commercial experience by freelancing back in the school at 15, when I designed
                 and developed websites using JavaScript, jQuery and Wordpress.
               </p>
-              <p>
+              <p className="prose">
                 Later, at 16 I realized Backend is my passion so I started learning Java.
                 Finding a freelance job as a Java developer was a challenge, so I used to
                 develop Java applications and Chrome Extensions for a Google MapMaker Ukraine
@@ -77,18 +77,22 @@ export default function About() {
                 grades and university news. It quickly gained popularity and had
                 more than 1,000 WAU users in the first month.
               </p>
-              <p>
+              <p className="prose">
                 At 18 I went back to JavaScript ecosystem and started learning Node.js
                 as it felt more modern and flexible. As a learning project I developed
                 a web version of my university’s Android app.
                 That enabled me to quickly find a job as a Full-Stack JavaScript developer
                 at Apiko in Ternopil.
               </p>
-              <p>
+              <p className="prose">
                 Later that year, I decided to move to Lviv and joined a startup called
                 Shelf. I started as a Junior Software Engineer as one of the first three
-                dev team members and today I oversee the entire technical landscape
-                in the role of a Senior Director of Technology.
+                dev team members. It was such a busy coding time I made myself into&nbsp;
+                <Link href="https://web.archive.org/web/20211028163159/https://commits.top/ukraine_private.html" target="_blank" >top 3</Link>
+                &nbsp;GitHub contributors in Ukraine.
+              </p>
+              <p className="prose">
+                And today I oversee the entire technical landscape of Shelf in the role of a Senior Director of Technology.
               </p>
             </div>
           </div>
