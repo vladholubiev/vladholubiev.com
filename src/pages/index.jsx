@@ -52,6 +52,21 @@ export default function Home({articles}) {
           name="description"
           content="I’m Vlad Holubiev, a software designer from Ukraine 🇺🇦"
         />
+
+        <meta property="og:title" content="Vlad Holubiev: Home Page" />
+        <meta property="og:url" content="https://vladholubiev.com/" />
+        <meta name="og:description" content="The home page of Vlad Holubiev, a Senior Director of Technology at Shelf and an Open Source contributor from Ukraine." />
+        <meta property="og:image" content="https://vladholubiev.com/avatar.jpg" />
+        <meta property="og:site_name" content="Vlad Holubiev" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@vladholubiev" />
+        <meta name="twitter:creator" content="@vladholubiev" />
+        <meta name="twitter:title" content="Vlad Holubiev: Home Page" />
+        <meta name="twitter:url" content="https:/vladholubiev.com/" />
+        <meta name="twitter:description" content="The home page of Vlad Holubiev, a Senior Director of Technology at Shelf and an Open Source contributor from Ukraine." />
+        <meta name="twitter:image" content="https://vladholubiev.com/avatar.jpg" />
+
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
