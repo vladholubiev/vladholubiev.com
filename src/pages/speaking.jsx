@@ -45,7 +45,7 @@ export default function Speaking() {
             <Appearance
               date="2023-01-26"
               title="1 Million Parallel Lambdas vs Unfriendly Websites"
-              description="A story of using AWS Lambda for load-testing purposes on a tight budget. From Serverless intro to hard-core Lambda optimizations for maximum concurrency. Tera"
+              description="A story of using AWS Lambda for load-testing purposes on a tight budget. From Serverless intro to hard-core Lambda optimizations for maximum concurrency."
               event="meet.js Wrocław"
               href="https://github.com/vladgolubev/concurrency-checker"
               cta="Github Repo"
