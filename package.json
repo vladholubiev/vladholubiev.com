@@ -1,58 +1,37 @@
 {
-  "name": "website",
-  "version": "1.0.0",
+  "name": "vladholubiev-com",
+  "version": "0.1.0",
   "private": true,
-  "license": "MIT",
-  "author": "Vlad Holubiev",
   "scripts": {
-    "analyze": "ANALYZE=1 next build",
+    "dev": "next dev",
     "build": "next build",
-    "dev": "next",
-    "export": "next export",
-    "lint": "eslint . --fix --ext .js,.json,.ts,.tsx --quiet",
-    "lint:ci": "eslint . --ext .js,.json,.ts,.tsx --quiet",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "post-commit": "git update-index --again"
-    }
-  },
-  "lint-staged": {
-    "*.{html,md,yml,graphql}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{ts,tsx,js,json}": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "prettier": "@shelf/prettier-config",
+  "browserslist": "defaults, not ie <= 11",
   "dependencies": {
-    "@ant-design/icons": "4.2.1",
-    "antd": "4.3.3",
-    "copy-to-clipboard": "3.3.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-syntax-highlighter": "12.2.1",
-    "sort-o": "1.7.1"
+    "@headlessui/react": "^1.7.13",
+    "@mapbox/rehype-prism": "^0.8.0",
+    "@mdx-js/loader": "^2.1.5",
+    "@mdx-js/react": "^2.1.5",
+    "@next/mdx": "^13.0.2",
+    "@tailwindcss/typography": "^0.5.4",
+    "autoprefixer": "^10.4.12",
+    "clsx": "^1.2.1",
+    "fast-glob": "^3.2.11",
+    "focus-visible": "^5.2.0",
+    "next": "13.4.2",
+    "next-router-mock": "^0.9.3",
+    "postcss-focus-visible": "^6.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "remark-gfm": "^3.0.1",
+    "tailwindcss": "^3.3.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "7.12.12",
-    "@shelf/eslint-config": "0.16.0",
-    "@shelf/prettier-config": "0.0.7",
-    "@types/node": "12",
-    "@types/react": "16.9.35",
-    "@types/react-dom": "16.9.8",
-    "babel-plugin-import": "1.13.3",
-    "eslint": "7.17.0",
-    "husky": "4.2.5",
-    "lint-staged": "10.5.3",
-    "next": "9.4.4",
-    "prettier": "2.2.1",
-    "typescript": "3.9.5",
-    "webpack-bundle-analyzer": "3.8.0"
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.2",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.6"
   }
 }
