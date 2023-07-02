@@ -7,11 +7,19 @@ import { Container } from '@/components/Container'
 import {
   GitHubIcon,
   InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-} from '@/components/icons/SocialIcons'
+  LinkedInIcon, MediumIcon, StackOverflowIcon,
+  TwitterIcon
+} from "@/components/icons/SocialIcons";
 import portraitImage from '@/images/avatar.jpg'
-import {EMAIL, GITHUB, INSTAGRAM, LINKEDIN, TWITTER} from '@/lib/social-links';
+import {
+  EMAIL,
+  GITHUB,
+  INSTAGRAM,
+  LINKEDIN,
+  MEDIUM,
+  STACKOVERFLOW,
+  TWITTER
+} from "@/lib/social-links";
 import {MailIcon} from '@/components/icons/MailIcon';
 
 function SocialLink({ className, href, children, icon: Icon }) {
@@ -101,14 +109,20 @@ export default function About() {
               <SocialLink href={TWITTER} icon={TwitterIcon}>
                 Follow on Twitter
               </SocialLink>
+              <SocialLink href={LINKEDIN} icon={LinkedInIcon} className="mt-4">
+                Follow on LinkedIn
+              </SocialLink>
+              <SocialLink href={MEDIUM} icon={MediumIcon} className="mt-4">
+                Follow on Medium
+              </SocialLink>
               <SocialLink href={INSTAGRAM} icon={InstagramIcon} className="mt-4">
                 Follow on Instagram
               </SocialLink>
+              <SocialLink href={STACKOVERFLOW} icon={StackOverflowIcon} className="mt-4">
+                See on StackOverflow
+              </SocialLink>
               <SocialLink href={GITHUB} icon={GitHubIcon} className="mt-4">
                 Follow on GitHub
-              </SocialLink>
-              <SocialLink href={LINKEDIN} icon={LinkedInIcon} className="mt-4">
-                Follow on LinkedIn
               </SocialLink>
               <SocialLink
                 href={`mailto:${EMAIL}`}
