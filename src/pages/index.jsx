@@ -52,7 +52,7 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="I’m Vlad Holubiev, a software designer from Ukraine 🇺🇦"
+          content="I’m Vlad Holubiev, a software engineer from Ukraine 🇺🇦"
         />
 
         <meta property="og:title" content="Vlad Holubiev: Home Page"/>
