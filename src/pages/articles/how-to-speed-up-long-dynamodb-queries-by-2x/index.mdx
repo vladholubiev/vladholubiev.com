@@ -25,7 +25,7 @@ and you need to find only a couple of items using `FilterExpression`.
 
 For the sake of the example, let’s use the following table schema and try to find items where `number > 0.5`.
 
-<Image src={image01} alt="" className="no-rounding"/>
+<Image src={image01} alt="" className="no-rounding bg-white"/>
 
 > Schema created with [NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html)
 
@@ -64,7 +64,7 @@ I’ll leave the speculation that having such a data structure in DDB is wrong, 
 
 Here is a diagram of the sequential iteration.
 
-<Image src={image02} alt="" className="no-rounding"/>
+<Image src={image02} alt="" className="no-rounding bg-white"/>
 
 In the scenario when each query takes *5s*, 4 queries will take *20s* to complete.
 
@@ -96,7 +96,7 @@ This parameter allows us to make 2 queries in parallel from both ends.
 The first query paginates through items from the beginning, and the second query paginates through items from the end.
 Pagination stops when each query reaches the middle.
 
-<Image src={image03} alt="" className="no-rounding"/>
+<Image src={image03} alt="" className="no-rounding bg-white"/>
 
 This simple trick shaves off a total query time by 2x!
 
@@ -104,7 +104,7 @@ This simple trick shaves off a total query time by 2x!
 
 I created a sample table and populated it with ~21 MB of data and wrote a query to find all items under the partition key `hk6` and `number > 0.5`.
 
-<Image src={image04} alt="" className="no-rounding"/>
+<Image src={image04} alt="" className="no-rounding bg-white"/>
 
 Here are the results of the [benchmark script](https://github.com/shelfio/dynamodb-query-optimized/blob/master/benchmark.ts):
 
