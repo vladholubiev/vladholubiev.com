@@ -104,6 +104,10 @@ export default function Uses() {
               Other productivity apps from Setapp subscription not mentioned above are:
               Bartender, iStats Menus, Paletro, CleanMyMac X, Prizmo, Sip.
             </Tool>
+            <Tool title="AltTab" href="https://alt-tab-macos.netlify.app//">
+              AltTab brings the power of Windows’s “alt-tab” window switcher to macOS.
+              It is super customizable and works great with multiple displays!
+            </Tool>
           </ToolsSection>
           <ToolsSection title="Newsletters">
             <Tool title="ByteByteGo" href="https://blog.bytebytego.com/">
