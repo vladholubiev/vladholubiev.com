@@ -41,8 +41,8 @@ export default function Uses() {
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-              I was using a 13” 16GB M1 MacBook Pro prior to this. Extra RAM
+            <Tool title="14” MacBook Pro, M2 Max, 64GB RAM (2023)">
+              I was using a 13” 16GB M1 MacBook Pro earlier. Extra RAM
               and more CPU cores are a game changer for me. I’m able to run
               more apps at once without worrying about performance.
             </Tool>
@@ -91,6 +91,10 @@ export default function Uses() {
             <Tool title="GPT-4">
               I use GPT-4 for all sorts of coding & writing tasks, and interestingly
               to create new productivity tools based on it. It deserves a separate article.
+            </Tool>
+            <Tool title="CodeGPT" href="https://plugins.jetbrains.com/plugin/21056-codegpt">
+              This is a WebStorm plugin that makes it super easy to use GPT-4 in IDE.
+              Just select a code snippet, right-click, and choose Refactor.
             </Tool>
             <Tool title="DevUtils">
               This is a swiss army knife for developers. It can convert JSON to CSV,
