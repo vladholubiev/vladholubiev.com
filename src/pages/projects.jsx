@@ -38,7 +38,7 @@ const projects = [
   {
     name: 'quickreview-for-github',
     description: 'Chrome Extension for faster GitHub PRs reviewing with hotkeys.',
-    link: {href: 'https://github.com/vladgolubev/quickreview-for-github', label: 'github.com'},
+    link: {href: 'https://github.com/vladholubiev/quickreview-for-github', label: 'github.com'},
   },
 ]
 
