@@ -7,12 +7,12 @@ import {LinkIcon} from '@/components/icons/LinkIcon';
 const projects = [
   {
     name: 'aws-lambda-libreoffice',
-    description: 'Run LibreOffice on AWS Lambda with ease. Back in 2018 it was nominated for the JavaScript Open Source Award in the "The most exciting use of technology" category alongside CodeSandbox.',
+    description: 'Easily run LibreOffice on AWS Lambda. Back in 2018, it was a nominee for the JavaScript Open Source Award in the "Most Exciting Use of Technology" category, alongside CodeSandbox.',
     link: {href: 'https://github.com/shelfio/aws-lambda-libreoffice', label: 'github.com'},
   },
   {
     name: 'awsnews.info',
-    description: 'A sleek place to read AWS news filtered from the noise.',
+    description: 'A streamlined website for reading AWS updates, sifted from the clutter.',
     link: {href: 'https://awsnews.info/', label: 'awsnews.info'},
   },
   {
@@ -34,11 +34,6 @@ const projects = [
     name: 'dynamodb-parallel-scan',
     description: 'Scan large DynamoDB tables faster with parallelism.',
     link: {href: 'https://github.com/shelfio/dynamodb-parallel-scan', label: 'github.com'},
-  },
-  {
-    name: 'quickreview-for-github',
-    description: 'Chrome Extension for faster GitHub PRs reviewing with hotkeys.',
-    link: {href: 'https://github.com/vladholubiev/quickreview-for-github', label: 'github.com'},
   },
 ]
 

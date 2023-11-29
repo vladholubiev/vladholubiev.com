@@ -42,6 +42,7 @@ function SocialLink({ icon: Icon, ...props }) {
   );
 }
 
+const DESCRIPTION = `The home page of Vlad Holubiev, a Senior Director of Technology at Shelf and an Open Source contributor from Ukraine.`;
 
 export default function Home({ articles }) {
   return (
@@ -57,8 +58,7 @@ export default function Home({ articles }) {
 
         <meta property="og:title" content="Vlad Holubiev: Home Page"/>
         <meta property="og:url" content="https://vladholubiev.com/"/>
-        <meta name="og:description"
-              content="The home page of Vlad Holubiev, a Senior Director of Technology at Shelf and an Open Source contributor from Ukraine."/>
+        <meta name="og:description" content={DESCRIPTION}/>
         <meta property="og:image" content="https://vladholubiev.com/avatar.jpg"/>
         <meta property="og:site_name" content="Vlad Holubiev"/>
 
@@ -67,8 +67,7 @@ export default function Home({ articles }) {
         <meta name="twitter:creator" content="@vladholubiev"/>
         <meta name="twitter:title" content="Vlad Holubiev: Home Page"/>
         <meta name="twitter:url" content="https:/vladholubiev.com/"/>
-        <meta name="twitter:description"
-              content="The home page of Vlad Holubiev, a Senior Director of Technology at Shelf and an Open Source contributor from Ukraine."/>
+        <meta name="twitter:description" content={DESCRIPTION}/>
         <meta name="twitter:image" content="https://vladholubiev.com/avatar.jpg"/>
 
       </Head>

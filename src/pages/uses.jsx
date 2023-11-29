@@ -62,16 +62,13 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="WebStorm">
-              After using WebStorm for about a decade, I can’t imagine using
-              anything else. My workflow is so optimized around it that I
-              don’t think I could be as productive in any other editor.
-              I use other JetBrains products too, like DataGrip and PyCharm.
+            <Tool title="Visual Studio Code">
+            After using WebStorm for nearly ten years, I made the switch to VS Code and I’m really enjoying it.
+            It’s quicker and offers a broader range of extensions.
             </Tool>
             <Tool title="iTerm2">
-              I’m honestly not using it to full potential, but the things I like
-              over the default Terminal.app are: better autocomplete, better mouse support
-              for text selection, better search and large scrollback buffer.
+            Honestly, I’m not using it to its full potential, but the features I prefer over the default Terminal.app include: 
+            improved autocomplete, enhanced mouse support for text selection, superior search functionality, and a larger scrollback buffer.
             </Tool>
             <Tool title="CleanShot X">
               After trying many different screenshot tools, this is the only one
@@ -80,6 +77,10 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
+            <Tool title="Raycast" href="https://www.raycast.com/">
+            Raycast is an alternative to Spotlight that comes packed with numerous productivity features.
+            I use it to swiftly launch apps, execute commands, and automate tasks by creating custom extensions.
+            </Tool>
             <Tool title="Paste" href="https://pasteapp.io/">
               Clipboard history manager is a must-have tool for me. Need to recall
               a code snippet from a month ago? Paste has got you covered.
@@ -91,10 +92,6 @@ export default function Uses() {
             <Tool title="GPT-4">
               I use GPT-4 for all sorts of coding & writing tasks, and interestingly
               to create new productivity tools based on it. It deserves a separate article.
-            </Tool>
-            <Tool title="CodeGPT" href="https://plugins.jetbrains.com/plugin/21056-codegpt">
-              This is a WebStorm plugin that makes it super easy to use GPT-4 in IDE.
-              Just select a code snippet, right-click, and choose Refactor.
             </Tool>
             <Tool title="DevUtils">
               This is a swiss army knife for developers. It can convert JSON to CSV,
