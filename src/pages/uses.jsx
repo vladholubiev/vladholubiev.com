@@ -79,17 +79,13 @@ export default function Uses() {
           <ToolsSection title="Productivity">
             <Tool title="Raycast" href="https://www.raycast.com/">
             Raycast is an alternative to Spotlight that comes packed with numerous productivity features.
-            I use it to swiftly launch apps, execute commands, and automate tasks by creating custom extensions.
-            </Tool>
-            <Tool title="Paste" href="https://pasteapp.io/">
-              Clipboard history manager is a must-have tool for me. Need to recall
-              a code snippet from a month ago? Paste has got you covered.
+            I use it to swiftly launch apps, manage clipboard history, execute commands, and automate tasks by creating custom extensions.
             </Tool>
             <Tool title="Github Copilot">
               Thanks to Copilot, I enjoy coding more than ever. It saves time
               writing ”boring” code and helps me focus on the interesting parts.
             </Tool>
-            <Tool title="GPT-4">
+            <Tool title="GPT-4 Turbo">
               I use GPT-4 for all sorts of coding & writing tasks, and interestingly
               to create new productivity tools based on it. It deserves a separate article.
             </Tool>
