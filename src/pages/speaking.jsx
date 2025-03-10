@@ -57,7 +57,7 @@ export default function Speaking() {
             <Appearance
               date="2023-01-26"
               title="1 Million Parallel Lambdas vs Unfriendly Websites"
-              description="A story of using AWS Lambda for load-testing purposes on a tight budget. From Serverless intro to hard-core Lambda optimizations for maximum concurrency."
+              description="A story about using AWS Lambda for load testing on a tight budget - from an introduction to Serverless to advanced Lambda optimizations for maximum concurrency."
               event="meet.js Wrocław"
               href="https://github.com/vladholubiev/concurrency-checker"
               cta="Github Repo"
@@ -65,7 +65,7 @@ export default function Speaking() {
             <Appearance
               date="2018-06-26"
               title="AWS AppSync (GraphQL on AWS)"
-              description="I shared my experience of running GraphQL APIs in production on AWS. Since then I am lukewarm about GraphQL and AppSync but it was a hot topic back then."
+              description="I shared my experience running GraphQL APIs in production on AWS. Since then, I've become lukewarm about GraphQL and AppSync, but at the time it was a hot topic."
               event="GDG Lviv Meetup"
               href="https://github.com/vladholubiev/gdg-lviv-graphql-appsync-demo"
               cta="Github Repo"
@@ -73,13 +73,13 @@ export default function Speaking() {
             <Appearance
               date="2016-06-30"
               title="Taming Meteor deployment with Wercker"
-              description="I shared my experience of setting up a CI to deploy Meteor.js apps in Docker containers to AWS. Back in the days, people kept deploying Meteor apps manually or to plain EC2 and AWS ECS was a new kid on the block."
+              description="I shared my experience setting up CI to deploy Meteor.js apps in Docker containers to AWS. Back then, people typically deployed Meteor apps manually or directly to plain EC2 instances, and AWS ECS was still the new kid on the block."
               event="Meteor Ukraine"
             />
             <Appearance
               date="2016-03-16"
               title="A Visual Introduction to Machine Learning"
-              description="My first talk ever, where I explain the basics of machine learning, with examples of supervised and unsupervised learning. Then I shared tools I used and real-life problems solved."
+              description="My first-ever talk, where I explained the basics of machine learning, including examples of supervised and unsupervised learning. I also shared the tools I used and discussed real-life problems I solved."
               event="GDG Ternopil Meetup"
             />
           </SpeakingSection>
