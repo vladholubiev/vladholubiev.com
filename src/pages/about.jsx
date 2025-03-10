@@ -65,38 +65,34 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I’ve always had a passion for playing around with computers, and I wrote my first program at the age of 14, 
-                shortly after getting my very first computer. I started gaining commercial experience by 
-                freelancing during my school years, at 15, when I created and developed websites using JavaScript, jQuery, and WordPress.
+                I’ve always been passionate about tinkering with computers - I wrote my first program at the age of 14 
+                shortly after receiving my very first computer. By 15, I started gaining commercial experience through 
+                freelance projects, developing websites using JavaScript, jQuery, and WordPress while still attending school.
               </p>
               <p>
-                Later, at 16, I discovered my passion for backend development and began learning Java. 
-                Finding freelance work as a Java developer proved challenging, so I started developing Java applications and 
-                Chrome Extensions for the Google MapMaker Ukraine community on a voluntary basis. 
-                These projects automated the process of mapping Ukraine on Google Maps and caught the attention of the Google MapMaker team in California. 
-                Consequently, I was invited to attend several Google MapMaker summits across Ukraine, organized by the Google Ukraine headquarters.
+                At 16, I discovered my interest in backend development and began learning Java.
+                Since Java freelance projects were difficult to find at the time, I volunteered to build Java applications and Chrome extensions for the Google MapMaker Ukraine community.
+                These tools automated the mapping of Ukraine and caught the attention of Google’s MapMaker team in California. 
+                As a result, Google Ukraine HQ recognized my contributions and invited me to several national Google MapMaker summits held in different cities across Ukraine.
               </p>
               <p>
-                When I started university at 17, I discovered a passion for developing Android apps. 
-                My first project was an app that connected to the university’s backend, enabling students to 
-                check their grades and get the latest campus news. It took off faster than I expected, 
-                attracting over 1,000 weekly active users within the first month.
+                When I started university at 17, I developed a keen interest in Android application development.
+                My first Android project allowed students to connect to our university’s backend system to check their grades and read the latest campus news.
+                The application quickly gained popularity, reaching over 1,000 weekly active users within the first month alone.
               </p>
               <p>
-                At 18, I returned to the JavaScript ecosystem and began learning Node.js because 
-                it seemed more contemporary and versatile. For a learning project, I created a web 
-                version of my university’s Android app. This experience helped me quickly secure a 
-                position as a Full-Stack JavaScript developer at Apiko in Ternopil.
+                At 18, I returned to the JavaScript ecosystem and began experimenting with Node.js, attracted by its modern approach and flexibility.
+                As a learning project, I created a web version of the university Android app.
+                This experience soon helped me land a position as a Full-Stack JavaScript developer at Apiko in Ternopil.
               </p>
               <p>
-                Later that year, I made the decision to relocate to Lviv and joined a startup named Shelf. 
-                I began my journey there as a Junior Software Engineer, one of the initial three members of the development team. 
-                It was an incredibly hectic period of coding, and I managed to become one of the&nbsp;
+                Later that year, I relocated to Lviv to join a startup called Shelf as one of its initial three engineers.
+                It was an incredibly exciting and intensive phase of coding - I even became one of the &nbsp;
                 <Link href="https://web.archive.org/web/20211028163159/https://commits.top/ukraine_private.html" target="_blank" >top three</Link>&nbsp;
                 GitHub contributors in Ukraine.
               </p>
               <p>
-                Today, I manage the entire technical landscape at Shelf as the Senior Director of Technology.
+                Today, I oversee the entire technical landscape at Shelf as the Senior Director of Technology.
               </p>
             </div>
           </div>
