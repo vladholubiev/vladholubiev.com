@@ -52,13 +52,11 @@ export default function Uses() {
               with a single cable for power and display. I love the extra
               horizontal space for working with 2 windows side-by-side.
             </Tool>
-            <Tool title="Apple Magic Keyboard with Touch ID">
-              It works great with MacBook Pro and I love the Touch ID
-              integration. I don’t have to type my password 100 times a day.
+            <Tool title="Logitech Ergo K860">
+              Switched from the Apple Magic Keyboard to the Logitech Ergo K860 due to its ergonomic design. Its split layout, cushioned wrist rest, and negative tilt significantly reduced wrist strain and improved typing comfort during long coding sessions.
             </Tool>
-            <Tool title="Logitech MX Master 3 For Mac">
-              I enjoy the extra buttons and the LogiOptions+ software to
-              customize extra buttons and gestures for different apps.
+            <Tool title="Logitech MX Vertical">
+              Recently upgraded from the Logitech MX Master 3 to the Logitech MX Vertical for its ergonomic design. The vertical orientation helps reduce wrist strain and promotes a more natural hand position, providing greater comfort during extended periods of work.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
@@ -77,17 +75,8 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
-            <Tool title="Raycast" href="https://www.raycast.com/">
-            Raycast is an alternative to Spotlight that comes packed with numerous productivity features.
-            I use it to swiftly launch apps, manage clipboard history, execute commands, and automate tasks by creating custom extensions.
-            </Tool>
-            <Tool title="Github Copilot">
-              Thanks to Copilot, I enjoy coding more than ever. It saves time
-              writing ”boring” code and helps me focus on the interesting parts.
-            </Tool>
-            <Tool title="GPT-4 Turbo">
-              I use GPT-4 for all sorts of coding & writing tasks, and interestingly
-              to create new productivity tools based on it. It deserves a separate article.
+            <Tool title="AI-powered coding tools (Claude Code, Aider.chat, GitHub Copilot Agent)">
+              I’m always exploring the cutting-edge in AI coding assistants. My current favorites include Claude Code, Aider.chat programming, and GitHub Copilot (Agent mode). This space evolves rapidly, so the list is always changing.
             </Tool>
             <Tool title="DevUtils">
               This is a swiss army knife for developers. It can convert JSON to CSV,
@@ -96,10 +85,6 @@ export default function Uses() {
             <Tool title="Setapp" href="https://setapp.com/">
               Other productivity apps from Setapp subscription not mentioned above are:
               Bartender, iStats Menus, Paletro, CleanMyMac X, Prizmo, Sip.
-            </Tool>
-            <Tool title="AltTab" href="https://alt-tab-macos.netlify.app//">
-              AltTab brings the power of Windows’s “alt-tab” window switcher to macOS.
-              It is super customizable and works great with multiple displays!
             </Tool>
           </ToolsSection>
           <ToolsSection title="Newsletters">
