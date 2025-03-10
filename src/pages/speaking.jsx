@@ -43,6 +43,12 @@ export default function Speaking() {
         <div className="space-y-20">
           <SpeakingSection title="Meetups">
             <Appearance
+              date="2025-03-06"
+              title="Getting the Most out of AI: Secrets of Expert-Level Usage"
+              description="Shared insights on avoiding common AI pitfalls, selecting suitable models, managing knowledge context, and practical AI application strategies."
+              event="Cashflow Club Wrocław"
+            />
+            <Appearance
               date="2023-01-26"
               title="1 Million Parallel Lambdas vs Unfriendly Websites"
               description="A story of using AWS Lambda for load-testing purposes on a tight budget. From Serverless intro to hard-core Lambda optimizations for maximum concurrency."
