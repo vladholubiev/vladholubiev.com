@@ -123,10 +123,6 @@ export default function Uses() {
               Occasionally I find an interesting read there on the inner workings
               of software engineering in some well-known companies.
             </Tool>
-            <Tool title="Serverless Status" href="https://serverless.email/">
-              Serverless is a big part of my work, so this one helps to stay
-              up to date with the cutting edge stuff of the ecosystem.
-            </Tool>
             <Tool title="Tech Radar" href="https://www.thoughtworks.com/radar">
               Published quarterly, it is always filled with dozens of new tools,
               techniques, frameworks and ideas to explore.
