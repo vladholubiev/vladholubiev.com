@@ -55,6 +55,12 @@ export default function Speaking() {
               event="Toastmasters"
             />
             <Appearance
+              date="2024-05-23"
+              title="Personal Digital Privacy and Security"
+              description="Discussed security issues commonly overlooked by users of popular apps, highlighting privacy risks and cybersecurity vulnerabilities inherent in platforms with opaque privacy policies. Shared practical advice and actionable steps for enhancing personal digital safety."
+              event="Cashflow Club Wrocław"
+            />
+            <Appearance
               date="2023-01-26"
               title="1 Million Parallel Lambdas vs Unfriendly Websites"
               description="A story about using AWS Lambda for load testing on a tight budget - from an introduction to Serverless to advanced Lambda optimizations for maximum concurrency."
