@@ -76,7 +76,10 @@ export default function Uses() {
           </ToolsSection>
           <ToolsSection title="Productivity">
             <Tool title="AI-powered coding tools (Claude Code, Aider.chat, GitHub Copilot Agent)">
-              I’m always exploring the cutting-edge in AI coding assistants. My current favorites include Claude Code, Aider.chat programming, and GitHub Copilot (Agent mode). This space evolves rapidly, so the list is always changing.
+              I&apos;m always exploring the cutting-edge in AI coding assistants. My current favorites include Claude Code, Aider.chat programming, and GitHub Copilot (Agent mode). This space evolves rapidly, so the list is always changing.
+            </Tool>
+            <Tool title="TypingMind" href="https://www.typingmind.com/">
+              I value TypingMind for providing a unified interface to access all LLMs and quickly switch between them. It lets me save prompts, organize projects, create agents, and maintain a structured workflow for all my AI interactions.
             </Tool>
             <Tool title="DevUtils">
               This is a swiss army knife for developers. It can convert JSON to CSV,
