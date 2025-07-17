@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout'
+import {ShikiHighlighter} from 'react-shiki'
 
 export const meta = {
   author: 'Vlad Holubiev',
@@ -30,20 +31,20 @@ export default function Article() {
         <li>Stripped out LibreOffice build lacked many features and supported fewer file formats than a standalone desktop build.</li>
         <li>No fonts or emoji support.</li>
         <li>Limited disk space available for converting large files, since a layer consumed ~50% of the /tmp space.</li>
-        <li>A complex process of upgrading to a new version due to constraints of the AWS Lambda's provided environment.</li>
+        <li>A complex process of upgrading to a new version due to constraints of the AWS Lambda&apos;s provided environment.</li>
       </ul>
       
       <h2>A New Approach Was Born</h2>
       
       <p>To address those problems, I wrote a new version based on Docker and compiled it with the latest LibreOffice 7.4.
-      The setup is a bit more involved, but it's more flexible, easier to maintain, and produces better-quality outputs.
+      The setup is a bit more involved, but it&apos;s more flexible, easier to maintain, and produces better-quality outputs.
       Some of the benefits:</p>
       
       <ul>
         <li>The size limit of the compiled LibreOffice increased from 512 MB (Lambda layer limitation) to <strong>10 GB</strong> — meaning less
         stuff needs to be stripped out from the LibreOffice package.
         The new base image is 877 MB in size.</li>
-        <li>More repeatable build — by utilizing Docker for the build process, it's much easier
+        <li>More repeatable build — by utilizing Docker for the build process, it&apos;s much easier
         to replicate a build locally and upgrade to new LibreOffice versions.</li>
         <li>Ability to install fonts or other LibreOffice extensions — my base image already includes CJK fonts!</li>
       </ul>
@@ -65,7 +66,7 @@ export default function Article() {
       
       <p>Bonus tip: by default, Lambda allocates 512 MB of <code>/tmp</code> space for your Lambda.
       When converting larger files, you might need more space.
-      Since March 2022, it's now possible to extend the <code>/tmp</code> space to 10 GB! See the <a href="https://aws.amazon.com/blogs/aws/aws-lambda-now-supports-up-to-10-gb-ephemeral-storage/">blog post</a>.</p>
+      Since March 2022, it&apos;s now possible to extend the <code>/tmp</code> space to 10 GB! See the <a href="https://aws.amazon.com/blogs/aws/aws-lambda-now-supports-up-to-10-gb-ephemeral-storage/">blog post</a>.</p>
       
       <h2>How to Use It</h2>
       
@@ -73,41 +74,71 @@ export default function Article() {
       If not — check out the <a href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html">AWS Documentation</a> on the topic.</p>
       
       <p>It starts with adjusting your Dockerfile.
-      By default, when you're building a Docker image for your Lambda, you base it off the official AWS image like this:</p>
+      By default, when you&apos;re building a Docker image for your Lambda, you base it off the official AWS image like this:</p>
       
-      <pre><code className="language-dockerfile">{`FROM public.ecr.aws/lambda/nodejs:16-x86_64`}</code></pre>
+      <ShikiHighlighter
+        language="dockerfile"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`FROM public.ecr.aws/lambda/nodejs:16-x86_64`}
+      </ShikiHighlighter>
       
       <p>What you need to do instead, is to change this line to the base image for Node.js 16 with LibreOffice:</p>
       
-      <pre><code className="language-dockerfile">{`FROM public.ecr.aws/shelf/lambda-libreoffice-base:7.4-node16-x86_64`}</code></pre>
+      <ShikiHighlighter
+        language="dockerfile"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`FROM public.ecr.aws/shelf/lambda-libreoffice-base:7.4-node16-x86_64`}
+      </ShikiHighlighter>
       
       <p>Next, you finish your Dockefile with the usual bundling steps:</p>
       
-      <pre><code className="language-dockerfile">{`COPY handler.js \${LAMBDA_TASK_ROOT}/
-CMD [ "handler.handler" ]`}</code></pre>
+      <ShikiHighlighter
+        language="dockerfile"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`COPY handler.js \${LAMBDA_TASK_ROOT}/
+CMD [ "handler.handler" ]`}
+      </ShikiHighlighter>
       
-      <p>I'll skip the rest of the steps needed, like building the image, pushing it to the ECR repository,
-      etc, as it's out of the scope of this article.
+      <p>I&apos;ll skip the rest of the steps needed, like building the image, pushing it to the ECR repository,
+      etc, as it&apos;s out of the scope of this article.
       You can find tutorials on that online, as well as in the <a href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html">AWS Docs</a>.</p>
       
       <p>So now, by changing the base image of your Lambda, you are able to execute LibreOffice commands in your Lambda!
       Here is an example that creates a dummy TXT file and converts it to PDF:</p>
       
-      <pre><code className="language-javascript">{`const {execSync} = require('child_process');
+      <ShikiHighlighter
+        language="javascript"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >{`const {execSync} = require('child_process');
 const {writeFileSync} = require('fs');
 module.exports.handler = () => {
   writeFileSync('/tmp/hello.txt', Buffer.from('Hello World!'));
-  execSync(\`
-    cd /tmp
-    libreoffice7.4 --headless --invisible --nodefault --view --nolockcheck --nologo --norestore --convert-to pdf --outdir /tmp ./hello.txt
-  \`);
-};`}</code></pre>
+  execSync('cd /tmp && libreoffice7.4 --headless --invisible --nodefault --view --nolockcheck --nologo --norestore --convert-to pdf --outdir /tmp ./hello.txt');
+};`}</ShikiHighlighter>
       
       <p>If you want a more high-level API around LibreOffice rather than fiddling with the commands like <code>libreoffice7.4 --headless</code>,
       check out <a href="https://github.com/shelfio/aws-lambda-libreoffice">https://github.com/shelfio/aws-lambda-libreoffice</a>. It provides API like this:</p>
       
-      <pre><code className="language-js">{`const {convertTo} = require('@shelf/aws-lambda-libreoffice');
-convertTo('document.docx', 'pdf'); // returns /tmp/document.pdf`}</code></pre>
+      <ShikiHighlighter
+        language="javascript"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`const {convertTo} = require('@shelf/aws-lambda-libreoffice');
+convertTo('document.docx', 'pdf'); // returns /tmp/document.pdf`}
+      </ShikiHighlighter>
       
       <p>The library handles specifics of the Lambda environment, like saving files to the only writable path <code>/tmp</code> and cleaning up residual files.</p>
       

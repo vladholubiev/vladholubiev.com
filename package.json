@@ -28,6 +28,7 @@
     "postcss-focus-visible": "^10.0.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-shiki": "0.7.2",
     "remark-gfm": "^4.0.1",
     "tailwindcss": "^4.1.11"
   },

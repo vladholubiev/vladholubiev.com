@@ -1,5 +1,6 @@
 import {ArticleLayout} from '@/components/ArticleLayout'
 import Image from 'next/image'
+import {ShikiHighlighter} from 'react-shiki'
 import image01 from './image-01.webp'
 import image02 from './image-02.webp'
 import image03 from './image-03.webp'
@@ -17,11 +18,11 @@ export default function Article() {
   return (
     <ArticleLayout meta={meta}>
       <p>While running DynamoDB workloads in production with over 500 GB of data for a couple of years,
-      I accumulated a couple of lessons learned that I'll be sharing.
+      I accumulated a couple of lessons learned that I&apos;ll be sharing.
       One of them I wrote previously about: <a href="https://medium.com/shelf-io-engineering/how-to-speed-up-long-dynamodb-queries-by-2x-c66a2987d53a">How to Speed-up Long DynamoDB Queries by 2x</a>.</p>
       
       <p>AWS DynamoDB is a great database.
-      It's blazing fast, reliable, and infinitely scalable.
+      It&apos;s blazing fast, reliable, and infinitely scalable.
       However, the query language is quite limited.
       The flexibility of your queries heavily depends on the Hash Key design, which you can read about <a href="https://dynobase.dev/dynamodb-keys/">here</a>.</p>
       
@@ -30,14 +31,14 @@ export default function Article() {
       <p>While you can go a long way with CRUD operations over a small subset of items (&lt;1,000),
       sometimes you find yourself in a situation where you need to query a large table by an attribute that is not a part of your hash key.</p>
       
-      <p>Imagine a table consisting of the user's notifications, where the hash key is the user's ID.</p>
+      <p>Imagine a table consisting of the user&apos;s notifications, where the hash key is the user&apos;s ID.</p>
       
       <Image src={image01} alt="" className="no-rounding"/>
       
       <p>There are basically two primary recommended APIs to fetch data from DynamoDB:
       <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html">GetItem</a>{' '}
       and <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html">Query</a>.
-      With GetItem you're limited to fetching 1 single record by its key, and with
+      With GetItem you&apos;re limited to fetching 1 single record by its key, and with
       Query, you can fetch multiple records that share the same key.</p>
       
       <p>But what if you want to query an item based on an attribute, that is not in the key?
@@ -47,9 +48,9 @@ export default function Article() {
       However, it comes with a lot of caveats:</p>
       
       <ul>
-        <li>Scanning is slow. Extremely slow. It's basically a brute-force mechanism to scan your entire table, each record one by one.</li>
-        <li>Scanning is expensive. With DynamoDB, you pay for the Read Request Units you consume. And by scanning the entire table, you'll pay $1.25 for a 10 GB table.</li>
-        <li>Scanning is cumbersome. Scan API is paginated. Each Scan request returns up to 1 MB of data. So to scan a 10 GB table, you'll need to paginate sequentially to make 10,000 requests.</li>
+        <li>Scanning is slow. Extremely slow. It&apos;s basically a brute-force mechanism to scan your entire table, each record one by one.</li>
+        <li>Scanning is expensive. With DynamoDB, you pay for the Read Request Units you consume. And by scanning the entire table, you&apos;ll pay $1.25 for a 10 GB table.</li>
+        <li>Scanning is cumbersome. Scan API is paginated. Each Scan request returns up to 1 MB of data. So to scan a 10 GB table, you&apos;ll need to paginate sequentially to make 10,000 requests.</li>
       </ul>
       
       <p>So if Scan API is so bad, why would you ever want to use it?
@@ -64,10 +65,10 @@ export default function Article() {
       For example <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/S3DataExport.HowItWorks.html">DynamoDB to S3 Export</a>{' '}
       or <a href="https://docs.aws.amazon.com/athena/latest/ug/connectors-dynamodb.html">AWS Athena Federated Query</a>.</p>
       
-      <p>Let's say you evaluated all the cons and decided to use Scan nevertheless.
+      <p>Let&apos;s say you evaluated all the cons and decided to use Scan nevertheless.
       We cannot make it cheaper.
       But we can make it <strong>faster</strong> and <strong>easier</strong> to use!
-      Let's see how.</p>
+      Let&apos;s see how.</p>
       
       <h2>Solution: Speed</h2>
       
@@ -105,18 +106,25 @@ export default function Article() {
       
       <p>So we have found a way to overcome the speed problem.
       By using parallel scans, we can greatly speed up scanning.
-      Now let's take a look at the ease of use aspect of a problem.</p>
+      Now let&apos;s take a look at the ease of use aspect of a problem.</p>
       
       <h2>Solution: Convenience</h2>
       
       <p>Keeping track of all the segments and paginating through results is not a fun coding problem to solve when you need to get something done.
-      Fortunately, I've created a Node.js library to help solve this problem.</p>
+      Fortunately, I&apos;ve created a Node.js library to help solve this problem.</p>
       
       <blockquote>
         <p>Github Repo: <a href="https://github.com/shelfio/dynamodb-parallel-scan">dynamodb-parallel-scan</a></p>
       </blockquote>
       
-      <pre><code className="language-ts">{`const {DynamoDB} = require('aws-sdk')`}</code></pre>
+      <ShikiHighlighter
+        language="typescript"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`const {DynamoDB} = require('aws-sdk')`}
+      </ShikiHighlighter>
       
       <p>This library encapsulates the logic behind many things you need to remember when you implement parallel scanning:</p>
       
@@ -129,7 +137,13 @@ export default function Article() {
       
       <p>Here is a sample code of using a library to scan a table with 1,000 parallel requests:</p>
       
-      <pre><code className="language-ts">{`const {parallelScan} = require('@shelf/dynamodb-parallel-scan');
+      <ShikiHighlighter
+        language="typescript"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`const {parallelScan} = require('@shelf/dynamodb-parallel-scan');
 
 (async () => {
   const items = await parallelScan(
@@ -145,18 +159,25 @@ export default function Article() {
   );
 
   console.log(items);
-})();`}</code></pre>
+})();`}
+      </ShikiHighlighter>
       
-      <p>This approach is great when you know that the data you're going to fetch will fit into your memory,
+      <p>This approach is great when you know that the data you&apos;re going to fetch will fit into your memory,
       and you are ok with getting the data once a full table scan finishes.</p>
       
       <p>Another way of fetching the data in a streaming manner is useful when the volume is too high to keep in memory,
       so you want to consume a chunk of the scanned items as soon as they accumulate.</p>
       
       <p>You can control the concurrency, chunk size, and the high watermark, which controls the backpressure mechanism
-      to avoid fitting too much data into memory. The library will pause scanning until you're able to iterate to the next chunk of data.</p>
+      to avoid fitting too much data into memory. The library will pause scanning until you&apos;re able to iterate to the next chunk of data.</p>
       
-      <pre><code className="language-ts">{`const {parallelScanAsStream} = require('@shelf/dynamodb-parallel-scan');
+      <ShikiHighlighter
+        language="typescript"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`const {parallelScanAsStream} = require('@shelf/dynamodb-parallel-scan');
 
 (async () => {
   const stream = await parallelScanAsStream(
@@ -177,9 +198,10 @@ export default function Article() {
     // and move on to cosuming the next chunk
     // scanning will be paused for that time
   }
-})();`}</code></pre>
+})();`}
+      </ShikiHighlighter>
       
-      <p>Great, let's look at the benchmarks now.</p>
+      <p>Great, let&apos;s look at the benchmarks now.</p>
       
       <h2>Performance Benchmarks</h2>
       
@@ -195,10 +217,17 @@ export default function Article() {
       
       <p>As the code runs, here is a glimpse of the debug output:</p>
       
-      <pre><code>{`ddb-parallel-scan (96%) [224/250] [time:196ms] [fetched:0] [total (fetched/scanned/table-size):908/34853064/36298819] +3ms
+      <ShikiHighlighter
+        language="text"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`ddb-parallel-scan (96%) [224/250] [time:196ms] [fetched:0] [total (fetched/scanned/table-size):908/34853064/36298819] +3ms
 ddb-parallel-scan (96%) [145/250] [time:216ms] [fetched:0] [total (fetched/scanned/table-size):920/34854754/36298819] +8ms
 ddb-parallel-scan (96%) [210/250] [time:232ms] [fetched:0] [total (fetched/scanned/table-size):920/34856457/36298819] +5ms
-ddb-parallel-scan (96%) [211/250] [time:223ms] [fetched:0] [total (fetched/scanned/table-size):920/34858126/36298819] +3ms`}</code></pre>
+ddb-parallel-scan (96%) [211/250] [time:223ms] [fetched:0] [total (fetched/scanned/table-size):920/34858126/36298819] +3ms`}
+      </ShikiHighlighter>
       
       <p>You can see:</p>
       
@@ -209,25 +238,25 @@ ddb-parallel-scan (96%) [211/250] [time:223ms] [fetched:0] [total (fetched/scann
         <li>and the progress of the scanned items (34 out of 36 million items were scanned).</li>
       </ul>
       
-      <p>Let's compare the results!</p>
+      <p>Let&apos;s compare the results!</p>
       
       <Image src={image03} alt="" className="no-rounding"/>
       
       <p>So in my example, by running the script on the <code>t4g.small</code> EC2 instance,
       I was able to scan a 23 GB table in <strong>just 1 minute</strong>! While the sequential scan took 49 minutes. <strong>50x faster!</strong> Not bad!</p>
       
-      <p>The only time you won't see a performance improvement, is when your hash key distribution is not uniform enough.
-      If you have a table where 100% of items have the same hash key — DynamoDB won't be able to split your table into segments.
+      <p>The only time you won&apos;t see a performance improvement, is when your hash key distribution is not uniform enough.
+      If you have a table where 100% of items have the same hash key — DynamoDB won&apos;t be able to split your table into segments.
       Your code will end up scanning one segment at a time.</p>
       
-      <p>So as a rule of thumb, don't attempt to set a concurrency higher than a number of unique hash key values in a table.
+      <p>So as a rule of thumb, don&apos;t attempt to set a concurrency higher than a number of unique hash key values in a table.
       The illustration below shows a good (left) and a bad (right) hash key design.</p>
       
       <Image src={image04} alt="" className="no-rounding"/>
       
       <blockquote>
         <p>Uniformly unique hash keys on the left, and unbalanced hash keys on the right.
-        Parallel scanning will work better for the table on the left, and won't have any positive effect on the second table.</p>
+        Parallel scanning will work better for the table on the left, and won&apos;t have any positive effect on the second table.</p>
       </blockquote>
       
       <h2>Cost</h2>

@@ -1,5 +1,6 @@
 import {ArticleLayout} from '@/components/ArticleLayout';
 import Image from 'next/image';
+import {ShikiHighlighter} from 'react-shiki';
 import image01 from './image-01.webp';
 import image02 from './image-02.webp';
 import image03 from './image-03.webp';
@@ -16,17 +17,17 @@ export default function Article() {
   return (
     <ArticleLayout meta={meta}>
       <blockquote>
-        <p>Note: "Long" queries are the ones that scan over 2 MB of data. The trick described in this article only applies to those.</p>
+        <p>Note: &quot;Long&quot; queries are the ones that scan over 2 MB of data. The trick described in this article only applies to those.</p>
       </blockquote>
       
       <p><strong>TL;DR;</strong> Implement parallel pagination from both ends instead of a sequential one.</p>
       
       <h2>Situation</h2>
       
-      <p>Imagine you're in a situation when you have thousands of items under the same partition key,
+      <p>Imagine you&apos;re in a situation when you have thousands of items under the same partition key,
       and you need to find only a couple of items using <code>FilterExpression</code>.</p>
       
-      <p>For the sake of the example, let's use the following table schema and try to find items where <code>number &gt; 0.5</code>.</p>
+      <p>For the sake of the example, let&apos;s use the following table schema and try to find items where <code>number &gt; 0.5</code>.</p>
       
       <Image src={image01} alt="" className="no-rounding bg-white"/>
       
@@ -34,9 +35,15 @@ export default function Article() {
         <p>Schema created with <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html">NoSQL Workbench</a></p>
       </blockquote>
       
-      <p>Here is the query you'll end up with:</p>
+      <p>Here is the query you&apos;ll end up with:</p>
       
-      <pre><code className="language-js">{`FilterExpression: '#number > :number',
+      <ShikiHighlighter
+        language="javascript"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`FilterExpression: '#number > :number',
 ExpressionAttributeNames: {
   '#hash_key': 'hash_key',
   '#number': 'number',
@@ -44,7 +51,8 @@ ExpressionAttributeNames: {
 ExpressionAttributeValues: {
   ':hash_key': 'hk1',
   ':number': 0.5,
-},`}</code></pre>
+},`}
+      </ShikiHighlighter>
       
       <p>Since we know the partition key, those items could be queried with <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html">Query</a>{' '}
       rather than <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html">Scan</a> operation.</p>
@@ -60,12 +68,12 @@ ExpressionAttributeValues: {
       </blockquote>
       
       <p>See, if you have thousands of items under the same partition key that exceed 1 MB, DDB will query up to 1 MB of data in 1 request.
-      Then, it's up to you to implement pagination logic.</p>
+      Then, it&apos;s up to you to implement pagination logic.</p>
       
       <p>With the sample table I created, it took <em>~450ms</em> for each query operation.
       When you have 20 MB of data to scan, it can take <em>~10s</em> to get the results you want if you implement sequential pagination.</p>
       
-      <p>I'll leave the speculation that having such a data structure in DDB is wrong, and discuss only the solution to the problem at hand.</p>
+      <p>I&apos;ll leave the speculation that having such a data structure in DDB is wrong, and discuss only the solution to the problem at hand.</p>
       
       <p>Here is a diagram of the sequential iteration.</p>
       
@@ -77,19 +85,19 @@ ExpressionAttributeValues: {
       
       <p>Using DynamoDB to query over thousands of items is not the best practice. But sometimes you really need this.</p>
       
-      <p>Usually, I'd recommend creating <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html">Global Secondary Indices</a>
+      <p>Usually, I&apos;d recommend creating <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html">Global Secondary Indices</a>
       for such scenarios to avoid performance bottlenecks.
       But they come with some downsides.
-      Sometimes you're not in control of a table to create an index, indices come with the added cost,
-      indices can't guarantee strong read consistency, or you reached the quota of a maximum number of indices.</p>
+      Sometimes you&apos;re not in control of a table to create an index, indices come with the added cost,
+      indices can&apos;t guarantee strong read consistency, or you reached the quota of a maximum number of indices.</p>
       
       <p>So first, try to think about how to avoid such a situation altogether by changing the sort key design or using indices.
       If all you need is just make a query 2x faster w/o spending time to re-architect, then proceed reading.</p>
       
       <h2>Solution</h2>
       
-      <p>I've developed an NPM package that implements concurrent pagination from both ends: <a href="https://github.com/shelfio/dynamodb-query-optimized">dynamodb-query-optimized</a>.
-      I'll explain how it works.</p>
+      <p>I&apos;ve developed an NPM package that implements concurrent pagination from both ends: <a href="https://github.com/shelfio/dynamodb-query-optimized">dynamodb-query-optimized</a>.
+      I&apos;ll explain how it works.</p>
       
       <p>DDB Query operation allows you specifying
       <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html#DDB-Query-request-ScanIndexForward"><code>ScanIndexForward: true/false</code></a> parameter.</p>
@@ -115,16 +123,30 @@ ExpressionAttributeValues: {
       
       <p>Here are the results of the <a href="https://github.com/shelfio/dynamodb-query-optimized/blob/master/benchmark.ts">benchmark script</a>:</p>
       
-      <pre><code>{`Regular query: ~21 MB of items: 9.023s
-Optimized query: ~21 MB of items: 4.988s`}</code></pre>
+      <ShikiHighlighter
+        language="text"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`Regular query: ~21 MB of items: 9.023s
+Optimized query: ~21 MB of items: 4.988s`}
+      </ShikiHighlighter>
       
       <p>The optimized query is almost 2x faster when run locally.
       It would be even faster if executed in the AWS environment, be it a Lambda of an ECS service.</p>
       
       <p>Note: this method works slower when you query &lt;2 MB of data due to added network latency for making additional requests.</p>
       
-      <pre><code>{`Regular query: <1 MB of items: 650ms
-Optimized query: <1 MB of items: 704ms`}</code></pre>
+      <ShikiHighlighter
+        language="text"
+        theme="github-dark"
+        showLanguage={false}
+        addDefaultStyles={true}
+      >
+        {`Regular query: <1 MB of items: 650ms
+Optimized query: <1 MB of items: 704ms`}
+      </ShikiHighlighter>
       
       <p>So you need to understand how many items are under your partition key before using this optimized query method.</p>
       
