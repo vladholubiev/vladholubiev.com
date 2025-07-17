@@ -19,6 +19,7 @@
     "clsx": "2.1.1",
     "fast-glob": "^3.3.0",
     "focus-visible": "^5.2.0",
+    "lucide-react": "0.525.0",
     "motion": "12.23.6",
     "next": "15.4.1",
     "next-router-mock": "^1.0.2",
