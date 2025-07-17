@@ -6,6 +6,8 @@ import {Button} from '@/components/Button';
 import {BriefcaseIcon} from '@/components/icons/BriefcaseIcon';
 import {LinkedInIcon} from '@/components/icons/SocialIcons';
 import {LINKEDIN} from '@/lib/social-links';
+import { useEffect, useRef } from 'react';
+import { animate } from 'motion';
 
 interface ResumeRole {
   company: string
@@ -16,6 +18,22 @@ interface ResumeRole {
 }
 
 export function Resume() {
+  const nowRef = useRef<HTMLTimeElement>(null);
+
+  useEffect(() => {
+    if (nowRef.current) {
+      animate(
+        nowRef.current,
+        { opacity: [1, 0.6, 1] },
+        {
+          duration: 3,
+          repeat: Infinity,
+          ease: [0.4, 0.0, 0.2, 1]
+        }
+      );
+    }
+  }, []);
+
   const resume: ResumeRole[] = [
     {
       company: 'Shelf',
@@ -77,7 +95,10 @@ export function Resume() {
                 </time>
                 {' '}
                 <span aria-hidden="true">—</span>{' '}
-                <time dateTime={typeof role.end === 'string' ? role.end : role.end.dateTime.toString()}>
+                <time 
+                  dateTime={typeof role.end === 'string' ? role.end : role.end.dateTime.toString()}
+                  ref={typeof role.end !== 'string' && role.end.label === 'Now' ? nowRef : undefined}
+                >
                   {typeof role.end === 'string' ? role.end : role.end.label}
                 </time>
               </dd>
