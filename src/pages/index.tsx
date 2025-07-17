@@ -75,23 +75,23 @@ const Home: NextPage<HomeProps> = ({ articles }) => {
     <>
       <Head>
         <title>
-          Vlad Holubiev - Software Engineer
+          Vladyslav Holubiev - Technology leader delivering AI products and engineering excellence
         </title>
         <meta
           name="description"
-          content="I'm Vlad Holubiev, a software engineer from Ukraine 🇺🇦"
+          content="Vladyslav Holubiev - Technology leader delivering AI products and engineering excellence"
         />
 
-        <meta property="og:title" content="Vlad Holubiev: Home Page"/>
+        <meta property="og:title" content="Vladyslav Holubiev: Home Page"/>
         <meta property="og:url" content="https://vladholubiev.com/"/>
         <meta name="og:description" content={DESCRIPTION}/>
         <meta property="og:image" content="https://vladholubiev.com/avatar.jpg"/>
-        <meta property="og:site_name" content="Vlad Holubiev"/>
+        <meta property="og:site_name" content="Vladyslav Holubiev"/>
 
         <meta name="twitter:card" content="summary"/>
         <meta name="twitter:site" content="@vladholubiev"/>
         <meta name="twitter:creator" content="@vladholubiev"/>
-        <meta name="twitter:title" content="Vlad Holubiev: Home Page"/>
+        <meta name="twitter:title" content="Vladyslav Holubiev: Home Page"/>
         <meta name="twitter:url" content="https:/vladholubiev.com/"/>
         <meta name="twitter:description" content={DESCRIPTION}/>
         <meta name="twitter:image" content="https://vladholubiev.com/avatar.jpg"/>
