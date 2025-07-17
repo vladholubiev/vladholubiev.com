@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout'
+import {Heading} from '@/components/Heading'
 import {ShikiHighlighter} from 'react-shiki'
 
 export const meta = {
@@ -12,7 +13,7 @@ export const meta = {
 export default function Article() {
   return (
     <ArticleLayout meta={meta}>
-      <h2>History</h2>
+      <Heading level={2}>History</Heading>
       
       <p>Exactly 5 years ago, I wrote about <a href="https://medium.com/hackernoon/how-to-run-libreoffice-in-aws-lambda-for-dirty-cheap-pdfs-at-scale-b2c6b3d069b4">running LibreOffice in AWS Lambda</a>{' '}
       for the first time. It enabled people to generate PDFs from any office file format for a fraction of a dollar.
@@ -35,7 +36,7 @@ export default function Article() {
         <li>A complex process of upgrading to a new version due to constraints of the AWS Lambda&apos;s provided environment.</li>
       </ul>
       
-      <h2>A New Approach Was Born</h2>
+      <Heading level={2}>A New Approach Was Born</Heading>
       
       <p>To address those problems, I wrote a new version based on Docker and compiled it with the latest LibreOffice 7.4.
       The setup is a bit more involved, but it&apos;s more flexible, easier to maintain, and produces better-quality outputs.
@@ -69,7 +70,7 @@ export default function Article() {
       When converting larger files, you might need more space.
       Since March 2022, it&apos;s now possible to extend the <code>/tmp</code> space to 10 GB! See the <a href="https://aws.amazon.com/blogs/aws/aws-lambda-now-supports-up-to-10-gb-ephemeral-storage/">blog post</a>.</p>
       
-      <h2>How to Use It</h2>
+      <Heading level={2}>How to Use It</Heading>
       
       <p>If you are already bundling your Lambdas as Docker images, the setup should be familiar to you.
       If not — check out the <a href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html">AWS Documentation</a> on the topic.</p>
@@ -143,7 +144,7 @@ convertTo('document.docx', 'pdf'); // returns /tmp/document.pdf`}
       
       <p>The library handles specifics of the Lambda environment, like saving files to the only writable path <code>/tmp</code> and cleaning up residual files.</p>
       
-      <h2>Summary</h2>
+      <Heading level={2}>Summary</Heading>
       
       <p>Thousands of people used the original 2017 build of LibreOffice for Lambda to run their production workloads.</p>
       

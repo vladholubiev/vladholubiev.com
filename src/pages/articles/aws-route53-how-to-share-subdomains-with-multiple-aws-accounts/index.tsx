@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {Heading} from '@/components/Heading';
 import Image from 'next/image';
 import image01 from './image-01.webp';
 import image02 from './image-02.webp';
@@ -27,7 +28,7 @@ export default function Article() {
       and let them inherit the same domain, that is managed in the original AWS account.
       Each AWS Account is strongly segregated from the others, the resources in each account cannot be accessed by other accounts.</p>
       
-      <h2>Situation</h2>
+      <Heading level={2}>Situation</Heading>
       
       <p>Imagine you have a single AWS Account where you have your domain <code>example.com</code>.
       AWS Route53 hosted zone is created for that domain in AWS Account #1.
@@ -47,7 +48,7 @@ export default function Article() {
       
       <p>So we need a way to let the DNS know that there are DNS records for <code>api.example.com</code> created somewhere else and they should be trusted.</p>
       
-      <h2>First, A Non-Elegant Solution</h2>
+      <Heading level={2}>First, A Non-Elegant Solution</Heading>
       
       <Image src={image02} alt="" className="no-rounding"/>
       
@@ -66,7 +67,7 @@ export default function Article() {
         <li>Whenever a team that works in Account #2 wants to change the mapping, they need to contact the team that manages Account #1 to make the changes.</li>
       </ol>
       
-      <h2>A Better Approach</h2>
+      <Heading level={2}>A Better Approach</Heading>
       
       <Image src={image03} alt="" className="no-rounding"/>
       
@@ -104,7 +105,7 @@ export default function Article() {
         <li>Create Alias DNS records from <code>beta.api.example.com</code> that points to your API Gateway.</li>
       </ul>
       
-      <h2>Final Words</h2>
+      <Heading level={2}>Final Words</Heading>
       
       <p>The approach described allows you to share a common top-level domain across multiple AWS Accounts with loose coupling.
       AWS Accounts have full access to a hosted zone for a subdomain that was shared with them through a parent account.</p>

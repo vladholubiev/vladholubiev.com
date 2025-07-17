@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {Heading} from '@/components/Heading';
 import Image from 'next/image';
 import {ShikiHighlighter} from 'react-shiki';
 import image01 from './image-01.webp';
@@ -23,7 +24,7 @@ export default function Article() {
       
       <p><strong>TL;DR;</strong> Implement parallel pagination from both ends instead of a sequential one.</p>
       
-      <h2>Situation</h2>
+      <Heading level={2}>Situation</Heading>
       
       <p>Imagine you&apos;re in a situation when you have thousands of items under the same partition key,
       and you need to find only a couple of items using <code>FilterExpression</code>.</p>
@@ -58,7 +59,7 @@ ExpressionAttributeValues: {
       <p>Since we know the partition key, those items could be queried with <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html">Query</a>{' '}
       rather than <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html">Scan</a> operation.</p>
       
-      <h2>Problem</h2>
+      <Heading level={2}>Problem</Heading>
       
       <p>You might think that DynamoDB Query operation is fast, but it has its own limits.
       As per documentation:</p>
@@ -82,7 +83,7 @@ ExpressionAttributeValues: {
       
       <p>In the scenario when each query takes <em>5s</em>, 4 queries will take <em>20s</em> to complete.</p>
       
-      <h2>Side Note: Think Twice About This Approach</h2>
+      <Heading level={2}>Side Note: Think Twice About This Approach</Heading>
       
       <p>Using DynamoDB to query over thousands of items is not the best practice. But sometimes you really need this.</p>
       
@@ -95,7 +96,7 @@ ExpressionAttributeValues: {
       <p>So first, try to think about how to avoid such a situation altogether by changing the sort key design or using indices.
       If all you need is just make a query 2x faster w/o spending time to re-architect, then proceed reading.</p>
       
-      <h2>Solution</h2>
+      <Heading level={2}>Solution</Heading>
       
       <p>I&apos;ve developed an NPM package that implements concurrent pagination from both ends: <a href="https://github.com/shelfio/dynamodb-query-optimized">dynamodb-query-optimized</a>.
       I&apos;ll explain how it works.</p>
@@ -116,7 +117,7 @@ ExpressionAttributeValues: {
       
       <p>This simple trick shaves off a total query time by 2x!</p>
       
-      <h2>Benchmark</h2>
+      <Heading level={2}>Benchmark</Heading>
       
       <p>I created a sample table and populated it with ~21 MB of data and wrote a query to find all items under the partition key <code>hk6</code> and <code>number &gt; 0.5</code>.</p>
       
@@ -151,7 +152,7 @@ Optimized query: <1 MB of items: 704ms`}
       
       <p>So you need to understand how many items are under your partition key before using this optimized query method.</p>
       
-      <h2>Wrap Up</h2>
+      <Heading level={2}>Wrap Up</Heading>
       
       <p>I got the inspiration for this solution while answering <a href="https://stackoverflow.com/questions/68629860/what-is-the-best-performance-i-can-get-by-querying-dynamodb-for-a-maximum-1mb/">this</a> Stack Overflow question.</p>
       

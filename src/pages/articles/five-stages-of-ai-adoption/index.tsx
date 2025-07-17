@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {Heading} from '@/components/Heading';
 import Image from 'next/image';
 import image01 from './image-01.webp';
 import image02 from './image-02.webp';
@@ -25,7 +26,7 @@ export default function Article() {
       
       <p>I&apos;ve been watching teams make that journey with AI agents for three years now. During that time the models grew by orders of magnitude, but the emotional choreography stayed weirdly constant: <strong>denial, anger, bargaining, depression, synthesis</strong>.</p>
       
-      <h2>1. The Shock of the New</h2>
+      <Heading level={2}>1. The Shock of the New</Heading>
       
       <p>When GPT-2 appeared it could barely keep a topic alive for a paragraph, yet the shock was real because text itself had always felt like human turf. A model that could juggle syntax was novel; a model that could juggle meaning felt borderline profane. Most people, myself included, misread that early stumble as an upper limit rather than a baby step.</p>
       
@@ -33,7 +34,7 @@ export default function Article() {
       
       <Image src={image02} alt="" />
       
-      <h2>2. Five Stages (and Why They Matter)</h2>
+      <Heading level={2}>2. Five Stages (and Why They Matter)</Heading>
       
       <p>The Kübler-Ross curve was coined to talk about mortality, yet the same shape shows up whenever we&apos;re forced to revise a self-image quickly. Losing a paradigm is not as traumatic as losing a friend, but the nervous system doesn&apos;t keep separate wiring for existential and professional threats; it just fires. So the stages arrive.</p>
       
@@ -49,7 +50,7 @@ export default function Article() {
       
       <p>Knowing the pattern buys you time. When you recognize your own anger as a stage, you can stand outside it long enough to ask what useful data the anger is hiding. When you hear a colleague bargaining, you can guess where the story is headed and prepare resources for the next bend in the road. Maps matter even when the roads are emotional.</p>
       
-      <h2>3. Grief Hiding Inside Progress</h2>
+      <Heading level={2}>3. Grief Hiding Inside Progress</Heading>
       
       <p>A strange cognitive dissonance sits at the heart of technological optimism: you can cheer for progress in the abstract and still mourn its local consequences.</p>
       
@@ -63,7 +64,7 @@ export default function Article() {
       
       <p>Once you recognize the whisper as grief, you can treat it with the normal courtesies humans extend to grief: time, conversation, the permission to feel awkward for a while. Teams that skip this step often circle at bargaining forever, because no one feels safe enough to admit how tired the dance has become.</p>
       
-      <h2>4. What Work Looks Like After the Dust Settles</h2>
+      <Heading level={2}>4. What Work Looks Like After the Dust Settles</Heading>
       
       <p>In the old workflow you typed, compiled, stepped through, and typed again. In the new workflow you ask a well-aimed question, wait eighteen seconds, evaluate a wall of output, and decide which twenty percent deserves oxygen.</p>
       
@@ -81,7 +82,7 @@ export default function Article() {
       
       <Image src={image05} alt="" />
       
-      <h2>5. Meta-Skills Versus Ten Thousand Hours</h2>
+      <Heading level={2}>5. Meta-Skills Versus Ten Thousand Hours</Heading>
       
       <p>Because agents are cheap to spin up, what limits progress isn&apos;t how fast you can type but how precisely you can think. Prompt literacy is the surface skill, but the deeper asset is <strong>problem framing</strong>. A vague prompt is a foghorn; it tells the agent &quot;somewhere in that direction.&quot; A precise prompt is a compass; it tells the agent &quot;here is north, find me east.&quot;</p>
       
@@ -91,7 +92,7 @@ export default function Article() {
       
       <p>Finally comes <strong>prioritization</strong>. You don&apos;t need twenty usable answers; you need one decisive next step. Your leverage now depends on the questions you don&apos;t explore, not the ones you do.</p>
       
-      <h2>6. Helping a Team Cross the Ravine</h2>
+      <Heading level={2}>6. Helping a Team Cross the Ravine</Heading>
       
       <p>You can&apos;t legislate synthesis, but you can cultivate it. Start with small wins. Give an agent a ticket no one loves, then run a retro on the delta in cycle time. Turn that anecdote into a rumor, because rumors travel faster than memos.</p>
       
@@ -101,7 +102,7 @@ export default function Article() {
       
       <p>Progress rarely stalls for lack of information; it stalls for lack of psychological safety. If you clear that path, the technical wins follow at surprising speed.</p>
       
-      <h2>7. A Frontier, Not a Cliff</h2>
+      <Heading level={2}>7. A Frontier, Not a Cliff</Heading>
       
       <p>Whenever somebody asks <em>&quot;How many jobs will AI eliminate?&quot;</em> I picture an optical illusion: a black silhouette that could be a vase or two faces in profile. Both readings are true; neither is complete. Yes, certain job descriptions will compress. I&apos;ve already seen tasks that once justified whole backlogs collapse into a single function call. At the same time, possibilities that once looked like science fiction are suddenly doable on a Tuesday.</p>
       
@@ -111,7 +112,7 @@ export default function Article() {
       
       <Image src={image07} alt="" />
       
-      <h2 id="where-we-land">Where We Land</h2>
+      <Heading level={2} id="where-we-land">Where We Land</Heading>
       
       <p>We won&apos;t remember these months for their model numbers. We&apos;ll remember them for the day drudgery finally became negotiable, and for how quickly that realization rewired our ambitions. Everything routine is on a timer now; everything imaginative just got a raise. Our best defense against displacement is the same impulse that once drove us to master the old tools: curiosity amplified by craft.</p>
       

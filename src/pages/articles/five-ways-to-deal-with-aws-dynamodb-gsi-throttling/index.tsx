@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout'
+import {Heading} from '@/components/Heading'
 import Image from 'next/image'
 import image01 from './image-01.webp'
 import image02 from './image-02.webp'
@@ -19,7 +20,7 @@ export const meta = {
 export default function Article() {
   return (
     <ArticleLayout meta={meta}>
-      <h2>Understanding DynamoDB Throttling</h2>
+      <Heading level={2}>Understanding DynamoDB Throttling</Heading>
       
       <p>DynamoDB is a fully managed NoSQL database service designed to deliver fast and predictable performance to applications.
       It stores data across multiple partitions and provides single-digit millisecond response times.</p>
@@ -39,14 +40,14 @@ export default function Article() {
       <p>In this blog post, we will explore how throttling on a GSI affects the base table,
       the importance of proper partition key design, and strategies to handle and prevent throttling when dealing with DynamoDB tables with GSIs.</p>
       
-      <h2>How Throttling on a GSI Affects the Base Table</h2>
+      <Heading level={2}>How Throttling on a GSI Affects the Base Table</Heading>
       
       <p>GSIs have their own provisioned read and write capacity units, separate from the base table.
       While this separation allows you to optimize GSIs for their specific workloads, it also means that if a GSI is throttled, it can have an impact on the base table&apos;s read and write operations.</p>
       
       <p><strong>Tip:</strong> you can use <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/contributorinsights.html">Amazon CloudWatch Contributor Insights for DynamoDB</a> to identify the most frequently throttled keys.</p>
       
-      <h3>Insufficient read capacity on GSI</h3>
+      <Heading level={3}>Insufficient read capacity on GSI</Heading>
       
       <blockquote>
         <p>If a GSI experiences throttling due to insufficient read capacity, <strong>the base table is not directly affected</strong>.</p>
@@ -55,7 +56,7 @@ export default function Article() {
       <p>This is because the base table and GSI maintain separate read capacity units.
       However, user experience or application performance may still suffer due to delayed or unsuccessful read operations on the GSI.</p>
       
-      <h3>Insufficient write capacity on GSI</h3>
+      <Heading level={3}>Insufficient write capacity on GSI</Heading>
       
       <p>Throttling on a GSI write operation has a more significant impact on the base table.</p>
       
@@ -65,7 +66,7 @@ export default function Article() {
       
       <p>Consequently, it is crucial to monitor and manage GSI write capacity carefully to avoid negative performance implications on the base table.</p>
       
-      <h2>Example Scenario</h2>
+      <Heading level={2}>Example Scenario</Heading>
       
       <p>Imagine a situation where you have a Global Secondary Index (GSI) on your DynamoDB table, with a partition key <code>GSI1HK</code> having the value <code>org#&#123;orgId&#125;</code>.</p>
       
@@ -79,7 +80,7 @@ export default function Article() {
       
       <p>But your table will face throttling issues if you&apos;re consistently writing over 1MB/s of data for a single organization.</p>
       
-      <h2>Under the hood of GSIs. Why does this problem exist?</h2>
+      <Heading level={2}>Under the hood of GSIs. Why does this problem exist?</Heading>
       
       <p>This can be explained by the fact how DynamoDB implements GSIs.
       GSIs are essentially a virtual copy of your table and DynamoDB with a different partition key.
@@ -93,13 +94,13 @@ export default function Article() {
       <p>So all your writes to the base table with different user IDs are being properly distributed across partitions to prevent bottlenecks.
       However, in the GSI with partition key GSI1HK as <code>org#&#123;orgId&#125;</code>, the writes for a single organization might result in a hot partition, leading to throttling.</p>
       
-      <h2>Possible Remedies</h2>
+      <Heading level={2}>Possible Remedies</Heading>
       
       <p>All those approaches assume you are ok to undergo minor modifications to your GSI key format but still be able to query all the data in a table by that GSI.</p>
       
       <p>We are focusing on the write throttling problem, but most of the approaches are still applicable to mitigate read throttles.</p>
       
-      <h3>A Table with Multiple Facets: Append facet to GSI</h3>
+      <Heading level={3}>A Table with Multiple Facets: Append facet to GSI</Heading>
       
       <p>When architecting your DynamoDB schema, it&apos;s quite common to follow <a href="https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/">a single-table design pattern</a>, where multiple types of data are stored in one table.
       This approach has some benefits, like reducing the number of tables to manage and allowing better capacity utilization.
@@ -137,7 +138,7 @@ export default function Article() {
         </tbody>
       </table>
       
-      <h3>A Table with Multiple Facets: Use Multiple Tables</h3>
+      <Heading level={3}>A Table with Multiple Facets: Use Multiple Tables</Heading>
       
       <p>Consider the same example as in the previous section.
       Another approach is to avoid single-table design pattern and store different facets in separate tables.</p>
@@ -161,7 +162,7 @@ export default function Article() {
         </tbody>
       </table>
       
-      <h3>Adding suffixes to partition keys for shard distribution</h3>
+      <Heading level={3}>Adding suffixes to partition keys for shard distribution</Heading>
       
       <p>Another approach to alleviate throttling and distribute the load on your DynamoDB table is by adding suffixes to your partition keys to create shards.</p>
       
@@ -197,7 +198,7 @@ export default function Article() {
         </tbody>
       </table>
       
-      <h3>Implementing SQS/Kinesis for write spike management and eventual consistency</h3>
+      <Heading level={3}>Implementing SQS/Kinesis for write spike management and eventual consistency</Heading>
       
       <p>In scenarios where your DynamoDB table experiences sudden spikes in write activity, a common solution to address this is to use an intermediate scalable buffer like Amazon SQS or Kinesis.
       By employing either of these services, you can distribute high-traffic workloads and ensure eventual consistency for data writes to your DynamoDB table.</p>
@@ -227,7 +228,7 @@ export default function Article() {
         </tbody>
       </table>
       
-      <h3>Employing the CQRS pattern</h3>
+      <Heading level={3}>Employing the CQRS pattern</Heading>
       
       <p>The Command Query Responsibility Segregation (CQRS) pattern is a powerful approach to address specific performance issues related to high write throughput and complex query scenarios in DynamoDB.
       By separating your application&apos;s responsibilities into separate command and query models, you can optimize these components to focus on their specific roles, while ensuring eventual consistency between the two.</p>
@@ -259,7 +260,7 @@ export default function Article() {
         </tbody>
       </table>
       
-      <h2>Conclusion</h2>
+      <Heading level={2}>Conclusion</Heading>
       
       <p>In conclusion, throttling issues with DynamoDB Global Secondary Indexes can impact both the base table and the overall performance of your application.
       Proper partition key design and consideration of various approaches to handle throttling can aid in mitigating high-traffic workloads and ensuring scalable system performance.</p>

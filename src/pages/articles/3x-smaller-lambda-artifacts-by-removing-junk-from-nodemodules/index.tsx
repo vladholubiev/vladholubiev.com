@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {Heading} from '@/components/Heading';
 import Image from 'next/image';
 import {ShikiHighlighter} from 'react-shiki';
 import image01 from './image-01.webp';
@@ -38,7 +39,7 @@ export default function Article() {
       
       <Image src={image02} alt="" className="no-rounding"/>
       
-      <h2>Don&apos;t bundle aws-sdk</h2>
+      <Heading level={2}>Don&apos;t bundle aws-sdk</Heading>
       
       <p>This is the most obvious suggestion but still brings the most value.
       It helped me to reduce my zip artifact size <strong>by 7 MB</strong>.</p>
@@ -52,7 +53,7 @@ export default function Article() {
       
       <p>We&apos;ll combat this problem in three steps.</p>
       
-      <h2>Track currently available aws-sdk version in Lambda runtime</h2>
+      <Heading level={2}>Track currently available aws-sdk version in Lambda runtime</Heading>
       
       <p>AWS maintains a page with the current aws-sdk version here: <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html</a></p>
       
@@ -61,7 +62,7 @@ export default function Article() {
       
       <p>Now we know for sure on which <code>aws-sdk</code> version we can rely upon in our code.</p>
       
-      <h2>Use <a href="https://classic.yarnpkg.com/en/docs/selective-version-resolutions/">yarn resolutions</a> to ensure only 1 version of aws-sdk is installed</h2>
+      <Heading level={2}>Use <a href="https://classic.yarnpkg.com/en/docs/selective-version-resolutions/">yarn resolutions</a> to ensure only 1 version of aws-sdk is installed</Heading>
       
       <p>This is a wonderful feature if you&apos;re using yarn.
       Add these lines to your <code>package.json</code> and yarn will install only 1 instance of <code>aws-sdk</code> dependency, regardless of what other packages require.</p>
@@ -77,7 +78,7 @@ export default function Article() {
 }`}
       </ShikiHighlighter>
       
-      <h2>Exclude aws-sdk from final artifact zip</h2>
+      <Heading level={2}>Exclude aws-sdk from final artifact zip</Heading>
       
       <p>This step might depend on the way you create a zip artifact, but it looks for me as:</p>
       
@@ -92,7 +93,7 @@ export default function Article() {
   lib node_modules`}
       </ShikiHighlighter>
       
-      <h2>Exclude TypeScript typings</h2>
+      <Heading level={2}>Exclude TypeScript typings</Heading>
       
       <p>This step helped me to remove <strong>16 MB</strong> of junk (<strong>2.2 MB</strong> zipped) from the final artifact zip.</p>
       
@@ -114,7 +115,7 @@ export default function Article() {
   "node_modules/**/.bin"`}
       </ShikiHighlighter>
       
-      <h2>Exclude tests & browser builds with .yarnclean</h2>
+      <Heading level={2}>Exclude tests & browser builds with .yarnclean</Heading>
       
       <p>This step reduced node_modules size by <strong>19.5 MB</strong> (<strong>14.6 MB</strong> zipped).</p>
       
@@ -139,11 +140,11 @@ export default function Article() {
         <p>I compiled my own <code>.yarnclean</code> file with the junk I found in my repos: <a href="https://gist.github.com/vladholubiev/1c0e9fd4d569446cada21e4a3c64d0f8">https://gist.github.com/vladholubiev/1c0e9fd4d569446cada21e4a3c64d0f8</a></p>
       </blockquote>
       
-      <h2>Before & After</h2>
+      <Heading level={2}>Before & After</Heading>
       
       <Image src={image04} alt="" className="no-rounding"/>
       
-      <h2>Bonus: Add more dependencies to yarn resolutions</h2>
+      <Heading level={2}>Bonus: Add more dependencies to yarn resolutions</Heading>
       
       <p>It might depend on the codebase, but my projects and the dependencies I use depend on <code>lodash</code> a lot.
       When running <code>yarn install</code> I end up with many different versions of <code>lodash</code> installed, which differ only by patch increment.</p>

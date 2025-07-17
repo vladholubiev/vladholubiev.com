@@ -1,4 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout'
+import {Heading} from '@/components/Heading'
 import Image from 'next/image'
 import {ShikiHighlighter} from 'react-shiki'
 import image01 from './image-01.webp'
@@ -27,7 +28,7 @@ export default function Article() {
       However, the query language is quite limited.
       The flexibility of your queries heavily depends on the Hash Key design, which you can read about <a href="https://dynobase.dev/dynamodb-keys/">here</a>.</p>
       
-      <h2>Problem</h2>
+      <Heading level={2}>Problem</Heading>
       
       <p>While you can go a long way with CRUD operations over a small subset of items (&lt;1,000),
       sometimes you find yourself in a situation where you need to query a large table by an attribute that is not a part of your hash key.</p>
@@ -71,7 +72,7 @@ export default function Article() {
       But we can make it <strong>faster</strong> and <strong>easier</strong> to use!
       Let&apos;s see how.</p>
       
-      <h2>Solution: Speed</h2>
+      <Heading level={2}>Solution: Speed</Heading>
       
       <p>To address the first problem of speed, we can use a <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel Scan</a>.
       I am quoting the AWS Documentation here:</p>
@@ -109,7 +110,7 @@ export default function Article() {
       By using parallel scans, we can greatly speed up scanning.
       Now let&apos;s take a look at the ease of use aspect of a problem.</p>
       
-      <h2>Solution: Convenience</h2>
+      <Heading level={2}>Solution: Convenience</Heading>
       
       <p>Keeping track of all the segments and paginating through results is not a fun coding problem to solve when you need to get something done.
       Fortunately, I&apos;ve created a Node.js library to help solve this problem.</p>
@@ -204,7 +205,7 @@ export default function Article() {
       
       <p>Great, let&apos;s look at the benchmarks now.</p>
       
-      <h2>Performance Benchmarks</h2>
+      <Heading level={2}>Performance Benchmarks</Heading>
       
       <p><a href="https://gist.github.com/vladholubiev/35bd4f891166a7dca551f38d5c8d35de">Here is the code snippet</a> I used to run the benchmark.
       The benchmark will run on a single machine in a single process.</p>
@@ -260,7 +261,7 @@ ddb-parallel-scan (96%) [211/250] [time:223ms] [fetched:0] [total (fetched/scann
         Parallel scanning will work better for the table on the left, and won&apos;t have any positive effect on the second table.</p>
       </blockquote>
       
-      <h2>Cost</h2>
+      <Heading level={2}>Cost</Heading>
       
       <p>While running the scan, our table peaked at ~43,600 Read Capacity Units consumed.</p>
       
@@ -273,7 +274,7 @@ ddb-parallel-scan (96%) [211/250] [time:223ms] [fetched:0] [total (fetched/scann
       This means AWS will scale up the read capacity of the table as needed, temporarily just for the one-time scan operation.
       If you are on provisioned capacity mode, you might want to fine-tune the concurrency parameter to avoid throttling.</p>
       
-      <h2>Summary</h2>
+      <Heading level={2}>Summary</Heading>
       
       <p>DynamoDB Scan API provides a way to issue concurrent requests to scan a table concurrently.
       Using 100–200 segments in a single process will give you <strong>at least 50x improvement</strong> in the scanning speed.</p>
