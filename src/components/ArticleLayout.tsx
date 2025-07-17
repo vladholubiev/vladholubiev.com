@@ -1,16 +1,20 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { ReactNode, SVGProps } from 'react'
+import Image from 'next/image'
 
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
 import { ArrowLeftIcon } from '@/components/icons/ArrowLeftIcon'
+import avatarImage from '@/images/avatar.jpg'
 
 interface ArticleMeta {
   title: string
   description: string
+  author: string
   date: string
+  readingTime: string
 }
 
 interface ArticleLayoutProps {
@@ -48,16 +52,58 @@ export function ArticleLayout({
             )}
             <article>
               <header className="flex flex-col">
-                <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl lg:text-6xl">
                   {meta.title}
                 </h1>
-                <time
-                  dateTime={meta.date}
-                  className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
-                >
-                  <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                  <span className="ml-3">{formatDate(meta.date)}</span>
-                </time>
+                <p className="mt-6 text-xl leading-8 text-zinc-600 dark:text-zinc-400">
+                  {meta.description}
+                </p>
+                
+                {/* Author + Read Time + Date Row */}
+                <div className="mt-8 flex items-center justify-between border-t border-zinc-100 pt-8 dark:border-zinc-700/40">
+                  {/* Author Section */}
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white p-0.5 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                      <Image
+                        src={avatarImage}
+                        alt=""
+                        className="h-11 w-11 rounded-full object-cover grayscale"
+                        unoptimized
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
+                        Written by
+                      </p>
+                      <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
+                        {meta.author}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Read Time Section */}
+                  <div className="flex flex-col items-center">
+                    <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
+                      Read Time
+                    </p>
+                    <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
+                      {meta.readingTime}
+                    </p>
+                  </div>
+
+                  {/* Date Section */}
+                  <div className="flex flex-col items-end">
+                    <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
+                      Posted on
+                    </p>
+                    <time
+                      dateTime={meta.date}
+                      className="text-sm font-medium text-zinc-800 dark:text-zinc-100"
+                    >
+                      {formatDate(meta.date)}
+                    </time>
+                  </div>
+                </div>
               </header>
               <Prose className="mt-8">{children}</Prose>
             </article>

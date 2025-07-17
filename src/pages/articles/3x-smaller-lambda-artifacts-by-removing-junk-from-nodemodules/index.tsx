@@ -12,6 +12,7 @@ export const meta = {
   date: '2020-11-02',
   title: '3x Smaller Lambda Artifacts by Removing Junk From node_modules',
   description: 'The most obvious way would be to use webpack and do tree shaking. But I\'m not a fan of that approach. It\'s cumbersome to set up and has significant dev effort, especially when you face issues with…',
+  readingTime: '4 min read',
 }
 
 export default function Article() {

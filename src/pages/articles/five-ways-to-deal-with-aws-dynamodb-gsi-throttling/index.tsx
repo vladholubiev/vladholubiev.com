@@ -13,6 +13,7 @@ export const meta = {
   date: '2023-03-28',
   title: 'Five Ways to Deal With AWS DynamoDB GSI Throttling',
   description: 'A notorious performance bottleneck. But it can be solved.',
+  readingTime: '8 min read',
 }
 
 export default function Article() {

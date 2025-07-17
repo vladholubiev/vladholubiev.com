@@ -11,6 +11,7 @@ export const meta = {
   date: '2022-01-05',
   title: 'How to Speed-up Long DynamoDB Queries by 2x',
   description: 'TL;DR; Implement parallel pagination from both ends instead of a sequential one.',
+  readingTime: '3 min read',
 }
 
 export default function Article() {

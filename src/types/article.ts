@@ -4,6 +4,7 @@ export interface Article {
   description: string;
   author: string;
   date: string;
+  readingTime: string;
   component?: React.ComponentType;
 }
 
@@ -12,4 +13,5 @@ export interface ArticleMeta {
   description: string;
   author: string;
   date: string;
+  readingTime: string;
 }

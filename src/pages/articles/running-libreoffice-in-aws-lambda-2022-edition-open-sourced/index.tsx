@@ -6,6 +6,7 @@ export const meta = {
   date: '2022-11-10',
   title: 'Running LibreOffice In AWS Lambda: 2022 Edition, Open-Sourced',
   description: `Learn about the latest updates to my most popular GitHub project.`,
+  readingTime: '4 min read',
 }
 
 export default function Article() {

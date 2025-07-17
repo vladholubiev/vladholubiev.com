@@ -12,6 +12,7 @@ export const meta = {
   date: '2022-11-11',
   title: 'How to Scan a 23 GB DynamoDB Table in One Minute',
   description: `For the cases when you screw up schema design.`,
+  readingTime: '5 min read',
 }
 
 export default function Article() {

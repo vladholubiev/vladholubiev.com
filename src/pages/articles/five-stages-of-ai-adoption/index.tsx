@@ -12,7 +12,8 @@ export const meta = {
   author: 'Vlad Holubiev',
   date: '2025-07-02',
   title: 'Five Stages of AI Adoption',
-  description: 'Denial is the first hurdle to a brighter future with AI. The real work is changing, not disappearing. Learn what new meta-skills - like problem framing and strategic curation - will define top engineers.',
+  description: 'Denial is the first hurdle to a brighter future with AI. The real work is changing, not disappearing. Learn what new meta-skills — like problem framing and strategic curation — will define top engineers.',
+  readingTime: '7 min read',
 }
 
 export default function Article() {
