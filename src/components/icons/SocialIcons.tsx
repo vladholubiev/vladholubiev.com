@@ -1,4 +1,6 @@
-export function TwitterIcon(props) {
+import { SVGProps } from 'react'
+
+export function TwitterIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -7,7 +9,7 @@ export function TwitterIcon(props) {
   )
 }
 
-export function InstagramIcon(props) {
+export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -18,7 +20,7 @@ export function InstagramIcon(props) {
   )
 }
 
-export function GitHubIcon(props) {
+export function GitHubIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -30,7 +32,7 @@ export function GitHubIcon(props) {
   )
 }
 
-export function LinkedInIcon(props) {
+export function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -39,14 +41,14 @@ export function LinkedInIcon(props) {
   )
 }
 
-export function MediumIcon(props) {
+export function MediumIcon(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
     <path
       d="M 6.769 6 C 10.507 6 13.537 9.051 13.537 12.815 C 13.537 16.579 10.507 19.63 6.769 19.63 C 3.031 19.63 0 16.579 0 12.815 C 0 9.051 3.03 6 6.769 6 Z M 17.578 6.399 C 19.448 6.399 20.963 9.271 20.963 12.815 C 20.963 16.358 19.448 19.232 17.578 19.232 C 15.709 19.232 14.194 16.358 14.194 12.815 C 14.194 9.272 15.709 6.399 17.578 6.399 Z M 22.81 7.068 C 23.467 7.068 24 9.641 24 12.815 C 24 15.989 23.467 18.563 22.81 18.563 C 22.152 18.563 21.62 15.99 21.62 12.815 C 21.62 9.641 22.153 7.068 22.81 7.068 Z"/>
   </svg>
 }
 
-export function StackOverflowIcon(props) {
+export function StackOverflowIcon(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
     <path
       d="m18.47 54.969 45.021 9.467-1.893 9-45.02-9.462zm7.949-20.894 41.706 19.424-3.885 8.34-41.705-19.423zm13.544-19.19 35.357 29.442-5.888 7.071-35.357-29.443zm44.391 22.224-7.383 5.491-27.457-36.916 7.384-5.492zm-68.6 38.756h45.834v9.167h-45.834zm55-9.166h9.167v36.666h-82.5v-36.666h9.167v27.499h64.166z"

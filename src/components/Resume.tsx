@@ -7,8 +7,16 @@ import {BriefcaseIcon} from '@/components/icons/BriefcaseIcon';
 import {LinkedInIcon} from '@/components/icons/SocialIcons';
 import {LINKEDIN} from '@/lib/social-links';
 
+interface ResumeRole {
+  company: string
+  title: string
+  logo: string
+  start: string | { label: string; dateTime: number }
+  end: string | { label: string; dateTime: number }
+}
+
 export function Resume() {
-  let resume = [
+  const resume: ResumeRole[] = [
     {
       company: 'Shelf',
       title: 'Sr. Director of Technology',
@@ -60,17 +68,17 @@ export function Resume() {
               <dt className="sr-only">Date</dt>
               <dd
                 className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
+                aria-label={`${typeof role.start === 'string' ? role.start : role.start.label} until ${
+                  typeof role.end === 'string' ? role.end : role.end.label
                 }`}
               >
-                <time dateTime={role.start.dateTime ?? role.start}>
-                  {role.start.label ?? role.start}
+                <time dateTime={typeof role.start === 'string' ? role.start : role.start.dateTime.toString()}>
+                  {typeof role.start === 'string' ? role.start : role.start.label}
                 </time>
                 {' '}
                 <span aria-hidden="true">—</span>{' '}
-                <time dateTime={role.end.dateTime ?? role.end}>
-                  {role.end.label ?? role.end}
+                <time dateTime={typeof role.end === 'string' ? role.end : role.end.dateTime.toString()}>
+                  {typeof role.end === 'string' ? role.end : role.end.label}
                 </time>
               </dd>
             </dl>
@@ -86,7 +94,3 @@ export function Resume() {
     </div>
   )
 }
-
-
-
-

@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import { ReactNode, ComponentProps, ElementType } from 'react'
 
-function ChevronRightIcon(props) {
+interface ChevronRightIconProps extends ComponentProps<'svg'> {
+  className?: string
+}
+
+function ChevronRightIcon(props: ChevronRightIconProps) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -14,7 +19,13 @@ function ChevronRightIcon(props) {
   )
 }
 
-export function Card({ as: Component = 'div', className, children }) {
+interface CardProps {
+  as?: ElementType
+  className?: string
+  children: ReactNode
+}
+
+export function Card({ as: Component = 'div', className, children }: CardProps) {
   return (
     <Component
       className={clsx(className, 'group relative flex flex-col items-start')}
@@ -24,11 +35,17 @@ export function Card({ as: Component = 'div', className, children }) {
   )
 }
 
-Card.Link = function CardLink({ children, openInNewTab,...props }) {
+interface CardLinkProps {
+  children: ReactNode
+  href: string
+  openInNewTab?: boolean
+}
+
+Card.Link = function CardLink({ children, href, openInNewTab, ...props }: CardLinkProps) {
   return (
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
-      <Link {...props} target={openInNewTab ? "_blank": ""} rel="noopener noreferrer">
+      <Link href={href} target={openInNewTab ? "_blank": ""} rel="noopener noreferrer" {...props}>
         <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
       </Link>
@@ -36,7 +53,14 @@ Card.Link = function CardLink({ children, openInNewTab,...props }) {
   )
 }
 
-Card.Title = function CardTitle({ as: Component = 'h2', href, children, openInNewTab = false }) {
+interface CardTitleProps {
+  as?: ElementType
+  href?: string
+  children: ReactNode
+  openInNewTab?: boolean
+}
+
+Card.Title = function CardTitle({ as: Component = 'h2', href, children, openInNewTab = false }: CardTitleProps) {
   return (
     <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {href ? <Card.Link href={href} openInNewTab={openInNewTab}>{children}</Card.Link> : children}
@@ -44,7 +68,11 @@ Card.Title = function CardTitle({ as: Component = 'h2', href, children, openInNe
   )
 }
 
-Card.Description = function CardDescription({ children }) {
+interface CardDescriptionProps {
+  children: ReactNode
+}
+
+Card.Description = function CardDescription({ children }: CardDescriptionProps) {
   return (
     <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
       {children}
@@ -52,7 +80,11 @@ Card.Description = function CardDescription({ children }) {
   )
 }
 
-Card.Cta = function CardCta({ children }) {
+interface CardCtaProps {
+  children: ReactNode
+}
+
+Card.Cta = function CardCta({ children }: CardCtaProps) {
   return (
     <div
       aria-hidden="true"
@@ -64,13 +96,22 @@ Card.Cta = function CardCta({ children }) {
   )
 }
 
+interface CardEyebrowProps {
+  as?: ElementType
+  decorate?: boolean
+  className?: string
+  children: ReactNode
+  dateTime?: string
+  [key: string]: any
+}
+
 Card.Eyebrow = function CardEyebrow({
   as: Component = 'p',
   decorate = false,
   className,
   children,
   ...props
-}) {
+}: CardEyebrowProps) {
   return (
     <Component
       className={clsx(

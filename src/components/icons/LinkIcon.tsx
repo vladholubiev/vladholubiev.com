@@ -1,4 +1,6 @@
-export function LinkIcon(props) {
+import { SVGProps } from 'react'
+
+export function LinkIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
