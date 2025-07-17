@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "preinstall": "npx only-allow pnpm",
-    "screenshot-compare": "node scripts/screenshot-compare.mjs"
+    "screenshot-compare": "tsx scripts/screenshot-compare.ts"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -37,6 +37,7 @@
     "playwright": "1.54.1",
     "pngjs": "7.0.0",
     "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "0.6.14"
+    "prettier-plugin-tailwindcss": "0.6.14",
+    "tsx": "4.20.3"
   }
 }
