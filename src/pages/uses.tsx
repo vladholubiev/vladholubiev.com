@@ -55,12 +55,12 @@ const Uses: NextPage = () => {
         <div className="space-y-20">
           <ToolsSection title="Workstation">
             <Tool title="14&quot; MacBook Pro, M2 Max, 64GB RAM (2023)">
-              I was using a 13" 16GB M1 MacBook Pro earlier. Extra RAM
-              and more CPU cores are a game changer for me. I'm able to run
+              I was using a 13&quot; 16GB M1 MacBook Pro earlier. Extra RAM
+              and more CPU cores are a game changer for me. I&apos;m able to run
               more apps at once without worrying about performance.
             </Tool>
             <Tool title="LG UltraWide 34WK95U-W">
-              34" display with 5120x2160 resolution and 21:9 aspect ratio.
+              34&quot; display with 5120x2160 resolution and 21:9 aspect ratio.
               It has a Thunderbolt port, so I can connect it to my MacBook
               with a single cable for power and display. I love the extra
               horizontal space for working with 2 windows side-by-side.
@@ -74,11 +74,11 @@ const Uses: NextPage = () => {
           </ToolsSection>
           <ToolsSection title="Development tools">
             <Tool title="Visual Studio Code">
-            After using WebStorm for nearly ten years, I made the switch to VS Code and I'm really enjoying it.
-            It's quicker and offers a broader range of extensions.
+            After using WebStorm for nearly ten years, I made the switch to VS Code and I&apos;m really enjoying it.
+            It&apos;s quicker and offers a broader range of extensions.
             </Tool>
             <Tool title="iTerm2">
-            Honestly, I'm not using it to its full potential, but the features I prefer over the default Terminal.app include: 
+            Honestly, I&apos;m not using it to its full potential, but the features I prefer over the default Terminal.app include: 
             improved autocomplete, enhanced mouse support for text selection, superior search functionality, and a larger scrollback buffer.
             </Tool>
             <Tool title="CleanShot X">
@@ -117,7 +117,7 @@ const Uses: NextPage = () => {
               occasional gems.
             </Tool>
             <Tool title="Postgres Weekly" href="https://postgresweekly.com/">
-              I've started using Postgres not so long ago, so this newsletter
+              I&apos;ve started using Postgres not so long ago, so this newsletter
               is an invaluable source of knowledge for me at the moment.
             </Tool>
             <Tool title="The Pragmatic Engineer" href="https://newsletter.pragmaticengineer.com/">
@@ -129,7 +129,7 @@ const Uses: NextPage = () => {
               techniques, frameworks and ideas to explore.
             </Tool>
             <Tool title="weekly.tf" href="https://www.weekly.tf/">
-              I'm a big fan of Terraform and I find insightful articles, novel
+              I&apos;m a big fan of Terraform and I find insightful articles, novel
               tools and latest best practice in this newsletter.
             </Tool>
             <Tool title="TypeScript Weekly" href="https://typescript-weekly.com/">
