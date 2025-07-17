@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
+import Document, { DocumentContext, DocumentInitialProps } from 'next/document'
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -35,16 +36,23 @@ const modeScript = `
   }
 `
 
-export default function Document() {
-  return (
-    <Html className="h-full antialiased" lang="en">
-      <Head>
-        <script dangerouslySetInnerHTML={{ __html: modeScript }} />
-      </Head>
-      <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
+  }
+
+  render() {
+    return (
+      <Html className="h-full antialiased" lang="en">
+        <Head>
+          <script dangerouslySetInnerHTML={{ __html: modeScript }} />
+        </Head>
+        <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
 }

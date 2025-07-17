@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Analytics } from '@vercel/analytics/react';
+import type { AppProps } from 'next/app'
+import type { NextRouter } from 'next/router'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
@@ -7,8 +9,8 @@ import { Header } from '@/components/Header'
 import '@/styles/tailwind.css'
 import 'focus-visible'
 
-function usePrevious(value) {
-  let ref = useRef()
+function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T>()
 
   useEffect(() => {
     ref.current = value
@@ -17,8 +19,8 @@ function usePrevious(value) {
   return ref.current
 }
 
-export default function App({ Component, pageProps, router }) {
-  let previousPathname = usePrevious(router.pathname)
+export default function App({ Component, pageProps, router }: AppProps) {
+  const previousPathname = usePrevious(router.pathname)
 
   return (
     <>

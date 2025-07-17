@@ -1,10 +1,17 @@
 import Head from 'next/head'
+import { ReactNode } from 'react'
+import { NextPage } from 'next'
 
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 
-function ToolsSection({ children, ...props }) {
+interface ToolsSectionProps {
+  children: ReactNode
+  title: string
+}
+
+function ToolsSection({ children, ...props }: ToolsSectionProps) {
   return (
     <Section {...props}>
       <ul role="list" className="space-y-16">
@@ -14,7 +21,13 @@ function ToolsSection({ children, ...props }) {
   )
 }
 
-function Tool({ title, href, children }) {
+interface ToolProps {
+  title: string
+  href?: string
+  children: ReactNode
+}
+
+function Tool({ title, href, children }: ToolProps) {
   return (
     <Card as="li">
       <Card.Title as="h3" href={href} openInNewTab={true}>
@@ -25,7 +38,7 @@ function Tool({ title, href, children }) {
   )
 }
 
-export default function Uses() {
+const Uses: NextPage = () => {
   return (
     <>
       <Head>
@@ -37,17 +50,17 @@ export default function Uses() {
       </Head>
       <SimpleLayout
         title="Software I use, newsletters I read."
-        intro="I get asked a lot about the things I use to build software and stay productive. Here’s a big list of all of my favorite stuff."
+        intro="I get asked a lot about the things I use to build software and stay productive. Here's a big list of all of my favorite stuff."
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="14” MacBook Pro, M2 Max, 64GB RAM (2023)">
-              I was using a 13” 16GB M1 MacBook Pro earlier. Extra RAM
-              and more CPU cores are a game changer for me. I’m able to run
+            <Tool title="14&quot; MacBook Pro, M2 Max, 64GB RAM (2023)">
+              I was using a 13" 16GB M1 MacBook Pro earlier. Extra RAM
+              and more CPU cores are a game changer for me. I'm able to run
               more apps at once without worrying about performance.
             </Tool>
             <Tool title="LG UltraWide 34WK95U-W">
-              34” display with 5120x2160 resolution and 21:9 aspect ratio.
+              34" display with 5120x2160 resolution and 21:9 aspect ratio.
               It has a Thunderbolt port, so I can connect it to my MacBook
               with a single cable for power and display. I love the extra
               horizontal space for working with 2 windows side-by-side.
@@ -61,11 +74,11 @@ export default function Uses() {
           </ToolsSection>
           <ToolsSection title="Development tools">
             <Tool title="Visual Studio Code">
-            After using WebStorm for nearly ten years, I made the switch to VS Code and I’m really enjoying it.
-            It’s quicker and offers a broader range of extensions.
+            After using WebStorm for nearly ten years, I made the switch to VS Code and I'm really enjoying it.
+            It's quicker and offers a broader range of extensions.
             </Tool>
             <Tool title="iTerm2">
-            Honestly, I’m not using it to its full potential, but the features I prefer over the default Terminal.app include: 
+            Honestly, I'm not using it to its full potential, but the features I prefer over the default Terminal.app include: 
             improved autocomplete, enhanced mouse support for text selection, superior search functionality, and a larger scrollback buffer.
             </Tool>
             <Tool title="CleanShot X">
@@ -104,7 +117,7 @@ export default function Uses() {
               occasional gems.
             </Tool>
             <Tool title="Postgres Weekly" href="https://postgresweekly.com/">
-              I’ve started using Postgres not so long ago, so this newsletter
+              I've started using Postgres not so long ago, so this newsletter
               is an invaluable source of knowledge for me at the moment.
             </Tool>
             <Tool title="The Pragmatic Engineer" href="https://newsletter.pragmaticengineer.com/">
@@ -116,7 +129,7 @@ export default function Uses() {
               techniques, frameworks and ideas to explore.
             </Tool>
             <Tool title="weekly.tf" href="https://www.weekly.tf/">
-              I’m a big fan of Terraform and I find insightful articles, novel
+              I'm a big fan of Terraform and I find insightful articles, novel
               tools and latest best practice in this newsletter.
             </Tool>
             <Tool title="TypeScript Weekly" href="https://typescript-weekly.com/">
@@ -129,3 +142,5 @@ export default function Uses() {
     </>
   )
 }
+
+export default Uses

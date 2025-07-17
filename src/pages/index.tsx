@@ -1,5 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
+import { GetStaticProps, NextPage } from "next";
+import { ComponentType, ReactNode } from "react";
 import { Card } from "@/components/Card";
 import { Container } from "@/components/Container";
 import {
@@ -17,8 +19,31 @@ import { Resume } from "@/components/Resume";
 import { GITHUB, INSTAGRAM, LINKEDIN, MEDIUM, STACKOVERFLOW, TWITTER } from "@/lib/social-links";
 import { Button } from "@/components/Button";
 
+interface ArticleMeta {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  component?: ComponentType;
+}
 
-function Article({ article }) {
+interface ArticleProps {
+  article: ArticleMeta;
+}
+
+interface SocialLinkProps {
+  icon: ComponentType<{ className?: string }>;
+  href: string;
+  "aria-label": string;
+  title?: string;
+}
+
+interface HomeProps {
+  articles: ArticleMeta[];
+}
+
+function Article({ article }: ArticleProps) {
   return (
     <Card as="article">
       <Card.Title href={`/articles/${article.slug}`}>
@@ -33,7 +58,7 @@ function Article({ article }) {
   );
 }
 
-function SocialLink({ icon: Icon, ...props }) {
+function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
     <Link className="group -m-1 p-1" {...props} title={props["aria-label"]}>
       <Icon
@@ -44,7 +69,7 @@ function SocialLink({ icon: Icon, ...props }) {
 
 const DESCRIPTION = `The home page of Vlad Holubiev, a Senior Director of Technology at Shelf and an Open Source contributor from Ukraine.`;
 
-export default function Home({ articles }) {
+const Home: NextPage<HomeProps> = ({ articles }) => {
   return (
     <>
       <Head>
@@ -53,7 +78,7 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="I’m Vlad Holubiev, a software engineer from Ukraine 🇺🇦"
+          content="I'm Vlad Holubiev, a software engineer from Ukraine 🇺🇦"
         />
 
         <meta property="og:title" content="Vlad Holubiev: Home Page"/>
@@ -78,7 +103,7 @@ export default function Home({ articles }) {
             Vlad Holubiev
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hello, I’m a software engineer from Ukraine 🇺🇦
+            Hello, I'm a software engineer from Ukraine 🇺🇦
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -131,9 +156,11 @@ export default function Home({ articles }) {
       </Container>
     </>
   );
-}
+};
 
-export async function getStaticProps() {
+export default Home;
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   return {
     props: {
       articles: (await getAllArticles())
@@ -141,4 +168,4 @@ export async function getStaticProps() {
         .map(({ component, ...meta }) => meta)
     }
   };
-}
+};

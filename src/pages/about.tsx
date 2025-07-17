@@ -2,12 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { NextPage } from 'next'
+import { ComponentType, ReactNode } from 'react'
 
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
   InstagramIcon,
-  LinkedInIcon, MediumIcon, StackOverflowIcon,
+  LinkedInIcon, 
+  MediumIcon, 
+  StackOverflowIcon,
   TwitterIcon
 } from "@/components/icons/SocialIcons";
 import portraitImage from '@/images/avatar.jpg'
@@ -20,9 +24,16 @@ import {
   STACKOVERFLOW,
   TWITTER
 } from "@/lib/social-links";
-import {MailIcon} from '@/components/icons/MailIcon';
+import { MailIcon } from '@/components/icons/MailIcon';
 
-function SocialLink({ className, href, children, icon: Icon }) {
+interface SocialLinkProps {
+  className?: string;
+  href: string;
+  children: ReactNode;
+  icon: ComponentType<{ className?: string }>;
+}
+
+function SocialLink({ className, href, children, icon: Icon }: SocialLinkProps) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
@@ -36,15 +47,14 @@ function SocialLink({ className, href, children, icon: Icon }) {
   )
 }
 
-
-export default function About() {
+const About: NextPage = () => {
   return (
     <>
       <Head>
         <title>About - Vlad Holubiev</title>
         <meta
           name="description"
-          content="I’m Vlad Holubiev."
+          content="I'm Vlad Holubiev."
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -65,19 +75,19 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I’ve always been passionate about tinkering with computers - I wrote my first program at the age of 14 
+                I've always been passionate about tinkering with computers - I wrote my first program at the age of 14 
                 shortly after receiving my very first computer. By 15, I started gaining commercial experience through 
                 freelance projects, developing websites using JavaScript, jQuery, and WordPress while still attending school.
               </p>
               <p>
                 At 16, I discovered my interest in backend development and began learning Java.
                 Since Java freelance projects were difficult to find at the time, I volunteered to build Java applications and Chrome extensions for the Google MapMaker Ukraine community.
-                These tools automated the mapping of Ukraine and caught the attention of Google’s MapMaker team in California. 
+                These tools automated the mapping of Ukraine and caught the attention of Google's MapMaker team in California. 
                 As a result, Google Ukraine HQ recognized my contributions and invited me to several national Google MapMaker summits held in different cities across Ukraine.
               </p>
               <p>
                 When I started university at 17, I developed a keen interest in Android application development.
-                My first Android project allowed students to connect to our university’s backend system to check their grades and read the latest campus news.
+                My first Android project allowed students to connect to our university's backend system to check their grades and read the latest campus news.
                 The application quickly gained popularity, reaching over 1,000 weekly active users within the first month alone.
               </p>
               <p>
@@ -130,3 +140,5 @@ export default function About() {
     </>
   )
 }
+
+export default About;

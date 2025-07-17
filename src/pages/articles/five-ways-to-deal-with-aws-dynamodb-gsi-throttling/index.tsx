@@ -66,7 +66,7 @@ export default function Article() {
       
       <h2>Example Scenario</h2>
       
-      <p>Imagine a situation where you have a Global Secondary Index (GSI) on your DynamoDB table, with a partition key <code>GSI1HK</code> having the value <code>org#{orgId}</code>.</p>
+      <p>Imagine a situation where you have a Global Secondary Index (GSI) on your DynamoDB table, with a partition key <code>GSI1HK</code> having the value <code>org#&#123;orgId&#125;</code>.</p>
       
       <p>You created a GSI to be able to query all the users&apos; information by a single organization ID.</p>
       
@@ -90,7 +90,7 @@ export default function Article() {
       And that &quot;shadow&quot; table now has a poorly optimized partition key, with low cardinality!</p>
       
       <p>So all your writes to the base table with different user IDs are being properly distributed across partitions to prevent bottlenecks.
-      However, in the GSI with partition key GSI1HK as <code>org#{orgId}</code>, the writes for a single organization might result in a hot partition, leading to throttling.</p>
+      However, in the GSI with partition key GSI1HK as <code>org#&#123;orgId&#125;</code>, the writes for a single organization might result in a hot partition, leading to throttling.</p>
       
       <h2>Possible Remedies</h2>
       
@@ -110,7 +110,7 @@ export default function Article() {
       <p>In such cases, splitting tables by facet can help you distribute the load and reduce the impact of throttling.
       To achieve this, append the facet type to the GSI hash key, allowing the partition key to balance the read and write operations across multiple partitions.</p>
       
-      <p>For example, if your original GSI partition key is <code>GSI1HK=org#{orgId}</code>, you can modify it to include the facet, like <code>GSI1HK=org#{orgId}#product</code>, <code>GSI1HK=org#{orgId}#user</code>, and <code>GSI1HK=org#{orgId}#order</code>.</p>
+      <p>For example, if your original GSI partition key is <code>GSI1HK=org#&#123;orgId&#125;</code>, you can modify it to include the facet, like <code>GSI1HK=org#&#123;orgId&#125;#product</code>, <code>GSI1HK=org#&#123;orgId&#125;#user</code>, and <code>GSI1HK=org#&#123;orgId&#125;#order</code>.</p>
       
       <Image src={image03} alt="" className="no-rounding"/>
       

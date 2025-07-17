@@ -1,11 +1,18 @@
 import Head from 'next/head'
+import { ReactNode } from 'react'
+import { NextPage } from 'next'
 
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import {formatDate} from '@/lib/formatDate';
+import { formatDate } from '@/lib/formatDate'
 
-function SpeakingSection({ children, ...props }) {
+interface SpeakingSectionProps {
+  children: ReactNode
+  title: string
+}
+
+function SpeakingSection({ children, ...props }: SpeakingSectionProps) {
   return (
     <Section {...props}>
       <div className="space-y-16">{children}</div>
@@ -13,7 +20,16 @@ function SpeakingSection({ children, ...props }) {
   )
 }
 
-function Appearance({ title, description, date, cta,event, href }) {
+interface AppearanceProps {
+  title: string
+  description: string
+  date: string
+  event: string
+  cta?: string
+  href?: string
+}
+
+function Appearance({ title, description, date, cta, event, href }: AppearanceProps) {
   return (
     <Card as="article">
       <Card.Title as="h3" href={href}>
@@ -26,7 +42,7 @@ function Appearance({ title, description, date, cta,event, href }) {
   )
 }
 
-export default function Speaking() {
+const Speaking: NextPage = () => {
   return (
     <>
       <Head>
@@ -94,3 +110,5 @@ export default function Speaking() {
     </>
   )
 }
+
+export default Speaking

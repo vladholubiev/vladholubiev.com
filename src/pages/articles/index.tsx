@@ -1,11 +1,17 @@
 import Head from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
+import type { Article } from '@/types/article'
 
-function Article({ article }) {
+interface ArticleProps {
+  article: Article
+}
+
+function Article({ article }: ArticleProps) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
@@ -40,7 +46,11 @@ Refresh Medium Stats:
 2. Run this in console: `$$('.js-statsTableRow td:nth-child(2) span.sortableTable-value,span.sortableTable-extraNumber').map(el => Number(el.innerText)).reduce((value, memo) => memo + value, 0)`
  */
 
-export default function ArticlesIndex({ articles }) {
+interface ArticlesIndexProps {
+  articles: Article[]
+}
+
+const ArticlesIndex: NextPage<ArticlesIndexProps> = ({ articles }) => {
   return (
     <>
       <Head>
@@ -66,7 +76,9 @@ export default function ArticlesIndex({ articles }) {
   )
 }
 
-export async function getStaticProps() {
+export default ArticlesIndex
+
+export const getStaticProps: GetStaticProps<ArticlesIndexProps> = async () => {
   return {
     props: {
       articles: (await getAllArticles()).map(({ component, ...meta }) => meta),
