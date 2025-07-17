@@ -20,6 +20,46 @@ const HEADER_HEIGHT = 50;
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+async function scrollAndLoadImages(page) {
+  // Scroll to load all images and content
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let totalHeight = 0;
+      const distance = 100;
+      const timer = setInterval(() => {
+        const scrollHeight = document.body.scrollHeight;
+        window.scrollBy(0, distance);
+        totalHeight += distance;
+
+        if (totalHeight >= scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 100);
+    });
+  });
+
+  // Wait for all images to load
+  await page.evaluate(async () => {
+    const images = Array.from(document.images);
+    await Promise.all(
+      images.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve, reject) => {
+          img.addEventListener('load', resolve);
+          img.addEventListener('error', reject);
+        });
+      })
+    );
+  });
+
+  // Scroll back to top
+  await page.evaluate(() => window.scrollTo(0, 0));
+  
+  // Give a bit more time for any lazy loading
+  await delay(1000);
+}
+
 function createTextLabel(text, width, height) {
   const canvas = new PNG({ width, height });
   
@@ -96,110 +136,117 @@ function createComparisonGrid(localhost, production, diff, article) {
   return grid;
 }
 
-async function takeScreenshots() {
-  console.log('Starting screenshot comparison process...\n');
+async function processArticle(article) {
+  console.log(`Processing: ${article}`);
   
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   await page.setViewportSize({ width: 1200, height: 800 });
   
-  const results = [];
-  
-  for (const article of articles) {
-    console.log(`Processing: ${article}`);
+  try {
+    // Take screenshots
+    console.log(`  - Taking localhost screenshot...`);
+    await page.goto(`http://localhost:3001/articles/${article}`, { 
+      waitUntil: 'networkidle',
+      timeout: 30000 
+    });
+    await scrollAndLoadImages(page);
+    const localhostBuffer = await page.screenshot({ fullPage: true });
     
-    try {
-      // Take screenshots
-      console.log(`  - Taking localhost screenshot...`);
-      await page.goto(`http://localhost:3001/articles/${article}`, { 
-        waitUntil: 'networkidle',
-        timeout: 30000 
-      });
-      await delay(2000);
-      const localhostBuffer = await page.screenshot({ fullPage: true });
-      
-      console.log(`  - Taking production screenshot...`);
-      await page.goto(`https://vladholubiev.com/articles/${article}`, { 
-        waitUntil: 'networkidle',
-        timeout: 30000 
-      });
-      await delay(2000);
-      const productionBuffer = await page.screenshot({ fullPage: true });
-      
-      // Process images
-      console.log(`  - Processing images...`);
-      const localhost = PNG.sync.read(localhostBuffer);
-      const production = PNG.sync.read(productionBuffer);
-      
-      // Create diff
-      const width = Math.max(localhost.width, production.width);
-      const height = Math.max(localhost.height, production.height);
-      
-      const resizedLocalhost = new PNG({ width, height });
-      const resizedProduction = new PNG({ width, height });
-      const diff = new PNG({ width, height });
-      
-      // Fill with white background
-      resizedLocalhost.data.fill(255);
-      resizedProduction.data.fill(255);
-      
-      // Copy images
-      PNG.bitblt(localhost, resizedLocalhost, 0, 0, localhost.width, localhost.height, 0, 0);
-      PNG.bitblt(production, resizedProduction, 0, 0, production.width, production.height, 0, 0);
-      
-      // Calculate diff
-      const numDiffPixels = pixelmatch(
-        resizedLocalhost.data, 
-        resizedProduction.data, 
-        diff.data, 
-        width, 
-        height, 
-        {
-          threshold: 0.1,
-          diffColor: [255, 0, 0]
-        }
-      );
-      
-      const diffPercentage = ((numDiffPixels / (width * height)) * 100).toFixed(2);
-      
-      // Create comparison grid
-      console.log(`  - Creating comparison grid...`);
-      const grid = createComparisonGrid(localhost, production, diff, article);
-      
-      // Save the grid
-      const filename = `${article}_comparison.png`;
-      const filepath = path.join(OUTPUT_DIR, filename);
-      fs.writeFileSync(filepath, PNG.sync.write(grid));
-      
-      const result = {
-        article,
-        filename,
-        width,
-        height,
-        diffPixels: numDiffPixels,
-        diffPercentage: parseFloat(diffPercentage)
-      };
-      
-      results.push(result);
-      
-      console.log(`  - Dimensions: ${width}x${height}`);
-      console.log(`  - Different pixels: ${numDiffPixels.toLocaleString()} (${diffPercentage}%)`);
-      console.log(`  - Saved: ${filepath}`);
-      console.log('');
-      
-    } catch (error) {
-      console.error(`  - Error processing ${article}: ${error.message}`);
-      console.log('');
-    }
+    console.log(`  - Taking production screenshot...`);
+    await page.goto(`https://vladholubiev.com/articles/${article}`, { 
+      waitUntil: 'networkidle',
+      timeout: 30000 
+    });
+    await scrollAndLoadImages(page);
+    const productionBuffer = await page.screenshot({ fullPage: true });
+    
+    // Process images
+    console.log(`  - Processing images...`);
+    const localhost = PNG.sync.read(localhostBuffer);
+    const production = PNG.sync.read(productionBuffer);
+    
+    // Create diff
+    const width = Math.max(localhost.width, production.width);
+    const height = Math.max(localhost.height, production.height);
+    
+    const resizedLocalhost = new PNG({ width, height });
+    const resizedProduction = new PNG({ width, height });
+    const diff = new PNG({ width, height });
+    
+    // Fill with white background
+    resizedLocalhost.data.fill(255);
+    resizedProduction.data.fill(255);
+    
+    // Copy images
+    PNG.bitblt(localhost, resizedLocalhost, 0, 0, localhost.width, localhost.height, 0, 0);
+    PNG.bitblt(production, resizedProduction, 0, 0, production.width, production.height, 0, 0);
+    
+    // Calculate diff
+    const numDiffPixels = pixelmatch(
+      resizedLocalhost.data, 
+      resizedProduction.data, 
+      diff.data, 
+      width, 
+      height, 
+      {
+        threshold: 0.1,
+        diffColor: [255, 0, 0]
+      }
+    );
+    
+    const diffPercentage = ((numDiffPixels / (width * height)) * 100).toFixed(2);
+    
+    // Create comparison grid
+    console.log(`  - Creating comparison grid...`);
+    const grid = createComparisonGrid(localhost, production, diff, article);
+    
+    // Save the grid
+    const filename = `${article}_comparison.png`;
+    const filepath = path.join(OUTPUT_DIR, filename);
+    fs.writeFileSync(filepath, PNG.sync.write(grid));
+    
+    const result = {
+      article,
+      filename,
+      width,
+      height,
+      diffPixels: numDiffPixels,
+      diffPercentage: parseFloat(diffPercentage)
+    };
+    
+    console.log(`  - Dimensions: ${width}x${height}`);
+    console.log(`  - Different pixels: ${numDiffPixels.toLocaleString()} (${diffPercentage}%)`);
+    console.log(`  - Saved: ${filepath}`);
+    console.log('');
+    
+    return result;
+    
+  } catch (error) {
+    console.error(`  - Error processing ${article}: ${error.message}`);
+    console.log('');
+    return null;
+  } finally {
+    await browser.close();
   }
+}
+
+async function takeScreenshots() {
+  console.log('Starting screenshot comparison process...\n');
   
-  await browser.close();
+  // Process all articles in parallel
+  const results = await Promise.all(
+    articles.map(article => processArticle(article))
+  );
+  
+  // Filter out null results (errors)
+  const validResults = results.filter(result => result !== null);
   
   // Create summary
   console.log('=== SUMMARY ===');
   console.log('');
   
-  const sortedResults = results.sort((a, b) => b.diffPercentage - a.diffPercentage);
+  const sortedResults = validResults.sort((a, b) => b.diffPercentage - a.diffPercentage);
   
   sortedResults.forEach(result => {
     const status = result.diffPercentage === 0 ? '✅ IDENTICAL' : 
@@ -212,8 +259,8 @@ async function takeScreenshots() {
     console.log('');
   });
   
-  const totalDifferentArticles = results.filter(r => r.diffPercentage > 0).length;
-  console.log(`Total articles with differences: ${totalDifferentArticles}/${results.length}`);
+  const totalDifferentArticles = validResults.filter(r => r.diffPercentage > 0).length;
+  console.log(`Total articles with differences: ${totalDifferentArticles}/${validResults.length}`);
   console.log(`All comparison images saved to: ${OUTPUT_DIR}/`);
 }
 
