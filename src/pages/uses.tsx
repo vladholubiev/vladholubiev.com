@@ -77,9 +77,8 @@ const Uses: NextPage = () => {
             After using WebStorm for nearly ten years, I made the switch to VS Code and I&apos;m really enjoying it.
             It&apos;s quicker and offers a broader range of extensions.
             </Tool>
-            <Tool title="iTerm2">
-            Honestly, I&apos;m not using it to its full potential, but the features I prefer over the default Terminal.app include: 
-            improved autocomplete, enhanced mouse support for text selection, superior search functionality, and a larger scrollback buffer.
+            <Tool title="Ghostty" href="https://ghostty.org/">
+            I recently switched from iTerm2 to Ghostty. It launches fast, stays lightweight even with plenty of tabs, and its plain-text config keeps tweaks straightforward without endless menus. Works seamlessly with Starship prompt and Nerd Fonts.
             </Tool>
             <Tool title="CleanShot X">
               After trying many different screenshot tools, this is the only one
@@ -88,8 +87,8 @@ const Uses: NextPage = () => {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
-            <Tool title="AI-powered coding tools (Claude Code, Aider.chat, GitHub Copilot Agent)">
-              I&apos;m always exploring the cutting-edge in AI coding assistants. My current favorites include Claude Code, Aider.chat programming, and GitHub Copilot (Agent mode). This space evolves rapidly, so the list is always changing.
+            <Tool title="AI-powered coding tools (Claude Code, OpenAI Codex, GitHub Copilot Agent)">
+              I&apos;m always exploring the cutting-edge in AI coding assistants. My current favorites include Claude Code, OpenAI Codex (a cloud-based coding agent powered by GPT-5-Codex that can autonomously handle complex tasks), and GitHub Copilot (Agent mode). This space evolves rapidly, so the list is always changing.
             </Tool>
             <Tool title="TypingMind" href="https://www.typingmind.com/">
               I value TypingMind for providing a unified interface to access all LLMs and quickly switch between them. It lets me save prompts, organize projects, create agents, and maintain a structured workflow for all my AI interactions.
