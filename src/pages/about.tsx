@@ -12,7 +12,7 @@ import {
   LinkedInIcon, 
   MediumIcon, 
   StackOverflowIcon,
-  TwitterIcon
+  XIcon
 } from "@/components/icons/SocialIcons";
 import portraitImage from '@/images/avatar.jpg'
 import {
@@ -22,7 +22,7 @@ import {
   LINKEDIN,
   MEDIUM,
   STACKOVERFLOW,
-  TWITTER
+  X
 } from "@/lib/social-links";
 import { MailIcon } from '@/components/icons/MailIcon';
 
@@ -108,8 +108,8 @@ const About: NextPage = () => {
           </div>
           <div className="lg:pl-20">
             <ul role="list">
-              <SocialLink href={TWITTER} icon={TwitterIcon}>
-                Follow on Twitter
+              <SocialLink href={X} icon={XIcon}>
+                Follow on X (formerly Twitter)
               </SocialLink>
               <SocialLink href={LINKEDIN} icon={LinkedInIcon} className="mt-4">
                 Follow on LinkedIn

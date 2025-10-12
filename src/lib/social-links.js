@@ -1,4 +1,4 @@
-export const TWITTER = 'https://twitter.com/vladholubiev';
+export const X = 'https://x.com/vladholubiev';
 
 export const INSTAGRAM = `https://www.instagram.com/vladholubiev/`;
 

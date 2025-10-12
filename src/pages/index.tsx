@@ -10,13 +10,13 @@ import {
   LinkedInIcon,
   MediumIcon,
   StackOverflowIcon,
-  TwitterIcon
+  XIcon
 } from "@/components/icons/SocialIcons";
 
 import { formatDate } from "@/lib/formatDate";
 import { getAllArticles } from "@/lib/getAllArticles";
 import { Resume } from "@/components/Resume";
-import { GITHUB, INSTAGRAM, LINKEDIN, MEDIUM, STACKOVERFLOW, TWITTER } from "@/lib/social-links";
+import { GITHUB, INSTAGRAM, LINKEDIN, MEDIUM, STACKOVERFLOW, X } from "@/lib/social-links";
 import { Button } from "@/components/Button";
 import { SplitText } from "@/components/SplitText";
 
@@ -107,9 +107,9 @@ const Home: NextPage<HomeProps> = ({ articles }) => {
           </SplitText>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href={TWITTER}
-              aria-label="Follow me on Twitter"
-              icon={TwitterIcon}
+              href={X}
+              aria-label="Follow me on X (formerly Twitter)"
+              icon={XIcon}
             />
             <SocialLink
               href={LINKEDIN}
