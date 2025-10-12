@@ -91,10 +91,7 @@ const Uses: NextPage = () => {
           </ToolsSection>
           <ToolsSection title="Productivity">
             <Tool title="AI-powered coding tools (Claude Code, OpenAI Codex, GitHub Copilot Agent)">
-              I&apos;m always exploring the cutting-edge in AI coding assistants. My current favorites include Claude Code, OpenAI Codex (a cloud-based coding agent powered by GPT-5-Codex that can autonomously handle complex tasks), and GitHub Copilot (Agent mode). This space evolves rapidly, so the list is always changing.
-            </Tool>
-            <Tool title="TypingMind" href="https://www.typingmind.com/">
-              I value TypingMind for providing a unified interface to access all LLMs and quickly switch between them. It lets me save prompts, organize projects, create agents, and maintain a structured workflow for all my AI interactions.
+              I&apos;m always exploring the cutting-edge in AI coding assistants. My current favorites include OpenAI Codex, Claude Code. This space evolves rapidly, so the list is always changing.
             </Tool>
             <Tool title="DevUtils">
               This is a swiss army knife for developers. It can convert JSON to CSV,
