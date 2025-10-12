@@ -76,9 +76,12 @@ const Uses: NextPage = () => {
             <Tool title="Visual Studio Code">
             After using WebStorm for nearly ten years, I made the switch to VS Code and I&apos;m really enjoying it.
             It&apos;s quicker and offers a broader range of extensions.
-            </Tool>
+            </Tool> 
             <Tool title="Ghostty" href="https://ghostty.org/">
-            I recently switched from iTerm2 to Ghostty. It launches fast, stays lightweight even with plenty of tabs, and its plain-text config keeps tweaks straightforward without endless menus. Works seamlessly with Starship prompt and Nerd Fonts.
+            I recently switched from iTerm2 to Ghostty. It launches fast, stays lightweight even with plenty of tabs, and its plain-text config keeps tweaks straightforward without endless menus. Works seamlessly with Nerd Fonts.
+            </Tool>
+            <Tool title="tmux">
+            Tmux has been invaluable for juggling many parallel AI sessions; I can split panes, detach sessions, and jump back in without disrupting long-running agents or context.
             </Tool>
             <Tool title="CleanShot X">
               After trying many different screenshot tools, this is the only one
