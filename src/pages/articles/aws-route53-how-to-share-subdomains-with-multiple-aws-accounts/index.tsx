@@ -14,6 +14,7 @@ export const meta = {
   title: 'AWS Route53: How to Share Subdomains with Multiple AWS Accounts',
   description: 'Learn how to deploy beta.api.example.com from a different AWS account that doesn&apos;t own the example.com domain.',
   readingTime: '6 min read',
+  mediumUrl: 'https://medium.com/shelf-io-engineering/aws-route53-how-to-share-subdomains-with-multiple-aws-accounts-ad002c77be76',
 }
 
 export default function Article() {

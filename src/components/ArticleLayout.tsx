@@ -1,20 +1,20 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { ReactNode, SVGProps } from 'react'
-import Image from 'next/image'
+import { ReactNode } from 'react'
 
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
 import { ArrowLeftIcon } from '@/components/icons/ArrowLeftIcon'
-import avatarImage from '@/images/avatar.jpg'
+import { MediumIcon } from '@/components/icons/SocialIcons'
 
 interface ArticleMeta {
   title: string
   description: string
-  author: string
+  author?: string
   date: string
   readingTime: string
+  mediumUrl?: string
 }
 
 interface ArticleLayoutProps {
@@ -59,49 +59,41 @@ export function ArticleLayout({
                   {meta.description}
                 </p>
                 
-                {/* Author + Read Time + Date Row */}
-                <div className="mt-8 flex items-center justify-between border-t border-zinc-100 pt-8 dark:border-zinc-700/40">
-                  {/* Author Section */}
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white p-0.5 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                      <Image
-                        src={avatarImage}
-                        alt=""
-                        className="h-11 w-11 rounded-full object-cover grayscale"
-                        unoptimized
-                      />
-                    </div>
+                {/* Meta row with Medium link, read time, and date */}
+                <div className="mt-8 flex flex-col gap-6 border-t border-zinc-100 pt-8 dark:border-zinc-700/40 sm:flex-row sm:items-center sm:justify-between">
+                  {meta.mediumUrl ? (
+                    <a
+                      href={meta.mediumUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-2 self-start rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 sm:self-center"
+                    >
+                      <MediumIcon className="h-5 w-5 fill-current" aria-hidden="true" />
+                      <span>Read on Medium</span>
+                    </a>
+                  ) : null}
+
+                  <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
                     <div className="flex flex-col">
                       <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
-                        Written by
+                        Read Time
                       </p>
                       <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
-                        {meta.author}
+                        {meta.readingTime}
                       </p>
                     </div>
-                  </div>
 
-                  {/* Read Time Section */}
-                  <div className="flex flex-col items-center">
-                    <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
-                      Read Time
-                    </p>
-                    <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
-                      {meta.readingTime}
-                    </p>
-                  </div>
-
-                  {/* Date Section */}
-                  <div className="flex flex-col items-end">
-                    <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
-                      Posted on
-                    </p>
-                    <time
-                      dateTime={meta.date}
-                      className="text-sm font-medium text-zinc-800 dark:text-zinc-100"
-                    >
-                      {formatDate(meta.date)}
-                    </time>
+                    <div className="flex flex-col">
+                      <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
+                        Posted on
+                      </p>
+                      <time
+                        dateTime={meta.date}
+                        className="text-sm font-medium text-zinc-800 dark:text-zinc-100"
+                      >
+                        {formatDate(meta.date)}
+                      </time>
+                    </div>
                   </div>
                 </div>
               </header>

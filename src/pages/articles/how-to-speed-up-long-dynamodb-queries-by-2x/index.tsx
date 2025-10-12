@@ -13,6 +13,7 @@ export const meta = {
   title: 'How to Speed-up Long DynamoDB Queries by 2x',
   description: 'TL;DR; Implement parallel pagination from both ends instead of a sequential one.',
   readingTime: '3 min read',
+  mediumUrl: 'https://medium.com/shelf-io-engineering/how-to-speed-up-long-dynamodb-queries-by-2x-c66a2987d53a',
 }
 
 export default function Article() {

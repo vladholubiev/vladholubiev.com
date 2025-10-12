@@ -15,6 +15,7 @@ export const meta = {
   title: 'Five Stages of AI Adoption',
   description: 'Denial is the first hurdle to a brighter future with AI. The real work is changing, not disappearing. Learn what new meta-skills — like problem framing and strategic curation — will define top engineers.',
   readingTime: '7 min read',
+  mediumUrl: 'https://medium.com/shelf-io-engineering/five-stages-of-ai-adoption-993d8bebbf47',
 }
 
 export default function Article() {

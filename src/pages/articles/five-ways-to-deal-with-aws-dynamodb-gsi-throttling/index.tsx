@@ -15,6 +15,7 @@ export const meta = {
   title: 'Five Ways to Deal With AWS DynamoDB GSI Throttling',
   description: 'A notorious performance bottleneck. But it can be solved.',
   readingTime: '8 min read',
+  mediumUrl: 'https://medium.com/shelf-io-engineering/five-ways-to-deal-with-aws-dynamodb-gsi-throttling-1a489803a981',
 }
 
 export default function Article() {

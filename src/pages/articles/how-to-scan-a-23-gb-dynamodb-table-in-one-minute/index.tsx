@@ -14,6 +14,7 @@ export const meta = {
   title: 'How to Scan a 23 GB DynamoDB Table in One Minute',
   description: `For the cases when you screw up schema design.`,
   readingTime: '5 min read',
+  mediumUrl: 'https://medium.com/shelf-io-engineering/how-to-scan-a-23-gb-dynamodb-table-in-1-minute-110730879e2b',
 }
 
 export default function Article() {

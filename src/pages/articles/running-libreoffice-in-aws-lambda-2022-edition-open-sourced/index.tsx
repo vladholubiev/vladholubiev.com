@@ -8,6 +8,7 @@ export const meta = {
   title: 'Running LibreOffice In AWS Lambda: 2022 Edition, Open-Sourced',
   description: `Learn about the latest updates to my most popular GitHub project.`,
   readingTime: '4 min read',
+  mediumUrl: 'https://medium.com/shelf-io-engineering/running-libreoffice-in-aws-lambda-2022-edition-open-sourced-9bb0028911d8',
 }
 
 export default function Article() {

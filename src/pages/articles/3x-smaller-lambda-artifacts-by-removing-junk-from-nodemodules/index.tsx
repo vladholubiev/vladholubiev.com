@@ -14,6 +14,7 @@ export const meta = {
   title: '3x Smaller Lambda Artifacts by Removing Junk From node_modules',
   description: 'The most obvious way would be to use webpack and do tree shaking. But I\'m not a fan of that approach. It\'s cumbersome to set up and has significant dev effort, especially when you face issues with…',
   readingTime: '4 min read',
+  mediumUrl: 'https://medium.com/shelf-io-engineering/3x-smaller-lambda-artifacts-by-removing-junk-from-node-modules-2b50780ca1f5',
 }
 
 export default function Article() {
