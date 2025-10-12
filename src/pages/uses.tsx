@@ -120,8 +120,11 @@ const Uses: NextPage = () => {
               is an invaluable source of knowledge for me at the moment.
             </Tool>
             <Tool title="The Pragmatic Engineer" href="https://newsletter.pragmaticengineer.com/">
-              Occasionally I find an interesting read there on the inner workings
-              of software engineering in some well-known companies.
+              I always look forward to the deep-dive newsletter issues, and I pair them with the interview series on{' '}
+              <a href="https://www.youtube.com/@pragmaticengineer" target="_blank" rel="noreferrer">YouTube</a> for extra context from engineering leaders.
+            </Tool>
+            <Tool title="Cheeky Pint (Stripe)" href="https://www.youtube.com/@stripe">
+              Stripe&apos;s Cheeky Pint interviews offer candid conversations with tech leaders—perfect for a quick inspiration boost alongside my newsletter queue.
             </Tool>
             <Tool title="Tech Radar" href="https://www.thoughtworks.com/radar">
               Published quarterly, it is always filled with dozens of new tools,
