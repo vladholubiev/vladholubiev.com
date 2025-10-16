@@ -161,17 +161,25 @@
   }
 
   .dark .marker {
+    color: #1f2933;
     background-image: linear-gradient(
       110deg,
-      rgba(254, 252, 235, 0.95) 0%,
-      rgba(254, 240, 138, 0.9) 38%,
-      rgba(253, 224, 71, 0.85) 75%,
-      rgba(255, 244, 195, 0.85) 100%
+      rgba(255, 248, 214, 0.94) 0%,
+      rgba(253, 244, 157, 0.92) 32%,
+      rgba(252, 233, 106, 0.9) 68%,
+      rgba(255, 241, 168, 0.88) 100%
     );
+    box-shadow: 0 12px 32px rgba(253, 230, 138, 0.18);
   }
 
   .dark .marker::before {
-    opacity: 0.9;
-    filter: blur(10px);
+    opacity: 0.6;
+    filter: blur(11px);
+    background: radial-gradient(60% 110% at 50% 0%, rgba(253, 230, 138, 0.38), rgba(253, 230, 138, 0));
+  }
+
+  .dark .marker::after {
+    opacity: 0.45;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
   }
 }
