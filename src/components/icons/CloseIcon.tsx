@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import {SVGProps} from 'react';
 
 export function CloseIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -12,5 +12,5 @@ export function CloseIcon(props: SVGProps<SVGSVGElement>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }

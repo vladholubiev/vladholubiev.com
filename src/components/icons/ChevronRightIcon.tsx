@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import {SVGProps} from 'react';
 
 export function ChevronRightIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -10,5 +10,5 @@ export function ChevronRightIcon(props: SVGProps<SVGSVGElement>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }

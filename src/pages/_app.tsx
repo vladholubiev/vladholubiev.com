@@ -1,26 +1,26 @@
-import { useEffect, useRef } from 'react'
-import { Analytics } from '@vercel/analytics/react';
-import type { AppProps } from 'next/app'
-import type { NextRouter } from 'next/router'
+import {useEffect, useRef} from 'react';
+import {Analytics} from '@vercel/analytics/react';
+import type {AppProps} from 'next/app';
+import type {NextRouter} from 'next/router';
 
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import {Footer} from '@/components/Footer';
+import {Header} from '@/components/Header';
 
-import '@/styles/tailwind.css'
-import 'focus-visible'
+import '@/styles/tailwind.css';
+import 'focus-visible';
 
 function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T | undefined>(undefined)
+  const ref = useRef<T | undefined>(undefined);
 
   useEffect(() => {
-    ref.current = value
-  }, [value])
+    ref.current = value;
+  }, [value]);
 
-  return ref.current
+  return ref.current;
 }
 
-export default function App({ Component, pageProps, router }: AppProps) {
-  const previousPathname = usePrevious(router.pathname)
+export default function App({Component, pageProps, router}: AppProps) {
+  const previousPathname = usePrevious(router.pathname);
 
   return (
     <>
@@ -38,5 +38,5 @@ export default function App({ Component, pageProps, router }: AppProps) {
       </div>
       <Analytics />
     </>
-  )
+  );
 }

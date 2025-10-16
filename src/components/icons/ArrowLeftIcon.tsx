@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import {SVGProps} from 'react';
 
 export function ArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -10,5 +10,6 @@ export function ArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
+ 

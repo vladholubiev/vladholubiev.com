@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import {SVGProps} from 'react';
 
 export function BriefcaseIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -20,5 +20,5 @@ export function BriefcaseIcon(props: SVGProps<SVGSVGElement>) {
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
-  )
+  );
 }

@@ -1,45 +1,47 @@
-import Head from 'next/head'
-import { ReactNode } from 'react'
-import { NextPage } from 'next'
+import Head from 'next/head';
+import {ReactNode} from 'react';
+import {NextPage} from 'next';
 
-import { Card } from '@/components/Card'
-import { Section } from '@/components/Section'
-import { SimpleLayout } from '@/components/SimpleLayout'
-import { formatDate } from '@/lib/formatDate'
+import {Card} from '@/components/Card';
+import {Section} from '@/components/Section';
+import {SimpleLayout} from '@/components/SimpleLayout';
+import {formatDate} from '@/lib/formatDate';
 
 interface SpeakingSectionProps {
-  children: ReactNode
-  title: string
+  children: ReactNode;
+  title: string;
 }
 
-function SpeakingSection({ children, ...props }: SpeakingSectionProps) {
+function SpeakingSection({children, ...props}: SpeakingSectionProps) {
   return (
     <Section {...props}>
       <div className="space-y-16">{children}</div>
     </Section>
-  )
+  );
 }
 
 interface AppearanceProps {
-  title: string
-  description: string
-  date: string
-  event: string
-  cta?: string
-  href?: string
+  title: string;
+  description: string;
+  date: string;
+  event: string;
+  cta?: string;
+  href?: string;
 }
 
-function Appearance({ title, description, date, cta, event, href }: AppearanceProps) {
+function Appearance({title, description, date, cta, event, href}: AppearanceProps) {
   return (
     <Card as="article">
       <Card.Title as="h3" href={href}>
         {title}
       </Card.Title>
-      <Card.Eyebrow>{event} – {formatDate(date)}</Card.Eyebrow>
+      <Card.Eyebrow>
+        {event} – {formatDate(date)}
+      </Card.Eyebrow>
       <Card.Description>{description}</Card.Description>
       {cta && <Card.Cta>{cta}</Card.Cta>}
     </Card>
-  )
+  );
 }
 
 const Speaking: NextPage = () => {
@@ -47,10 +49,7 @@ const Speaking: NextPage = () => {
     <>
       <Head>
         <title>Speaking - Vlad Holubiev</title>
-        <meta
-          name="description"
-          content="Meetups where I speak."
-        />
+        <meta name="description" content="Meetups where I speak." />
       </Head>
       <SimpleLayout
         title="Speaking"
@@ -108,7 +107,7 @@ const Speaking: NextPage = () => {
         </div>
       </SimpleLayout>
     </>
-  )
-}
+  );
+};
 
-export default Speaking
+export default Speaking;

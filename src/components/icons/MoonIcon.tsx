@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import {SVGProps} from 'react';
 
 export function MoonIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -10,5 +10,5 @@ export function MoonIcon(props: SVGProps<SVGSVGElement>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
