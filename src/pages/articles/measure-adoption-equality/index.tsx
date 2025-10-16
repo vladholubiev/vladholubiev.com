@@ -14,47 +14,59 @@ export default function Article() {
   return (
     <ArticleLayout meta={meta}>
       <p>
-        When you bring new AI tools into an engineering team, totals can deceive you. Vendor
-        dashboards love celebrating the aggregate number of prompts or active hours, but those
-        figures often reflect a few early enthusiasts, not broad adoption.
+        When introducing new AI tools to engineering teams, it's easy to be misled by vendor
+        dashboards celebrating total usage. But totals rarely tell you what's really happening.
+        They're often inflated by a handful of early enthusiasts, hiding the fact that most
+        engineers aren't yet on board.
       </p>
 
       <p>
-        If the goal is meaningful change rather than vanity metrics, you need to gauge equality. The
-        Lorenz curve, familiar to economists, works just as well for product rollouts: plot the
-        cumulative usage on the Y-axis against the cumulative number of users on the X-axis, sorted
-        from the most to the least active.
+        If your goal is meaningful adoption - not just impressive-sounding vanity metrics - you need
+        a clearer measure: equality.
       </p>
 
-      <ul>
-        <li>
-          <strong>A straight diagonal</strong> signals even participation where every engineer uses
-          the tool similarly.
-        </li>
-        <li>
-          <strong>A steep curve</strong> reveals concentration, with a handful of power users
-          carrying the totals while most colleagues stay on the sidelines.
-        </li>
-      </ul>
+      <p>
+        Economists have long used the Lorenz curve (or Pareto curve) to reveal inequality - be it
+        wealth, resource distribution, or opportunity. You can do the same for AI adoption:
+      </p>
+
+      <p>
+        Plot cumulative usage (Y-axis) against the cumulative number of users (X-axis), sorted from
+        most active to least.
+      </p>
 
       <Image src={image01} alt="" />
 
+      <ul>
+        <li>
+          A straight diagonal indicates evenly spread adoption - every engineer participates
+          similarly.
+        </li>
+        <li>
+          A sharp, steep curve highlights unequal usage - a small group of power users dominate,
+          while most sit on the sidelines.
+        </li>
+      </ul>
+
       <p>
-        Our first internal rollout produced that steep curve. A few engineers embraced the assistant
-        immediately, inflating the totals, while the majority barely touched it. Without the Lorenz
-        view we could have misread those early totals as proof of success.
+        When we first rolled out internal AI assistants, our curve was steeply skewed - exactly as
+        you'd expect early on. A few engineers embraced the tool wholeheartedly, driving up total
+        usage. But the majority quietly lagged behind.
       </p>
 
       <p>
-        Month after month we focused on flattening the line: better onboarding, clearer patterns,
-        internal demos, and targeted coaching. As the curve straightened, we finally saw the tool
-        spreading beyond the loudest advocates.
+        Month by month, we focused on gently flattening that curve. We improved onboarding, shared
+        clear best practices, held internal demos, and provided targeted coaching. Gradually,
+        adoption evened out. Without the Lorenz curve, we might have missed that shift entirely,
+        mistaking early enthusiasm for lasting adoption.
       </p>
 
       <p>
-        Adoption is meaningful only when the whole team participates. Track equality, not just
-        enthusiasm.
+        Meaningful adoption isn't just about totals - it's about whether a new tool genuinely
+        spreads throughout your organization.
       </p>
+
+      <p>Measure equality, not just enthusiasm.</p>
     </ArticleLayout>
   );
 }
