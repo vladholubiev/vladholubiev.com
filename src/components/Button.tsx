@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-import {ReactNode} from 'react';
+import type {ButtonHTMLAttributes, ReactNode} from 'react';
 
 const variantStyles = {
   primary:
@@ -11,26 +11,24 @@ const variantStyles = {
 
 type ButtonVariant = keyof typeof variantStyles;
 
-interface BaseButtonProps {
+type BaseButtonProps = {
   variant?: ButtonVariant;
   className?: string;
   children: ReactNode;
-}
+};
 
-interface ButtonAsLink extends BaseButtonProps {
+type ButtonAsLink = BaseButtonProps & {
   href: string;
-}
+};
 
-interface ButtonAsButton
-  extends Omit<BaseButtonProps, 'children'>,
-    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
-  href?: never;
-  children: ReactNode;
-}
+type ButtonAsButton = BaseButtonProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'> & {
+    href?: undefined;
+  };
 
 type ButtonProps = ButtonAsLink | ButtonAsButton;
 
-export function Button({variant = 'primary', className, href, ...props}: ButtonProps) {
+export function Button({variant = 'primary', className, href, children, ...props}: ButtonProps) {
   const buttonClassName = clsx(
     'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none',
     variantStyles[variant],
@@ -38,13 +36,16 @@ export function Button({variant = 'primary', className, href, ...props}: ButtonP
   );
 
   if (href) {
-    return <Link href={href} className={buttonClassName} {...(props as any)} />;
+    return (
+      <Link href={href} className={buttonClassName}>
+        {children}
+      </Link>
+    );
   }
 
   return (
-    <button
-      className={buttonClassName}
-      {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
-    />
+    <button className={buttonClassName} {...props}>
+      {children}
+    </button>
   );
 }

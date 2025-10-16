@@ -144,7 +144,10 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const allArticles = await getAllArticles();
   return {
     props: {
-      articles: allArticles.slice(0, 4).map(({component: _component, ...meta}) => meta),
+      articles: allArticles.slice(0, 4).map(({component, ...meta}) => {
+        void component;
+        return meta;
+      }),
       articleCount: allArticles.length,
     },
   };

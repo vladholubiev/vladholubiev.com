@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-import {ReactNode, ComponentProps, ElementType} from 'react';
+import type {ComponentPropsWithoutRef, ElementType, ReactNode} from 'react';
 import {ChevronRightIcon} from '@/components/icons/ChevronRightIcon';
 
 interface CardProps {
@@ -17,17 +17,22 @@ export function Card({as: Component = 'div', className, children}: CardProps) {
   );
 }
 
-interface CardLinkProps {
+type CardLinkProps = {
   children: ReactNode;
   href: string;
   openInNewTab?: boolean;
-}
+} & Omit<ComponentPropsWithoutRef<typeof Link>, 'href' | 'children' | 'className'>;
 
 Card.Link = function CardLink({children, href, openInNewTab, ...props}: CardLinkProps) {
   return (
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
-      <Link href={href} target={openInNewTab ? '_blank' : ''} rel="noopener noreferrer" {...props}>
+      <Link
+        href={href}
+        target={openInNewTab ? '_blank' : undefined}
+        rel="noopener noreferrer"
+        {...props}
+      >
         <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
       </Link>
@@ -85,24 +90,24 @@ Card.Cta = function CardCta({children}: CardCtaProps) {
   );
 };
 
-interface CardEyebrowProps {
-  as?: ElementType;
+type CardEyebrowProps<T extends ElementType = 'p'> = {
+  as?: T;
   decorate?: boolean;
   className?: string;
   children: ReactNode;
-  dateTime?: string;
-  [key: string]: any;
-}
+} & Omit<ComponentPropsWithoutRef<T>, 'as' | 'className' | 'children'>;
 
-Card.Eyebrow = function CardEyebrow({
-  as: Component = 'p',
+Card.Eyebrow = function CardEyebrow<T extends ElementType = 'p'>({
+  as,
   decorate = false,
   className,
   children,
   ...props
-}: CardEyebrowProps) {
+}: CardEyebrowProps<T>) {
+  const ComponentTag = as ?? 'p';
+
   return (
-    <Component
+    <ComponentTag
       className={clsx(
         className,
         'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
@@ -116,6 +121,6 @@ Card.Eyebrow = function CardEyebrow({
         </span>
       )}
       {children}
-    </Component>
+    </ComponentTag>
   );
 };

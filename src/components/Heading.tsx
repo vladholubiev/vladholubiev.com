@@ -1,13 +1,13 @@
 'use client';
 
-import type React from 'react';
 import {useState} from 'react';
+import type {ReactNode} from 'react';
 import {Hash, Check} from 'lucide-react';
 import type {JSX} from 'react/jsx-runtime';
 
 interface HeadingProps {
   level: 1 | 2 | 3 | 4 | 5 | 6;
-  children: React.ReactNode;
+  children: ReactNode;
   id?: string;
   className?: string;
 }
@@ -43,7 +43,7 @@ export function Heading({level, children, id, className = ''}: HeadingProps) {
       window.history.replaceState(null, '', `#${headingId}`);
 
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       // Fallback for older browsers
       window.location.hash = `#${headingId}`;
     }

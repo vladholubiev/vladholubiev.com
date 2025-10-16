@@ -82,7 +82,10 @@ export default ArticlesIndex;
 export const getStaticProps: GetStaticProps<ArticlesIndexProps> = async () => {
   return {
     props: {
-      articles: (await getAllArticles()).map(({component: _component, ...meta}) => meta),
+      articles: (await getAllArticles()).map(({component, ...meta}) => {
+        void component;
+        return meta;
+      }),
     },
   };
 };

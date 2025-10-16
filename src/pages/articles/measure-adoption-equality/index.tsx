@@ -14,10 +14,10 @@ export default function Article() {
   return (
     <ArticleLayout meta={meta}>
       <p>
-        When introducing new AI tools to engineering teams, it's easy to be misled by vendor
-        dashboards celebrating total usage. But totals rarely tell you what's really happening.
-        They're often inflated by a handful of early enthusiasts, hiding the fact that most
-        engineers aren't yet on board.
+        When introducing new AI tools to engineering teams, it&rsquo;s easy to be misled by vendor
+        dashboards celebrating total usage. But totals rarely tell you what&rsquo;s really
+        happening. They&rsquo;re often inflated by a handful of early enthusiasts, hiding the fact
+        that most engineers aren&rsquo;t yet on board.
       </p>
 
       <p>
@@ -50,8 +50,8 @@ export default function Article() {
 
       <p>
         When we first rolled out internal AI assistants, our curve was steeply skewed - exactly as
-        you'd expect early on. A few engineers embraced the tool wholeheartedly, driving up total
-        usage. But the majority quietly lagged behind.
+        you&rsquo;d expect early on. A few engineers embraced the tool wholeheartedly, driving up
+        total usage. But the majority quietly lagged behind.
       </p>
 
       <p>
@@ -62,8 +62,8 @@ export default function Article() {
       </p>
 
       <p>
-        Meaningful adoption isn't just about totals - it's about whether a new tool genuinely
-        spreads throughout your organization.
+        Meaningful adoption isn&rsquo;t just about totals - it&rsquo;s about whether a new tool
+        genuinely spreads throughout your organization.
       </p>
 
       <p>Measure equality, not just enthusiasm.</p>

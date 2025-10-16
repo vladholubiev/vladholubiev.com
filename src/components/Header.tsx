@@ -1,4 +1,5 @@
-import {Fragment, useEffect, useRef, ReactNode} from 'react';
+import {Fragment, useEffect, useRef} from 'react';
+import type {ComponentPropsWithoutRef, CSSProperties, ReactNode} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
@@ -147,11 +148,14 @@ function ModeToggle() {
     const isSystemDarkMode = darkModeMediaQuery.matches;
     const isDarkMode = document.documentElement.classList.toggle('dark');
 
+    const storageKey = 'isDarkMode';
+
     if (isDarkMode === isSystemDarkMode) {
-      delete (window as any).localStorage.isDarkMode;
-    } else {
-      (window as any).localStorage.isDarkMode = isDarkMode;
+      window.localStorage.removeItem(storageKey);
+      return;
     }
+
+    window.localStorage.setItem(storageKey, JSON.stringify(isDarkMode));
   }
 
   return (
@@ -167,11 +171,7 @@ function ModeToggle() {
   );
 }
 
-interface AvatarContainerProps {
-  className?: string;
-  style?: React.CSSProperties;
-  [key: string]: any;
-}
+type AvatarContainerProps = ComponentPropsWithoutRef<'div'>;
 
 function AvatarContainer({className, ...props}: AvatarContainerProps) {
   return (
@@ -185,12 +185,9 @@ function AvatarContainer({className, ...props}: AvatarContainerProps) {
   );
 }
 
-interface AvatarProps {
+type AvatarProps = {
   large?: boolean;
-  className?: string;
-  style?: React.CSSProperties;
-  [key: string]: any;
-}
+} & Omit<ComponentPropsWithoutRef<typeof Link>, 'href' | 'children'>;
 
 function Avatar({large = false, className, ...props}: AvatarProps) {
   return (
@@ -321,11 +318,11 @@ export function Header() {
             <div ref={avatarRef} className="order-last mt-[calc(--spacing(16)-(--spacing(3)))]" />
             <Container
               className="top-0 order-last -mb-3 pt-3"
-              style={{position: 'var(--header-position)' as any}}
+              style={{position: 'var(--header-position)' as CSSProperties['position']}}
             >
               <div
                 className="top-(--avatar-top,--spacing(3)) w-full"
-                style={{position: 'var(--header-inner-position)' as any}}
+                style={{position: 'var(--header-inner-position)' as CSSProperties['position']}}
               >
                 <div className="relative">
                   <AvatarContainer
@@ -348,11 +345,11 @@ export function Header() {
         <div
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
-          style={{position: 'var(--header-position)' as any}}
+          style={{position: 'var(--header-position)' as CSSProperties['position']}}
         >
           <Container
             className="top-(--header-top,--spacing(6)) w-full"
-            style={{position: 'var(--header-inner-position)' as any}}
+            style={{position: 'var(--header-inner-position)' as CSSProperties['position']}}
           >
             <div className="relative flex gap-4">
               <div className="flex flex-1">

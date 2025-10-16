@@ -1,7 +1,8 @@
-import {forwardRef, ReactNode} from 'react';
+import {forwardRef} from 'react';
+import type {ForwardRefExoticComponent, HTMLAttributes, ReactNode, RefAttributes} from 'react';
 import clsx from 'clsx';
 
-interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: ReactNode;
 }
@@ -29,7 +30,7 @@ const InnerContainer = forwardRef<HTMLDivElement, ContainerProps>(function Inner
 });
 
 interface ContainerComponent
-  extends React.ForwardRefExoticComponent<ContainerProps & React.RefAttributes<HTMLDivElement>> {
+  extends ForwardRefExoticComponent<ContainerProps & RefAttributes<HTMLDivElement>> {
   Outer: typeof OuterContainer;
   Inner: typeof InnerContainer;
 }
