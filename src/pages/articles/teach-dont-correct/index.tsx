@@ -18,29 +18,30 @@ export default function Article() {
       <p>
         Early in my engineering career, I saw many technical discussions stall out - not because the
         solutions were complex, but because the communication subtly suggested someone was foolish.
-        Engineers have a habit of quickly calling out what's impossible, impractical, or
+        Engineers have a habit of quickly calling out what&apos;s impossible, impractical, or
         inefficient. Technically right, perhaps, but tactically disastrous.
       </p>
 
       <p>
-        When stakeholders or peers propose ideas that won't work, the instinctive reaction is often
-        to correct. "That won't scale," "It's technically infeasible," or "You're misunderstanding
-        the limitations." These responses seem straightforward and honest, but they unintentionally
-        diminish others, framing conversations as competitions of competence.
+        When stakeholders or peers propose ideas that won&apos;t work, the instinctive reaction is
+        often to correct. &ldquo;That won&apos;t scale,&rdquo; &ldquo;It&apos;s technically
+        infeasible,&rdquo; or &ldquo;You&apos;re misunderstanding the limitations.&rdquo; These
+        responses seem straightforward and honest, but they unintentionally diminish others, framing
+        conversations as competitions of competence.
       </p>
 
       <p>
-        The better path isn't correction - it's education. Don't just say why something is
-        impossible; illuminate how similar challenges have been solved before. Share your own past
-        mistakes openly, demonstrating how learning through experience is natural. This approach
-        doesn't just soften your critique; it empowers the listener,{' '}
+        The better path isn&apos;t correction - it&apos;s education. Don&apos;t just say why
+        something is impossible; illuminate how similar challenges have been solved before. Share
+        your own past mistakes openly, demonstrating how learning through experience is natural.
+        This approach doesn&apos;t just soften your critique; it empowers the listener,{' '}
         <span className="marker">making them smarter, not smaller.</span>
       </p>
 
       <p>
         The engineer who consistently makes others feel wiser becomes indispensable. Your insights
-        aren't merely accurate - they become a valued source of growth. Invitations to strategic
-        discussions multiply because your presence lifts everyone's understanding.
+        aren&apos;t merely accurate - they become a valued source of growth. Invitations to
+        strategic discussions multiply because your presence lifts everyone&apos;s understanding.
       </p>
 
       <p>
