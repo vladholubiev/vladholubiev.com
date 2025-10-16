@@ -6,9 +6,8 @@ export const meta = {
   author: 'Vlad Holubiev',
   date: '2025-07-02',
   title: 'The Five Stages of AI Adoption',
-  description:
-    'Observations on how engineering teams emotionally adapt to AI tools, following the stages of grief from denial to acceptance.',
-  readingTime: '7 min read',
+  description: '',
+  readingTime: '2 min read',
   mediumUrl: 'https://medium.com/shelf-io-engineering/five-stages-of-ai-adoption-993d8bebbf47',
 };
 
