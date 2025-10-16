@@ -45,52 +45,34 @@ export function ArticleLayout({children, meta, previousPathname}: ArticleLayoutP
                 <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
               </button>
             )}
-            <article>
+            <article className="article">
               <header className="flex flex-col">
-                <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl lg:text-6xl dark:text-zinc-100">
+                <h1 className="text-balance text-4xl font-semibold tracking-[-0.01em] text-zinc-900 leading-[1.2] sm:text-5xl lg:text-6xl dark:text-zinc-50">
                   {meta.title}
                 </h1>
-                <p className="mt-6 text-xl leading-8 text-zinc-600 dark:text-zinc-400">
-                  {meta.description}
+                {meta.description ? (
+                  <p className="dek mt-4 text-balance text-lg font-normal text-zinc-700 dark:text-zinc-300">
+                    {meta.description}
+                  </p>
+                ) : null}
+
+                <p className="meta mt-4 font-medium text-[0.90625rem] text-zinc-500 dark:text-zinc-400">
+                  <time dateTime={meta.date}>{formatDate(meta.date)}</time>
+                  <span aria-hidden="true"> • </span>
+                  <span className="tabular-nums">{meta.readingTime}</span>
                 </p>
 
-                {/* Meta row with Medium link, read time, and date */}
-                <div className="mt-8 flex flex-col gap-6 border-t border-zinc-100 pt-8 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-700/40">
-                  {meta.mediumUrl ? (
-                    <a
-                      href={meta.mediumUrl}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="inline-flex items-center gap-2 self-start rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-700 sm:self-center dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
-                    >
-                      <MediumIcon className="h-5 w-5 fill-current" aria-hidden="true" />
-                      <span>Read on Medium</span>
-                    </a>
-                  ) : null}
-
-                  <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
-                    <div className="flex flex-col">
-                      <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
-                        Read Time
-                      </p>
-                      <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">
-                        {meta.readingTime}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-col">
-                      <p className="text-xs font-normal text-zinc-400 dark:text-zinc-500">
-                        Posted on
-                      </p>
-                      <time
-                        dateTime={meta.date}
-                        className="text-sm font-medium text-zinc-800 dark:text-zinc-100"
-                      >
-                        {formatDate(meta.date)}
-                      </time>
-                    </div>
-                  </div>
-                </div>
+                {meta.mediumUrl ? (
+                  <a
+                    href={meta.mediumUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                  >
+                    <MediumIcon className="h-5 w-5 fill-current" aria-hidden="true" />
+                    <span>Read on Medium</span>
+                  </a>
+                ) : null}
               </header>
               <Prose className="mt-8">{children}</Prose>
             </article>

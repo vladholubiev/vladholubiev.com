@@ -14,15 +14,14 @@ export default function Article() {
   return (
     <ArticleLayout meta={meta}>
       <p>
-        In high-stakes engineering environments, I&apos;ve found that the healthiest team cultures
+        In high-stakes engineering environments, I’ve found that the healthiest team cultures
         embrace a counterintuitive mindset: when something goes wrong, default to assuming you might
         have caused it until proven otherwise.
       </p>
 
       <p>
-        This isn&apos;t about blame - it&apos;s about responsibility. Instead of saying
-        &quot;It&apos;s probably someone else&apos;s change,&quot; you ask, &quot;Could it have been
-        mine?&quot;
+        This isn’t about blame — it’s about responsibility. Instead of saying “It’s probably someone
+        else’s change,” you ask, “Could it have been mine?”
       </p>
 
       <p>
@@ -31,11 +30,17 @@ export default function Article() {
       </p>
 
       <p>
-        It&apos;s not about being blameless - it&apos;s about being responsible. It&apos;s a
-        cultural habit worth building.
+        It’s not about being blameless — it’s about being responsible. It’s a cultural habit worth
+        building.
       </p>
 
-      <Image src={image01} alt="" />
+      <Image
+        src={image01}
+        alt="Default to Responsible illustration"
+        loading="lazy"
+        fetchPriority="high"
+        style={{aspectRatio: image01.width / image01.height}}
+      />
     </ArticleLayout>
   );
 }

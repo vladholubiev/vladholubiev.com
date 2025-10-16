@@ -24,3 +24,95 @@
 .prose :where(img.no-rounding):not(:where([class~="not-prose"] *)) {
     border-radius: 0;
 }
+
+@layer components {
+  .article {
+    width: 100%;
+    max-width: min(68ch, 100%);
+    margin-inline: auto;
+  }
+
+  .article .prose {
+    max-width: min(68ch, 100%);
+    margin-inline: auto;
+    color: #3f3f46;
+    hyphens: auto;
+    font-variant-ligatures: common-ligatures;
+    font-variant-numeric: oldstyle-nums;
+    text-rendering: optimizeLegibility;
+  }
+
+  .article .prose :where(p, li, blockquote, figcaption, table, td, th):not(:where([class~="not-prose"] *)) {
+    font-family: 'Source Serif 4', 'Charter', 'Georgia', 'Times New Roman', serif;
+  }
+
+  .dark .article .prose {
+    color: #d4d4d8;
+  }
+
+  .article .prose :where(p):not(:where([class~="not-prose"] *)) {
+    font-size: 1.25625rem;
+    line-height: 1.65;
+    margin-block: 14px;
+  }
+
+  .article .prose :where(a):not(:where([class~="not-prose"] *)) {
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.08em;
+  }
+
+  .article .prose :where(h2):not(:where([class~="not-prose"] *)) {
+    font-size: 1.6rem;
+    line-height: 1.28;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  .article .prose :where(h3):not(:where([class~="not-prose"] *)) {
+    font-size: 1.3rem;
+    line-height: 1.35;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .article .prose :where(figure):not(:where([class~="not-prose"] *)) {
+    margin-block: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .article .prose :where(figure):not(:where([class~="not-prose"] *)) {
+      width: 104%;
+      margin-left: -2%;
+    }
+  }
+
+  .article .prose :where(figure img):not(:where([class~="not-prose"] *)) {
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    width: 100%;
+    height: auto;
+  }
+
+  .dark .article .prose :where(figure img):not(:where([class~="not-prose"] *)) {
+    box-shadow: 0 12px 28px rgba(15, 15, 20, 0.45);
+  }
+
+  .article .prose :where(figure span):not(:where([class~="not-prose"] *)) {
+    display: block;
+  }
+
+  .article .prose :where(figcaption):not(:where([class~="not-prose"] *)) {
+    font-size: 0.875rem;
+    color: #71717a;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .dark .article .prose :where(figcaption):not(:where([class~="not-prose"] *)) {
+    color: #a1a1aa;
+  }
+}
