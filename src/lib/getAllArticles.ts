@@ -1,11 +1,12 @@
 import glob from 'fast-glob';
 import * as path from 'path';
+import type {ComponentType} from 'react';
 import {Article, ArticleMeta} from '@/types/article';
 
 async function importArticle(articleFilename: string): Promise<Article> {
   const {meta, default: component} = (await import(`../pages/articles/${articleFilename}`)) as {
     meta: ArticleMeta;
-    default: React.ComponentType;
+    default: ComponentType;
   };
 
   return {

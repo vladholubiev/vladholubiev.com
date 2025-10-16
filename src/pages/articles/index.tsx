@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import {GetStaticProps, NextPage} from 'next';
 
-import {Card} from '@/components/Card';
 import {SimpleLayout} from '@/components/SimpleLayout';
-import {formatDate} from '@/lib/formatDate';
 import {getAllArticles} from '@/lib/getAllArticles';
+import {ArticleListItem} from '@/components/ArticleListItem';
 import type {Article} from '@/types/article';
 
 interface ArticleProps {
@@ -13,19 +12,13 @@ interface ArticleProps {
 
 function Article({article}: ArticleProps) {
   return (
-    <article className="md:grid md:grid-cols-4 md:items-baseline">
-      <Card className="md:col-span-3">
-        <Card.Title href={`/articles/${article.slug}`}>{article.title}</Card.Title>
-        <Card.Eyebrow as="time" dateTime={article.date} className="md:hidden" decorate>
-          {formatDate(article.date)}
-        </Card.Eyebrow>
-        <Card.Description>{article.description}</Card.Description>
-        <Card.Cta>Read article</Card.Cta>
-      </Card>
-      <Card.Eyebrow as="time" dateTime={article.date} className="mt-1 hidden md:block">
-        {formatDate(article.date)}
-      </Card.Eyebrow>
-    </article>
+    <ArticleListItem
+      href={`/articles/${article.slug}`}
+      title={article.title}
+      description={article.description}
+      date={article.date}
+      readingTime={article.readingTime}
+    />
   );
 }
 
@@ -39,6 +32,17 @@ interface ArticlesIndexProps {
 }
 
 const ArticlesIndex: NextPage<ArticlesIndexProps> = ({articles}) => {
+  const articlesByYear = Array.from(
+    articles.reduce((acc, article) => {
+      const year = new Date(article.date).getFullYear().toString();
+      if (!acc.has(year)) {
+        acc.set(year, []);
+      }
+      acc.get(year)!.push(article);
+      return acc;
+    }, new Map<string, Article[]>())
+  );
+
   return (
     <>
       <Head>
@@ -52,12 +56,21 @@ const ArticlesIndex: NextPage<ArticlesIndexProps> = ({articles}) => {
         title="Blog"
         intro="I write mostly about interesting problems I solve to spread the knowledge and help others. My articles on Medium were viewed over 310,678 times so far."
       >
-        <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <div className="flex max-w-3xl flex-col space-y-16">
-            {articles.map(article => (
-              <Article key={article.slug} article={article} />
-            ))}
-          </div>
+        <div className="max-w-3xl space-y-12">
+          {articlesByYear.map(([year, yearlyArticles]) => (
+            <section key={year} className="space-y-6">
+              <div className="md:sticky md:top-16 md:z-10 md:-mx-3 md:bg-white/95 md:px-3 md:py-2 md:backdrop-blur md:dark:bg-zinc-900/90">
+                <span className="text-xs font-semibold uppercase tracking-[0.08em] text-zinc-500 dark:text-zinc-400">
+                  {year}
+                </span>
+              </div>
+              <div className="divide-y divide-zinc-900/5 border-t border-zinc-900/5 dark:divide-white/10 dark:border-white/10">
+                {yearlyArticles.map(article => (
+                  <Article key={article.slug} article={article} />
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       </SimpleLayout>
     </>
@@ -69,7 +82,7 @@ export default ArticlesIndex;
 export const getStaticProps: GetStaticProps<ArticlesIndexProps> = async () => {
   return {
     props: {
-      articles: (await getAllArticles()).map(({component, ...meta}) => meta),
+      articles: (await getAllArticles()).map(({component: _component, ...meta}) => meta),
     },
   };
 };

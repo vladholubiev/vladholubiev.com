@@ -1,3 +1,5 @@
+import type {ComponentType} from 'react';
+
 export interface Article {
   slug: string;
   title: string;
@@ -5,7 +7,8 @@ export interface Article {
   author: string;
   date: string;
   readingTime: string;
-  component?: React.ComponentType;
+  mediumUrl?: string;
+  component?: ComponentType;
 }
 
 export interface ArticleMeta {
@@ -14,4 +17,5 @@ export interface ArticleMeta {
   author: string;
   date: string;
   readingTime: string;
+  mediumUrl?: string;
 }

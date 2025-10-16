@@ -1,8 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import {ComponentType} from 'react';
 import {GetStaticProps, NextPage} from 'next';
-import {ComponentType, ReactNode} from 'react';
-import {Card} from '@/components/Card';
 import {Container} from '@/components/Container';
 import {
   GitHubIcon,
@@ -13,12 +12,11 @@ import {
   XIcon,
 } from '@/components/icons/SocialIcons';
 
-import {formatDate} from '@/lib/formatDate';
 import {getAllArticles} from '@/lib/getAllArticles';
 import {Resume} from '@/components/Resume';
 import {GITHUB, INSTAGRAM, LINKEDIN, MEDIUM, STACKOVERFLOW, X} from '@/lib/social-links';
-import {Button} from '@/components/Button';
 import {SplitText} from '@/components/SplitText';
+import {ArticleListItem} from '@/components/ArticleListItem';
 
 interface ArticleMeta {
   slug: string;
@@ -26,7 +24,8 @@ interface ArticleMeta {
   description: string;
   date: string;
   author: string;
-  component?: ComponentType;
+  readingTime: string;
+  mediumUrl?: string;
 }
 
 interface ArticleProps {
@@ -42,32 +41,32 @@ interface SocialLinkProps {
 
 interface HomeProps {
   articles: ArticleMeta[];
+  articleCount: number;
 }
 
 function Article({article}: ArticleProps) {
   return (
-    <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>{article.title}</Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
-      </Card.Eyebrow>
-      <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read article</Card.Cta>
-    </Card>
+    <ArticleListItem
+      href={`/articles/${article.slug}`}
+      title={article.title}
+      description={article.description}
+      date={article.date}
+      readingTime={article.readingTime}
+    />
   );
 }
 
 function SocialLink({icon: Icon, ...props}: SocialLinkProps) {
   return (
     <Link className="group -m-1 p-1" {...props} title={props['aria-label']}>
-      <Icon className="fill-ua-blue-500 group-hover:fill-ua-blue-600 h-6 w-6 transition dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+      <Icon className="h-5 w-5 fill-zinc-500 transition duration-150 ease-out group-hover:fill-zinc-700 dark:fill-zinc-400 dark:group-hover:fill-zinc-200" />
     </Link>
   );
 }
 
 const DESCRIPTION = `The home page of Vlad Holubiev, a Senior Director of Technology at Shelf and an Open Source contributor from Ukraine.`;
 
-const Home: NextPage<HomeProps> = ({articles}) => {
+const Home: NextPage<HomeProps> = ({articles, articleCount}) => {
   return (
     <>
       <Head>
@@ -95,10 +94,10 @@ const Home: NextPage<HomeProps> = ({articles}) => {
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
-          <SplitText className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+          <SplitText className="text-4xl font-bold tracking-[-0.02em] text-zinc-800 sm:text-5xl dark:text-zinc-100">
             Vladyslav Holubiev
           </SplitText>
-          <SplitText className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          <SplitText className="mt-6 text-lg text-zinc-600 dark:text-zinc-400">
             Technology leader delivering AI products and engineering excellence
           </SplitText>
           <div className="mt-6 flex gap-6">
@@ -117,13 +116,18 @@ const Home: NextPage<HomeProps> = ({articles}) => {
       </Container>
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col divide-y divide-zinc-900/5 border-t border-zinc-900/5 dark:divide-white/10 dark:border-white/10">
             {articles.slice(0, 3).map(article => (
               <Article key={article.slug} article={article} />
             ))}
-            <Button href="/articles" variant="secondary" className="w-full lg:w-1/2">
-              Read more
-            </Button>
+            <div className="pt-6 md:grid md:grid-cols-[6rem_minmax(0,1fr)_auto] md:gap-x-6">
+              <Link
+                href="/articles"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-zinc-900/10 bg-white/80 px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:border-zinc-900/20 hover:text-zinc-900 dark:border-white/10 dark:bg-zinc-800/60 dark:text-zinc-200 dark:hover:border-white/20 dark:hover:text-white sm:w-auto md:col-start-2 md:justify-self-start"
+              >
+                Browse all {articleCount} articles
+              </Link>
+            </div>
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
@@ -137,9 +141,11 @@ const Home: NextPage<HomeProps> = ({articles}) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const allArticles = await getAllArticles();
   return {
     props: {
-      articles: (await getAllArticles()).slice(0, 4).map(({component, ...meta}) => meta),
+      articles: allArticles.slice(0, 4).map(({component: _component, ...meta}) => meta),
+      articleCount: allArticles.length,
     },
   };
 };
