@@ -115,4 +115,37 @@
   .dark .article .prose :where(figcaption):not(:where([class~="not-prose"] *)) {
     color: #a1a1aa;
   }
+
+  .marker {
+    position: relative;
+    display: inline;
+    padding-inline: 0.12em;
+    font-weight: inherit;
+    color: inherit;
+    z-index: 0;
+  }
+
+  .marker::before,
+  .marker::after {
+    content: '';
+    position: absolute;
+    inset: 30% -0.2em -0.25em;
+    background: linear-gradient(118deg, #fffdea 0%, #fef08a 35%, #fde047 70%, #fff4c3 100%);
+    border-radius: 6px;
+    z-index: -1;
+    transform: rotate(-1.6deg);
+    box-shadow: 0 3px 10px rgba(253, 224, 71, 0.35);
+  }
+
+  .marker::after {
+    inset: 22% -0.24em -0.32em;
+    transform: rotate(2deg);
+    opacity: 0.65;
+    filter: blur(0.5px);
+  }
+
+  .dark .marker::before,
+  .dark .marker::after {
+    box-shadow: 0 4px 12px rgba(249, 200, 31, 0.3);
+  }
 }
