@@ -1,4 +1,7 @@
+import Image from 'next/image';
+
 import {ArticleLayout} from '@/components/ArticleLayout';
+import teachIllustration from './teach.svg';
 
 export const meta = {
   author: 'Vlad Holubiev',
@@ -44,6 +47,17 @@ export default function Article() {
         Mastering technology is table stakes. Mastering the subtle art of teaching rather than
         correcting is what truly defines exceptional engineers.
       </p>
+
+      <Image
+        src={teachIllustration}
+        alt="A hand noting that teaching empowers people instead of correcting them."
+        width={2048}
+        height={1365}
+        loading="lazy"
+        sizes="(min-width: 1024px) 68ch, 100vw"
+        style={{aspectRatio: 2048 / 1365}}
+        unoptimized
+      />
     </ArticleLayout>
   );
 }
