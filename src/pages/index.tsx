@@ -123,7 +123,7 @@ const Home: NextPage<HomeProps> = ({articles, articleCount}) => {
             <div className="pt-6 md:grid md:grid-cols-[6rem_minmax(0,1fr)_auto] md:gap-x-6">
               <Link
                 href="/articles"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-zinc-900/10 bg-white/80 px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:border-zinc-900/20 hover:text-zinc-900 dark:border-white/10 dark:bg-zinc-800/60 dark:text-zinc-200 dark:hover:border-white/20 dark:hover:text-white sm:w-auto md:col-start-2 md:justify-self-start"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-zinc-900/10 bg-white/80 px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:border-zinc-900/20 hover:text-zinc-900 dark:border-white/10 dark:bg-zinc-800/60 dark:text-zinc-200 dark:hover:border-white/20 dark:hover:text-white sm:w-auto md:col-start-3 md:justify-self-end"
               >
                 Browse all {articleCount} articles
               </Link>

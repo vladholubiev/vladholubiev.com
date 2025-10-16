@@ -23,7 +23,7 @@ export function ArticleListItem({title, href, date, readingTime}: ArticleListIte
       <Link
         href={href}
         aria-label={`Read "${title}"${isExternal ? ' (opens in a new tab)' : ''}`}
-        className="group relative block -mx-4 px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ua-blue-500 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12"
+        className="group relative block -mx-4 px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ua-blue-500 sm:-mx-8 sm:px-8 lg:mx-auto lg:max-w-3xl lg:px-0"
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noreferrer noopener' : undefined}
       >

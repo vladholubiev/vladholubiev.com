@@ -2,10 +2,10 @@ import logoShelf from '@/images/logos/shelf.svg';
 import logoApiko from '@/images/logos/apiko.png';
 import logoUpwork from '@/images/logos/upwork.svg';
 import Image from 'next/image';
-import {Button} from '@/components/Button';
 import {BriefcaseIcon} from '@/components/icons/BriefcaseIcon';
 import {LinkedInIcon} from '@/components/icons/SocialIcons';
 import {LINKEDIN} from '@/lib/social-links';
+import Link from 'next/link';
 import {useEffect, useRef} from 'react';
 import {animate} from 'motion';
 
@@ -108,10 +108,15 @@ export function Resume() {
           </li>
         ))}
       </ol>
-      <Button href={LINKEDIN} variant="secondary" className="group mt-6 w-full">
-        <LinkedInIcon className="h-4 w-4 transition group-active:stroke-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+      <Link
+        href={LINKEDIN}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-zinc-900/10 bg-white/80 px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:border-zinc-900/20 hover:text-zinc-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ua-blue-500 dark:border-white/10 dark:bg-zinc-800/60 dark:text-zinc-200 dark:hover:border-white/20 dark:hover:text-white"
+      >
+        <LinkedInIcon className="h-4 w-4 fill-current transition group-hover:fill-zinc-700 dark:fill-zinc-400 dark:group-hover:fill-zinc-200" />
         Read more on LinkedIn
-      </Button>
+      </Link>
     </div>
   );
 }

@@ -56,7 +56,7 @@ const ArticlesIndex: NextPage<ArticlesIndexProps> = ({articles}) => {
         title="Blog"
         intro="I write mostly about interesting problems I solve to spread the knowledge and help others. My articles on Medium were viewed over 310,678 times so far."
       >
-        <div className="max-w-3xl space-y-12">
+        <div className="mx-auto max-w-3xl space-y-12">
           {articlesByYear.map(([year, yearlyArticles]) => (
             <section key={year} className="space-y-6">
               <div className="md:sticky md:top-16 md:z-10 md:-mx-3 md:bg-white/95 md:px-3 md:py-2 md:backdrop-blur md:dark:bg-zinc-900/90">
