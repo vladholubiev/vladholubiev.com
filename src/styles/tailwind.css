@@ -46,6 +46,10 @@
     font-family: 'Source Serif 4', 'Charter', 'Georgia', 'Times New Roman', serif;
   }
 
+  .article .prose :where(h2, h3, h4, h5, h6):not(:where([class~="not-prose"] *)) {
+    font-family: 'Source Serif 4', 'Charter', 'Georgia', 'Times New Roman', serif;
+  }
+
   .dark .article .prose {
     color: #d4d4d8;
   }
@@ -64,6 +68,8 @@
     text-decoration-line: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 0.08em;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .article .prose :where(h2):not(:where([class~="not-prose"] *)) {
@@ -81,6 +87,11 @@
     margin-top: 24px;
     margin-bottom: 10px;
     font-weight: 600;
+  }
+
+  .article .prose :where(li):not(:where([class~="not-prose"] *)) {
+    font-size: 1.25625rem;
+    line-height: 1.65;
   }
 
   .article .prose :where(figure):not(:where([class~="not-prose"] *)) {
