@@ -112,3 +112,5 @@ export function TeachIllustration({className, style, ...props}: TeachIllustratio
     </svg>
   );
 }
+
+export default TeachIllustration;

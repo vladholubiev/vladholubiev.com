@@ -207,3 +207,5 @@ export function ResponsibleIllustration({className, ...props}: ResponsibleIllust
     </svg>
   );
 }
+
+export default ResponsibleIllustration;
