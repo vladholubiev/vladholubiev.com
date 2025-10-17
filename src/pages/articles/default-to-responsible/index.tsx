@@ -1,6 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout';
-import Image from 'next/image';
-import image01 from './image-01.webp';
+import {ResponsibleIllustration} from './ResponsibleIllustration';
 
 export const meta = {
   author: 'Vlad Holubiev',
@@ -34,12 +33,11 @@ export default function Article() {
         building.
       </p>
 
-      <Image
-        src={image01}
-        alt="Default to Responsible illustration"
-        loading="lazy"
-        fetchPriority="high"
-        style={{aspectRatio: image01.width / image01.height}}
+      <ResponsibleIllustration
+        role="img"
+        aria-label="Default to Responsible illustration"
+        focusable="false"
+        className="rounded-3xl overflow-hidden"
       />
     </ArticleLayout>
   );
