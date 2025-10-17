@@ -1,7 +1,5 @@
-import Image from 'next/image';
-
 import {ArticleLayout} from '@/components/ArticleLayout';
-import teachIllustration from './teach.svg';
+import {TeachIllustration} from './TeachIllustration';
 
 export const meta = {
   author: 'Vlad Holubiev',
@@ -49,15 +47,11 @@ export default function Article() {
         correcting is what truly defines exceptional engineers.
       </p>
 
-      <Image
-        src={teachIllustration}
-        alt="A hand noting that teaching empowers people instead of correcting them."
-        width={2048}
-        height={1365}
-        loading="lazy"
-        sizes="(min-width: 1024px) 68ch, 100vw"
-        style={{aspectRatio: 2048 / 1365}}
-        unoptimized
+      <TeachIllustration
+        role="img"
+        aria-label="A hand noting that teaching empowers people instead of correcting them."
+        focusable="false"
+        className="rounded-3xl overflow-hidden"
       />
     </ArticleLayout>
   );
