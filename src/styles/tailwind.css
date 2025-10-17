@@ -50,6 +50,10 @@
     color: #d4d4d8;
   }
 
+  .dark {
+    --surface: #15171c;
+  }
+
   .article .prose :where(p):not(:where([class~="not-prose"] *)) {
     font-size: 1.25625rem;
     line-height: 1.65;
@@ -161,25 +165,31 @@
   }
 
   .dark .marker {
-    color: #1f2933;
+    color: inherit;
+    background-color: var(--surface);
     background-image: linear-gradient(
       110deg,
-      rgba(255, 248, 214, 0.94) 0%,
-      rgba(253, 244, 157, 0.92) 32%,
-      rgba(252, 233, 106, 0.9) 68%,
-      rgba(255, 241, 168, 0.88) 100%
+      rgba(253, 230, 138, 0.24) 0%,
+      rgba(246, 208, 93, 0.22) 38%,
+      rgba(240, 192, 72, 0.2) 75%,
+      rgba(255, 236, 150, 0.18) 100%
     );
-    box-shadow: 0 12px 32px rgba(253, 230, 138, 0.18);
+    background-blend-mode: screen;
+    background-size: 100% 74%;
+    background-position: 0 72%;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
   }
 
   .dark .marker::before {
-    opacity: 0.6;
-    filter: blur(11px);
-    background: radial-gradient(60% 110% at 50% 0%, rgba(253, 230, 138, 0.38), rgba(253, 230, 138, 0));
+    opacity: 0.45;
+    filter: blur(10px);
+    background: radial-gradient(60% 110% at 50% 0%, rgba(246, 208, 93, 0.22), rgba(246, 208, 93, 0));
   }
 
   .dark .marker::after {
-    opacity: 0.45;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+    opacity: 0.35;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
   }
 }
