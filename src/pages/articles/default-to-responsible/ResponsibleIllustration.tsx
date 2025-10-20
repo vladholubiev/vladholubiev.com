@@ -6,13 +6,10 @@ type ResponsibleIllustrationProps = ComponentPropsWithoutRef<'svg'>;
 export function ResponsibleIllustration({className, ...props}: ResponsibleIllustrationProps) {
   return (
     <svg
-      display="block"
-      height="1024"
-      preserveAspectRatio="none"
+      preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 2048 1365"
-      width="1536"
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx('responsible-illustration', className)}
+      className={clsx('responsible-illustration block h-auto w-full', className)}
       {...props}
     >
       <style>
