@@ -120,6 +120,49 @@
     display: block;
   }
 
+  .teach-illustration {
+    color-scheme: light dark;
+    --teach-ink: #141d1d;
+    --teach-accent-green: #57b275;
+    --teach-accent-gold: #fec430;
+    --teach-accent-blue: #3396bd;
+    --teach-accent-orange: #f26f1e;
+    --teach-head: #d4d4d8;
+  }
+
+  .teach-illustration .ink {
+    fill: var(--teach-ink, #141d1d);
+  }
+
+  .teach-illustration .accent-green {
+    fill: var(--teach-accent-green, #57b275);
+  }
+
+  .teach-illustration .accent-gold {
+    fill: var(--teach-accent-gold, #fec430);
+  }
+
+  .teach-illustration .accent-blue {
+    fill: var(--teach-accent-blue, #3396bd);
+  }
+
+  .teach-illustration .accent-orange {
+    fill: var(--teach-accent-orange, #f26f1e);
+  }
+
+  .teach-illustration .head {
+    fill: var(--teach-head, #d4d4d8);
+  }
+
+  .dark .teach-illustration {
+    --teach-ink: #d4d4d8;
+    --teach-accent-green: #74e0ad;
+    --teach-accent-gold: #facc15;
+    --teach-accent-blue: #60a5fa;
+    --teach-accent-orange: #fb923c;
+    --teach-head: #d4d4d8;
+  }
+
   .article .prose :where(figcaption):not(:where([class~="not-prose"] *)) {
     font-size: 0.875rem;
     color: #71717a;

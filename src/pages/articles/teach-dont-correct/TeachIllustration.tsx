@@ -14,55 +14,13 @@ export function TeachIllustration({className, style, ...props}: TeachIllustratio
         display: 'block',
         width: '100%',
         height: 'auto',
+        colorScheme: 'light dark',
         ...(style ?? {}),
       }}
       {...props}
     >
-      <style>
-        {`:root {
-  color-scheme: light dark;
-}
-
-.teach-illustration {
-  --teach-ink: #141d1d;
-  --teach-accent-green: #57b275;
-  --teach-accent-gold: #fec430;
-  --teach-accent-blue: #3396bd;
-  --teach-accent-orange: #f26f1e;
-}
-
-@media (prefers-color-scheme: dark) {
-  .teach-illustration {
-    --teach-ink: #d4d4d8;
-    --teach-accent-green: #74e0ad;
-    --teach-accent-gold: #facc15;
-    --teach-accent-blue: #60a5fa;
-    --teach-accent-orange: #fb923c;
-  }
-}
-
-.ink {
-  fill: var(--teach-ink, #141d1d);
-}
-
-.accent-green {
-  fill: var(--teach-accent-green, #57b275);
-}
-
-.accent-gold {
-  fill: var(--teach-accent-gold, #fec430);
-}
-
-.accent-blue {
-  fill: var(--teach-accent-blue, #3396bd);
-}
-
-.accent-orange {
-  fill: var(--teach-accent-orange, #f26f1e);
-}`}
-      </style>
       <path
-        className="ink"
+        className="ink head"
         d="m1620.7 507.737c-30.84 31.244-66.79 51.283-110.34 58.481-47.11 7.304-95.19-4.358-133.71-32.433-41.38-29.903-73.23-83.338-81.2-133.578-10.16-63.744 5.58-128.903 43.7-180.99 31.15-42.638 78.13-70.969 130.38-78.628 43.8-6.689 98.34 4.888 133.21 32.259 53.77 42.211 72.35 82.8 82.04 148.206 38.1 29.405 84.26 74.346 91.34 124.479 6.32 44.718-18.87 85.984-65.91 90.107-34.03 2.983-61.64-10.266-89.51-27.903z"
       />
       <path
@@ -90,7 +48,7 @@ export function TeachIllustration({className, style, ...props}: TeachIllustratio
         d="m292.82 944.426c45.507 10.009 74.861 26.422 107.124 61.014 20.873 22.38 32.691 37.09 57.264 56.06 33.851 26.13 53.239 31.7 92.219 45.14-36.322 20.9-86.35 39.67-127.495 22.86-46.383-18.95-70.67-64.38-92.302-106.44-13.388-25.676-25.669-51.91-36.81-78.634z"
       />
       <path
-        className="ink"
+        className="ink head"
         d="m385.696 138.403c.995-.144 1.996-.251 3-.321 42.26-2.646 91.175 15.052 122.828 43.171 40.386 36.05 67.303 92.237 69.374 146.776 4.168 109.788-64.165 203.779-176.719 210.383-40.02 2.864-92.31-17.976-122.888-43.341-40.384-33.5-64.947-81.275-70.57-133.068-6.16-55.318 9.87-110.821 44.575-154.336 35.058-43.548 75.127-63.382 130.4-69.264z"
       />
       <path
