@@ -156,7 +156,7 @@ export default function NoiseMachine() {
       <div className="mb-8 flex items-start justify-between pl-4 pr-1">
         <div className="mt-2">
           <h1 className="font-sans text-2xl font-bold tracking-wider text-neutral-800">
-            NOISE <span className="text-red-700">STUDIO</span>
+            NOISE <span className="text-red-700">BOX</span>
           </h1>
         </div>
         <div className="relative grid h-16 w-24 grid-cols-6 gap-1 overflow-hidden rounded-lg border-b border-l border-white/50 bg-neutral-400/30 p-1">

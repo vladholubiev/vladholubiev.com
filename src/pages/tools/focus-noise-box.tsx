@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import {NextPage} from 'next';
 
-import {SimpleLayout} from '@/components/SimpleLayout';
+import {ToolLayout} from '@/components/ToolLayout';
 import NoiseMachine from '@/components/tools/NoiseMachine';
 
 const blueprintStyle = {
@@ -16,36 +16,36 @@ const blueprintStyle = {
   backgroundPosition: '0 0, 0 0, 0 0, 0 0',
 } as const;
 
-const FocusNoiseStudioPage: NextPage = () => {
+const FocusNoiseBoxPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Focus Noise Studio - Tools - Vlad Holubiev</title>
+        <title>Focus Noise Box - Tools - Vlad Holubiev</title>
         <meta
           name="description"
           content="Analog-inspired broadband noise generator (white, pink, brown) tuned to pair with ANC headphones."
         />
       </Head>
-      <SimpleLayout
-        title="Focus Noise Studio"
+      <ToolLayout
+        title="Focus Noise Box"
         intro="ANC is great at killing low rumble; this fills in what is left. Play white, pink, or brown noise under your noise-cancelling headphones so speech, clinks, and chair scrapes sink into a steady background while you read or work."
       >
-        <div className="relative isolate -mx-4 overflow-hidden rounded-3xl px-4 py-12 sm:-mx-8 sm:px-10 lg:-mx-12">
+        <div className="relative isolate -mx-4 overflow-hidden rounded-3xl px-4 py-8 sm:-mx-8 sm:px-10 sm:py-12 lg:-mx-12">
           <div
             className="pointer-events-none absolute inset-0 hidden md:block"
             style={blueprintStyle}
           >
             <div className="absolute inset-0 border border-white/10" />
           </div>
-          <div className="relative flex min-h-[70vh] items-center justify-center">
-            <div className="relative z-10 scale-90 transition-transform md:scale-100">
+          <div className="relative flex items-start justify-center md:min-h-[70vh] md:items-center">
+            <div className="relative z-10 scale-95 transition-transform md:scale-100">
               <NoiseMachine />
             </div>
           </div>
         </div>
-      </SimpleLayout>
+      </ToolLayout>
     </>
   );
 };
 
-export default FocusNoiseStudioPage;
+export default FocusNoiseBoxPage;

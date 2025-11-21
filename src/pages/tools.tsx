@@ -6,8 +6,8 @@ import {SimpleLayout} from '@/components/SimpleLayout';
 
 const tools = [
   {
-    name: 'Focus Noise Studio',
-    href: '/tools/focus-noise-studio',
+    name: 'Focus Noise Box',
+    href: '/tools/focus-noise-box',
     description:
       'Add a soft wall of noise under your ANC so nearby voices and clatter blend away instead of breaking your focus.',
   },
