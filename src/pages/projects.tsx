@@ -66,17 +66,19 @@ const Projects: NextPage = () => {
           className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
         >
           {projects.map(project => (
-            <Card as="li" key={project.name}>
-              <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                <Card.Link href={project.link.href} openInNewTab={true}>
-                  {project.name}
-                </Card.Link>
-              </h2>
-              <Card.Description>{project.description}</Card.Description>
-              <p className="group-hover:text-ua-blue-500 dark:group-hover:text-ua-blue-300 relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition dark:text-zinc-200">
-                <LinkIcon className="h-6 w-6 flex-none" />
-                <span className="ml-2">{project.link.label}</span>
-              </p>
+            <Card as="li" key={project.name} className="h-full">
+              <div className="flex h-full flex-col">
+                <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                  <Card.Link href={project.link.href} openInNewTab={true}>
+                    {project.name}
+                  </Card.Link>
+                </h2>
+                <Card.Description>{project.description}</Card.Description>
+                <p className="group-hover:text-ua-blue-500 dark:group-hover:text-ua-blue-300 relative z-10 mt-auto flex items-center gap-2 pt-6 text-sm font-medium text-zinc-400 transition dark:text-zinc-200">
+                  <LinkIcon className="h-6 w-6 flex-none" />
+                  <span>{project.link.label}</span>
+                </p>
+              </div>
             </Card>
           ))}
         </ul>
