@@ -1,5 +1,5 @@
 import {ArticleLayout} from '@/components/ArticleLayout';
-import {TeachIllustration} from './TeachIllustration';
+import {TeachIllustration} from '@/components/illustrators/TeachIllustration';
 
 export const meta = {
   author: 'Vlad Holubiev',
