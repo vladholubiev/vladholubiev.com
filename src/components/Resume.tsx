@@ -114,7 +114,7 @@ export function Resume() {
         rel="noreferrer noopener"
         className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-zinc-900/10 bg-white/80 px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:border-zinc-900/20 hover:text-zinc-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ua-blue-500 dark:border-white/10 dark:bg-zinc-800/60 dark:text-zinc-200 dark:hover:border-white/20 dark:hover:text-white"
       >
-        <LinkedInIcon className="h-4 w-4 fill-current transition group-hover:fill-zinc-700 dark:fill-zinc-400 dark:group-hover:fill-zinc-200" />
+        <LinkedInIcon className="h-4 w-4 text-current transition group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-200" />
         Read more on LinkedIn
       </Link>
     </div>

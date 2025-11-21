@@ -2,7 +2,8 @@
 
 import {useState} from 'react';
 import type {ReactNode} from 'react';
-import {Hash, Check} from 'lucide-react';
+import {HugeiconsIcon} from '@hugeicons/react';
+import {Link01Icon, CheckmarkCircle02Icon} from '@hugeicons/core-free-icons';
 import type {JSX} from 'react/jsx-runtime';
 
 interface HeadingProps {
@@ -85,9 +86,13 @@ export function Heading({level, children, id, className = ''}: HeadingProps) {
         title={copied ? 'Copied!' : 'Copy link'}
       >
         {copied ? (
-          <Check className={`${iconSizes[level]} text-green-600`} />
+          <HugeiconsIcon
+            icon={CheckmarkCircle02Icon}
+            className={`${iconSizes[level]} text-green-600`}
+            strokeWidth={1.5}
+          />
         ) : (
-          <Hash className={iconSizes[level]} />
+          <HugeiconsIcon icon={Link01Icon} className={iconSizes[level]} strokeWidth={1.5} />
         )}
       </button>
       {children}

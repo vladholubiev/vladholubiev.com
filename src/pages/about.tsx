@@ -32,7 +32,7 @@ function SocialLink({className, href, children, icon: Icon}: SocialLinkProps) {
         href={href}
         className="group hover:text-ua-blue-500 dark:hover:text-ua-blue-500 flex text-sm font-medium text-zinc-800 transition dark:text-zinc-200"
       >
-        <Icon className="group-hover:fill-ua-blue-500 h-6 w-6 flex-none fill-zinc-500 transition" />
+        <Icon className="group-hover:text-ua-blue-500 h-6 w-6 flex-none text-zinc-500 transition" />
         <span className="ml-4">{children}</span>
       </Link>
     </li>
