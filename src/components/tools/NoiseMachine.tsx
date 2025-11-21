@@ -83,7 +83,7 @@ function NoiseButton({
 export default function NoiseMachine() {
   const {activeNoise, analyser, setVolume, toggleNoise, volume} = useNoise();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -142,7 +142,7 @@ export default function NoiseMachine() {
     frameRef.current = requestAnimationFrame(draw);
 
     return () => {
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
     };
   }, [activeNoise, analyser]);
 
