@@ -8,7 +8,12 @@ import {
   ComputerTerminal01Icon,
   HeadphonesIcon,
   KeyboardIcon,
+  Link02Icon,
+  AiIdeaIcon,
   LaptopIcon,
+  SourceCodeIcon,
+  AppStoreIcon,
+  VideoCameraAiIcon,
   Mouse02Icon,
   StopIcon,
   VisualStudioCodeIcon,
@@ -23,12 +28,18 @@ type ToolItem = {
   icon?: Parameters<typeof HugeiconsIcon>[0]['icon'];
 };
 
+type ToolItemCompact = {
+  title: string;
+  href?: string;
+  icon?: Parameters<typeof HugeiconsIcon>[0]['icon'];
+};
+
 type UsesSection = {
   id: string;
   title: string;
   description: string;
   index: number;
-  items: ToolItem[];
+  items: Array<ToolItem | ToolItemCompact>;
 };
 
 const sections: UsesSection[] = [
@@ -65,6 +76,20 @@ const sections: UsesSection[] = [
     ],
   },
   {
+    id: 'audio',
+    index: 2,
+    title: 'Audio',
+    description: 'Headphones, mics, and setups I’ll document soon.',
+    items: [
+      {
+        title: 'AirPods Pro 3 (2025)',
+        icon: HeadphonesIcon,
+        description:
+          'Daily earbuds for calls and focus. Strong ANC and seamless Apple handoff across devices.',
+      },
+    ],
+  },
+  {
     id: 'development',
     index: 3,
     title: 'Development',
@@ -92,6 +117,13 @@ const sections: UsesSection[] = [
         description:
           'Screenshot and recording tool with polished annotations and reliable scrolling capture.',
       },
+      {
+        title: 'DaVinci Resolve',
+        href: 'https://www.blackmagicdesign.com/products/davinciresolve',
+        icon: VideoCameraAiIcon,
+        description:
+          'Annotating screencasts without a steep learning curve; surprisingly great for this.',
+      },
     ],
   },
   {
@@ -102,16 +134,19 @@ const sections: UsesSection[] = [
     items: [
       {
         title: 'AI coding tools (Claude Code, Codex, Copilot Agent)',
+        icon: AiIdeaIcon,
         description:
           'Keep an AI pair for coding. Rotate tools as they evolve for drafts and refactors.',
       },
       {
         title: 'DevUtils',
+        icon: SourceCodeIcon,
         description: 'Offline utility belt. Conversions, decoding, and diffing without a browser.',
       },
       {
         title: 'Setapp',
         href: 'https://setapp.com/',
+        icon: AppStoreIcon,
         description:
           'Utility bundle. Covers Bartender, iStat Menus, Paletro, CleanMyMac, Sip, more.',
       },
@@ -124,63 +159,48 @@ const sections: UsesSection[] = [
     description: 'Newsletters and series I keep up with.',
     items: [
       {
+        title: 'Hacker News',
+        href: 'https://news.ycombinator.com/',
+      },
+      {
         title: 'ByteByteGo',
         href: 'https://blog.bytebytego.com/',
-        description: '',
       },
       {
         title: 'Last Week in AWS',
         href: 'https://www.lastweekinaws.com/newsletter/',
-        description: '',
       },
       {
         title: 'Node Weekly',
         href: 'https://nodeweekly.com/',
-        description: '',
       },
       {
         title: 'Postgres Weekly',
         href: 'https://postgresweekly.com/',
-        description: '',
       },
       {
         title: 'The Pragmatic Engineer',
         href: 'https://newsletter.pragmaticengineer.com/',
-        description: '',
       },
       {
         title: 'Cheeky Pint',
         href: 'https://www.youtube.com/@stripe',
-        description: '',
       },
       {
         title: 'Tech Radar',
         href: 'https://www.thoughtworks.com/radar',
-        description: '',
       },
       {
         title: 'weekly.tf',
         href: 'https://www.weekly.tf/',
-        description: '',
       },
       {
         title: 'TypeScript Weekly',
         href: 'https://typescript-weekly.com/',
-        description: '',
       },
-    ],
-  },
-  {
-    id: 'audio',
-    index: 2,
-    title: 'Audio',
-    description: 'Headphones, mics, and setups I’ll document soon.',
-    items: [
       {
-        title: 'AirPods Pro 3 (2025)',
-        icon: HeadphonesIcon,
-        description:
-          'Daily earbuds for calls and focus. Strong ANC and seamless Apple handoff across devices.',
+        title: 'Simon Willison’s Weblog',
+        href: 'https://simonwillison.net/',
       },
     ],
   },
@@ -221,10 +241,11 @@ function UsesSectionBlock({section, children}: {section: UsesSection; children: 
 
 function Tool({title, href, icon, meta, description}: ToolItem) {
   const iconChipClass =
-    'self-start translate-y-[1px] flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-50 text-zinc-600 ring-1 ring-zinc-200/60 transition-colors duration-150 group-hover:bg-zinc-100 group-hover:text-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800/60 dark:group-hover:bg-zinc-800 dark:group-hover:text-zinc-100';
+    'relative self-start translate-y-[1px] flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-50 text-zinc-600 ring-1 ring-zinc-200/60 transition-colors duration-150 group-hover:bg-zinc-100 group-hover:text-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800/60 dark:group-hover:bg-zinc-800 dark:group-hover:text-zinc-100';
 
   const Wrapper: ElementType = href ? 'a' : 'div';
-  const hasDescription = Boolean(description);
+  const hasLink = Boolean(href);
+  const chipIcon = icon ?? (hasLink ? Link02Icon : undefined);
 
   return (
     <Card as="li" className="group w-full">
@@ -232,15 +253,11 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
         href={href}
         target={href ? '_blank' : undefined}
         rel={href ? 'noreferrer noopener' : undefined}
-        className={
-          hasDescription
-            ? 'relative -mx-2 flex w-full items-start gap-4 rounded-2xl px-2 py-1.5 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-5 sm:py-2'
-            : 'relative -mx-2 flex w-full items-center gap-3 rounded-2xl px-2 py-1 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-4 sm:py-1.5'
-        }
+        className="relative -mx-2 flex w-full items-start gap-4 rounded-2xl px-2 py-1.5 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-5 sm:py-2"
       >
-        {icon ? (
+        {chipIcon ? (
           <span className={iconChipClass}>
-            <HugeiconsIcon icon={icon} className="h-5 w-5" strokeWidth={1.65} />
+            <HugeiconsIcon icon={chipIcon} className="h-5 w-5" strokeWidth={1.65} />
           </span>
         ) : (
           <span className="mt-1 h-9 w-9 shrink-0" aria-hidden />
@@ -248,19 +265,13 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
         <div className="flex flex-col gap-1.5">
           <Card.Title
             as="h3"
-            className={
-              hasDescription
-                ? 'text-[1.05rem] font-semibold text-zinc-900 transition-colors duration-150 group-hover:text-zinc-800 dark:text-zinc-50 dark:group-hover:text-zinc-100'
-                : 'text-base font-semibold tracking-tight text-zinc-900 transition-colors duration-150 group-hover:text-zinc-800 dark:text-zinc-50 dark:group-hover:text-zinc-100 sm:text-[1.02rem]'
-            }
+            className="text-[1.05rem] font-semibold text-zinc-900 transition-colors duration-150 group-hover:text-zinc-800 dark:text-zinc-50 dark:group-hover:text-zinc-100"
           >
             {title}
           </Card.Title>
-          {hasDescription ? (
-            <Card.Description className="mt-0 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              {description}
-            </Card.Description>
-          ) : null}
+          <Card.Description className="mt-0 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            {description}
+          </Card.Description>
           {meta ? (
             <Card.Description className="mt-0 text-xs uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-500">
               {meta}
@@ -273,15 +284,59 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
   );
 }
 
+function ToolCompact({title, href, icon}: ToolItemCompact) {
+  const iconChipClass =
+    'relative self-start translate-y-[0.5px] flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-zinc-50 text-zinc-600 ring-1 ring-zinc-200/60 transition-colors duration-150 group-hover:bg-zinc-100 group-hover:text-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800/60 dark:group-hover:bg-zinc-800 dark:group-hover:text-zinc-100';
+
+  const Wrapper: ElementType = href ? 'a' : 'div';
+  const hasLink = Boolean(href);
+  const chipIcon = icon ?? (hasLink ? Link02Icon : undefined);
+
+  return (
+    <Card as="li" className="group w-full">
+      <Wrapper
+        href={href}
+        target={href ? '_blank' : undefined}
+        rel={href ? 'noreferrer noopener' : undefined}
+        className="relative -mx-2 flex w-full items-center gap-3 rounded-2xl px-2 py-1.5 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-3.5 sm:px-3 sm:py-1.5"
+      >
+        {chipIcon ? (
+          <span className={iconChipClass}>
+            <HugeiconsIcon icon={chipIcon} className="h-[18px] w-[18px]" strokeWidth={1.65} />
+          </span>
+        ) : (
+          <span className="h-8 w-8 shrink-0" aria-hidden />
+        )}
+        <div className="flex flex-col">
+          <Card.Title
+            as="h3"
+            className="text-base font-semibold tracking-tight text-zinc-900 transition-colors duration-150 group-hover:text-zinc-800 dark:text-zinc-50 dark:group-hover:text-zinc-100 sm:text-[1.02rem]"
+          >
+            {title}
+          </Card.Title>
+        </div>
+        <span className="absolute inset-0 rounded-2xl" aria-hidden />
+      </Wrapper>
+    </Card>
+  );
+}
+
 function ToolsSection({section}: {section: UsesSection}) {
-  const isDense = section.items.every(item => !item.description);
+  const allCompact = section.items.every(item => 'description' in item === false);
 
   return (
     <UsesSectionBlock section={section}>
-      <ul role="list" className={isDense ? 'space-y-4 sm:space-y-5' : 'space-y-7 sm:space-y-8'}>
-        {section.items.map(item => (
-          <Tool key={item.title} {...item} />
-        ))}
+      <ul
+        role="list"
+        className={allCompact ? 'space-y-3.5 sm:space-y-4' : 'space-y-7 sm:space-y-8'}
+      >
+        {section.items.map(item =>
+          'description' in item ? (
+            <Tool key={item.title} {...(item as ToolItem)} />
+          ) : (
+            <ToolCompact key={item.title} {...(item as ToolItemCompact)} />
+          )
+        )}
       </ul>
     </UsesSectionBlock>
   );
