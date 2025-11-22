@@ -30,6 +30,7 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-shiki": "0.7.2",
+    "shiki": "3.15.0",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
@@ -53,6 +54,10 @@
   "pnpm": {
     "overrides": {
       "@types/react": "19.2.6"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@vercel/speed-insights",
+      "sharp"
+    ]
   }
 }
