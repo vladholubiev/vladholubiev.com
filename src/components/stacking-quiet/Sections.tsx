@@ -1,17 +1,14 @@
 'use client';
 
 import {useMemo, useState} from 'react';
-import * as Slider from '@radix-ui/react-slider';
 
 import {DEFAULT_STATE, type SimulationState} from '@/lib/audioSimulation';
 import {SpectrumVisualizer} from '@/components/stacking-quiet/SpectrumVisualizer';
 import {WaveVisualizer} from '@/components/stacking-quiet/WaveVisualizer';
+import {Slider as UiSlider} from '@/components/ui/slider';
 import {Switch} from '@/components/ui/switch';
 
 const cardClass = 'rounded-2xl border border-zinc-800/40 bg-zinc-900/80 p-0 sm:p-0 shadow-lg';
-
-const thumbClass =
-  'block h-5 w-5 rounded-full border border-zinc-300 bg-white shadow-[0_6px_18px_rgba(0,0,0,0.4)] focus:outline-none focus:ring-2 focus:ring-ua-blue-400 focus:ring-offset-2 focus:ring-offset-zinc-900';
 
 type SliderControlProps = {
   label: string;
@@ -34,24 +31,19 @@ function SliderControl({
 }: SliderControlProps) {
   return (
     <div className="space-y-2">
-      <div className="flex items-center justify-between text-sm font-semibold text-zinc-100">
+      <div className="flex items-center justify-between text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <span>{label}</span>
-        <span className="text-xs font-mono text-zinc-400">{value}%</span>
+        <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">{value}%</span>
       </div>
-      <Slider.Root
-        className="relative flex h-6 w-full items-center"
+      <UiSlider
         value={[value]}
         min={min}
         max={max}
         step={step}
         onValueChange={([val]) => onChange(val)}
         aria-label={label}
-      >
-        <Slider.Track className="relative h-2 w-full rounded-full bg-zinc-800">
-          <Slider.Range className="absolute h-full rounded-full bg-gradient-to-r from-ua-blue-400 via-ua-blue-500 to-ua-yellow-500" />
-        </Slider.Track>
-        <Slider.Thumb className={thumbClass} />
-      </Slider.Root>
+        className="pt-1"
+      />
       {helper ? <p className="text-[12px] text-zinc-400">{helper}</p> : null}
     </div>
   );
@@ -165,9 +157,7 @@ export function AncBlock() {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-zinc-800/50 bg-zinc-900/80 px-4 py-3 shadow-lg">
-        <SliderControl label="ANC intensity" value={ancComparison} onChange={setAncComparison} />
-      </div>
+      <SliderControl label="ANC intensity" value={ancComparison} onChange={setAncComparison} />
       <WaveVisualizer state={ancState} />
       <SpectrumVisualizer state={ancState} />
     </div>
@@ -188,13 +178,11 @@ export function PinkNoiseBlock() {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-zinc-200/60 bg-white/80 px-4 py-3 shadow-sm dark:border-zinc-800/60 dark:bg-zinc-900/80">
-        <SliderControl
-          label="Pink noise volume"
-          value={pinkNoiseVolume}
-          onChange={setPinkNoiseVolume}
-        />
-      </div>
+      <SliderControl
+        label="Pink noise volume"
+        value={pinkNoiseVolume}
+        onChange={setPinkNoiseVolume}
+      />
       <WaveVisualizer state={pinkNoiseState} />
       <SpectrumVisualizer state={pinkNoiseState} />
     </div>
@@ -217,14 +205,11 @@ export function ComboBlock() {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-zinc-200/60 bg-white/80 px-4 py-3 shadow-sm dark:border-zinc-800/60 dark:bg-zinc-900/80">
-        <SliderControl
-          label="Pink noise volume (ANC on)"
-          value={pinkNoiseWithAnc}
-          onChange={setPinkNoiseWithAnc}
-          helper="Try 30–40%: the blue floor should meet the yellow peak."
-        />
-      </div>
+      <SliderControl
+        label="Pink noise volume (ANC on)"
+        value={pinkNoiseWithAnc}
+        onChange={setPinkNoiseWithAnc}
+      />
       <WaveVisualizer state={comboState} />
       <SpectrumVisualizer state={comboState} />
     </div>
