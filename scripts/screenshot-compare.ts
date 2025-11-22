@@ -4,8 +4,6 @@ import {chromium, Page, Browser} from 'playwright';
 import {PNG} from 'pngjs';
 import pixelmatch from 'pixelmatch';
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 // Enums for better type safety
 enum PageType {
   PAGE = 'page',
@@ -204,7 +202,7 @@ function resizeImageToCanvas(sourceImage: PNG, targetWidth: number, targetHeight
   return resizedImage;
 }
 
-function createComparisonGrid(localhost: PNG, production: PNG, diff: PNG, pageName: string): PNG {
+function createComparisonGrid(localhost: PNG, production: PNG, diff: PNG): PNG {
   const {columnWidth, padding, headerHeight} = CONFIG.output;
   const width = Math.max(localhost.width, production.width);
   const height = Math.max(localhost.height, production.height);
@@ -303,7 +301,7 @@ function saveComparisonResult(
   diffResult: ImageDiffResult,
   name: string
 ): string {
-  const grid: PNG = createComparisonGrid(localhost, production, diffResult.diffImage, name);
+  const grid: PNG = createComparisonGrid(localhost, production, diffResult.diffImage);
 
   const filename = `${name}_comparison.png`;
   const filepath = path.join(CONFIG.output.directory, filename);
