@@ -1,3 +1,5 @@
+'use client';
+
 import {useEffect, useRef} from 'react';
 import * as Slider from '@radix-ui/react-slider';
 import clsx from 'clsx';

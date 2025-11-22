@@ -1,3 +1,5 @@
+'use client';
+
 import logoShelf from '@/images/logos/shelf.svg';
 import logoApiko from '@/images/logos/apiko.png';
 import logoUpwork from '@/images/logos/upwork.svg';

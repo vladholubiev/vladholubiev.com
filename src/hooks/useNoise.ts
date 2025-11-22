@@ -10,10 +10,10 @@ export function useNoise() {
   const [activeNoise, setActiveNoise] = useState<NoiseType | null>(null);
   const [volume, setVolume] = useState(DEFAULT_VOLUME);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
 
   const audioContextRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
-  const analyserRef = useRef<AnalyserNode | null>(null);
   const sourceNodeRef = useRef<AudioBufferSourceNode | null>(null);
   const buffersRef = useRef<NoiseBuffers>({white: null, pink: null, brown: null});
 
@@ -39,7 +39,8 @@ export function useNoise() {
 
     audioContextRef.current = ctx;
     gainNodeRef.current = gain;
-    analyserRef.current = analyser;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAnalyser(analyser);
     buffersRef.current = {
       white: createWhiteNoise(ctx),
       pink: createPinkNoise(ctx),
@@ -56,6 +57,7 @@ export function useNoise() {
       gain.disconnect();
       analyser.disconnect();
       ctx.close();
+      setAnalyser(null);
     };
   }, []);
 
@@ -108,7 +110,7 @@ export function useNoise() {
 
   return {
     activeNoise,
-    analyser: analyserRef.current,
+    analyser,
     setVolume,
     toggleNoise,
     volume,

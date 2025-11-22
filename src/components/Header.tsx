@@ -1,8 +1,10 @@
+'use client';
+
 import {Fragment, useEffect, useRef} from 'react';
 import type {ComponentPropsWithoutRef, CSSProperties, ReactNode} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 import {Popover, Transition} from '@headlessui/react';
 import clsx from 'clsx';
 
@@ -91,10 +93,11 @@ function MobileNavigation(props: MobileNavigationProps) {
 interface NavItemProps {
   href: string;
   children: ReactNode;
+  currentPathname: string;
 }
 
-function NavItem({href, children}: NavItemProps) {
-  const isActive = useRouter().pathname === href;
+function NavItem({href, children, currentPathname}: NavItemProps) {
+  const isActive = currentPathname === href;
 
   return (
     <li>
@@ -118,18 +121,31 @@ function NavItem({href, children}: NavItemProps) {
 
 interface DesktopNavigationProps {
   className?: string;
+  currentPathname: string;
 }
 
-function DesktopNavigation(props: DesktopNavigationProps) {
+function DesktopNavigation({className, currentPathname}: DesktopNavigationProps) {
   return (
-    <nav {...props}>
+    <nav className={className}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/articles">Articles</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/speaking">Speaking</NavItem>
-        <NavItem href="/tools">Tools</NavItem>
-        <NavItem href="/uses">Uses</NavItem>
+        <NavItem href="/about" currentPathname={currentPathname}>
+          About
+        </NavItem>
+        <NavItem href="/articles" currentPathname={currentPathname}>
+          Articles
+        </NavItem>
+        <NavItem href="/projects" currentPathname={currentPathname}>
+          Projects
+        </NavItem>
+        <NavItem href="/speaking" currentPathname={currentPathname}>
+          Speaking
+        </NavItem>
+        <NavItem href="/tools" currentPathname={currentPathname}>
+          Tools
+        </NavItem>
+        <NavItem href="/uses" currentPathname={currentPathname}>
+          Uses
+        </NavItem>
       </ul>
     </nav>
   );
@@ -209,7 +225,8 @@ function Avatar({large = false, className, ...props}: AvatarProps) {
 }
 
 export function Header() {
-  const isHomePage = useRouter().pathname === '/';
+  const pathname = usePathname() ?? '/';
+  const isHomePage = pathname === '/';
 
   const headerRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
@@ -363,7 +380,10 @@ export function Header() {
               </div>
               <div className="flex flex-1 justify-end md:justify-center">
                 <MobileNavigation className="pointer-events-auto md:hidden" />
-                <DesktopNavigation className="pointer-events-auto hidden md:block" />
+                <DesktopNavigation
+                  className="pointer-events-auto hidden md:block"
+                  currentPathname={pathname}
+                />
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">

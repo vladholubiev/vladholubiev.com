@@ -4,21 +4,21 @@ import type {ComponentType} from 'react';
 import {Article, ArticleMeta} from '@/types/article';
 
 async function importArticle(articleFilename: string): Promise<Article> {
-  const {meta, default: component} = (await import(`../pages/articles/${articleFilename}`)) as {
+  const {meta, default: component} = (await import(`../app/articles/${articleFilename}`)) as {
     meta: ArticleMeta;
     default: ComponentType;
   };
 
   return {
-    slug: articleFilename.replace(/(\/index)?\.tsx$/, ''),
+    slug: articleFilename.replace(/\/page\.tsx$/, ''),
     ...meta,
     component,
   };
 }
 
 export async function getAllArticles(): Promise<Article[]> {
-  const articleFilenames = await glob(['*/index.tsx'], {
-    cwd: path.join(process.cwd(), 'src/pages/articles'),
+  const articleFilenames = await glob(['*/page.tsx'], {
+    cwd: path.join(process.cwd(), 'src/app/articles'),
   });
 
   const articles = await Promise.all(articleFilenames.map(importArticle));
