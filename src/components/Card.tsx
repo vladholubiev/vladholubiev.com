@@ -45,6 +45,7 @@ interface CardTitleProps {
   href?: string;
   children: ReactNode;
   openInNewTab?: boolean;
+  className?: string;
 }
 
 Card.Title = function CardTitle({
@@ -52,9 +53,15 @@ Card.Title = function CardTitle({
   href,
   children,
   openInNewTab = false,
+  className,
 }: CardTitleProps) {
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+    <Component
+      className={clsx(
+        'text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100',
+        className
+      )}
+    >
       {href ? (
         <Card.Link href={href} openInNewTab={openInNewTab}>
           {children}
@@ -68,10 +75,15 @@ Card.Title = function CardTitle({
 
 interface CardDescriptionProps {
   children: ReactNode;
+  className?: string;
 }
 
-Card.Description = function CardDescription({children}: CardDescriptionProps) {
-  return <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">{children}</p>;
+Card.Description = function CardDescription({children, className}: CardDescriptionProps) {
+  return (
+    <p className={clsx('relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400', className)}>
+      {children}
+    </p>
+  );
 };
 
 interface CardCtaProps {
