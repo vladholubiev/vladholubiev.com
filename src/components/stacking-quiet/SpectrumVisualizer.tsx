@@ -11,7 +11,7 @@ interface SpectrumVisualizerProps {
 export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | null>(null);
   const [dimensions, setDimensions] = useState({width: 800, height: 520});
   const smoothPeakRef = useRef<number | null>(null);
 
