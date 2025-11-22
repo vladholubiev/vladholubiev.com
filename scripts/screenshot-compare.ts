@@ -4,7 +4,7 @@ import {chromium, Page, Browser} from 'playwright';
 import {PNG} from 'pngjs';
 import pixelmatch from 'pixelmatch';
 
-/* eslint-disable @typescript-eslint/no-unused-vars, no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 // Enums for better type safety
 enum PageType {

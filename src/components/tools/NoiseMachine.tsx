@@ -11,7 +11,7 @@ const sliderThumbClassName =
 
 type VolumeSliderProps = {
   level: number;
-  // eslint-disable-next-line no-unused-vars
+
   onChange: (value: number) => void;
 };
 
