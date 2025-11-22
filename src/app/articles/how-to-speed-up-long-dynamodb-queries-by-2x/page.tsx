@@ -215,12 +215,7 @@ ExpressionAttributeValues: {
         :
       </p>
 
-      <CodeBlock
-        language="text"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="text" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`Regular query: ~21 MB of items: 9.023s
 Optimized query: ~21 MB of items: 4.988s`}
       </CodeBlock>
@@ -235,12 +230,7 @@ Optimized query: ~21 MB of items: 4.988s`}
         for making additional requests.
       </p>
 
-      <CodeBlock
-        language="text"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="text" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`Regular query: <1 MB of items: 650ms
 Optimized query: <1 MB of items: 704ms`}
       </CodeBlock>

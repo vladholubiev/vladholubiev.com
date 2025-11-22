@@ -337,12 +337,7 @@ export default function Article() {
 
       <p>As the code runs, here is a glimpse of the debug output:</p>
 
-      <CodeBlock
-        language="text"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="text" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`ddb-parallel-scan (96%) [224/250] [time:196ms] [fetched:0] [total (fetched/scanned/table-size):908/34853064/36298819] +3ms
 ddb-parallel-scan (96%) [145/250] [time:216ms] [fetched:0] [total (fetched/scanned/table-size):920/34854754/36298819] +8ms
 ddb-parallel-scan (96%) [210/250] [time:232ms] [fetched:0] [total (fetched/scanned/table-size):920/34856457/36298819] +5ms

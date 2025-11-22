@@ -114,12 +114,7 @@ export default function Article() {
         dependency, regardless of what other packages require.
       </p>
 
-      <CodeBlock
-        language="json"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="json" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`"resolutions": {
   "aws-sdk": "2.712.0"
 }`}
@@ -129,12 +124,7 @@ export default function Article() {
 
       <p>This step might depend on the way you create a zip artifact, but it looks for me as:</p>
 
-      <CodeBlock
-        language="bash"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="bash" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`zip --quiet -r --exclude="node_modules/aws-sdk/*" \\
   artifact.zip \\
   lib node_modules`}
@@ -154,12 +144,7 @@ export default function Article() {
 
       <p>Here is a command to remove them:</p>
 
-      <CodeBlock
-        language="bash"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="bash" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`npx del-cli \\
   "node_modules/**/@types/**" \\
   "node_modules/**/*.d.ts" \\
@@ -235,12 +220,7 @@ export default function Article() {
         Here how it looks like in my <code>yarn.lock</code> file.
       </p>
 
-      <CodeBlock
-        language="text"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="text" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`lodash@4.17.15:
   version "4.17.15"
   ...
@@ -259,12 +239,7 @@ lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19:
         <code>package.json</code> file to look like:
       </p>
 
-      <CodeBlock
-        language="json"
-        theme="github-dark"
-        showLanguage={false}
-        addDefaultStyles={true}
-      >
+      <CodeBlock language="json" theme="github-dark" showLanguage={false} addDefaultStyles={true}>
         {`"resolutions": {
   "aws-sdk": "2.712.0",
   "lodash": "4.17.20"
