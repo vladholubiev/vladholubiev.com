@@ -26,6 +26,7 @@ type ToolItem = {
   description: string;
   href?: string;
   icon?: Parameters<typeof HugeiconsIcon>[0]['icon'];
+  meta?: string;
 };
 
 type ToolItemCompact = {
