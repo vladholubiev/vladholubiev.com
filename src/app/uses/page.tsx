@@ -13,8 +13,7 @@ export default function Uses() {
     <SimpleLayout
       title={
         <>
-          <span className="block">Software I use,</span>
-          <span className="block">newsletters I&nbsp;read.</span>
+          <span className="block">Favorite things I use</span>
         </>
       }
       intro="I get asked a lot about the things I use to build software and stay productive. Here's a big list of all of my favorite stuff."
