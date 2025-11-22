@@ -12,7 +12,7 @@ export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number>();
-  const [dimensions, setDimensions] = useState({width: 800, height: 320});
+  const [dimensions, setDimensions] = useState({width: 800, height: 520});
   const smoothPeakRef = useRef<number | null>(null);
 
   // Keep canvas sharp on resize
@@ -20,7 +20,7 @@ export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
     const handleResize = () => {
       if (!containerRef.current) return;
       const {width} = containerRef.current.getBoundingClientRect();
-      setDimensions({width: width * 2, height: 640});
+      setDimensions({width: width * 2, height: 520});
     };
 
     handleResize();
@@ -49,12 +49,13 @@ export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
       let x = 0;
 
       let maxPeakY = 0;
+      const lowDistraction = state.keyboardVolume * (1 - state.ancGain * 0.9);
       const voiceDistraction = state.chatterVolume * (1 - state.ancGain * 0.2);
       const sirenDistraction = state.sirenVolume * (1 - state.ancGain * 0.05);
-      const maxDistraction = Math.max(voiceDistraction, sirenDistraction);
+      const maxDistraction = Math.max(lowDistraction, voiceDistraction, sirenDistraction);
       const maskingLevel = state.pinkNoiseVolume * 0.5;
       const exposedSignal = Math.max(0, maxDistraction - maskingLevel);
-      const baseSignal = Math.max(state.chatterVolume, state.sirenVolume);
+      const baseSignal = Math.max(state.keyboardVolume, state.chatterVolume, state.sirenVolume);
       const targetPercent =
         baseSignal > 0.05 ? Math.min(100, Math.round((exposedSignal / baseSignal) * 100)) : 0;
       smoothPercent = smoothPercent + (targetPercent - smoothPercent) * 0.1;
@@ -195,7 +196,7 @@ export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
         ref={canvasRef}
         width={dimensions.width}
         height={dimensions.height}
-        className="block h-[320px] w-full"
+        className="block h-64 w-full"
       />
     </div>
   );

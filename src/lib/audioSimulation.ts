@@ -153,6 +153,20 @@ export function generateSpectrumData(state: SimulationState) {
     // Jitter
     amp += Math.random() * 0.02;
 
+    // Visibility floor: ensure single-source toggles still show energy
+    if (state.keyboardVolume > 0 && i < 12) {
+      const floor = 0.08 * state.keyboardVolume;
+      amp = Math.max(amp, floor);
+    }
+    if (state.chatterVolume > 0 && i >= 12 && i < 28) {
+      const floor = 0.06 * state.chatterVolume;
+      amp = Math.max(amp, floor);
+    }
+    if (state.sirenVolume > 0 && i >= 25) {
+      const floor = 0.05 * state.sirenVolume;
+      amp = Math.max(amp, floor);
+    }
+
     data.push({f: i, a: amp});
   }
   return data;
