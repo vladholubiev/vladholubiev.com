@@ -197,7 +197,7 @@ function UsesSectionBlock({section, children}: {section: UsesSection; children: 
       id={id}
       className="relative isolate max-w-5xl border-t border-zinc-100 pt-10 first:mt-0 first:border-t-0 first:pt-0 dark:border-zinc-800 md:border-0 md:pt-0"
     >
-      <div className="pointer-events-none absolute inset-y-[-18px] -left-6 sm:-left-8 md:-left-10 w-[380px] sm:w-[420px] md:w-[460px] rounded-[26px] [background-image:radial-gradient(circle,_rgba(63,63,70,0.14)_1px,_transparent_1px)] [background-size:18px_18px] [mask-image:linear-gradient(to_right,transparent_0%,black_30%,black_70%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_30%,black_70%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)] [-webkit-mask-composite:source-in] dark:[background-image:radial-gradient(circle,_rgba(212,212,216,0.12)_1px,_transparent_1px)]" />
+      <div className="pointer-events-none absolute inset-y-[-18px] -left-6 sm:-left-8 md:-left-10 hidden w-[380px] sm:w-[420px] md:w-[460px] rounded-[26px] [background-image:radial-gradient(circle,_rgba(63,63,70,0.14)_1px,_transparent_1px)] [background-size:18px_18px] [mask-image:linear-gradient(to_right,transparent_0%,black_30%,black_70%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_30%,black_70%,transparent_100%),linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)] [-webkit-mask-composite:source-in] md:block dark:[background-image:radial-gradient(circle,_rgba(212,212,216,0.12)_1px,_transparent_1px)]" />
 
       <div className="relative grid grid-cols-1 items-start gap-y-6 gap-x-8 md:grid-cols-[minmax(200px,260px)_minmax(0,1fr)]">
         <div className="md:sticky md:top-24 md:self-start">
@@ -224,6 +224,7 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
     'self-start translate-y-[1px] flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-50 text-zinc-600 ring-1 ring-zinc-200/60 transition-colors duration-150 group-hover:bg-zinc-100 group-hover:text-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800/60 dark:group-hover:bg-zinc-800 dark:group-hover:text-zinc-100';
 
   const Wrapper: ElementType = href ? 'a' : 'div';
+  const hasDescription = Boolean(description);
 
   return (
     <Card as="li" className="group w-full">
@@ -231,7 +232,11 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
         href={href}
         target={href ? '_blank' : undefined}
         rel={href ? 'noreferrer noopener' : undefined}
-        className="relative -mx-2 flex w-full items-start gap-4 rounded-2xl px-2 py-1.5 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-5 sm:py-2"
+        className={
+          hasDescription
+            ? 'relative -mx-2 flex w-full items-start gap-4 rounded-2xl px-2 py-1.5 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-5 sm:py-2'
+            : 'relative -mx-2 flex w-full items-center gap-3 rounded-2xl px-2 py-1 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-4 sm:py-1.5'
+        }
       >
         {icon ? (
           <span className={iconChipClass}>
@@ -243,13 +248,19 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
         <div className="flex flex-col gap-1.5">
           <Card.Title
             as="h3"
-            className="text-[1.05rem] font-semibold text-zinc-900 transition-colors duration-150 group-hover:text-zinc-800 dark:text-zinc-50 dark:group-hover:text-zinc-100"
+            className={
+              hasDescription
+                ? 'text-[1.05rem] font-semibold text-zinc-900 transition-colors duration-150 group-hover:text-zinc-800 dark:text-zinc-50 dark:group-hover:text-zinc-100'
+                : 'text-base font-semibold tracking-tight text-zinc-900 transition-colors duration-150 group-hover:text-zinc-800 dark:text-zinc-50 dark:group-hover:text-zinc-100 sm:text-[1.02rem]'
+            }
           >
             {title}
           </Card.Title>
-          <Card.Description className="mt-0 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {description}
-          </Card.Description>
+          {hasDescription ? (
+            <Card.Description className="mt-0 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {description}
+            </Card.Description>
+          ) : null}
           {meta ? (
             <Card.Description className="mt-0 text-xs uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-500">
               {meta}
@@ -263,9 +274,11 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
 }
 
 function ToolsSection({section}: {section: UsesSection}) {
+  const isDense = section.items.every(item => !item.description);
+
   return (
     <UsesSectionBlock section={section}>
-      <ul role="list" className="space-y-7 sm:space-y-8">
+      <ul role="list" className={isDense ? 'space-y-4 sm:space-y-5' : 'space-y-7 sm:space-y-8'}>
         {section.items.map(item => (
           <Tool key={item.title} {...item} />
         ))}
