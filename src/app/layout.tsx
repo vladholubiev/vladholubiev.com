@@ -52,6 +52,27 @@ export const metadata: Metadata = {
   },
   description:
     'Technology leader delivering AI products and engineering excellence. Senior Director of Technology at Shelf.',
+  metadataBase: new URL('https://vladholubiev.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Vladyslav Holubiev',
+    description:
+      'Technology leader delivering AI products and engineering excellence. Senior Director of Technology at Shelf.',
+    url: '/',
+    siteName: 'Vladyslav Holubiev',
+    images: ['/avatar.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@vladholubiev',
+    creator: '@vladholubiev',
+    title: 'Vladyslav Holubiev',
+    description:
+      'Technology leader delivering AI products and engineering excellence. Senior Director of Technology at Shelf.',
+    images: ['/avatar.jpg'],
+  },
 };
 
 export default function RootLayout({children}: {children: ReactNode}) {

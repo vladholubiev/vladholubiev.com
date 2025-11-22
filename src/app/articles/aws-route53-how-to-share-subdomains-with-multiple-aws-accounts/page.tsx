@@ -1,5 +1,5 @@
-import type {Metadata} from 'next';
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {buildArticleMetadata} from '@/lib/seo';
 import {Heading} from '@/components/Heading';
 import Image from 'next/image';
 import image01 from './image-01.webp';
@@ -20,10 +20,14 @@ export const meta = {
     'https://medium.com/shelf-io-engineering/aws-route53-how-to-share-subdomains-with-multiple-aws-accounts-ad002c77be76',
 };
 
-export const metadata: Metadata = {
-  title: `${meta.title} - Vlad Holubiev`,
-  description: meta.description || meta.title,
-};
+const slug = 'aws-route53-how-to-share-subdomains-with-multiple-aws-accounts';
+
+export const metadata = buildArticleMetadata({
+  title: meta.title,
+  description: meta.description,
+  date: meta.date,
+  slug,
+});
 
 export default function Article() {
   return (

@@ -1,5 +1,5 @@
-import type {Metadata} from 'next';
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {buildArticleMetadata} from '@/lib/seo';
 import {Heading} from '@/components/Heading';
 import Image from 'next/image';
 import {CodeBlock} from '@/components/CodeBlock';
@@ -19,10 +19,14 @@ export const meta = {
     'https://medium.com/shelf-io-engineering/how-to-scan-a-23-gb-dynamodb-table-in-1-minute-110730879e2b',
 };
 
-export const metadata: Metadata = {
-  title: `${meta.title} - Vlad Holubiev`,
-  description: meta.description || meta.title,
-};
+const slug = 'how-to-scan-a-23-gb-dynamodb-table-in-one-minute';
+
+export const metadata = buildArticleMetadata({
+  title: meta.title,
+  description: meta.description,
+  date: meta.date,
+  slug,
+});
 
 export default function Article() {
   return (

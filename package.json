@@ -56,8 +56,10 @@
       "@types/react": "19.2.6"
     },
     "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
       "@vercel/speed-insights",
-      "sharp"
+      "esbuild",
+      "unrs-resolver"
     ]
   }
 }

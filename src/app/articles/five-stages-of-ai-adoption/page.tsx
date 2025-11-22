@@ -1,5 +1,5 @@
-import type {Metadata} from 'next';
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {buildArticleMetadata} from '@/lib/seo';
 import Image from 'next/image';
 import image01 from './image-01.webp';
 
@@ -12,10 +12,14 @@ export const meta = {
   mediumUrl: 'https://medium.com/shelf-io-engineering/five-stages-of-ai-adoption-993d8bebbf47',
 };
 
-export const metadata: Metadata = {
-  title: `${meta.title} - Vlad Holubiev`,
-  description: meta.description || meta.title,
-};
+const slug = 'five-stages-of-ai-adoption';
+
+export const metadata = buildArticleMetadata({
+  title: meta.title,
+  description: meta.description,
+  date: meta.date,
+  slug,
+});
 
 export default function Article() {
   return (

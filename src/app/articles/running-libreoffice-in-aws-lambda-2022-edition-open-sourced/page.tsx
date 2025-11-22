@@ -1,5 +1,5 @@
-import type {Metadata} from 'next';
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {buildArticleMetadata} from '@/lib/seo';
 import {Heading} from '@/components/Heading';
 import {CodeBlock} from '@/components/CodeBlock';
 
@@ -13,10 +13,14 @@ export const meta = {
     'https://medium.com/shelf-io-engineering/running-libreoffice-in-aws-lambda-2022-edition-open-sourced-9bb0028911d8',
 };
 
-export const metadata: Metadata = {
-  title: `${meta.title} - Vlad Holubiev`,
-  description: meta.description || meta.title,
-};
+const slug = 'running-libreoffice-in-aws-lambda-2022-edition-open-sourced';
+
+export const metadata = buildArticleMetadata({
+  title: meta.title,
+  description: meta.description,
+  date: meta.date,
+  slug,
+});
 
 export default function Article() {
   return (

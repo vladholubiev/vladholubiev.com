@@ -1,5 +1,5 @@
-import type {Metadata} from 'next';
 import {ArticleLayout} from '@/components/ArticleLayout';
+import {buildArticleMetadata} from '@/lib/seo';
 import {TeachIllustration} from '@/components/illustrators/TeachIllustration';
 
 export const meta = {
@@ -11,10 +11,14 @@ export const meta = {
   readingTime: '2 min read',
 };
 
-export const metadata: Metadata = {
-  title: `${meta.title} - Vlad Holubiev`,
-  description: meta.description || meta.title,
-};
+const slug = 'teach-dont-correct';
+
+export const metadata = buildArticleMetadata({
+  title: meta.title,
+  description: meta.description,
+  date: meta.date,
+  slug,
+});
 
 export default function Article() {
   return (
