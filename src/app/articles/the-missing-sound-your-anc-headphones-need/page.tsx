@@ -14,12 +14,12 @@ import {buildArticleMetadata} from '@/lib/seo';
 export const meta = {
   author: 'Vlad Holubiev',
   date: '2025-11-21',
-  title: 'Stacking quiet',
+  title: 'The Missing Sound Your ANC Headphones Need',
   description: 'Layer ANC with a whisper of noise.',
   readingTime: '2 min read',
 };
 
-const slug = 'stacking-quiet';
+const slug = 'the-missing-sound-your-anc-headphones-need';
 
 export const metadata = buildArticleMetadata({
   title: meta.title,
