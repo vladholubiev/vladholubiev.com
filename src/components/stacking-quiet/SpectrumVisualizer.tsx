@@ -177,7 +177,7 @@ export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
       className="relative w-full overflow-hidden rounded-2xl border border-zinc-200/60 bg-gradient-to-b from-[#0b1220] via-[#0a0c14] to-black shadow-2xl dark:border-zinc-800"
     >
       <div className="absolute left-4 top-4 z-10 text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500">
-        Frequency spectrum analysis
+        Frequency spectrum
       </div>
 
       <div className="pointer-events-none absolute inset-0 opacity-15">

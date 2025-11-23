@@ -1,6 +1,6 @@
 'use client';
 
-import {useMemo, useState} from 'react';
+import {useMemo, useRef, useState, type MouseEvent} from 'react';
 
 import {DEFAULT_STATE, type SimulationState} from '@/lib/audioSimulation';
 import {SpectrumVisualizer} from '@/components/stacking-quiet/SpectrumVisualizer';
@@ -17,6 +17,7 @@ type SliderControlProps = {
   max?: number;
   step?: number;
   helper?: string;
+  hoverAdjustable?: boolean;
   onChange: (value: number) => void;
 };
 
@@ -28,22 +29,41 @@ function SliderControl({
   max = 100,
   step = 1,
   helper,
+  hoverAdjustable = false,
 }: SliderControlProps) {
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const handleHover = (event: MouseEvent<HTMLDivElement>) => {
+    if (!hoverAdjustable) return;
+    const rect = sliderRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const x = Math.min(Math.max(event.clientX - rect.left, 0), rect.width);
+    const ratio = rect.width === 0 ? 0 : x / rect.width;
+    const raw = min + ratio * (max - min);
+    const snapped = Math.round(raw / step) * step;
+    const next = Math.min(max, Math.max(min, snapped));
+    if (next !== value) {
+      onChange(next);
+    }
+  };
+
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" onMouseMove={handleHover} onMouseEnter={handleHover}>
       <div className="flex items-center justify-between text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <span>{label}</span>
         <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">{value}%</span>
       </div>
-      <UiSlider
-        value={[value]}
-        min={min}
-        max={max}
-        step={step}
-        onValueChange={([val]) => onChange(val)}
-        aria-label={label}
-        className="pt-1"
-      />
+      <div ref={sliderRef}>
+        <UiSlider
+          value={[value]}
+          min={min}
+          max={max}
+          step={step}
+          onValueChange={([val]) => onChange(val)}
+          aria-label={label}
+          className="pt-1"
+        />
+      </div>
       {helper ? <p className="text-[12px] text-zinc-400">{helper}</p> : null}
     </div>
   );
@@ -157,23 +177,28 @@ export function AncBlock() {
 
   return (
     <div className="space-y-4">
-      <SliderControl label="ANC intensity" value={ancComparison} onChange={setAncComparison} />
+      <SliderControl
+        label="ANC intensity"
+        value={ancComparison}
+        onChange={setAncComparison}
+        hoverAdjustable
+      />
       <WaveVisualizer state={ancState} />
       <SpectrumVisualizer state={ancState} />
     </div>
   );
 }
 
-export function PinkNoiseBlock() {
+export function PinkNoiseBlock({withAmbientNoise = true}: {withAmbientNoise?: boolean}) {
   const [pinkNoiseVolume, setPinkNoiseVolume] = useState(70);
 
   const pinkNoiseState: SimulationState = useMemo(
     () => ({
       ...DEFAULT_STATE,
-      chatterVolume: 0.7,
+      chatterVolume: withAmbientNoise ? 0.7 : 0,
       pinkNoiseVolume: pinkNoiseVolume / 100,
     }),
-    [pinkNoiseVolume]
+    [pinkNoiseVolume, withAmbientNoise]
   );
 
   return (
@@ -182,6 +207,7 @@ export function PinkNoiseBlock() {
         label="Pink noise volume"
         value={pinkNoiseVolume}
         onChange={setPinkNoiseVolume}
+        hoverAdjustable
       />
       <WaveVisualizer state={pinkNoiseState} />
       <SpectrumVisualizer state={pinkNoiseState} />
@@ -209,6 +235,7 @@ export function ComboBlock() {
         label="Pink noise volume (ANC on)"
         value={pinkNoiseWithAnc}
         onChange={setPinkNoiseWithAnc}
+        hoverAdjustable
       />
       <WaveVisualizer state={comboState} />
       <SpectrumVisualizer state={comboState} />

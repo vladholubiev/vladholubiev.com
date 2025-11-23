@@ -79,7 +79,7 @@ export function WaveVisualizer({state}: WaveVisualizerProps) {
   return (
     <div className="relative w-full overflow-hidden rounded-2xl border border-zinc-200/60 bg-gradient-to-b from-zinc-900 via-black to-black shadow-2xl dark:border-zinc-800">
       <div className="absolute left-4 top-3 text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500">
-        Time domain monitor
+        Monitor
       </div>
       <canvas ref={canvasRef} width={900} height={260} className="block h-64 w-full" />
     </div>
