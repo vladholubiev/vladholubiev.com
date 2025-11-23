@@ -75,13 +75,12 @@ export default function Article() {
         <div className="not-prose my-6">
           <NoisyWave />
         </div>
-        <p>
-          In the waveform view you can spot chatter as bursty mids, rumble as slow wobble, and
-          alarms as sharp spikes.
-        </p>
+        <p>Play with the toggles to see how each band contributes to the overall noise profile.</p>
         <div className="not-prose my-6">
           <NoisySpectrum />
         </div>
+
+        <Heading level={2}>Active Noise Cancellation (ANC)</Heading>
 
         <p>
           ANC uses microphones to record the outside world, flips the waveform, and plays that
