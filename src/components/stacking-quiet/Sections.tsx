@@ -7,6 +7,7 @@ import {SpectrumVisualizer} from '@/components/stacking-quiet/SpectrumVisualizer
 import {WaveVisualizer} from '@/components/stacking-quiet/WaveVisualizer';
 import {Slider as UiSlider} from '@/components/ui/slider';
 import {Switch} from '@/components/ui/switch';
+import {cn} from '@/lib/utils';
 
 const cardClass = 'rounded-2xl border border-zinc-800/40 bg-zinc-900/80 p-0 sm:p-0 shadow-lg';
 
@@ -74,9 +75,10 @@ type ToggleRowProps = {
   description: string;
   checked: boolean;
   onChange: (next: boolean) => void;
+  compact?: boolean;
 };
 
-function ToggleRow({label, description, checked, onChange}: ToggleRowProps) {
+function ToggleRow({label, description, checked, onChange, compact = false}: ToggleRowProps) {
   const toggle = () => onChange(!checked);
 
   return (
@@ -91,17 +93,25 @@ function ToggleRow({label, description, checked, onChange}: ToggleRowProps) {
           toggle();
         }
       }}
-      className="flex w-full items-start justify-between rounded-2xl border border-zinc-200/70 bg-white/80 px-4 py-3 text-left shadow-sm transition hover:border-ua-blue-300/70 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-ua-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-ua-blue-400/60 dark:focus:ring-offset-zinc-900"
+      className={cn(
+        'flex w-full cursor-pointer items-center justify-between rounded-2xl border border-zinc-200/70 bg-white/90 text-left shadow-sm transition hover:border-ua-blue-300/70 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-ua-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-ua-blue-400/60 dark:focus:ring-offset-zinc-900',
+        compact ? 'px-4 py-2' : 'px-4 py-3'
+      )}
     >
       <div className="pr-4">
         <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{label}</p>
-        <p className="text-[12px] text-zinc-600 dark:text-zinc-400">{description}</p>
+        {!compact ? (
+          <p className="text-[12px] text-zinc-600 dark:text-zinc-400">{description}</p>
+        ) : null}
       </div>
       <Switch
         checked={checked}
         onCheckedChange={onChange}
         onClick={event => event.stopPropagation()}
-        className="mt-1 h-6 w-11 shrink-0 data-[state=checked]:bg-ua-blue-500 data-[state=unchecked]:bg-zinc-300 dark:data-[state=unchecked]:bg-zinc-700"
+        className={cn(
+          'shrink-0 data-[state=checked]:bg-ua-blue-500 data-[state=unchecked]:bg-zinc-300 dark:data-[state=unchecked]:bg-zinc-700',
+          compact ? 'h-6 w-11' : 'mt-1 h-6 w-11'
+        )}
       />
     </div>
   );
@@ -136,24 +146,27 @@ export function NoisyBlock() {
 
   return (
     <div className="space-y-4">
-      <div className="space-y-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         <ToggleRow
-          label="Keyboard / train rumble"
+          label="Keyboard"
           description="Low-frequency hum with mechanical spikes"
           checked={noiseToggles.keyboard}
           onChange={checked => setNoiseToggles(state => ({...state, keyboard: checked}))}
+          compact
         />
         <ToggleRow
           label="Human chatter"
           description="Mid-frequency bursts around 500Hz–3kHz"
           checked={noiseToggles.chatter}
           onChange={checked => setNoiseToggles(state => ({...state, chatter: checked}))}
+          compact
         />
         <ToggleRow
-          label="Sharp alarms"
-          description="High-frequency beeps and sirens"
+          label="Alarms"
+          description="High-frequency beeps"
           checked={noiseToggles.sirens}
           onChange={checked => setNoiseToggles(state => ({...state, sirens: checked}))}
+          compact
         />
       </div>
       <WaveVisualizer state={noisyState} />
