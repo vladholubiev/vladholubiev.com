@@ -6,9 +6,10 @@ import {generateSpectrumData, type SimulationState} from '@/lib/audioSimulation'
 
 interface SpectrumVisualizerProps {
   state: SimulationState;
+  showNoiseRemaining?: boolean;
 }
 
-export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
+export function SpectrumVisualizer({state, showNoiseRemaining = true}: SpectrumVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number | null>(null);
@@ -110,7 +111,7 @@ export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
         x += barWidth + 4;
       });
 
-      if (baseSignal > 0.05) {
+      if (showNoiseRemaining && baseSignal > 0.05) {
         const drawnPeakY = Math.min(smoothedPeak, floorYPos);
         const drawnFloorY = floorYPos;
         const displayValue = Math.round(smoothPercent);
@@ -169,7 +170,7 @@ export function SpectrumVisualizer({state}: SpectrumVisualizerProps) {
     return () => {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
-  }, [state, dimensions]);
+  }, [state, dimensions, showNoiseRemaining]);
 
   return (
     <div

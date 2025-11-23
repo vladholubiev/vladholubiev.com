@@ -121,7 +121,7 @@ export function BaselineBlock() {
 
   return (
     <div className={cardClass}>
-      <SpectrumVisualizer state={baselineState} />
+      <SpectrumVisualizer state={baselineState} showNoiseRemaining={false} />
     </div>
   );
 }
@@ -196,7 +196,7 @@ export function NoisyWave() {
 
 export function NoisySpectrum() {
   const {noisy} = useStackingQuiet();
-  return <SpectrumVisualizer state={noisy.state} />;
+  return <SpectrumVisualizer state={noisy.state} showNoiseRemaining={false} />;
 }
 
 export function AncBlock() {
@@ -229,7 +229,7 @@ export function PinkNoiseBlock({withAmbientNoise = true}: {withAmbientNoise?: bo
         hoverAdjustable
       />
       <WaveVisualizer state={pinkNoiseState} />
-      <SpectrumVisualizer state={pinkNoiseState} />
+      <SpectrumVisualizer state={pinkNoiseState} showNoiseRemaining={withAmbientNoise} />
     </div>
   );
 }
