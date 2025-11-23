@@ -68,8 +68,11 @@ export default function Article() {
             imageSrc={noiseBoxPreview.src}
             width={360}
             height={250}
+            openInNewTab
           >
-            <Link href="/tools/focus-noise-box">Focus Noise Box</Link>
+            <Link href="/tools/focus-noise-box" target="_blank" rel="noreferrer">
+              Focus Noise Box
+            </Link>
           </LinkPreview>
           .
         </p>
@@ -166,8 +169,11 @@ export default function Article() {
             imageSrc={noiseBoxPreview.src}
             width={360}
             height={250}
+            openInNewTab
           >
-            <Link href="/tools/focus-noise-box">Focus Noise Box</Link>
+            <Link href="/tools/focus-noise-box" target="_blank" rel="noreferrer">
+              Focus Noise Box
+            </Link>
           </LinkPreview>
           .
         </p>

@@ -13,6 +13,7 @@ type LinkPreviewProps = {
   width?: number;
   height?: number;
   imageSrc: string;
+  openInNewTab?: boolean;
 };
 
 export const LinkPreview = ({
@@ -22,6 +23,7 @@ export const LinkPreview = ({
   width = 200,
   height = 125,
   imageSrc,
+  openInNewTab = false,
 }: LinkPreviewProps) => {
   const [isOpen, setOpen] = React.useState(false);
 
@@ -100,6 +102,8 @@ export const LinkPreview = ({
                 >
                   <a
                     href={url}
+                    target={openInNewTab ? '_blank' : undefined}
+                    rel={openInNewTab ? 'noreferrer' : undefined}
                     className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-neutral-200 dark:hover:border-neutral-800"
                     style={{fontSize: 0}}
                   >

@@ -104,26 +104,63 @@ export function useNoise() {
     }
   }, [activeNoise, isInitialized]);
 
+  const hasResumedRef = useRef(false);
+
   const resumeAudio = useCallback(async () => {
     const ctx = audioContextRef.current;
-    if (ctx && ctx.state === 'suspended') {
+    if (!ctx) return;
+    if (ctx.state === 'suspended') {
       await ctx.resume();
+    }
+    if (ctx.state === 'running') {
+      hasResumedRef.current = true;
     }
   }, []);
 
-  // Best-effort auto-resume on first user interaction.
+  // Best-effort auto-resume on user interactions.
   useEffect(() => {
     const handler = () => {
+      if (hasResumedRef.current) return;
       void resumeAudio();
     };
 
-    window.addEventListener('pointerdown', handler, {once: true});
-    window.addEventListener('keydown', handler, {once: true});
+    window.addEventListener('pointerdown', handler, {capture: true});
+    window.addEventListener('pointerup', handler, {capture: true});
+    window.addEventListener('click', handler, {capture: true});
+    window.addEventListener('keydown', handler, {capture: true});
+    window.addEventListener('keyup', handler, {capture: true});
 
     return () => {
-      window.removeEventListener('pointerdown', handler);
-      window.removeEventListener('keydown', handler);
+      window.removeEventListener('pointerdown', handler, {capture: true});
+      window.removeEventListener('pointerup', handler, {capture: true});
+      window.removeEventListener('click', handler, {capture: true});
+      window.removeEventListener('keydown', handler, {capture: true});
+      window.removeEventListener('keyup', handler, {capture: true});
     };
+  }, [resumeAudio]);
+
+  // Resume on tab focus/visibility changes and immediately on mount (safe no-op if blocked).
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') void resumeAudio();
+    };
+    const handleFocus = () => {
+      void resumeAudio();
+    };
+
+    void resumeAudio();
+    window.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      window.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [resumeAudio]);
+
+  // Attempt resume once on mount to catch fast navigations where the first gesture already happened.
+  useEffect(() => {
+    void resumeAudio();
   }, [resumeAudio]);
 
   const toggleNoise = useCallback((type: NoiseType) => {
