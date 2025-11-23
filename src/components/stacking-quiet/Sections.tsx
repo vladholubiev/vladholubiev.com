@@ -199,19 +199,34 @@ export function NoisySpectrum() {
   return <SpectrumVisualizer state={noisy.state} showNoiseRemaining={false} />;
 }
 
-export function AncBlock() {
+export function AncControls() {
   const {anc} = useStackingQuiet();
+  return (
+    <SliderControl
+      label="ANC intensity"
+      value={anc.intensity}
+      onChange={anc.setIntensity}
+      hoverAdjustable
+    />
+  );
+}
 
+export function AncWave() {
+  const {anc} = useStackingQuiet();
+  return <WaveVisualizer state={anc.state} />;
+}
+
+export function AncSpectrum() {
+  const {anc} = useStackingQuiet();
+  return <SpectrumVisualizer state={anc.state} />;
+}
+
+export function AncBlock() {
   return (
     <div className="space-y-4">
-      <SliderControl
-        label="ANC intensity"
-        value={anc.intensity}
-        onChange={anc.setIntensity}
-        hoverAdjustable
-      />
-      <WaveVisualizer state={anc.state} />
-      <SpectrumVisualizer state={anc.state} />
+      <AncControls />
+      <AncWave />
+      <AncSpectrum />
     </div>
   );
 }

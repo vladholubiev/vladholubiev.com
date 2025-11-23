@@ -3,7 +3,9 @@ import Link from 'next/link';
 import {ArticleLayout} from '@/components/ArticleLayout';
 import {Heading} from '@/components/Heading';
 import {
-  AncBlock,
+  AncControls,
+  AncSpectrum,
+  AncWave,
   BaselineBlock,
   ComboBlock,
   NoisySpectrum,
@@ -87,49 +89,34 @@ export default function Article() {
           inverse back through your headphones.
         </p>
 
-        <p>
-          It does excellent job with lows, decent mids, and struggles with highs. Human chatter is
-          muted a lot, but still, it can be just loud enough to let your brain spend energy on
-          trying to decipher the words.
-        </p>
-
         <div className="not-prose my-6">
-          <AncBlock />
+          <AncControls />
+        </div>
+        <p>Slide and see how ANC &quot;flattens&quot; the ambient noise spectrum.</p>
+        <div className="not-prose my-6">
+          <AncWave />
         </div>
 
         <p>
-          You can put music on to silence that, but this is not the best solution if you need to
-          focus. The other day I was in a busy place trying to focus and realized
+          As you slide the ANC intensity slider to 100%, you&apos;ll see ~70% of relatively
+          perceived noise from human chatter is still remaining. ANC does excellent job with lows,
+          decent mids, and struggles with highs. Yes, conversation is muted a lot, but still, it can
+          be just loud enough to let your brain spend energy on trying to decipher the words.
         </p>
 
-        <p>
-          I put my AirPods into noise cancellation mode and waited for the world to disappear. It
-          didn&apos;t. The low rumble went away, but random voices and clinks still slipped through
-          and kept tugging on my attention.
-        </p>
-
-        <p>
-          ANC is very good at steady low-frequency noise, less so at speech and sudden sounds. What
-          I really wanted wasn&apos;t more cancellation, but a more stable background. So I tried
-          something simple: kept ANC on, then added a low layer of noise underneath to cover the
-          leftovers. Because ANC already tames the room, that extra layer can stay whisper-quiet and
-          still do the masking.
-        </p>
-
-        <Heading level={2}>Bring in ANC</Heading>
-        <p>
-          Slide ANC intensity to watch the left side of the spectrum collapse while the voice hump
-          stays stubborn. This is why voices feel louder once the low rumble is gone.
-        </p>
-
-        <Heading level={2}>Mask with pink noise</Heading>
-        <p>
-          Pink noise blankets everything evenly. Without ANC you need to turn it up to hide
-          chatter—see how the floor lifts as you raise the slider.
-        </p>
         <div className="not-prose my-6">
-          <PinkNoiseBlock />
+          <AncSpectrum />
         </div>
+        <p>
+          How do you improve that? You can put on some music to silence that, but this is not the
+          best solution if you need to focus.
+        </p>
+
+        <Heading level={2}>Bring the pink noise</Heading>
+        <p>
+          We already know the pink noise blankets everything evenly. We know ANC creates an opposite
+          sound wave to silence noise. So why not combine them?
+        </p>
 
         <Heading level={2}>Stack both</Heading>
         <p>
