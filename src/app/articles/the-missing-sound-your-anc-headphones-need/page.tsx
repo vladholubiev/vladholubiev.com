@@ -84,16 +84,28 @@ export default function Article() {
 
         <p>
           ANC uses microphones to record the outside world, flips the waveform, and plays that
-          inverse back through your headphones. It&apos;s fantastic at steady low rumble—airplanes,
-          HVAC, traffic—but it struggles with speech and sudden clinks where the waveform changes
-          faster than it can react. Those mids and highs are what still poke through.
+          inverse back through your headphones.
         </p>
 
         <p>
-          The other day I was trying to read a contract in a noisy place. I put my AirPods into
-          noise cancellation mode and waited for the world to disappear. It didn&apos;t. The low
-          rumble went away, but random voices and clinks still slipped through and kept tugging on
-          my attention.
+          It does excellent job with lows, decent mids, and struggles with highs. Human chatter is
+          muted a lot, but still, it can be just loud enough to let your brain spend energy on
+          trying to decipher the words.
+        </p>
+
+        <div className="not-prose my-6">
+          <AncBlock />
+        </div>
+
+        <p>
+          You can put music on to silence that, but this is not the best solution if you need to
+          focus. The other day I was in a busy place trying to focus and realized
+        </p>
+
+        <p>
+          I put my AirPods into noise cancellation mode and waited for the world to disappear. It
+          didn&apos;t. The low rumble went away, but random voices and clinks still slipped through
+          and kept tugging on my attention.
         </p>
 
         <p>
@@ -109,9 +121,6 @@ export default function Article() {
           Slide ANC intensity to watch the left side of the spectrum collapse while the voice hump
           stays stubborn. This is why voices feel louder once the low rumble is gone.
         </p>
-        <div className="not-prose my-6">
-          <AncBlock />
-        </div>
 
         <Heading level={2}>Mask with pink noise</Heading>
         <p>
