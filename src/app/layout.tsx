@@ -4,9 +4,7 @@ import Script from 'next/script';
 import {Analytics} from '@vercel/analytics/react';
 import {SpeedInsights} from '@vercel/speed-insights/next';
 
-import {Header} from '@/components/Header';
-import {Footer} from '@/components/Footer';
-import {Providers} from './providers';
+import {AppShell} from '@/components/AppShell';
 
 import '@/styles/tailwind.css';
 
@@ -82,24 +80,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
         <Script id="theme-script" strategy="beforeInteractive">
           {modeScript}
         </Script>
-        <div className="fixed inset-0 flex justify-center sm:px-8">
-          <div className="flex w-full max-w-7xl lg:px-8">
-            <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
-          </div>
-        </div>
-        <div className="relative">
-          <Providers>
-            <a
-              href="#main-content"
-              className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-zinc-900 focus:px-4 focus:py-2 focus:text-white dark:focus:bg-zinc-100 dark:focus:text-zinc-900"
-            >
-              Skip to main content
-            </a>
-            <Header />
-            <main id="main-content">{children}</main>
-            <Footer />
-          </Providers>
-        </div>
+        <AppShell>{children}</AppShell>
         <Analytics />
         <SpeedInsights />
       </body>

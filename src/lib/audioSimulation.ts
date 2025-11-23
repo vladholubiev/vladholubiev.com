@@ -13,6 +13,7 @@ export type SimulationState = {
   // System Controls (0.0 to 1.0)
   ancGain: number;
   pinkNoiseVolume: number;
+  noiseColor?: 'white' | 'pink' | 'brown';
 };
 
 export const DEFAULT_STATE: SimulationState = {
@@ -21,11 +22,13 @@ export const DEFAULT_STATE: SimulationState = {
   sirenVolume: 0,
   ancGain: 0,
   pinkNoiseVolume: 0,
+  noiseColor: 'pink',
 };
 
 // Generate wave data points for Time Domain visualization
 export function generateWaveData(time: number, state: SimulationState) {
   const points: number[] = [];
+  let lastVal = 0; // For Brown noise integration
 
   for (let i = 0; i < NUM_POINTS; i++) {
     let amplitude = 0;
@@ -72,10 +75,25 @@ export function generateWaveData(time: number, state: SimulationState) {
       amplitude += siren * state.sirenVolume * ancFactor;
     }
 
-    // 4. Pink Noise (Masking)
+    // 4. Noise (White/Pink/Brown)
     if (state.pinkNoiseVolume > 0) {
-      // Random noise
-      const noise = (Math.random() - 0.5) * 0.6;
+      let noise = 0;
+      const noiseColor = state.noiseColor ?? 'pink';
+
+      if (noiseColor === 'white') {
+        // White Noise: Uniform random
+        noise = (Math.random() - 0.5) * 0.8;
+      } else if (noiseColor === 'brown') {
+        // Brown Noise: Leaky integrator (random walk)
+        const white = Math.random() - 0.5;
+        lastVal = (lastVal + white) * 0.9; // Leaky integration
+        noise = lastVal * 2.0; // Boost amplitude as it tends to be quiet
+      } else {
+        // Pink Noise (Approximation): Slightly smoother than white
+        const white = (Math.random() - 0.5) * 0.8;
+        noise = (white + Math.sin(t * 10) * 0.3) * 0.8; // Add low-freq component
+      }
+
       amplitude += noise * state.pinkNoiseVolume;
     }
 

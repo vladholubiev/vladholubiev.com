@@ -30,6 +30,10 @@ const eslintConfig = [
   {
     ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
   },
+  {
+    // Playground export from the ANC + pink noise prototype
+    ignores: ['anc-and-pink-noise-full-page/**'],
+  },
 ];
 
 export default eslintConfig;

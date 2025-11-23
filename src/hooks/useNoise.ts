@@ -7,7 +7,7 @@ export type NoiseType = 'white' | 'pink' | 'brown';
 type NoiseBuffers = Record<NoiseType, AudioBuffer | null>;
 
 export function useNoise() {
-  const [activeNoise, setActiveNoise] = useState<NoiseType | null>(null);
+  const [activeNoise, setActiveNoise] = useState<NoiseType | null>('pink');
   const [volume, setVolume] = useState(DEFAULT_VOLUME);
   const [isInitialized, setIsInitialized] = useState(false);
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
@@ -104,6 +104,28 @@ export function useNoise() {
     }
   }, [activeNoise, isInitialized]);
 
+  const resumeAudio = useCallback(async () => {
+    const ctx = audioContextRef.current;
+    if (ctx && ctx.state === 'suspended') {
+      await ctx.resume();
+    }
+  }, []);
+
+  // Best-effort auto-resume on first user interaction.
+  useEffect(() => {
+    const handler = () => {
+      void resumeAudio();
+    };
+
+    window.addEventListener('pointerdown', handler, {once: true});
+    window.addEventListener('keydown', handler, {once: true});
+
+    return () => {
+      window.removeEventListener('pointerdown', handler);
+      window.removeEventListener('keydown', handler);
+    };
+  }, [resumeAudio]);
+
   const toggleNoise = useCallback((type: NoiseType) => {
     setActiveNoise(current => (current === type ? null : type));
   }, []);
@@ -111,6 +133,7 @@ export function useNoise() {
   return {
     activeNoise,
     analyser,
+    resumeAudio,
     setVolume,
     toggleNoise,
     volume,
