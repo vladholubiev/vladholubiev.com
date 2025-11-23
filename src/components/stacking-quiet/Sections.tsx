@@ -1,13 +1,12 @@
 'use client';
 
-import {useMemo, useRef, useState, type MouseEvent} from 'react';
-
-import {DEFAULT_STATE, type SimulationState} from '@/lib/audioSimulation';
+import {useMemo, useRef, type MouseEvent} from 'react';
 import {SpectrumVisualizer} from '@/components/stacking-quiet/SpectrumVisualizer';
 import {WaveVisualizer} from '@/components/stacking-quiet/WaveVisualizer';
 import {Slider as UiSlider} from '@/components/ui/slider';
 import {Switch} from '@/components/ui/switch';
 import {cn} from '@/lib/utils';
+import {useStackingQuiet} from '@/components/stacking-quiet/StackingQuietProvider';
 
 const cardClass = 'rounded-2xl border border-zinc-800/40 bg-zinc-900/80 p-0 sm:p-0 shadow-lg';
 
@@ -118,7 +117,7 @@ function ToggleRow({label, description, checked, onChange, compact = false}: Tog
 }
 
 export function BaselineBlock() {
-  const baselineState: SimulationState = useMemo(() => ({...DEFAULT_STATE}), []);
+  const {baselineState} = useStackingQuiet();
 
   return (
     <div className={cardClass}>
@@ -128,98 +127,105 @@ export function BaselineBlock() {
 }
 
 export function NoisyBlock() {
-  const [noiseToggles, setNoiseToggles] = useState({
-    chatter: false,
-    keyboard: false,
-    sirens: false,
-  });
-
-  const noisyState: SimulationState = useMemo(
-    () => ({
-      ...DEFAULT_STATE,
-      keyboardVolume: noiseToggles.keyboard ? 0.8 : 0,
-      chatterVolume: noiseToggles.chatter ? 0.8 : 0,
-      sirenVolume: noiseToggles.sirens ? 0.7 : 0,
-    }),
-    [noiseToggles]
-  );
+  const {noisy} = useStackingQuiet();
 
   return (
     <div className="space-y-4">
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         <ToggleRow
-          label="Keyboard"
+          label="Keyboard rumble"
           description="Low-frequency hum with mechanical spikes"
-          checked={noiseToggles.keyboard}
-          onChange={checked => setNoiseToggles(state => ({...state, keyboard: checked}))}
+          checked={noisy.toggles.keyboard}
+          onChange={checked => noisy.setToggle('keyboard', checked)}
           compact
         />
         <ToggleRow
           label="Human chatter"
           description="Mid-frequency bursts around 500Hz–3kHz"
-          checked={noiseToggles.chatter}
-          onChange={checked => setNoiseToggles(state => ({...state, chatter: checked}))}
+          checked={noisy.toggles.chatter}
+          onChange={checked => noisy.setToggle('chatter', checked)}
           compact
         />
         <ToggleRow
-          label="Alarms"
-          description="High-frequency beeps"
-          checked={noiseToggles.sirens}
-          onChange={checked => setNoiseToggles(state => ({...state, sirens: checked}))}
+          label="Sharp alarms"
+          description="High-frequency beeps and sirens"
+          checked={noisy.toggles.sirens}
+          onChange={checked => noisy.setToggle('sirens', checked)}
           compact
         />
       </div>
-      <WaveVisualizer state={noisyState} />
-      <SpectrumVisualizer state={noisyState} />
+      <WaveVisualizer state={noisy.state} />
+      <SpectrumVisualizer state={noisy.state} />
     </div>
   );
 }
 
-export function AncBlock() {
-  const [ancComparison, setAncComparison] = useState(50);
-
-  const ancState: SimulationState = useMemo(
-    () => ({
-      ...DEFAULT_STATE,
-      keyboardVolume: 0.8,
-      chatterVolume: 0.7,
-      ancGain: ancComparison / 100,
-    }),
-    [ancComparison]
+export function NoisyToggles() {
+  const {noisy} = useStackingQuiet();
+  return (
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <ToggleRow
+        label="Keyboard rumble"
+        description="Low-frequency hum with mechanical spikes"
+        checked={noisy.toggles.keyboard}
+        onChange={checked => noisy.setToggle('keyboard', checked)}
+        compact
+      />
+      <ToggleRow
+        label="Human chatter"
+        description="Mid-frequency bursts around 500Hz–3kHz"
+        checked={noisy.toggles.chatter}
+        onChange={checked => noisy.setToggle('chatter', checked)}
+        compact
+      />
+      <ToggleRow
+        label="Sharp alarms"
+        description="High-frequency beeps and sirens"
+        checked={noisy.toggles.sirens}
+        onChange={checked => noisy.setToggle('sirens', checked)}
+        compact
+      />
+    </div>
   );
+}
+
+export function NoisyWave() {
+  const {noisy} = useStackingQuiet();
+  return <WaveVisualizer state={noisy.state} />;
+}
+
+export function NoisySpectrum() {
+  const {noisy} = useStackingQuiet();
+  return <SpectrumVisualizer state={noisy.state} />;
+}
+
+export function AncBlock() {
+  const {anc} = useStackingQuiet();
 
   return (
     <div className="space-y-4">
       <SliderControl
         label="ANC intensity"
-        value={ancComparison}
-        onChange={setAncComparison}
+        value={anc.intensity}
+        onChange={anc.setIntensity}
         hoverAdjustable
       />
-      <WaveVisualizer state={ancState} />
-      <SpectrumVisualizer state={ancState} />
+      <WaveVisualizer state={anc.state} />
+      <SpectrumVisualizer state={anc.state} />
     </div>
   );
 }
 
 export function PinkNoiseBlock({withAmbientNoise = true}: {withAmbientNoise?: boolean}) {
-  const [pinkNoiseVolume, setPinkNoiseVolume] = useState(70);
-
-  const pinkNoiseState: SimulationState = useMemo(
-    () => ({
-      ...DEFAULT_STATE,
-      chatterVolume: withAmbientNoise ? 0.7 : 0,
-      pinkNoiseVolume: pinkNoiseVolume / 100,
-    }),
-    [pinkNoiseVolume, withAmbientNoise]
-  );
+  const {pink} = useStackingQuiet();
+  const pinkNoiseState = useMemo(() => pink.getState({withAmbientNoise}), [pink, withAmbientNoise]);
 
   return (
     <div className="space-y-4">
       <SliderControl
         label="Pink noise volume"
-        value={pinkNoiseVolume}
-        onChange={setPinkNoiseVolume}
+        value={pink.volume}
+        onChange={pink.setVolume}
         hoverAdjustable
       />
       <WaveVisualizer state={pinkNoiseState} />
@@ -229,29 +235,18 @@ export function PinkNoiseBlock({withAmbientNoise = true}: {withAmbientNoise?: bo
 }
 
 export function ComboBlock() {
-  const [pinkNoiseWithAnc, setPinkNoiseWithAnc] = useState(40);
-
-  const comboState: SimulationState = useMemo(
-    () => ({
-      ...DEFAULT_STATE,
-      keyboardVolume: 0.6,
-      chatterVolume: 0.6,
-      ancGain: 1,
-      pinkNoiseVolume: pinkNoiseWithAnc / 100,
-    }),
-    [pinkNoiseWithAnc]
-  );
+  const {combo} = useStackingQuiet();
 
   return (
     <div className="space-y-4">
       <SliderControl
         label="Pink noise volume (ANC on)"
-        value={pinkNoiseWithAnc}
-        onChange={setPinkNoiseWithAnc}
+        value={combo.volume}
+        onChange={combo.setVolume}
         hoverAdjustable
       />
-      <WaveVisualizer state={comboState} />
-      <SpectrumVisualizer state={comboState} />
+      <WaveVisualizer state={combo.state} />
+      <SpectrumVisualizer state={combo.state} />
     </div>
   );
 }
