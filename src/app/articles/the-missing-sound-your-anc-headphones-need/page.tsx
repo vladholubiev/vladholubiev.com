@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import noiseBoxPreview from './noise-box-preview.jpg';
+
 import {ArticleLayout} from '@/components/ArticleLayout';
 import {Heading} from '@/components/Heading';
 import {
@@ -17,6 +19,7 @@ import {
 } from '@/components/stacking-quiet/Sections';
 import {buildArticleMetadata} from '@/lib/seo';
 import {StackingQuietProvider} from '@/components/stacking-quiet/StackingQuietProvider';
+import {LinkPreview} from '@/components/ui/link-preview';
 
 export const meta = {
   author: 'Vlad Holubiev',
@@ -56,6 +59,19 @@ export default function Article() {
           In fact, it is so effective at <strong>sound masking</strong> that you can try it yourself
           - play any song on your laptop, then play pink noise on the same device, and after a while
           the pink noise will completely mask the song.
+        </p>
+
+        <p>
+          I&apos;ve even built an analog-inspired pink noise box for you to play with it:&nbsp;
+          <LinkPreview
+            url="/tools/focus-noise-box"
+            imageSrc={noiseBoxPreview.src}
+            width={360}
+            height={250}
+          >
+            <Link href="/tools/focus-noise-box">Focus Noise Box</Link>
+          </LinkPreview>
+          .
         </p>
 
         <Heading level={2}>Ambient noise</Heading>
@@ -145,7 +161,15 @@ export default function Article() {
           of noises!
         </p>
         <p>
-          <Link href="/tools/focus-noise-box">Focus Noise Box</Link>.
+          <LinkPreview
+            url="/tools/focus-noise-box"
+            imageSrc={noiseBoxPreview.src}
+            width={360}
+            height={250}
+          >
+            <Link href="/tools/focus-noise-box">Focus Noise Box</Link>
+          </LinkPreview>
+          .
         </p>
 
         <p>Put on your ANC headphones, add a bit of pink noise, and watch the distraction fade!</p>
