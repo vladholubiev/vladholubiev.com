@@ -22,7 +22,7 @@ export const meta = {
   author: 'Vlad Holubiev',
   date: '2025-11-23',
   title: 'The Missing Sound Your ANC Headphones Need',
-  description: 'Interactive visualizations of noise cancellation and masking.',
+  description: 'Learn about noise cancellation and masking in a visual way.',
   readingTime: '2 min read',
 };
 

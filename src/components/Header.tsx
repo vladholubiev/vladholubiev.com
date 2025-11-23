@@ -79,7 +79,6 @@ function MobileNavigation(props: MobileNavigationProps) {
                 <MobileNavItem href="/articles">Articles</MobileNavItem>
                 <MobileNavItem href="/projects">Projects</MobileNavItem>
                 <MobileNavItem href="/speaking">Speaking</MobileNavItem>
-                <MobileNavItem href="/tools">Tools</MobileNavItem>
                 <MobileNavItem href="/uses">Uses</MobileNavItem>
               </ul>
             </nav>
@@ -139,9 +138,6 @@ function DesktopNavigation({className, currentPathname}: DesktopNavigationProps)
         </NavItem>
         <NavItem href="/speaking" currentPathname={currentPathname}>
           Speaking
-        </NavItem>
-        <NavItem href="/tools" currentPathname={currentPathname}>
-          Tools
         </NavItem>
         <NavItem href="/uses" currentPathname={currentPathname}>
           Uses

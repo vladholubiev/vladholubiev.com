@@ -1,8 +1,10 @@
 import type {Metadata} from 'next';
 
+import {HugeiconsIcon} from '@hugeicons/react';
+import {Link04Icon, VoiceIcon} from '@hugeicons/core-free-icons';
+
 import {Card} from '@/components/Card';
 import {SimpleLayout} from '@/components/SimpleLayout';
-import {LinkIcon} from '@/components/icons/LinkIcon';
 
 interface ProjectLink {
   href: string;
@@ -13,6 +15,7 @@ interface Project {
   name: string;
   description: string;
   link: ProjectLink;
+  icon?: 'voice' | 'link';
 }
 
 export const metadata: Metadata = {
@@ -21,6 +24,13 @@ export const metadata: Metadata = {
 };
 
 const projects: Project[] = [
+  {
+    name: 'Focus Noise Box',
+    description:
+      'Analog-inspired broadband noise box for ANC headphones with retro UI and live waveform.',
+    link: {href: '/tools/focus-noise-box', label: 'tools/focus-noise-box'},
+    icon: 'voice',
+  },
   {
     name: 'aws-lambda-libreoffice',
     description:
@@ -71,7 +81,11 @@ export default function Projects() {
               </h2>
               <Card.Description>{project.description}</Card.Description>
               <p className="group-hover:text-ua-blue-500 dark:group-hover:text-ua-blue-300 relative z-10 mt-auto flex items-center gap-2 pt-6 text-sm font-medium text-zinc-400 transition dark:text-zinc-200">
-                <LinkIcon className="h-6 w-6 flex-none" />
+                <HugeiconsIcon
+                  icon={project.icon === 'voice' ? VoiceIcon : Link04Icon}
+                  className="h-6 w-6 flex-none"
+                  strokeWidth={1.5}
+                />
                 <span>{project.link.label}</span>
               </p>
             </div>
