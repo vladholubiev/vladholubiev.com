@@ -45,8 +45,8 @@ export const LinkPreview = ({
     x.set(offsetFromCenter);
   };
 
-  const trigger = React.isValidElement(children) ? (
-    React.cloneElement(children as React.ReactElement, {
+  const trigger = React.isValidElement<React.HTMLAttributes<HTMLElement>>(children) ? (
+    React.cloneElement(children, {
       onMouseMove: handleMouseMove,
       className: cn(children.props.className, className),
     })
