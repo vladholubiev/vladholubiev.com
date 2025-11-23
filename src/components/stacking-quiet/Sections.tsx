@@ -265,3 +265,25 @@ export function ComboBlock() {
     </div>
   );
 }
+
+export function ComboControls() {
+  const {combo} = useStackingQuiet();
+  return (
+    <SliderControl
+      label="Pink noise + ANC"
+      value={combo.volume}
+      onChange={combo.setVolume}
+      hoverAdjustable
+    />
+  );
+}
+
+export function ComboWave() {
+  const {combo} = useStackingQuiet();
+  return <WaveVisualizer state={combo.state} />;
+}
+
+export function ComboSpectrum() {
+  const {combo} = useStackingQuiet();
+  return <SpectrumVisualizer state={combo.state} />;
+}

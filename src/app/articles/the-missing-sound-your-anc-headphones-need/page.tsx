@@ -7,7 +7,9 @@ import {
   AncSpectrum,
   AncWave,
   BaselineBlock,
-  ComboBlock,
+  ComboControls,
+  ComboSpectrum,
+  ComboWave,
   NoisySpectrum,
   NoisyToggles,
   NoisyWave,
@@ -118,23 +120,35 @@ export default function Article() {
           sound wave to silence noise. So why not combine them?
         </p>
 
-        <Heading level={2}>Stack both</Heading>
+        <div className="not-prose my-6">
+          <ComboControls />
+        </div>
+        <div className="not-prose my-6">
+          <ComboWave />
+        </div>
         <p>
-          Now pair full ANC with just a whisper of pink noise. With the low-end already cancelled,
-          even a 30–40% layer can smother the remaining speech peaks.
+          Watch how little pink noise it takes once ANC clears the lows. With the ANC, even a low
+          volume pink noise is enough to smoothen out the remaining noise peaks.
         </p>
         <div className="not-prose my-6">
-          <ComboBlock />
+          <ComboSpectrum />
         </div>
 
-        <Heading level={2}>Try it for real</Heading>
         <p>
-          I liked the effect enough that I turned it into a tiny web tool:{' '}
-          <Link href="/tools/focus-noise-box">Focus Noise Box</Link>. It plays white, pink, or brown
-          noise tuned to sit under ANC so nearby chatter blends away instead of breaking your focus.
+          While the overall noise is higher, your ears do not perceive it as more intrusive. The
+          difference between the base and the ambient noise spike is what matters.
         </p>
 
-        <p>Put on your ANC headphones, add a whisper of pink noise, and watch the chaos fade.</p>
+        <Heading level={2}>Try it yourself</Heading>
+        <p>
+          I liked the idea and built a vintage-inspired &quot;noise box&quot; to play different kind
+          of noises!
+        </p>
+        <p>
+          <Link href="/tools/focus-noise-box">Focus Noise Box</Link>.
+        </p>
+
+        <p>Put on your ANC headphones, add a bit of pink noise, and watch the distraction fade!</p>
       </StackingQuietProvider>
     </ArticleLayout>
   );
