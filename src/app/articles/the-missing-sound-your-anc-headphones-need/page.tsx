@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import noiseBoxPreview from './noise-box-preview.jpg';
+import ogImage from './og-image-article.jpeg';
 
 import {ArticleLayout} from '@/components/ArticleLayout';
 import {Heading} from '@/components/Heading';
@@ -31,12 +32,31 @@ export const meta = {
 
 const slug = 'the-missing-sound-your-anc-headphones-need';
 
-export const metadata = buildArticleMetadata({
+const baseMetadata = buildArticleMetadata({
   title: meta.title,
   description: meta.description,
   date: meta.date,
   slug,
 });
+
+export const metadata = {
+  ...baseMetadata,
+  openGraph: {
+    ...baseMetadata.openGraph,
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height,
+        alt: meta.title,
+      },
+    ],
+  },
+  twitter: {
+    ...baseMetadata.twitter,
+    images: [ogImage.src],
+  },
+};
 
 export default function Article() {
   return (
