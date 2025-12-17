@@ -5,6 +5,7 @@ const DEFAULT_VOLUME = 0.25;
 export type NoiseType = 'white' | 'pink' | 'brown';
 
 type NoiseBuffers = Record<NoiseType, AudioBuffer | null>;
+type NoiseEngine = 'worklet' | 'buffer';
 
 export function useNoise() {
   const [activeNoise, setActiveNoise] = useState<NoiseType | null>('pink');
@@ -15,7 +16,9 @@ export function useNoise() {
   const audioContextRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const sourceNodeRef = useRef<AudioBufferSourceNode | null>(null);
+  const workletNodeRef = useRef<AudioWorkletNode | null>(null);
   const buffersRef = useRef<NoiseBuffers>({white: null, pink: null, brown: null});
+  const engineRef = useRef<NoiseEngine>('buffer');
 
   // Create audio context and pre-generate noise buffers.
   useEffect(() => {
@@ -41,18 +44,54 @@ export function useNoise() {
     gainNodeRef.current = gain;
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setAnalyser(analyser);
-    buffersRef.current = {
-      white: createWhiteNoise(ctx),
-      pink: createPinkNoise(ctx),
-      brown: createBrownNoise(ctx),
+    let canceled = false;
+
+    const init = async () => {
+      let engine: NoiseEngine = 'buffer';
+
+      try {
+        await ctx.audioWorklet.addModule('/worklets/noise-generator.js');
+        engine = 'worklet';
+      } catch {
+        engine = 'buffer';
+      }
+
+      if (canceled) return;
+      engineRef.current = engine;
+
+      if (engine === 'buffer') {
+        buffersRef.current = {
+          white: createWhiteNoise(ctx),
+          pink: createPinkNoise(ctx),
+          brown: createBrownNoise(ctx),
+        };
+      }
+
+      setIsInitialized(true);
     };
 
-    setIsInitialized(true);
+    void init();
 
     return () => {
+      canceled = true;
+
+      if (workletNodeRef.current) {
+        try {
+          workletNodeRef.current.port.postMessage({type: 'dispose'});
+        } catch {
+          // ignore
+        }
+        workletNodeRef.current.disconnect();
+        workletNodeRef.current = null;
+      }
       if (sourceNodeRef.current) {
-        sourceNodeRef.current.stop();
+        try {
+          sourceNodeRef.current.stop();
+        } catch {
+          // ignore
+        }
         sourceNodeRef.current.disconnect();
+        sourceNodeRef.current = null;
       }
       gain.disconnect();
       analyser.disconnect();
@@ -84,8 +123,44 @@ export function useNoise() {
       }
 
       if (sourceNodeRef.current) {
-        sourceNodeRef.current.stop();
+        try {
+          sourceNodeRef.current.stop();
+        } catch {
+          // ignore
+        }
         sourceNodeRef.current.disconnect();
+        sourceNodeRef.current = null;
+      }
+
+      if (workletNodeRef.current) {
+        try {
+          workletNodeRef.current.port.postMessage({type: 'dispose'});
+        } catch {
+          // ignore
+        }
+        workletNodeRef.current.disconnect();
+        workletNodeRef.current = null;
+      }
+
+      if (engineRef.current === 'worklet') {
+        try {
+          const node = new AudioWorkletNode(ctx, 'noise-generator', {
+            numberOfInputs: 0,
+            numberOfOutputs: 1,
+            outputChannelCount: [1],
+          });
+          node.port.postMessage({type: 'setNoiseType', noiseType: activeNoise});
+          node.connect(gain);
+          workletNodeRef.current = node;
+          return;
+        } catch {
+          engineRef.current = 'buffer';
+          buffersRef.current = {
+            white: createWhiteNoise(ctx),
+            pink: createPinkNoise(ctx),
+            brown: createBrownNoise(ctx),
+          };
+        }
       }
 
       const buffer = buffersRef.current[activeNoise];
@@ -97,8 +172,25 @@ export function useNoise() {
       source.connect(gain);
       source.start();
       sourceNodeRef.current = source;
-    } else if (sourceNodeRef.current) {
-      sourceNodeRef.current.stop();
+      return;
+    }
+
+    if (workletNodeRef.current) {
+      try {
+        workletNodeRef.current.port.postMessage({type: 'dispose'});
+      } catch {
+        // ignore
+      }
+      workletNodeRef.current.disconnect();
+      workletNodeRef.current = null;
+    }
+
+    if (sourceNodeRef.current) {
+      try {
+        sourceNodeRef.current.stop();
+      } catch {
+        // ignore
+      }
       sourceNodeRef.current.disconnect();
       sourceNodeRef.current = null;
     }
@@ -178,7 +270,7 @@ export function useNoise() {
 }
 
 function createWhiteNoise(ctx: AudioContext) {
-  const bufferSize = 2 * ctx.sampleRate;
+  const bufferSize = 10 * ctx.sampleRate;
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const output = buffer.getChannelData(0);
 
@@ -190,7 +282,7 @@ function createWhiteNoise(ctx: AudioContext) {
 }
 
 function createPinkNoise(ctx: AudioContext) {
-  const bufferSize = 2 * ctx.sampleRate;
+  const bufferSize = 10 * ctx.sampleRate;
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const output = buffer.getChannelData(0);
 
@@ -219,7 +311,7 @@ function createPinkNoise(ctx: AudioContext) {
 }
 
 function createBrownNoise(ctx: AudioContext) {
-  const bufferSize = 2 * ctx.sampleRate;
+  const bufferSize = 10 * ctx.sampleRate;
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const output = buffer.getChannelData(0);
   let lastOut = 0;

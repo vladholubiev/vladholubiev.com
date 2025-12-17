@@ -29,8 +29,9 @@ const InnerContainer = forwardRef<HTMLDivElement, ContainerProps>(function Inner
   );
 });
 
-interface ContainerComponent
-  extends ForwardRefExoticComponent<ContainerProps & RefAttributes<HTMLDivElement>> {
+interface ContainerComponent extends ForwardRefExoticComponent<
+  ContainerProps & RefAttributes<HTMLDivElement>
+> {
   Outer: typeof OuterContainer;
   Inner: typeof InnerContainer;
 }
