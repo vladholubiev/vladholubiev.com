@@ -25,6 +25,11 @@ export const metadata: Metadata = {
 
 const projects: Project[] = [
   {
+    name: 'klats.shop',
+    description: 'Premium glove brand storefront with a fashion-editorial feel.',
+    link: {href: 'https://klats.shop/', label: 'klats.shop'},
+  },
+  {
     name: 'Focus Noise Box',
     description:
       'Analog-inspired broadband noise box for ANC headphones with retro UI and live waveform.',
