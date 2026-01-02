@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "app/**/page.tsx",
+    "app/**/layout.tsx",
+    "app/api/**/route.ts",
+    "components/ui/**/*.{ts,tsx}"
+  ],
+  "project": ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
+  "ignoreExportsUsedInFile": {
+    "interface": true,
+    "type": true
+  },
+  "ignoreBinaries": ["op"],
+  "ignoreDependencies": [
+    "shadcn",
+    "tw-animate-css",
+    "@tailwindcss/container-queries",
+    "@tailwindcss/typography",
+    "tailwindcss"
+  ]
+}

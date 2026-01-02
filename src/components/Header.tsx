@@ -1,12 +1,13 @@
 'use client';
 
-import {Fragment, useEffect, useRef} from 'react';
+import {Fragment, useCallback, useEffect, useRef} from 'react';
 import type {ComponentPropsWithoutRef, CSSProperties, ReactNode} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {Popover, Transition} from '@headlessui/react';
 import clsx from 'clsx';
+import {useTheme} from 'next-themes';
 
 import {Container} from '@/components/Container';
 import avatarImage from '@/images/avatar.png';
@@ -148,34 +149,18 @@ function DesktopNavigation({className, currentPathname}: DesktopNavigationProps)
 }
 
 function ModeToggle() {
-  function disableTransitionsTemporarily() {
-    document.documentElement.classList.add('*:transition-none!');
-    window.setTimeout(() => {
-      document.documentElement.classList.remove('*:transition-none!');
-    }, 0);
-  }
+  const {resolvedTheme, setTheme} = useTheme();
 
-  function toggleMode() {
-    disableTransitionsTemporarily();
+  const toggleMode = useCallback(() => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  }, [resolvedTheme, setTheme]);
 
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const isSystemDarkMode = darkModeMediaQuery.matches;
-    const isDarkMode = document.documentElement.classList.toggle('dark');
-
-    const storageKey = 'isDarkMode';
-
-    if (isDarkMode === isSystemDarkMode) {
-      window.localStorage.removeItem(storageKey);
-      return;
-    }
-
-    window.localStorage.setItem(storageKey, JSON.stringify(isDarkMode));
-  }
+  const ariaLabel = resolvedTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
 
   return (
     <button
       type="button"
-      aria-label="Toggle dark mode"
+      aria-label={ariaLabel}
       className="group rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
       onClick={toggleMode}
     >
