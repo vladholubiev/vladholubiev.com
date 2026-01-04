@@ -1,22 +1,22 @@
 'use client';
 
-import logoShelf from '@/images/logos/shelf.svg';
-import logoApiko from '@/images/logos/apiko.png';
-import logoUpwork from '@/images/logos/upwork.svg';
+import { animate } from 'motion';
 import Image from 'next/image';
-import {BriefcaseIcon} from '@/components/icons/BriefcaseIcon';
-import {LinkedInIcon} from '@/components/icons/SocialIcons';
-import {LINKEDIN} from '@/lib/social-links';
 import Link from 'next/link';
-import {useEffect, useRef} from 'react';
-import {animate} from 'motion';
+import { useEffect, useRef } from 'react';
+import { BriefcaseIcon } from '@/components/icons/BriefcaseIcon';
+import { LinkedInIcon } from '@/components/icons/SocialIcons';
+import logoApiko from '@/images/logos/apiko.png';
+import logoShelf from '@/images/logos/shelf.svg';
+import logoUpwork from '@/images/logos/upwork.svg';
+import { LINKEDIN } from '@/lib/social-links';
 
 interface ResumeRole {
   company: string;
   title: string;
   logo: string;
-  start: string | {label: string; dateTime: number};
-  end: string | {label: string; dateTime: number};
+  start: string | { label: string; dateTime: number };
+  end: string | { label: string; dateTime: number };
 }
 
 export function Resume() {
@@ -26,12 +26,12 @@ export function Resume() {
     if (nowRef.current) {
       animate(
         nowRef.current,
-        {opacity: [1, 0.6, 1]},
+        { opacity: [1, 0.6, 1] },
         {
           duration: 3,
           repeat: Infinity,
           ease: [0.4, 0.0, 0.2, 1],
-        }
+        },
       );
     }
   }, []);
@@ -70,45 +70,64 @@ export function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <li key={roleIndex} className="flex gap-4">
-            <div className="relative mt-1 flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-xl shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" fill className="object-contain p-1.5" unoptimized />
-            </div>
-            <dl className="flex flex-auto flex-wrap gap-x-2">
-              <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {role.company}
-              </dd>
-              <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 dark:text-zinc-400">{role.title}</dd>
-              <dt className="sr-only">Date</dt>
-              <dd
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${typeof role.start === 'string' ? role.start : role.start.label} until ${
-                  typeof role.end === 'string' ? role.end : role.end.label
-                }`}
-              >
-                <time
-                  dateTime={
-                    typeof role.start === 'string' ? role.start : role.start.dateTime.toString()
-                  }
-                >
-                  {typeof role.start === 'string' ? role.start : role.start.label}
-                </time>{' '}
-                <span aria-hidden="true">—</span>{' '}
-                <time
-                  dateTime={typeof role.end === 'string' ? role.end : role.end.dateTime.toString()}
-                  ref={
-                    typeof role.end !== 'string' && role.end.label === 'Now' ? nowRef : undefined
-                  }
-                >
-                  {typeof role.end === 'string' ? role.end : role.end.label}
-                </time>
-              </dd>
-            </dl>
-          </li>
-        ))}
+        {resume.map((role) => {
+          const startLabel =
+            typeof role.start === 'string' ? role.start : role.start.label;
+          const endLabel =
+            typeof role.end === 'string' ? role.end : role.end.label;
+          const roleKey = `${role.company}-${role.title}-${startLabel}`;
+
+          return (
+            <li key={roleKey} className="flex gap-4">
+              <div className="relative mt-1 flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-xl shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                <Image
+                  src={role.logo}
+                  alt=""
+                  fill
+                  className="object-contain p-1.5"
+                  unoptimized
+                />
+              </div>
+              <dl className="flex flex-auto flex-wrap gap-x-2">
+                <dt className="sr-only">Company</dt>
+                <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  {role.company}
+                </dd>
+                <dt className="sr-only">Role</dt>
+                <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+                  {role.title}
+                </dd>
+                <dt className="sr-only">Date</dt>
+                <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500">
+                  <time
+                    dateTime={
+                      typeof role.start === 'string'
+                        ? role.start
+                        : role.start.dateTime.toString()
+                    }
+                  >
+                    {startLabel}
+                  </time>{' '}
+                  <span aria-hidden="true">—</span>{' '}
+                  <time
+                    dateTime={
+                      typeof role.end === 'string'
+                        ? role.end
+                        : role.end.dateTime.toString()
+                    }
+                    ref={
+                      typeof role.end !== 'string' && role.end.label === 'Now'
+                        ? nowRef
+                        : undefined
+                    }
+                  >
+                    {endLabel}
+                  </time>
+                </dd>
+              </dl>
+            </li>
+          );
+        })}
       </ol>
       <Link
         href={LINKEDIN}

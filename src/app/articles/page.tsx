@@ -1,9 +1,8 @@
-import type {Metadata} from 'next';
-
-import {SimpleLayout} from '@/components/SimpleLayout';
-import {getAllArticles} from '@/lib/getAllArticles';
-import {ArticleListItem} from '@/components/ArticleListItem';
-import type {Article} from '@/types/article';
+import type { Metadata } from 'next';
+import { ArticleListItem } from '@/components/ArticleListItem';
+import { SimpleLayout } from '@/components/SimpleLayout';
+import { getAllArticles } from '@/lib/getAllArticles';
+import type { Article } from '@/types/article';
 
 export const metadata: Metadata = {
   title: 'Articles',
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
     'I write mostly about interesting problems I solve to spread the knowledge and help others. My articles on Medium were viewed over 310,678 times so far.',
 };
 
-function ArticleItem({article}: {article: Article}) {
+function ArticleItem({ article }: { article: Article }) {
   return (
     <ArticleListItem
       href={`/articles/${article.slug}`}
@@ -24,7 +23,7 @@ function ArticleItem({article}: {article: Article}) {
 }
 
 export default async function ArticlesIndex() {
-  const articles = (await getAllArticles()).map(({component, ...meta}) => {
+  const articles = (await getAllArticles()).map(({ component, ...meta }) => {
     void component;
     return meta;
   });
@@ -32,12 +31,14 @@ export default async function ArticlesIndex() {
   const articlesByYear = Array.from(
     articles.reduce((acc, article) => {
       const year = new Date(article.date).getFullYear().toString();
-      if (!acc.has(year)) {
-        acc.set(year, []);
+      const entries = acc.get(year);
+      if (entries) {
+        entries.push(article);
+      } else {
+        acc.set(year, [article]);
       }
-      acc.get(year)!.push(article);
       return acc;
-    }, new Map<string, Article[]>())
+    }, new Map<string, Article[]>()),
   );
 
   return (
@@ -54,7 +55,7 @@ export default async function ArticlesIndex() {
               </span>
             </div>
             <div className="divide-y divide-zinc-900/5 border-t border-zinc-900/5 dark:divide-white/10 dark:border-white/10">
-              {yearlyArticles.map(article => (
+              {yearlyArticles.map((article) => (
                 <ArticleItem key={article.slug} article={article} />
               ))}
             </div>

@@ -1,10 +1,15 @@
 'use client';
 import * as HoverCardPrimitive from '@radix-ui/react-hover-card';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+} from 'motion/react';
 import Image from 'next/image';
 import React from 'react';
-import {AnimatePresence, motion, useMotionValue, useSpring} from 'motion/react';
 
-import {cn} from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 type LinkPreviewProps = {
   children: React.ReactNode;
@@ -33,7 +38,7 @@ export const LinkPreview = ({
     setIsMounted(true);
   }, []);
 
-  const springConfig = {stiffness: 100, damping: 15};
+  const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
 
   const translateX = useSpring(x, springConfig);
@@ -45,33 +50,49 @@ export const LinkPreview = ({
     x.set(offsetFromCenter);
   };
 
-  const trigger = React.isValidElement<React.HTMLAttributes<HTMLElement>>(children) ? (
+  const trigger = React.isValidElement<React.HTMLAttributes<HTMLElement>>(
+    children,
+  ) ? (
     React.cloneElement(children, {
       onMouseMove: handleMouseMove,
       className: cn(children.props.className, className),
     })
   ) : (
-    <span onMouseMove={handleMouseMove} className={className}>
+    <button
+      type="button"
+      onMouseMove={handleMouseMove}
+      className={cn(
+        'inline-flex items-center border-0 bg-transparent p-0 text-inherit appearance-none',
+        className,
+      )}
+    >
       {children}
-    </span>
+    </button>
   );
 
   return (
     <>
       {isMounted ? (
         <span className="sr-only">
-          <Image src={imageSrc} width={width} height={height} alt="preview preloader" />
+          <Image
+            src={imageSrc}
+            width={width}
+            height={height}
+            alt="preview preloader"
+          />
         </span>
       ) : null}
 
       <HoverCardPrimitive.Root
         openDelay={50}
         closeDelay={100}
-        onOpenChange={open => {
+        onOpenChange={(open) => {
           setOpen(open);
         }}
       >
-        <HoverCardPrimitive.Trigger asChild>{trigger}</HoverCardPrimitive.Trigger>
+        <HoverCardPrimitive.Trigger asChild>
+          {trigger}
+        </HoverCardPrimitive.Trigger>
 
         <HoverCardPrimitive.Portal>
           <HoverCardPrimitive.Content
@@ -83,7 +104,7 @@ export const LinkPreview = ({
             <AnimatePresence>
               {isOpen && (
                 <motion.div
-                  initial={{opacity: 0, y: 20, scale: 0.6}}
+                  initial={{ opacity: 0, y: 20, scale: 0.6 }}
                   animate={{
                     opacity: 1,
                     y: 0,
@@ -94,7 +115,7 @@ export const LinkPreview = ({
                       damping: 20,
                     },
                   }}
-                  exit={{opacity: 0, y: 20, scale: 0.6}}
+                  exit={{ opacity: 0, y: 20, scale: 0.6 }}
                   className="rounded-xl shadow-xl"
                   style={{
                     x: translateX,
@@ -105,7 +126,7 @@ export const LinkPreview = ({
                     target={openInNewTab ? '_blank' : undefined}
                     rel={openInNewTab ? 'noreferrer' : undefined}
                     className="block rounded-xl border-2 border-transparent bg-white p-1 shadow hover:border-neutral-200 dark:hover:border-neutral-800"
-                    style={{fontSize: 0}}
+                    style={{ fontSize: 0 }}
                   >
                     <Image
                       src={imageSrc}

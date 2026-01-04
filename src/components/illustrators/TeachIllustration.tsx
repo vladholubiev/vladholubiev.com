@@ -1,9 +1,13 @@
 import clsx from 'clsx';
-import {ComponentPropsWithoutRef} from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
 type TeachIllustrationProps = ComponentPropsWithoutRef<'svg'>;
 
-export function TeachIllustration({className, style, ...props}: TeachIllustrationProps) {
+export function TeachIllustration({
+  className,
+  style,
+  ...props
+}: TeachIllustrationProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,6 +23,7 @@ export function TeachIllustration({className, style, ...props}: TeachIllustratio
       }}
       {...props}
     >
+      <title>Teach illustration</title>
       <path
         className="ink head"
         d="m1620.7 507.737c-30.84 31.244-66.79 51.283-110.34 58.481-47.11 7.304-95.19-4.358-133.71-32.433-41.38-29.903-73.23-83.338-81.2-133.578-10.16-63.744 5.58-128.903 43.7-180.99 31.15-42.638 78.13-70.969 130.38-78.628 43.8-6.689 98.34 4.888 133.21 32.259 53.77 42.211 72.35 82.8 82.04 148.206 38.1 29.405 84.26 74.346 91.34 124.479 6.32 44.718-18.87 85.984-65.91 90.107-34.03 2.983-61.64-10.266-89.51-27.903z"
@@ -70,5 +75,3 @@ export function TeachIllustration({className, style, ...props}: TeachIllustratio
     </svg>
   );
 }
-
-export default TeachIllustration;

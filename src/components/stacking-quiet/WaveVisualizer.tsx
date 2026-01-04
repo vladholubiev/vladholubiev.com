@@ -1,14 +1,14 @@
 'use client';
 
-import {useEffect, useRef} from 'react';
+import { useEffect, useRef } from 'react';
 
-import {generateWaveData, type SimulationState} from '@/lib/audioSimulation';
+import { generateWaveData, type SimulationState } from '@/lib/audioSimulation';
 
 interface WaveVisualizerProps {
   state: SimulationState;
 }
 
-export function WaveVisualizer({state}: WaveVisualizerProps) {
+export function WaveVisualizer({ state }: WaveVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const timeRef = useRef(0);
   const requestRef = useRef<number | undefined>(undefined);
@@ -45,7 +45,11 @@ export function WaveVisualizer({state}: WaveVisualizerProps) {
 
       if (state.sirenVolume > 0 && state.ancGain < 0.5) {
         ctx.strokeStyle = 'oklch(0.6 0.25 0)'; // high-frequency spike
-      } else if (state.chatterVolume > 0 && state.ancGain > 0.5 && state.pinkNoiseVolume < 0.3) {
+      } else if (
+        state.chatterVolume > 0 &&
+        state.ancGain > 0.5 &&
+        state.pinkNoiseVolume < 0.3
+      ) {
         ctx.strokeStyle = 'oklch(0.65 0.22 30)'; // chatter poking through
       } else if (state.pinkNoiseVolume > 0.4) {
         ctx.strokeStyle = 'oklch(0.75 0.12 340)'; // pink noise tint
@@ -81,7 +85,12 @@ export function WaveVisualizer({state}: WaveVisualizerProps) {
       <div className="absolute left-4 top-3 text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500">
         Monitor
       </div>
-      <canvas ref={canvasRef} width={900} height={260} className="block h-64 w-full" />
+      <canvas
+        ref={canvasRef}
+        width={900}
+        height={260}
+        className="block h-64 w-full"
+      />
     </div>
   );
 }

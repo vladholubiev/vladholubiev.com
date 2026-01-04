@@ -1,8 +1,14 @@
 'use client';
 
-import {createContext, useContext, useMemo, useState, type ReactNode} from 'react';
+import {
+  createContext,
+  type ReactNode,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 
-import {DEFAULT_STATE, type SimulationState} from '@/lib/audioSimulation';
+import { DEFAULT_STATE, type SimulationState } from '@/lib/audioSimulation';
 
 type NoiseToggles = {
   keyboard: boolean;
@@ -20,7 +26,7 @@ type StackingQuietContextValue = {
   pink: {
     volume: number;
     setVolume: (next: number) => void;
-    getState: (opts?: {withAmbientNoise?: boolean}) => SimulationState;
+    getState: (opts?: { withAmbientNoise?: boolean }) => SimulationState;
   };
   anc: {
     intensity: number;
@@ -34,10 +40,15 @@ type StackingQuietContextValue = {
   };
 };
 
-const StackingQuietContext = createContext<StackingQuietContextValue | null>(null);
+const StackingQuietContext = createContext<StackingQuietContextValue | null>(
+  null,
+);
 
-export function StackingQuietProvider({children}: {children: ReactNode}) {
-  const baselineState = useMemo<SimulationState>(() => ({...DEFAULT_STATE}), []);
+export function StackingQuietProvider({ children }: { children: ReactNode }) {
+  const baselineState = useMemo<SimulationState>(
+    () => ({ ...DEFAULT_STATE }),
+    [],
+  );
 
   const [toggles, setToggles] = useState<NoiseToggles>({
     keyboard: false,
@@ -52,7 +63,7 @@ export function StackingQuietProvider({children}: {children: ReactNode}) {
       chatterVolume: toggles.chatter ? 0.8 : 0,
       sirenVolume: toggles.sirens ? 0.7 : 0,
     }),
-    [toggles]
+    [toggles],
   );
 
   const [pinkVolume, setPinkVolume] = useState(0.7); // 0-1
@@ -61,13 +72,13 @@ export function StackingQuietProvider({children}: {children: ReactNode}) {
 
   const pinkGetState = useMemo(
     () =>
-      ({withAmbientNoise = true}: {withAmbientNoise?: boolean} = {}) =>
+      ({ withAmbientNoise = true }: { withAmbientNoise?: boolean } = {}) =>
         ({
           ...DEFAULT_STATE,
           chatterVolume: withAmbientNoise ? 0.7 : 0,
           pinkNoiseVolume: pinkVolume,
         }) as SimulationState,
-    [pinkVolume]
+    [pinkVolume],
   );
 
   const ancState = useMemo<SimulationState>(
@@ -77,7 +88,7 @@ export function StackingQuietProvider({children}: {children: ReactNode}) {
       chatterVolume: 0.7,
       ancGain: ancIntensity,
     }),
-    [ancIntensity]
+    [ancIntensity],
   );
 
   const comboState = useMemo<SimulationState>(
@@ -88,7 +99,7 @@ export function StackingQuietProvider({children}: {children: ReactNode}) {
       ancGain: 1,
       pinkNoiseVolume: comboVolume,
     }),
-    [comboVolume]
+    [comboVolume],
   );
 
   const value = useMemo<StackingQuietContextValue>(
@@ -96,22 +107,26 @@ export function StackingQuietProvider({children}: {children: ReactNode}) {
       baselineState,
       noisy: {
         toggles,
-        setToggle: (key, next) => setToggles(prev => ({...prev, [key]: next})),
+        setToggle: (key, next) =>
+          setToggles((prev) => ({ ...prev, [key]: next })),
         state: noisyState,
       },
       pink: {
         volume: Math.round(pinkVolume * 100),
-        setVolume: next => setPinkVolume(Math.max(0, Math.min(100, next)) / 100),
+        setVolume: (next) =>
+          setPinkVolume(Math.max(0, Math.min(100, next)) / 100),
         getState: pinkGetState,
       },
       anc: {
         intensity: Math.round(ancIntensity * 100),
-        setIntensity: next => setAncIntensity(Math.max(0, Math.min(100, next)) / 100),
+        setIntensity: (next) =>
+          setAncIntensity(Math.max(0, Math.min(100, next)) / 100),
         state: ancState,
       },
       combo: {
         volume: Math.round(comboVolume * 100),
-        setVolume: next => setComboVolume(Math.max(0, Math.min(100, next)) / 100),
+        setVolume: (next) =>
+          setComboVolume(Math.max(0, Math.min(100, next)) / 100),
         state: comboState,
       },
     }),
@@ -125,16 +140,22 @@ export function StackingQuietProvider({children}: {children: ReactNode}) {
       pinkVolume,
       noisyState,
       toggles,
-    ]
+    ],
   );
 
-  return <StackingQuietContext.Provider value={value}>{children}</StackingQuietContext.Provider>;
+  return (
+    <StackingQuietContext.Provider value={value}>
+      {children}
+    </StackingQuietContext.Provider>
+  );
 }
 
 export function useStackingQuiet() {
   const ctx = useContext(StackingQuietContext);
   if (!ctx) {
-    throw new Error('useStackingQuiet must be used within StackingQuietProvider');
+    throw new Error(
+      'useStackingQuiet must be used within StackingQuietProvider',
+    );
   }
   return ctx;
 }

@@ -1,6 +1,5 @@
-import {HugeiconsIcon} from '@hugeicons/react';
-import {ArrowLeft01Icon} from '@hugeicons/core-free-icons';
+import { ArrowLeft } from 'lucide-react';
 
-export function ArrowLeftIcon({className}: {className?: string}) {
-  return <HugeiconsIcon icon={ArrowLeft01Icon} className={className} strokeWidth={1.5} />;
+export function ArrowLeftIcon({ className }: { className?: string }) {
+  return <ArrowLeft className={className} strokeWidth={1.5} />;
 }

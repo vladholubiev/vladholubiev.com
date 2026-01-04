@@ -1,7 +1,7 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 
-export const SITE_AUTHOR = 'Vladyslav Holubiev';
-export const DEFAULT_OG_IMAGE = '/avatar.jpg';
+const SITE_AUTHOR = 'Vladyslav Holubiev';
+const DEFAULT_OG_IMAGE = '/avatar.jpg';
 
 type ArticleMetaInput = {
   title: string;

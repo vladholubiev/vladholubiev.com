@@ -1,10 +1,10 @@
-import type {Metadata} from 'next';
-import type {ReactNode} from 'react';
-import {Analytics} from '@vercel/analytics/react';
-import {SpeedInsights} from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
-import {AppShell} from '@/components/AppShell';
-import {ThemeProvider} from '@/components/ThemeProvider';
+import { AppShell } from '@/components/AppShell';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 import '@/styles/tailwind.css';
 
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({children}: {children: ReactNode}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">

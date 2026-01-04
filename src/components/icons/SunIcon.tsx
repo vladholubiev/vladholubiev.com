@@ -1,6 +1,5 @@
-import {HugeiconsIcon} from '@hugeicons/react';
-import {Sun01Icon} from '@hugeicons/core-free-icons';
+import { Sun } from 'lucide-react';
 
-export function SunIcon({className}: {className?: string}) {
-  return <HugeiconsIcon icon={Sun01Icon} className={className} strokeWidth={1.5} />;
+export function SunIcon({ className }: { className?: string }) {
+  return <Sun className={className} strokeWidth={1.5} />;
 }

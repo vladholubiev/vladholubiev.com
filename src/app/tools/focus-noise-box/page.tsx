@@ -1,6 +1,6 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 
-import {NoiseBox} from '@/components/tools/NoiseBox';
+import { NoiseBox } from '@/components/tools/NoiseBox';
 import ogNoiseBox from './og-noise-box.jpeg';
 
 export const metadata: Metadata = {

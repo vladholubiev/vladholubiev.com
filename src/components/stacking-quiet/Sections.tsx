@@ -1,14 +1,15 @@
 'use client';
 
-import {useMemo, useRef, type MouseEvent} from 'react';
-import {SpectrumVisualizer} from '@/components/stacking-quiet/SpectrumVisualizer';
-import {WaveVisualizer} from '@/components/stacking-quiet/WaveVisualizer';
-import {Slider as UiSlider} from '@/components/ui/slider';
-import {Switch} from '@/components/ui/switch';
-import {cn} from '@/lib/utils';
-import {useStackingQuiet} from '@/components/stacking-quiet/StackingQuietProvider';
+import { type MouseEvent, useMemo, useRef } from 'react';
+import { SpectrumVisualizer } from '@/components/stacking-quiet/SpectrumVisualizer';
+import { useStackingQuiet } from '@/components/stacking-quiet/StackingQuietProvider';
+import { WaveVisualizer } from '@/components/stacking-quiet/WaveVisualizer';
+import { Slider as UiSlider } from '@/components/ui/slider';
+import { Switch } from '@/components/ui/switch';
+import { cn } from '@/lib/utils';
 
-const cardClass = 'rounded-2xl border border-zinc-800/40 bg-zinc-900/80 p-0 sm:p-0 shadow-lg';
+const cardClass =
+  'rounded-2xl border border-zinc-800/40 bg-zinc-900/80 p-0 sm:p-0 shadow-lg';
 
 type SliderControlProps = {
   label: string;
@@ -48,10 +49,12 @@ function SliderControl({
   };
 
   return (
-    <div className="space-y-2" onMouseMove={handleHover} onMouseEnter={handleHover}>
+    <div className="space-y-2">
       <div className="flex items-center justify-between text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <span>{label}</span>
-        <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">{value}%</span>
+        <span className="text-xs font-mono text-zinc-600 dark:text-zinc-400">
+          {value}%
+        </span>
       </div>
       <div ref={sliderRef}>
         <UiSlider
@@ -62,6 +65,12 @@ function SliderControl({
           onValueChange={([val]) => onChange(val)}
           aria-label={label}
           className="pt-1"
+          {...(hoverAdjustable
+            ? {
+                onMouseMove: handleHover,
+                onMouseEnter: handleHover,
+              }
+            : {})}
         />
       </div>
       {helper ? <p className="text-[12px] text-zinc-400">{helper}</p> : null}
@@ -77,7 +86,13 @@ type ToggleRowProps = {
   compact?: boolean;
 };
 
-function ToggleRow({label, description, checked, onChange, compact = false}: ToggleRowProps) {
+function ToggleRow({
+  label,
+  description,
+  checked,
+  onChange,
+  compact = false,
+}: ToggleRowProps) {
   const toggle = () => onChange(!checked);
 
   return (
@@ -86,7 +101,7 @@ function ToggleRow({label, description, checked, onChange, compact = false}: Tog
       tabIndex={0}
       aria-checked={checked}
       onClick={toggle}
-      onKeyDown={event => {
+      onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
           toggle();
@@ -94,22 +109,26 @@ function ToggleRow({label, description, checked, onChange, compact = false}: Tog
       }}
       className={cn(
         'flex w-full cursor-pointer items-center justify-between rounded-2xl border border-zinc-200/70 bg-white/90 text-left shadow-sm transition hover:border-ua-blue-300/70 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-ua-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:border-zinc-800/80 dark:bg-zinc-900/90 dark:hover:border-ua-blue-400/60 dark:focus:ring-offset-zinc-900',
-        compact ? 'px-4 py-2' : 'px-4 py-3'
+        compact ? 'px-4 py-2' : 'px-4 py-3',
       )}
     >
       <div className="pr-4">
-        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{label}</p>
+        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+          {label}
+        </p>
         {!compact ? (
-          <p className="text-[12px] text-zinc-600 dark:text-zinc-400">{description}</p>
+          <p className="text-[12px] text-zinc-600 dark:text-zinc-400">
+            {description}
+          </p>
         ) : null}
       </div>
       <Switch
         checked={checked}
         onCheckedChange={onChange}
-        onClick={event => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
         className={cn(
           'shrink-0 data-[state=checked]:bg-ua-blue-500 data-[state=unchecked]:bg-zinc-300 dark:data-[state=unchecked]:bg-zinc-700',
-          compact ? 'h-6 w-11' : 'mt-1 h-6 w-11'
+          compact ? 'h-6 w-11' : 'mt-1 h-6 w-11',
         )}
       />
     </div>
@@ -117,7 +136,7 @@ function ToggleRow({label, description, checked, onChange, compact = false}: Tog
 }
 
 export function BaselineBlock() {
-  const {baselineState} = useStackingQuiet();
+  const { baselineState } = useStackingQuiet();
 
   return (
     <div className={cardClass}>
@@ -126,63 +145,29 @@ export function BaselineBlock() {
   );
 }
 
-export function NoisyBlock() {
-  const {noisy} = useStackingQuiet();
-
-  return (
-    <div className="space-y-4">
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        <ToggleRow
-          label="Keyboard rumble"
-          description="Low-frequency hum with mechanical spikes"
-          checked={noisy.toggles.keyboard}
-          onChange={checked => noisy.setToggle('keyboard', checked)}
-          compact
-        />
-        <ToggleRow
-          label="Human chatter"
-          description="Mid-frequency bursts around 500Hz–3kHz"
-          checked={noisy.toggles.chatter}
-          onChange={checked => noisy.setToggle('chatter', checked)}
-          compact
-        />
-        <ToggleRow
-          label="Sharp alarms"
-          description="High-frequency beeps and sirens"
-          checked={noisy.toggles.sirens}
-          onChange={checked => noisy.setToggle('sirens', checked)}
-          compact
-        />
-      </div>
-      <WaveVisualizer state={noisy.state} />
-      <SpectrumVisualizer state={noisy.state} />
-    </div>
-  );
-}
-
 export function NoisyToggles() {
-  const {noisy} = useStackingQuiet();
+  const { noisy } = useStackingQuiet();
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       <ToggleRow
         label="Keyboard rumble"
         description="Low-frequency hum with mechanical spikes"
         checked={noisy.toggles.keyboard}
-        onChange={checked => noisy.setToggle('keyboard', checked)}
+        onChange={(checked) => noisy.setToggle('keyboard', checked)}
         compact
       />
       <ToggleRow
         label="Human chatter"
         description="Mid-frequency bursts around 500Hz–3kHz"
         checked={noisy.toggles.chatter}
-        onChange={checked => noisy.setToggle('chatter', checked)}
+        onChange={(checked) => noisy.setToggle('chatter', checked)}
         compact
       />
       <ToggleRow
         label="Sharp alarms"
         description="High-frequency beeps and sirens"
         checked={noisy.toggles.sirens}
-        onChange={checked => noisy.setToggle('sirens', checked)}
+        onChange={(checked) => noisy.setToggle('sirens', checked)}
         compact
       />
     </div>
@@ -190,17 +175,17 @@ export function NoisyToggles() {
 }
 
 export function NoisyWave() {
-  const {noisy} = useStackingQuiet();
+  const { noisy } = useStackingQuiet();
   return <WaveVisualizer state={noisy.state} />;
 }
 
 export function NoisySpectrum() {
-  const {noisy} = useStackingQuiet();
+  const { noisy } = useStackingQuiet();
   return <SpectrumVisualizer state={noisy.state} showNoiseRemaining={false} />;
 }
 
 export function AncControls() {
-  const {anc} = useStackingQuiet();
+  const { anc } = useStackingQuiet();
   return (
     <SliderControl
       label="ANC intensity"
@@ -212,28 +197,25 @@ export function AncControls() {
 }
 
 export function AncWave() {
-  const {anc} = useStackingQuiet();
+  const { anc } = useStackingQuiet();
   return <WaveVisualizer state={anc.state} />;
 }
 
 export function AncSpectrum() {
-  const {anc} = useStackingQuiet();
+  const { anc } = useStackingQuiet();
   return <SpectrumVisualizer state={anc.state} />;
 }
 
-export function AncBlock() {
-  return (
-    <div className="space-y-4">
-      <AncControls />
-      <AncWave />
-      <AncSpectrum />
-    </div>
+export function PinkNoiseBlock({
+  withAmbientNoise = true,
+}: {
+  withAmbientNoise?: boolean;
+}) {
+  const { pink } = useStackingQuiet();
+  const pinkNoiseState = useMemo(
+    () => pink.getState({ withAmbientNoise }),
+    [pink, withAmbientNoise],
   );
-}
-
-export function PinkNoiseBlock({withAmbientNoise = true}: {withAmbientNoise?: boolean}) {
-  const {pink} = useStackingQuiet();
-  const pinkNoiseState = useMemo(() => pink.getState({withAmbientNoise}), [pink, withAmbientNoise]);
 
   return (
     <div className="space-y-4">
@@ -244,30 +226,16 @@ export function PinkNoiseBlock({withAmbientNoise = true}: {withAmbientNoise?: bo
         hoverAdjustable
       />
       <WaveVisualizer state={pinkNoiseState} />
-      <SpectrumVisualizer state={pinkNoiseState} showNoiseRemaining={withAmbientNoise} />
-    </div>
-  );
-}
-
-export function ComboBlock() {
-  const {combo} = useStackingQuiet();
-
-  return (
-    <div className="space-y-4">
-      <SliderControl
-        label="Pink noise volume (ANC on)"
-        value={combo.volume}
-        onChange={combo.setVolume}
-        hoverAdjustable
+      <SpectrumVisualizer
+        state={pinkNoiseState}
+        showNoiseRemaining={withAmbientNoise}
       />
-      <WaveVisualizer state={combo.state} />
-      <SpectrumVisualizer state={combo.state} />
     </div>
   );
 }
 
 export function ComboControls() {
-  const {combo} = useStackingQuiet();
+  const { combo } = useStackingQuiet();
   return (
     <SliderControl
       label="Pink noise + ANC"
@@ -279,11 +247,11 @@ export function ComboControls() {
 }
 
 export function ComboWave() {
-  const {combo} = useStackingQuiet();
+  const { combo } = useStackingQuiet();
   return <WaveVisualizer state={combo.state} />;
 }
 
 export function ComboSpectrum() {
-  const {combo} = useStackingQuiet();
+  const { combo } = useStackingQuiet();
   return <SpectrumVisualizer state={combo.state} />;
 }

@@ -1,17 +1,24 @@
 import clsx from 'clsx';
-import {ComponentPropsWithoutRef} from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
 type ResponsibleIllustrationProps = ComponentPropsWithoutRef<'svg'>;
 
-export function ResponsibleIllustration({className, ...props}: ResponsibleIllustrationProps) {
+export function ResponsibleIllustration({
+  className,
+  ...props
+}: ResponsibleIllustrationProps) {
   return (
     <svg
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 2048 1365"
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx('responsible-illustration block h-auto w-full', className)}
+      className={clsx(
+        'responsible-illustration block h-auto w-full',
+        className,
+      )}
       {...props}
     >
+      <title>Responsible illustration</title>
       <style>
         {`:root {
   color-scheme: light dark;
@@ -204,5 +211,3 @@ export function ResponsibleIllustration({className, ...props}: ResponsibleIllust
     </svg>
   );
 }
-
-export default ResponsibleIllustration;

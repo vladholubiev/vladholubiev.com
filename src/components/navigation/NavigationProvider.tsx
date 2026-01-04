@@ -1,7 +1,14 @@
 'use client';
 
-import {ReactNode, createContext, useContext, useEffect, useRef, useState} from 'react';
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import {
+  createContext,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 interface NavigationContextValue {
   previousPathname?: string;
@@ -9,10 +16,12 @@ interface NavigationContextValue {
 
 const NavigationContext = createContext<NavigationContextValue>({});
 
-export function NavigationProvider({children}: {children: ReactNode}) {
+export function NavigationProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const lastPathRef = useRef<string | undefined>(pathname ?? undefined);
-  const [previousPathname, setPreviousPathname] = useState<string | undefined>(undefined);
+  const [previousPathname, setPreviousPathname] = useState<string | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     if (!pathname) return;
@@ -24,7 +33,9 @@ export function NavigationProvider({children}: {children: ReactNode}) {
   }, [pathname]);
 
   return (
-    <NavigationContext.Provider value={{previousPathname}}>{children}</NavigationContext.Provider>
+    <NavigationContext.Provider value={{ previousPathname }}>
+      {children}
+    </NavigationContext.Provider>
   );
 }
 

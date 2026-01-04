@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const DEFAULT_VOLUME = 0.25;
 
@@ -17,7 +17,11 @@ export function useNoise() {
   const gainNodeRef = useRef<GainNode | null>(null);
   const sourceNodeRef = useRef<AudioBufferSourceNode | null>(null);
   const workletNodeRef = useRef<AudioWorkletNode | null>(null);
-  const buffersRef = useRef<NoiseBuffers>({white: null, pink: null, brown: null});
+  const buffersRef = useRef<NoiseBuffers>({
+    white: null,
+    pink: null,
+    brown: null,
+  });
   const engineRef = useRef<NoiseEngine>('buffer');
 
   // Create audio context and pre-generate noise buffers.
@@ -26,7 +30,8 @@ export function useNoise() {
 
     const AudioContextCtor =
       window.AudioContext ||
-      (window as unknown as {webkitAudioContext?: typeof AudioContext}).webkitAudioContext;
+      (window as unknown as { webkitAudioContext?: typeof AudioContext })
+        .webkitAudioContext;
 
     if (!AudioContextCtor) return;
 
@@ -77,7 +82,7 @@ export function useNoise() {
 
       if (workletNodeRef.current) {
         try {
-          workletNodeRef.current.port.postMessage({type: 'dispose'});
+          workletNodeRef.current.port.postMessage({ type: 'dispose' });
         } catch {
           // ignore
         }
@@ -134,7 +139,7 @@ export function useNoise() {
 
       if (workletNodeRef.current) {
         try {
-          workletNodeRef.current.port.postMessage({type: 'dispose'});
+          workletNodeRef.current.port.postMessage({ type: 'dispose' });
         } catch {
           // ignore
         }
@@ -149,7 +154,10 @@ export function useNoise() {
             numberOfOutputs: 1,
             outputChannelCount: [1],
           });
-          node.port.postMessage({type: 'setNoiseType', noiseType: activeNoise});
+          node.port.postMessage({
+            type: 'setNoiseType',
+            noiseType: activeNoise,
+          });
           node.connect(gain);
           workletNodeRef.current = node;
           return;
@@ -177,7 +185,7 @@ export function useNoise() {
 
     if (workletNodeRef.current) {
       try {
-        workletNodeRef.current.port.postMessage({type: 'dispose'});
+        workletNodeRef.current.port.postMessage({ type: 'dispose' });
       } catch {
         // ignore
       }
@@ -216,18 +224,18 @@ export function useNoise() {
       void resumeAudio();
     };
 
-    window.addEventListener('pointerdown', handler, {capture: true});
-    window.addEventListener('pointerup', handler, {capture: true});
-    window.addEventListener('click', handler, {capture: true});
-    window.addEventListener('keydown', handler, {capture: true});
-    window.addEventListener('keyup', handler, {capture: true});
+    window.addEventListener('pointerdown', handler, { capture: true });
+    window.addEventListener('pointerup', handler, { capture: true });
+    window.addEventListener('click', handler, { capture: true });
+    window.addEventListener('keydown', handler, { capture: true });
+    window.addEventListener('keyup', handler, { capture: true });
 
     return () => {
-      window.removeEventListener('pointerdown', handler, {capture: true});
-      window.removeEventListener('pointerup', handler, {capture: true});
-      window.removeEventListener('click', handler, {capture: true});
-      window.removeEventListener('keydown', handler, {capture: true});
-      window.removeEventListener('keyup', handler, {capture: true});
+      window.removeEventListener('pointerdown', handler, { capture: true });
+      window.removeEventListener('pointerup', handler, { capture: true });
+      window.removeEventListener('click', handler, { capture: true });
+      window.removeEventListener('keydown', handler, { capture: true });
+      window.removeEventListener('keyup', handler, { capture: true });
     };
   }, [resumeAudio]);
 
@@ -256,7 +264,7 @@ export function useNoise() {
   }, [resumeAudio]);
 
   const toggleNoise = useCallback((type: NoiseType) => {
-    setActiveNoise(current => (current === type ? null : type));
+    setActiveNoise((current) => (current === type ? null : type));
   }, []);
 
   return {

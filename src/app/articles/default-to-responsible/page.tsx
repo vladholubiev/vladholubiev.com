@@ -1,6 +1,6 @@
-import {ArticleLayout} from '@/components/ArticleLayout';
-import {buildArticleMetadata} from '@/lib/seo';
-import {ResponsibleIllustration} from '@/components/illustrators/ResponsibleIllustration';
+import { ArticleLayout } from '@/components/ArticleLayout';
+import { ResponsibleIllustration } from '@/components/illustrators/ResponsibleIllustration';
+import { buildArticleMetadata } from '@/lib/seo';
 
 export const meta = {
   author: 'Vlad Holubiev',
@@ -23,24 +23,27 @@ export default function Article() {
   return (
     <ArticleLayout meta={meta}>
       <p>
-        In high-stakes engineering environments, I’ve found that the healthiest team cultures
-        embrace a counterintuitive mindset: when something goes wrong, default to assuming you might
-        have caused it until proven otherwise.
+        In high-stakes engineering environments, I’ve found that the healthiest
+        team cultures embrace a counterintuitive mindset: when something goes
+        wrong, default to assuming you might have caused it until proven
+        otherwise.
       </p>
 
       <p>
-        This isn’t about blame — it’s about responsibility. Instead of saying “It’s probably someone
-        else’s change,” you ask, “Could it have been mine?”
+        This isn’t about blame — it’s about responsibility. Instead of saying
+        “It’s probably someone else’s change,” you ask, “Could it have been
+        mine?”
       </p>
 
       <p>
-        This mindset feels disarming at first. It strips away defensiveness and accelerates
-        problem-solving. People quickly mobilize around the issue rather than around self-defense.
+        This mindset feels disarming at first. It strips away defensiveness and
+        accelerates problem-solving. People quickly mobilize around the issue
+        rather than around self-defense.
       </p>
 
       <p>
-        It’s not about being blameless — it’s about being responsible. It’s a cultural habit worth
-        building.
+        It’s not about being blameless — it’s about being responsible. It’s a
+        cultural habit worth building.
       </p>
 
       <ResponsibleIllustration

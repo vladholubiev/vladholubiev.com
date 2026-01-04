@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import {chromium, Page, Browser} from 'playwright';
-import {PNG} from 'pngjs';
+import fs from 'node:fs';
+import path from 'node:path';
 import pixelmatch from 'pixelmatch';
+import { type Browser, chromium, type Page } from 'playwright';
+import { PNG } from 'pngjs';
 
 // Enums for better type safety
 enum PageType {
@@ -29,7 +29,7 @@ interface Config {
     headerHeight: number;
   };
   screenshot: {
-    viewport: {width: number; height: number};
+    viewport: { width: number; height: number };
     timeout: number;
     scrollDistance: number;
     scrollDelay: number;
@@ -67,7 +67,7 @@ const CONFIG: Config = {
     headerHeight: 50,
   },
   screenshot: {
-    viewport: {width: 1200, height: 800},
+    viewport: { width: 1200, height: 800 },
     timeout: 30000,
     scrollDistance: 100,
     scrollDelay: 100,
@@ -98,7 +98,8 @@ const CONFIG: Config = {
 };
 
 // Utility functions
-const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 function buildUrl(pagePath: string, type: PageType, baseUrl: string): string {
   if (type === PageType.ARTICLE) {
@@ -109,7 +110,8 @@ function buildUrl(pagePath: string, type: PageType, baseUrl: string): string {
 
 function getResultStatus(diffPercentage: number): DiffStatus {
   if (diffPercentage === 0) return DiffStatus.IDENTICAL;
-  if (diffPercentage < CONFIG.diff.minorDiffThreshold) return DiffStatus.MINOR_DIFF;
+  if (diffPercentage < CONFIG.diff.minorDiffThreshold)
+    return DiffStatus.MINOR_DIFF;
   return DiffStatus.MAJOR_DIFF;
 }
 
@@ -125,12 +127,12 @@ function formatStatusForDisplay(status: DiffStatus): string {
 }
 
 async function scrollAndLoadImages(page: Page): Promise<void> {
-  const {scrollDistance, scrollDelay, postScrollDelay} = CONFIG.screenshot;
+  const { scrollDistance, scrollDelay, postScrollDelay } = CONFIG.screenshot;
 
   // Scroll to load all images and content
   await page.evaluate(
-    async ({distance, delay}) => {
-      await new Promise<void>(resolve => {
+    async ({ distance, delay }) => {
+      await new Promise<void>((resolve) => {
         let totalHeight = 0;
         const timer = setInterval(() => {
           const scrollHeight = document.body.scrollHeight;
@@ -144,20 +146,20 @@ async function scrollAndLoadImages(page: Page): Promise<void> {
         }, delay);
       });
     },
-    {distance: scrollDistance, delay: scrollDelay}
+    { distance: scrollDistance, delay: scrollDelay },
   );
 
   // Wait for all images to load
   await page.evaluate(async () => {
     const images = Array.from(document.images);
     await Promise.all(
-      images.map(img => {
+      images.map((img) => {
         if (img.complete) return Promise.resolve();
         return new Promise<void>((resolve, reject) => {
           img.addEventListener('load', () => resolve());
           img.addEventListener('error', () => reject());
         });
-      })
+      }),
     );
   });
 
@@ -169,8 +171,8 @@ async function scrollAndLoadImages(page: Page): Promise<void> {
 }
 
 // Image processing utilities
-function createTextLabel(text: string, width: number, height: number): PNG {
-  const canvas = new PNG({width, height});
+function createTextLabel(_text: string, width: number, height: number): PNG {
+  const canvas = new PNG({ width, height });
 
   // Fill with white background
   canvas.data.fill(255);
@@ -181,29 +183,51 @@ function createTextLabel(text: string, width: number, height: number): PNG {
     const topIdx = (width * 0 + x) << 2;
     const bottomIdx = (width * (height - 1) + x) << 2;
     canvas.data[topIdx] = canvas.data[topIdx + 1] = canvas.data[topIdx + 2] = 0;
-    canvas.data[bottomIdx] = canvas.data[bottomIdx + 1] = canvas.data[bottomIdx + 2] = 0;
+    canvas.data[bottomIdx] =
+      canvas.data[bottomIdx + 1] =
+      canvas.data[bottomIdx + 2] =
+        0;
   }
 
   for (let y = 0; y < height; y++) {
     // Left and right borders
     const leftIdx = (width * y + 0) << 2;
     const rightIdx = (width * y + (width - 1)) << 2;
-    canvas.data[leftIdx] = canvas.data[leftIdx + 1] = canvas.data[leftIdx + 2] = 0;
-    canvas.data[rightIdx] = canvas.data[rightIdx + 1] = canvas.data[rightIdx + 2] = 0;
+    canvas.data[leftIdx] =
+      canvas.data[leftIdx + 1] =
+      canvas.data[leftIdx + 2] =
+        0;
+    canvas.data[rightIdx] =
+      canvas.data[rightIdx + 1] =
+      canvas.data[rightIdx + 2] =
+        0;
   }
 
   return canvas;
 }
 
-function resizeImageToCanvas(sourceImage: PNG, targetWidth: number, targetHeight: number): PNG {
-  const resizedImage = new PNG({width: targetWidth, height: targetHeight});
+function resizeImageToCanvas(
+  sourceImage: PNG,
+  targetWidth: number,
+  targetHeight: number,
+): PNG {
+  const resizedImage = new PNG({ width: targetWidth, height: targetHeight });
   resizedImage.data.fill(255); // Fill with white background
-  PNG.bitblt(sourceImage, resizedImage, 0, 0, sourceImage.width, sourceImage.height, 0, 0);
+  PNG.bitblt(
+    sourceImage,
+    resizedImage,
+    0,
+    0,
+    sourceImage.width,
+    sourceImage.height,
+    0,
+    0,
+  );
   return resizedImage;
 }
 
 function createComparisonGrid(localhost: PNG, production: PNG, diff: PNG): PNG {
-  const {columnWidth, padding, headerHeight} = CONFIG.output;
+  const { columnWidth, padding, headerHeight } = CONFIG.output;
   const width = Math.max(localhost.width, production.width);
   const height = Math.max(localhost.height, production.height);
 
@@ -217,12 +241,20 @@ function createComparisonGrid(localhost: PNG, production: PNG, diff: PNG): PNG {
   const totalHeight = headerHeight + padding * 2 + height; // Header + padding + image
 
   // Create the main canvas
-  const grid = new PNG({width: totalWidth, height: totalHeight});
+  const grid = new PNG({ width: totalWidth, height: totalHeight });
   grid.data.fill(255);
 
   // Create headers
-  const localhostHeader = createTextLabel('LOCALHOST:3001', columnWidth, headerHeight);
-  const productionHeader = createTextLabel('VLADHOLUBIEV.COM', columnWidth, headerHeight);
+  const localhostHeader = createTextLabel(
+    'LOCALHOST:3001',
+    columnWidth,
+    headerHeight,
+  );
+  const productionHeader = createTextLabel(
+    'VLADHOLUBIEV.COM',
+    columnWidth,
+    headerHeight,
+  );
   const diffHeader = createTextLabel('DIFF', columnWidth, headerHeight);
 
   // Calculate column positions
@@ -232,8 +264,26 @@ function createComparisonGrid(localhost: PNG, production: PNG, diff: PNG): PNG {
   const imageY = headerHeight + padding * 2;
 
   // Place headers
-  PNG.bitblt(localhostHeader, grid, 0, 0, columnWidth, headerHeight, x1, padding);
-  PNG.bitblt(productionHeader, grid, 0, 0, columnWidth, headerHeight, x2, padding);
+  PNG.bitblt(
+    localhostHeader,
+    grid,
+    0,
+    0,
+    columnWidth,
+    headerHeight,
+    x1,
+    padding,
+  );
+  PNG.bitblt(
+    productionHeader,
+    grid,
+    0,
+    0,
+    columnWidth,
+    headerHeight,
+    x2,
+    padding,
+  );
   PNG.bitblt(diffHeader, grid, 0, 0, columnWidth, headerHeight, x3, padding);
 
   // Place images
@@ -251,7 +301,7 @@ async function takeScreenshot(page: Page, url: string): Promise<Buffer> {
     timeout: CONFIG.screenshot.timeout,
   });
   await scrollAndLoadImages(page);
-  return await page.screenshot({fullPage: true});
+  return await page.screenshot({ fullPage: true });
 }
 
 interface ImageDiffResult {
@@ -269,7 +319,7 @@ function createImageDiff(localhost: PNG, production: PNG): ImageDiffResult {
   // Resize images to same dimensions
   const resizedLocalhost = resizeImageToCanvas(localhost, width, height);
   const resizedProduction = resizeImageToCanvas(production, width, height);
-  const diff = new PNG({width, height});
+  const diff = new PNG({ width, height });
 
   // Calculate diff
   const numDiffPixels: number = pixelmatch(
@@ -281,10 +331,12 @@ function createImageDiff(localhost: PNG, production: PNG): ImageDiffResult {
     {
       threshold: CONFIG.diff.threshold,
       diffColor: CONFIG.diff.diffColor,
-    }
+    },
   );
 
-  const diffPercentage: number = parseFloat(((numDiffPixels / (width * height)) * 100).toFixed(2));
+  const diffPercentage: number = parseFloat(
+    ((numDiffPixels / (width * height)) * 100).toFixed(2),
+  );
 
   return {
     width,
@@ -299,9 +351,13 @@ function saveComparisonResult(
   localhost: PNG,
   production: PNG,
   diffResult: ImageDiffResult,
-  name: string
+  name: string,
 ): string {
-  const grid: PNG = createComparisonGrid(localhost, production, diffResult.diffImage);
+  const grid: PNG = createComparisonGrid(
+    localhost,
+    production,
+    diffResult.diffImage,
+  );
 
   const filename = `${name}_comparison.png`;
   const filepath = path.join(CONFIG.output.directory, filename);
@@ -313,12 +369,12 @@ function saveComparisonResult(
 async function processPage(
   pagePath: string,
   name: string,
-  type: PageType
+  type: PageType,
 ): Promise<ComparisonResult | null> {
   const displayName = name || 'home';
   console.log(`Processing ${type}: ${displayName}`);
 
-  const browser: Browser = await chromium.launch({headless: true});
+  const browser: Browser = await chromium.launch({ headless: true });
   const page: Page = await browser.newPage();
   await page.setViewportSize(CONFIG.screenshot.viewport);
 
@@ -344,7 +400,12 @@ async function processPage(
 
     // Save comparison grid
     console.log(`  - Creating comparison grid...`);
-    const filename = saveComparisonResult(localhost, production, diffResult, displayName);
+    const filename = saveComparisonResult(
+      localhost,
+      production,
+      diffResult,
+      displayName,
+    );
 
     const result: ComparisonResult = {
       name: displayName,
@@ -358,7 +419,7 @@ async function processPage(
 
     console.log(`  - Dimensions: ${diffResult.width}x${diffResult.height}`);
     console.log(
-      `  - Different pixels: ${diffResult.diffPixels.toLocaleString()} (${diffResult.diffPercentage}%)`
+      `  - Different pixels: ${diffResult.diffPixels.toLocaleString()} (${diffResult.diffPercentage}%)`,
     );
     console.log(`  - Saved: ${path.join(CONFIG.output.directory, filename)}`);
     console.log('');
@@ -378,12 +439,13 @@ async function takeScreenshots(): Promise<void> {
   console.log('Starting screenshot comparison process...\n');
 
   // Process main pages and articles in parallel
-  const mainPagePromises: Promise<ComparisonResult | null>[] = CONFIG.pages.map(page =>
-    processPage(page, page || 'home', PageType.PAGE)
+  const mainPagePromises: Promise<ComparisonResult | null>[] = CONFIG.pages.map(
+    (page) => processPage(page, page || 'home', PageType.PAGE),
   );
-  const articlePromises: Promise<ComparisonResult | null>[] = CONFIG.articles.map(article =>
-    processPage(article, article, PageType.ARTICLE)
-  );
+  const articlePromises: Promise<ComparisonResult | null>[] =
+    CONFIG.articles.map((article) =>
+      processPage(article, article, PageType.ARTICLE),
+    );
 
   const results: (ComparisonResult | null)[] = await Promise.all([
     ...mainPagePromises,
@@ -392,7 +454,7 @@ async function takeScreenshots(): Promise<void> {
 
   // Filter out null results (errors)
   const validResults: ComparisonResult[] = results.filter(
-    (result): result is ComparisonResult => result !== null
+    (result): result is ComparisonResult => result !== null,
   );
 
   // Create summary
@@ -400,31 +462,43 @@ async function takeScreenshots(): Promise<void> {
   console.log('');
 
   const sortedResults: ComparisonResult[] = validResults.sort(
-    (a, b) => b.diffPercentage - a.diffPercentage
+    (a, b) => b.diffPercentage - a.diffPercentage,
   );
 
-  sortedResults.forEach(result => {
+  sortedResults.forEach((result) => {
     const status = getResultStatus(result.diffPercentage);
     const statusDisplay = formatStatusForDisplay(status);
 
     const displayName =
-      result.type === PageType.PAGE ? `/${result.name}` : `/articles/${result.name}`;
+      result.type === PageType.PAGE
+        ? `/${result.name}`
+        : `/articles/${result.name}`;
     console.log(`${statusDisplay} ${displayName}`);
     console.log(
-      `           ${result.diffPixels.toLocaleString()} pixels (${result.diffPercentage}%)`
+      `           ${result.diffPixels.toLocaleString()} pixels (${result.diffPercentage}%)`,
     );
     console.log(`           File: ${result.filename}`);
     console.log('');
   });
 
-  const pageResults: ComparisonResult[] = validResults.filter(r => r.type === PageType.PAGE);
-  const articleResults: ComparisonResult[] = validResults.filter(r => r.type === PageType.ARTICLE);
-  const totalDifferentPages: number = pageResults.filter(r => r.diffPercentage > 0).length;
-  const totalDifferentArticles: number = articleResults.filter(r => r.diffPercentage > 0).length;
+  const pageResults: ComparisonResult[] = validResults.filter(
+    (r) => r.type === PageType.PAGE,
+  );
+  const articleResults: ComparisonResult[] = validResults.filter(
+    (r) => r.type === PageType.ARTICLE,
+  );
+  const totalDifferentPages: number = pageResults.filter(
+    (r) => r.diffPercentage > 0,
+  ).length;
+  const totalDifferentArticles: number = articleResults.filter(
+    (r) => r.diffPercentage > 0,
+  ).length;
 
-  console.log(`Total pages with differences: ${totalDifferentPages}/${pageResults.length}`);
   console.log(
-    `Total articles with differences: ${totalDifferentArticles}/${articleResults.length}`
+    `Total pages with differences: ${totalDifferentPages}/${pageResults.length}`,
+  );
+  console.log(
+    `Total articles with differences: ${totalDifferentArticles}/${articleResults.length}`,
   );
   console.log(`All comparison images saved to: ${CONFIG.output.directory}/`);
 }

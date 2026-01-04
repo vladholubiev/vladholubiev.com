@@ -17,11 +17,15 @@ class NoiseGeneratorProcessor extends AudioWorkletProcessor {
     // Brown noise integration state.
     this.brownLast = 0;
 
-    this.port.onmessage = event => {
+    this.port.onmessage = (event) => {
       const data = event?.data ?? {};
 
       if (data?.type === 'setNoiseType') {
-        if (data.noiseType === 'white' || data.noiseType === 'pink' || data.noiseType === 'brown') {
+        if (
+          data.noiseType === 'white' ||
+          data.noiseType === 'pink' ||
+          data.noiseType === 'brown'
+        ) {
           this.noiseType = data.noiseType;
         }
         return;
@@ -59,7 +63,14 @@ class NoiseGeneratorProcessor extends AudioWorkletProcessor {
         this.b5 = -0.7616 * this.b5 - white * 0.016898;
 
         sample =
-          this.b0 + this.b1 + this.b2 + this.b3 + this.b4 + this.b5 + this.b6 + white * 0.5362;
+          this.b0 +
+          this.b1 +
+          this.b2 +
+          this.b3 +
+          this.b4 +
+          this.b5 +
+          this.b6 +
+          white * 0.5362;
         sample *= 0.11;
         this.b6 = white * 0.115926;
       }

@@ -1,6 +1,5 @@
-import {HugeiconsIcon} from '@hugeicons/react';
-import {ArrowDown01Icon} from '@hugeicons/core-free-icons';
+import { ChevronDown } from 'lucide-react';
 
-export function ChevronDownIcon({className}: {className?: string}) {
-  return <HugeiconsIcon icon={ArrowDown01Icon} className={className} strokeWidth={1.5} />;
+export function ChevronDownIcon({ className }: { className?: string }) {
+  return <ChevronDown className={className} strokeWidth={1.5} />;
 }

@@ -1,10 +1,12 @@
+import * as path from 'node:path';
 import glob from 'fast-glob';
-import * as path from 'path';
-import type {ComponentType} from 'react';
-import {Article, ArticleMeta} from '@/types/article';
+import type { ComponentType } from 'react';
+import type { Article, ArticleMeta } from '@/types/article';
 
 async function importArticle(articleFilename: string): Promise<Article> {
-  const {meta, default: component} = (await import(`../app/articles/${articleFilename}`)) as {
+  const { meta, default: component } = (await import(
+    `../app/articles/${articleFilename}`
+  )) as {
     meta: ArticleMeta;
     default: ComponentType;
   };
@@ -23,5 +25,7 @@ export async function getAllArticles(): Promise<Article[]> {
 
   const articles = await Promise.all(articleFilenames.map(importArticle));
 
-  return articles.sort((a, z) => new Date(z.date).getTime() - new Date(a.date).getTime());
+  return articles.sort(
+    (a, z) => new Date(z.date).getTime() - new Date(a.date).getTime(),
+  );
 }

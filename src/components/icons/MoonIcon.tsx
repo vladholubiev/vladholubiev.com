@@ -1,6 +1,5 @@
-import {HugeiconsIcon} from '@hugeicons/react';
-import {Moon01Icon} from '@hugeicons/core-free-icons';
+import { Moon } from 'lucide-react';
 
-export function MoonIcon({className}: {className?: string}) {
-  return <HugeiconsIcon icon={Moon01Icon} className={className} strokeWidth={1.5} />;
+export function MoonIcon({ className }: { className?: string }) {
+  return <Moon className={className} strokeWidth={1.5} />;
 }

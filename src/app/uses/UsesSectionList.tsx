@@ -1,38 +1,38 @@
 'use client';
 
-import {ElementType, ReactNode, useId} from 'react';
-import {HugeiconsIcon} from '@hugeicons/react';
+import type { LucideIcon } from 'lucide-react';
 import {
-  Camera01Icon,
-  ComputerIcon,
-  ComputerTerminal01Icon,
-  HeadphonesIcon,
-  KeyboardIcon,
-  Link02Icon,
-  AiIdeaIcon,
-  LaptopIcon,
-  SourceCodeIcon,
-  AppStoreIcon,
-  VideoCameraAiIcon,
-  Mouse02Icon,
-  StopIcon,
-  VisualStudioCodeIcon,
-} from '@hugeicons/core-free-icons';
+  AppWindow,
+  Camera,
+  Code,
+  Headphones,
+  Keyboard,
+  Laptop,
+  Lightbulb,
+  Link,
+  Monitor,
+  Mouse,
+  SquareCode,
+  SquareStop,
+  Terminal,
+  Video,
+} from 'lucide-react';
+import { type ElementType, type ReactNode, useId } from 'react';
 
-import {Card} from '@/components/Card';
+import { Card } from '@/components/Card';
 
 type ToolItem = {
   title: string;
   description: string;
   href?: string;
-  icon?: Parameters<typeof HugeiconsIcon>[0]['icon'];
+  icon?: LucideIcon;
   meta?: string;
 };
 
 type ToolItemCompact = {
   title: string;
   href?: string;
-  icon?: Parameters<typeof HugeiconsIcon>[0]['icon'];
+  icon?: LucideIcon;
 };
 
 type UsesSection = {
@@ -52,25 +52,25 @@ const sections: UsesSection[] = [
     items: [
       {
         title: '14" MacBook Pro (M2 Max, 64GB, 2023)',
-        icon: LaptopIcon,
+        icon: Laptop,
         description:
           'Primary dev and writing machine. Extra CPU/RAM keeps many apps open without slowing down.',
       },
       {
         title: 'LG UltraWide 34WK95U-W (34", 5K2K)',
-        icon: ComputerIcon,
+        icon: Monitor,
         description:
           'Main display for side-by-side work. One TB3 cable powers and declutters the desk.',
       },
       {
         title: 'Logitech Ergo K860',
-        icon: KeyboardIcon,
+        icon: Keyboard,
         description:
           'Daily keyboard for long sessions. Split layout and wrist rest keep hands relaxed.',
       },
       {
         title: 'Logitech MX Vertical',
-        icon: Mouse02Icon,
+        icon: Mouse,
         description:
           'Ergonomic mouse for all-day use. Vertical grip keeps my wrist neutral and cuts fatigue.',
       },
@@ -84,7 +84,7 @@ const sections: UsesSection[] = [
     items: [
       {
         title: 'AirPods Pro 3 (2025)',
-        icon: HeadphonesIcon,
+        icon: Headphones,
         description:
           'Daily earbuds for calls and focus. Strong ANC and seamless Apple handoff across devices.',
       },
@@ -98,30 +98,33 @@ const sections: UsesSection[] = [
     items: [
       {
         title: 'Visual Studio Code',
-        icon: VisualStudioCodeIcon,
-        description: 'Primary editor. Fast and extension-rich after switching from WebStorm.',
+        icon: SquareCode,
+        description:
+          'Primary editor. Fast and extension-rich after switching from WebStorm.',
       },
       {
         title: 'Ghostty',
         href: 'https://ghostty.org/',
-        icon: ComputerTerminal01Icon,
-        description: 'Go-to terminal. Launches instantly and stays light even with many tabs.',
+        icon: Terminal,
+        description:
+          'Go-to terminal. Launches instantly and stays light even with many tabs.',
       },
       {
         title: 'tmux',
-        icon: StopIcon,
-        description: 'Session manager. Juggles panes and lets me reconnect without losing context.',
+        icon: SquareStop,
+        description:
+          'Session manager. Juggles panes and lets me reconnect without losing context.',
       },
       {
         title: 'CleanShot X',
-        icon: Camera01Icon,
+        icon: Camera,
         description:
           'Screenshot and recording tool with polished annotations and reliable scrolling capture.',
       },
       {
         title: 'DaVinci Resolve',
         href: 'https://www.blackmagicdesign.com/products/davinciresolve',
-        icon: VideoCameraAiIcon,
+        icon: Video,
         description:
           'Annotating screencasts without a steep learning curve; surprisingly great for this.',
       },
@@ -135,19 +138,20 @@ const sections: UsesSection[] = [
     items: [
       {
         title: 'AI coding tools (Claude Code, Codex, Copilot Agent)',
-        icon: AiIdeaIcon,
+        icon: Lightbulb,
         description:
           'Keep an AI pair for coding. Rotate tools as they evolve for drafts and refactors.',
       },
       {
         title: 'DevUtils',
-        icon: SourceCodeIcon,
-        description: 'Offline utility belt. Conversions, decoding, and diffing without a browser.',
+        icon: Code,
+        description:
+          'Offline utility belt. Conversions, decoding, and diffing without a browser.',
       },
       {
         title: 'Setapp',
         href: 'https://setapp.com/',
-        icon: AppStoreIcon,
+        icon: AppWindow,
         description:
           'Utility bundle. Covers Bartender, iStat Menus, Paletro, CleanMyMac, Sip, more.',
       },
@@ -207,7 +211,13 @@ const sections: UsesSection[] = [
   },
 ];
 
-function UsesSectionBlock({section, children}: {section: UsesSection; children: ReactNode}) {
+function UsesSectionBlock({
+  section,
+  children,
+}: {
+  section: UsesSection;
+  children: ReactNode;
+}) {
   const generatedId = useId();
   const id = section.id ?? generatedId;
   const sectionNumber = section.index.toString().padStart(2, '0');
@@ -223,9 +233,16 @@ function UsesSectionBlock({section, children}: {section: UsesSection; children: 
       <div className="relative grid grid-cols-1 items-start gap-y-6 gap-x-8 md:grid-cols-[minmax(200px,260px)_minmax(0,1fr)]">
         <div className="md:sticky md:top-24 md:self-start">
           <div className="space-y-1">
-            <h2 id={id} className="flex items-center gap-2 text-xs uppercase tracking-[0.18em]">
-              <span className="text-zinc-500 dark:text-zinc-500">{sectionNumber}</span>
-              <span className="text-zinc-800 dark:text-zinc-100">{section.title}</span>
+            <h2
+              id={id}
+              className="flex items-center gap-2 text-xs uppercase tracking-[0.18em]"
+            >
+              <span className="text-zinc-500 dark:text-zinc-500">
+                {sectionNumber}
+              </span>
+              <span className="text-zinc-800 dark:text-zinc-100">
+                {section.title}
+              </span>
             </h2>
             <p className="text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
               {section.description}
@@ -240,13 +257,14 @@ function UsesSectionBlock({section, children}: {section: UsesSection; children: 
   );
 }
 
-function Tool({title, href, icon, meta, description}: ToolItem) {
+function Tool({ title, href, icon, meta, description }: ToolItem) {
   const iconChipClass =
     'relative self-start translate-y-[1px] flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-50 text-zinc-600 ring-1 ring-zinc-200/60 transition-colors duration-150 group-hover:bg-zinc-100 group-hover:text-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800/60 dark:group-hover:bg-zinc-800 dark:group-hover:text-zinc-100';
 
   const Wrapper: ElementType = href ? 'a' : 'div';
   const hasLink = Boolean(href);
-  const chipIcon = icon ?? (hasLink ? Link02Icon : undefined);
+  const chipIcon = icon ?? (hasLink ? Link : undefined);
+  const ChipIcon = chipIcon;
 
   return (
     <Card as="li" className="group w-full">
@@ -256,9 +274,9 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
         rel={href ? 'noreferrer noopener' : undefined}
         className="relative -mx-2 flex w-full items-start gap-4 rounded-2xl px-2 py-1.5 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-5 sm:py-2"
       >
-        {chipIcon ? (
+        {ChipIcon ? (
           <span className={iconChipClass}>
-            <HugeiconsIcon icon={chipIcon} className="h-5 w-5" strokeWidth={1.65} />
+            <ChipIcon className="h-5 w-5" strokeWidth={1.65} />
           </span>
         ) : (
           <span className="mt-1 h-9 w-9 shrink-0" aria-hidden />
@@ -285,13 +303,14 @@ function Tool({title, href, icon, meta, description}: ToolItem) {
   );
 }
 
-function ToolCompact({title, href, icon}: ToolItemCompact) {
+function ToolCompact({ title, href, icon }: ToolItemCompact) {
   const iconChipClass =
     'relative self-start translate-y-[0.5px] flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-zinc-50 text-zinc-600 ring-1 ring-zinc-200/60 transition-colors duration-150 group-hover:bg-zinc-100 group-hover:text-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:bg-zinc-900 dark:text-zinc-200 dark:ring-zinc-800/60 dark:group-hover:bg-zinc-800 dark:group-hover:text-zinc-100';
 
   const Wrapper: ElementType = href ? 'a' : 'div';
   const hasLink = Boolean(href);
-  const chipIcon = icon ?? (hasLink ? Link02Icon : undefined);
+  const chipIcon = icon ?? (hasLink ? Link : undefined);
+  const ChipIcon = chipIcon;
 
   return (
     <Card as="li" className="group w-full">
@@ -301,9 +320,9 @@ function ToolCompact({title, href, icon}: ToolItemCompact) {
         rel={href ? 'noreferrer noopener' : undefined}
         className="relative -mx-2 flex w-full items-center gap-3 rounded-2xl px-2 py-1.5 transition-all duration-150 hover:bg-zinc-200/35 hover:shadow-[0_1px_0_rgba(0,0,0,0.02)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300 dark:hover:bg-zinc-800/35 dark:focus-visible:outline-zinc-700 sm:gap-3.5 sm:px-3 sm:py-1.5"
       >
-        {chipIcon ? (
+        {ChipIcon ? (
           <span className={iconChipClass}>
-            <HugeiconsIcon icon={chipIcon} className="h-[18px] w-[18px]" strokeWidth={1.65} />
+            <ChipIcon className="h-[18px] w-[18px]" strokeWidth={1.65} />
           </span>
         ) : (
           <span className="h-8 w-8 shrink-0" aria-hidden />
@@ -322,21 +341,24 @@ function ToolCompact({title, href, icon}: ToolItemCompact) {
   );
 }
 
-function ToolsSection({section}: {section: UsesSection}) {
-  const allCompact = section.items.every(item => 'description' in item === false);
+function ToolsSection({ section }: { section: UsesSection }) {
+  const allCompact = section.items.every(
+    (item) => 'description' in item === false,
+  );
 
   return (
     <UsesSectionBlock section={section}>
       <ul
-        role="list"
-        className={allCompact ? 'space-y-3.5 sm:space-y-4' : 'space-y-7 sm:space-y-8'}
+        className={
+          allCompact ? 'space-y-3.5 sm:space-y-4' : 'space-y-7 sm:space-y-8'
+        }
       >
-        {section.items.map(item =>
+        {section.items.map((item) =>
           'description' in item ? (
             <Tool key={item.title} {...(item as ToolItem)} />
           ) : (
             <ToolCompact key={item.title} {...(item as ToolItemCompact)} />
-          )
+          ),
         )}
       </ul>
     </UsesSectionBlock>
@@ -345,12 +367,10 @@ function ToolsSection({section}: {section: UsesSection}) {
 
 export function UsesSectionList() {
   return (
-    <>
-      <div className="mt-8 space-y-14 sm:mt-12 sm:space-y-20">
-        {sections.map(section => (
-          <ToolsSection key={section.id} section={section} />
-        ))}
-      </div>
-    </>
+    <div className="mt-8 space-y-14 sm:mt-12 sm:space-y-20">
+      {sections.map((section) => (
+        <ToolsSection key={section.id} section={section} />
+      ))}
+    </div>
   );
 }

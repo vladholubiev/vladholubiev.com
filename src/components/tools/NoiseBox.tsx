@@ -1,18 +1,27 @@
 'use client';
 
-import {useState} from 'react';
+import { Caveat } from 'next/font/google';
 import Link from 'next/link';
-import {Caveat} from 'next/font/google';
+import { useState } from 'react';
 
-import {NoiseWaveVisualizer} from '@/components/tools/NoiseWaveVisualizer';
-import {DEFAULT_STATE, type SimulationState} from '@/lib/audioSimulation';
-import {useNoise, type NoiseType} from '@/hooks/useNoise';
-import {cn} from '@/lib/utils';
+import { NoiseWaveVisualizer } from '@/components/tools/NoiseWaveVisualizer';
+import { type NoiseType, useNoise } from '@/hooks/useNoise';
+import { DEFAULT_STATE, type SimulationState } from '@/lib/audioSimulation';
+import { cn } from '@/lib/utils';
 
-const caveat = Caveat({subsets: ['latin'], weight: ['400', '700']});
+const caveat = Caveat({ subsets: ['latin'], weight: ['400', '700'] });
+const speakerGrillDots = Array.from(
+  { length: 36 },
+  (_, index) => `speaker-grill-dot-${index}`,
+);
+const volumeTicks = Array.from(
+  { length: 11 },
+  (_, index) => `volume-tick-${index}`,
+);
 
 export function NoiseBox() {
-  const {activeNoise, setVolume, toggleNoise, volume, resumeAudio} = useNoise();
+  const { activeNoise, setVolume, toggleNoise, volume, resumeAudio } =
+    useNoise();
   const [selectedNoise, setSelectedNoise] = useState<NoiseType>('pink');
 
   const isOn = Boolean(activeNoise);
@@ -68,9 +77,9 @@ export function NoiseBox() {
 
             {/* Speaker grill */}
             <div className="grid h-16 w-16 grid-cols-6 grid-rows-6 gap-0.5 rounded-lg bg-[#2a2a2a] p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">
-              {Array.from({length: 36}).map((_, i) => (
+              {speakerGrillDots.map((dotId) => (
                 <div
-                  key={i}
+                  key={dotId}
                   className="h-full w-full rounded-full bg-[#111] shadow-[0_1px_0_rgba(255,255,255,0.1)]"
                 />
               ))}
@@ -87,8 +96,9 @@ export function NoiseBox() {
               <div className="pointer-events-none absolute inset-0 z-10 flex flex-col justify-between p-4">
                 <div className="flex items-start justify-between">
                   <div className="flex gap-6 text-sm font-mono tracking-widest">
-                    {(['WHITE', 'PINK', 'BROWN'] as const).map(type => {
-                      const isActive = isOn && activeNoise?.toUpperCase() === type;
+                    {(['WHITE', 'PINK', 'BROWN'] as const).map((type) => {
+                      const isActive =
+                        isOn && activeNoise?.toUpperCase() === type;
                       return (
                         <span
                           key={type}
@@ -96,7 +106,7 @@ export function NoiseBox() {
                             'transition-all duration-150',
                             isActive
                               ? 'text-[#4ade80] drop-shadow-[0_0_8px_rgba(74,222,128,0.8)] opacity-100'
-                              : 'text-[#1a3322] opacity-40'
+                              : 'text-[#1a3322] opacity-40',
                           )}
                         >
                           {type}
@@ -116,7 +126,7 @@ export function NoiseBox() {
                         'text-2xl font-mono tracking-widest transition-all duration-150',
                         isOn
                           ? 'text-[#4ade80] drop-shadow-[0_0_8px_rgba(74,222,128,0.8)]'
-                          : 'text-[#1a3322] opacity-40'
+                          : 'text-[#1a3322] opacity-40',
                       )}
                     >
                       {isOn
@@ -132,7 +142,7 @@ export function NoiseBox() {
               <div
                 className={cn(
                   'h-full w-full opacity-80 transition-opacity duration-500',
-                  isOn ? 'opacity-100' : 'opacity-10'
+                  isOn ? 'opacity-100' : 'opacity-10',
                 )}
               >
                 <NoiseWaveVisualizer state={simState} color="#4ade80" />
@@ -144,7 +154,7 @@ export function NoiseBox() {
 
           {/* Controls */}
           <div className="mb-10 flex justify-center gap-6">
-            {(['white', 'pink', 'brown'] as const).map(type => {
+            {(['white', 'pink', 'brown'] as const).map((type) => {
               const isSwitchOn = isOn && activeNoise === type;
               return (
                 <div key={type} className="flex flex-col items-center gap-3">
@@ -153,11 +163,12 @@ export function NoiseBox() {
                       'mb-1 h-2 w-2 rounded-full transition-all duration-300',
                       isSwitchOn
                         ? 'bg-green-500 shadow-[0_0_8px_rgba(74,222,128,1)]'
-                        : 'bg-[#bdb3a4]'
+                        : 'bg-[#bdb3a4]',
                     )}
                   />
 
                   <button
+                    type="button"
                     onClick={() => handleSwitch(type)}
                     className="relative h-20 w-14 rounded-md border border-[#b8ae9f] bg-[#d1c7b8] p-1 shadow-[inset_0_1px_4px_rgba(0,0,0,0.2),0_2px_0_rgba(255,255,255,0.5)]"
                   >
@@ -166,13 +177,15 @@ export function NoiseBox() {
                         'relative h-full w-full overflow-hidden rounded bg-gradient-to-b transition-all duration-200',
                         isSwitchOn
                           ? 'from-[#e0dbd5] to-[#f5f1ed] shadow-[inset_0_10px_10px_-5px_rgba(0,0,0,0.15),0_-2px_0_rgba(255,255,255,0.8)]'
-                          : 'from-[#f5f1ed] to-[#e0dbd5] shadow-[inset_0_-10px_10px_-5px_rgba(0,0,0,0.15),0_2px_0_rgba(255,255,255,0.8)]'
+                          : 'from-[#f5f1ed] to-[#e0dbd5] shadow-[inset_0_-10px_10px_-5px_rgba(0,0,0,0.15),0_2px_0_rgba(255,255,255,0.8)]',
                       )}
                     >
                       <div
                         className={cn(
                           'absolute top-2 left-0 w-full text-center text-[10px] font-bold text-neutral-400 transition-all duration-200',
-                          isSwitchOn ? 'opacity-40 translate-y-[1px] scale-95' : 'opacity-80'
+                          isSwitchOn
+                            ? 'opacity-40 translate-y-[1px] scale-95'
+                            : 'opacity-80',
                         )}
                       >
                         I
@@ -180,7 +193,9 @@ export function NoiseBox() {
                       <div
                         className={cn(
                           'absolute bottom-2 left-0 w-full text-center text-[10px] font-bold text-neutral-400 transition-all duration-200',
-                          !isSwitchOn ? 'opacity-40 -translate-y-[1px] scale-95' : 'opacity-80'
+                          !isSwitchOn
+                            ? 'opacity-40 -translate-y-[1px] scale-95'
+                            : 'opacity-80',
                         )}
                       >
                         O
@@ -199,8 +214,8 @@ export function NoiseBox() {
           {/* Volume Slider */}
           <div className="relative w-full px-2">
             <div className="pointer-events-none absolute -top-3 left-4 right-4 flex justify-between px-1">
-              {Array.from({length: 11}).map((_, i) => (
-                <div key={i} className="h-2 w-[1px] bg-[#bdb3a4]" />
+              {volumeTicks.map((tickId) => (
+                <div key={tickId} className="h-2 w-[1px] bg-[#bdb3a4]" />
               ))}
             </div>
 
@@ -213,7 +228,9 @@ export function NoiseBox() {
                 max="1"
                 step="0.01"
                 value={volume}
-                onChange={e => handleVolumeChange(Number.parseFloat(e.target.value))}
+                onChange={(e) =>
+                  handleVolumeChange(Number.parseFloat(e.target.value))
+                }
                 className="relative z-10 h-10 w-full cursor-pointer appearance-none bg-transparent
                   [&::-webkit-slider-thumb]:relative
                   [&::-webkit-slider-thumb]:mt-[2px]
@@ -245,9 +262,9 @@ export function NoiseBox() {
           href="/articles/the-missing-sound-your-anc-headphones-need"
           className={cn(
             caveat.className,
-            'mt-12 inline-block -rotate-2 text-center text-3xl tracking-wide text-[#E8E0D5]/80 underline decoration-dashed decoration-white/30 underline-offset-8 transition-all hover:scale-105 hover:rotate-0 hover:text-white'
+            'mt-12 inline-block -rotate-2 text-center text-3xl tracking-wide text-[#E8E0D5]/80 underline decoration-dashed decoration-white/30 underline-offset-8 transition-all hover:scale-105 hover:rotate-0 hover:text-white',
           )}
-          style={{textShadow: '0 2px 4px rgba(0,0,0,0.2)'}}
+          style={{ textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}
         >
           Read: The Missing Sound Your ANC Headphones Need →
         </Link>
@@ -256,9 +273,14 @@ export function NoiseBox() {
   );
 }
 
-function Screw({className}: {className: string}) {
+function Screw({ className }: { className: string }) {
   return (
-    <div className={cn('absolute h-3 w-3 rounded-full bg-[#bdb3a4] shadow-inner', className)}>
+    <div
+      className={cn(
+        'absolute h-3 w-3 rounded-full bg-[#bdb3a4] shadow-inner',
+        className,
+      )}
+    >
       <div className="flex h-full w-full items-center justify-center">
         <div className="h-[1px] w-full rotate-45 bg-[#968c7e]" />
         <div className="absolute h-[1px] w-full -rotate-45 bg-[#968c7e]" />

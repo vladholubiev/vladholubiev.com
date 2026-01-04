@@ -1,10 +1,10 @@
-import type {Metadata} from 'next';
-import {ReactNode} from 'react';
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
-import {Card} from '@/components/Card';
-import {Section} from '@/components/Section';
-import {SimpleLayout} from '@/components/SimpleLayout';
-import {formatDate} from '@/lib/formatDate';
+import { Card } from '@/components/Card';
+import { Section } from '@/components/Section';
+import { SimpleLayout } from '@/components/SimpleLayout';
+import { formatDate } from '@/lib/formatDate';
 
 export const metadata: Metadata = {
   title: 'Speaking',
@@ -16,7 +16,7 @@ interface SpeakingSectionProps {
   title: string;
 }
 
-function SpeakingSection({children, ...props}: SpeakingSectionProps) {
+function SpeakingSection({ children, ...props }: SpeakingSectionProps) {
   return (
     <Section {...props}>
       <div className="space-y-16">{children}</div>
@@ -33,7 +33,14 @@ interface AppearanceProps {
   href?: string;
 }
 
-function Appearance({title, description, date, cta, event, href}: AppearanceProps) {
+function Appearance({
+  title,
+  description,
+  date,
+  cta,
+  event,
+  href,
+}: AppearanceProps) {
   return (
     <Card as="article">
       <Card.Title as="h3" href={href}>

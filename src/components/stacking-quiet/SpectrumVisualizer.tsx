@@ -1,27 +1,33 @@
 'use client';
 
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import {generateSpectrumData, type SimulationState} from '@/lib/audioSimulation';
+import {
+  generateSpectrumData,
+  type SimulationState,
+} from '@/lib/audioSimulation';
 
 interface SpectrumVisualizerProps {
   state: SimulationState;
   showNoiseRemaining?: boolean;
 }
 
-export function SpectrumVisualizer({state, showNoiseRemaining = true}: SpectrumVisualizerProps) {
+export function SpectrumVisualizer({
+  state,
+  showNoiseRemaining = true,
+}: SpectrumVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number | null>(null);
-  const [dimensions, setDimensions] = useState({width: 800, height: 520});
+  const [dimensions, setDimensions] = useState({ width: 800, height: 520 });
   const smoothPeakRef = useRef<number | null>(null);
 
   // Keep canvas sharp on resize
   useEffect(() => {
     const handleResize = () => {
       if (!containerRef.current) return;
-      const {width} = containerRef.current.getBoundingClientRect();
-      setDimensions({width: width * 2, height: 520});
+      const { width } = containerRef.current.getBoundingClientRect();
+      setDimensions({ width: width * 2, height: 520 });
     };
 
     handleResize();
@@ -53,15 +59,25 @@ export function SpectrumVisualizer({state, showNoiseRemaining = true}: SpectrumV
       const lowDistraction = state.keyboardVolume * (1 - state.ancGain * 0.9);
       const voiceDistraction = state.chatterVolume * (1 - state.ancGain * 0.2);
       const sirenDistraction = state.sirenVolume * (1 - state.ancGain * 0.05);
-      const maxDistraction = Math.max(lowDistraction, voiceDistraction, sirenDistraction);
+      const maxDistraction = Math.max(
+        lowDistraction,
+        voiceDistraction,
+        sirenDistraction,
+      );
       const maskingLevel = state.pinkNoiseVolume * 0.5;
       const exposedSignal = Math.max(0, maxDistraction - maskingLevel);
-      const baseSignal = Math.max(state.keyboardVolume, state.chatterVolume, state.sirenVolume);
+      const baseSignal = Math.max(
+        state.keyboardVolume,
+        state.chatterVolume,
+        state.sirenVolume,
+      );
       const targetPercent =
-        baseSignal > 0.05 ? Math.min(100, Math.round((exposedSignal / baseSignal) * 100)) : 0;
+        baseSignal > 0.05
+          ? Math.min(100, Math.round((exposedSignal / baseSignal) * 100))
+          : 0;
       smoothPercent = smoothPercent + (targetPercent - smoothPercent) * 0.1;
 
-      data.forEach(point => {
+      data.forEach((point) => {
         if (point.f > 12 && point.f < 35) {
           const barH = point.a * height * 0.9;
           if (barH > maxPeakY) maxPeakY = barH;
@@ -77,7 +93,7 @@ export function SpectrumVisualizer({state, showNoiseRemaining = true}: SpectrumV
       const smoothedPeak = prev + (peakYPos - prev) * 0.08; // lower factor = smoother
       smoothPeakRef.current = smoothedPeak;
 
-      data.forEach(point => {
+      data.forEach((point) => {
         const barHeight = point.a * height * 0.9;
         const currentY = height - barHeight;
 
@@ -89,12 +105,20 @@ export function SpectrumVisualizer({state, showNoiseRemaining = true}: SpectrumV
               ? 'oklch(0.55 0.2 260)'
               : 'oklch(0.65 0.15 250)';
         } else if (point.f >= 12 && point.f < 28) {
-          if (state.chatterVolume > 0 && point.a > 0.3 + state.pinkNoiseVolume * 0.3) {
+          if (
+            state.chatterVolume > 0 &&
+            point.a > 0.3 + state.pinkNoiseVolume * 0.3
+          ) {
             color = 'oklch(0.65 0.22 30)';
           } else if (state.chatterVolume > 0) {
             color = 'oklch(0.7 0.1 30)';
           }
-        } else if (state.sirenVolume > 0 && point.f > 25 && point.f < 32 && point.a > 0.2) {
+        } else if (
+          state.sirenVolume > 0 &&
+          point.f > 25 &&
+          point.f < 32 &&
+          point.a > 0.2
+        ) {
           color = 'oklch(0.6 0.25 0)';
         }
 
@@ -152,13 +176,15 @@ export function SpectrumVisualizer({state, showNoiseRemaining = true}: SpectrumV
         }
 
         ctx.fillStyle = '#4ade80';
-        ctx.font = 'bold 60px Inter, -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.font =
+          'bold 60px Inter, -apple-system, BlinkMacSystemFont, sans-serif';
         ctx.textAlign = 'right';
 
         const textY = (drawnPeakY + drawnFloorY) / 2 + 20;
         ctx.fillText(`${displayValue}%`, arrowX - 20, textY);
 
-        ctx.font = 'bold 24px Inter, -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.font =
+          'bold 24px Inter, -apple-system, BlinkMacSystemFont, sans-serif';
         ctx.fillStyle = '#86efac';
         ctx.fillText('NOISE REM', arrowX - 20, textY + 30);
       }
@@ -188,9 +214,15 @@ export function SpectrumVisualizer({state, showNoiseRemaining = true}: SpectrumV
       </div>
 
       <div className="pointer-events-none absolute bottom-3 left-0 flex w-full justify-between px-4 text-[10px] font-mono font-semibold uppercase tracking-[0.12em] text-zinc-300">
-        <span className="bg-black/40 px-2 py-1 rounded-md text-blue-300">Low freq</span>
-        <span className="bg-black/40 px-2 py-1 rounded-md text-amber-400">Voice freq</span>
-        <span className="bg-black/40 px-2 py-1 rounded-md text-red-300">High freq</span>
+        <span className="bg-black/40 px-2 py-1 rounded-md text-blue-300">
+          Low freq
+        </span>
+        <span className="bg-black/40 px-2 py-1 rounded-md text-amber-400">
+          Voice freq
+        </span>
+        <span className="bg-black/40 px-2 py-1 rounded-md text-red-300">
+          High freq
+        </span>
       </div>
 
       <canvas

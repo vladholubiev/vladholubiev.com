@@ -1,6 +1,6 @@
 'use client';
 
-import {ShikiHighlighter} from 'react-shiki';
+import { ShikiHighlighter } from 'react-shiki';
 
 interface CodeBlockProps {
   language: string;

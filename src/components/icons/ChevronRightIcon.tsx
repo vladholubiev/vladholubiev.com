@@ -1,6 +1,5 @@
-import {HugeiconsIcon} from '@hugeicons/react';
-import {ArrowRight01Icon} from '@hugeicons/core-free-icons';
+import { ChevronRight } from 'lucide-react';
 
-export function ChevronRightIcon({className}: {className?: string}) {
-  return <HugeiconsIcon icon={ArrowRight01Icon} className={className} strokeWidth={1.5} />;
+export function ChevronRightIcon({ className }: { className?: string }) {
+  return <ChevronRight className={className} strokeWidth={1.5} />;
 }

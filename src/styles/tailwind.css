@@ -1,16 +1,16 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "./prism.css" layer(components);
+@import "tw-animate-css";
 /*
   ---break---
 */
-@plugin 'tailwindcss-animate';
-@import './prism.css' layer(components);
-@import "tw-animate-css";
+@plugin "tailwindcss-animate";
 /*
   ---break---
 */
 @custom-variant dark (&:is(.dark *));
 
-@config '../../tailwind.config.js';
+@config "../../tailwind.config.js";
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
@@ -31,7 +31,7 @@
 }
 
 .prose :where(img.no-rounding):not(:where([class~="not-prose"] *)) {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 @layer components {
@@ -51,12 +51,20 @@
     text-rendering: optimizeLegibility;
   }
 
-  .article .prose :where(p, li, blockquote, figcaption, table, td, th):not(:where([class~="not-prose"] *)) {
-    font-family: 'Source Serif 4', 'Charter', 'Georgia', 'Times New Roman', serif;
+  .article
+    .prose
+    :where(p, li, blockquote, figcaption, table, td, th):not(
+      :where([class~="not-prose"] *)
+    ) {
+    font-family:
+      "Source Serif 4", "Charter", "Georgia", "Times New Roman", serif;
   }
 
-  .article .prose :where(h2, h3, h4, h5, h6):not(:where([class~="not-prose"] *)) {
-    font-family: 'Source Serif 4', 'Charter', 'Georgia', 'Times New Roman', serif;
+  .article
+    .prose
+    :where(h2, h3, h4, h5, h6):not(:where([class~="not-prose"] *)) {
+    font-family:
+      "Source Serif 4", "Charter", "Georgia", "Times New Roman", serif;
   }
 
   .dark .article .prose {
@@ -207,10 +215,14 @@
   }
 
   .marker::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 68% -0.26em -48%;
-    background: radial-gradient(55% 95% at 50% 0%, rgba(253, 224, 71, 0.45), rgba(253, 224, 71, 0));
+    background: radial-gradient(
+      55% 95% at 50% 0%,
+      rgba(253, 224, 71, 0.45),
+      rgba(253, 224, 71, 0)
+    );
     filter: blur(8px);
     opacity: 0.75;
     z-index: -1;
@@ -218,10 +230,15 @@
   }
 
   .marker::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 8% -0.18em 58%;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0)
+    );
     opacity: 0.7;
     z-index: -1;
     transform: rotate(1.2deg);
@@ -248,12 +265,21 @@
   .dark .marker::before {
     opacity: 0.45;
     filter: blur(10px);
-    background: radial-gradient(60% 110% at 50% 0%, rgba(246, 208, 93, 0.22), rgba(246, 208, 93, 0));
+    background: radial-gradient(
+      60% 110% at 50% 0%,
+      rgba(246, 208, 93, 0.22),
+      rgba(246, 208, 93, 0)
+    );
   }
 
   .dark .marker::after {
     opacity: 0.35;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.14),
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0)
+    );
   }
 }
 

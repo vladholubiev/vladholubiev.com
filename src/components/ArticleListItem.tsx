@@ -8,10 +8,17 @@ interface ArticleListItemProps {
   description?: string;
 }
 
-export function ArticleListItem({title, href, date, readingTime}: ArticleListItemProps) {
+export function ArticleListItem({
+  title,
+  href,
+  date,
+  readingTime,
+}: ArticleListItemProps) {
   const parsedDate = new Date(date);
-  const month = parsedDate.toLocaleString('en-US', {month: 'short'}).toUpperCase();
-  const day = parsedDate.toLocaleString('en-US', {day: 'numeric'});
+  const month = parsedDate
+    .toLocaleString('en-US', { month: 'short' })
+    .toUpperCase();
+  const day = parsedDate.toLocaleString('en-US', { day: 'numeric' });
   const isExternal = /^https?:\/\//.test(href);
   const trailingGlyph = isExternal ? '↗' : '›';
 
@@ -50,10 +57,15 @@ export function ArticleListItem({title, href, date, readingTime}: ArticleListIte
                 <h3 className="flex-1 text-lg font-semibold leading-snug tracking-[-0.012em] text-zinc-900 dark:text-zinc-50">
                   {title}
                 </h3>
-                <span className={`${glyphBaseClasses} leading-none`} aria-hidden="true">
+                <span
+                  className={`${glyphBaseClasses} leading-none`}
+                  aria-hidden="true"
+                >
                   {trailingGlyph}
                 </span>
-                {isExternal ? <span className="sr-only">Opens in new tab</span> : null}
+                {isExternal ? (
+                  <span className="sr-only">Opens in new tab</span>
+                ) : null}
               </div>
               <div className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
                 {readingTime}

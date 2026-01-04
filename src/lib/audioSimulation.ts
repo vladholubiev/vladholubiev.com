@@ -1,8 +1,7 @@
 // Simulation helpers for the stacking-quiet article visualizers
 // Ported from the standalone ANC + pink noise playground
 
-export const SAMPLE_RATE = 100;
-export const NUM_POINTS = 200;
+const NUM_POINTS = 200;
 
 export type SimulationState = {
   // Noise Sources (0.0 to 1.0)
@@ -41,13 +40,14 @@ export function generateWaveData(time: number, state: SimulationState) {
       const rumble = Math.sin(t * 0.5) * 0.5 + Math.sin(t * 0.2) * 0.3;
 
       // Click component (sharp spikes)
-      const click = Math.sin(t * 15) * Math.pow(Math.sin(t * 0.8), 20);
+      const click = Math.sin(t * 15) * Math.sin(t * 0.8) ** 20;
 
       // ANC Effect on Low Freq: High reduction
       // residual factor = 1 - (ancGain * 0.9) -> implies max 90% reduction
       const ancFactor = 1 - state.ancGain * 0.85;
 
-      amplitude += (rumble * 0.8 + click * 0.4) * state.keyboardVolume * ancFactor;
+      amplitude +=
+        (rumble * 0.8 + click * 0.4) * state.keyboardVolume * ancFactor;
     }
 
     // 2. Mid Freq (Chatter)
@@ -185,7 +185,7 @@ export function generateSpectrumData(state: SimulationState) {
       amp = Math.max(amp, floor);
     }
 
-    data.push({f: i, a: amp});
+    data.push({ f: i, a: amp });
   }
   return data;
 }

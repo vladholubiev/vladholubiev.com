@@ -1,9 +1,8 @@
 'use client';
 
-import {useRouter} from 'next/navigation';
-
-import {usePreviousPathname} from '@/components/navigation/NavigationProvider';
-import {ArrowLeftIcon} from '@/components/icons/ArrowLeftIcon';
+import { useRouter } from 'next/navigation';
+import { ArrowLeftIcon } from '@/components/icons/ArrowLeftIcon';
+import { usePreviousPathname } from '@/components/navigation/NavigationProvider';
 
 export function ArticleBackButton() {
   const router = useRouter();

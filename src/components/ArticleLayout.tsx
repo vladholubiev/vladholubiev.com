@@ -1,10 +1,10 @@
-import {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 
-import {ArticleBackButton} from '@/components/ArticleBackButton';
-import {Container} from '@/components/Container';
-import {Prose} from '@/components/Prose';
-import {formatDate} from '@/lib/formatDate';
-import {MediumIcon} from '@/components/icons/SocialIcons';
+import { ArticleBackButton } from '@/components/ArticleBackButton';
+import { Container } from '@/components/Container';
+import { MediumIcon } from '@/components/icons/SocialIcons';
+import { Prose } from '@/components/Prose';
+import { formatDate } from '@/lib/formatDate';
 
 interface ArticleMeta {
   title: string;
@@ -20,7 +20,7 @@ interface ArticleLayoutProps {
   meta: ArticleMeta;
 }
 
-export function ArticleLayout({children, meta}: ArticleLayoutProps) {
+export function ArticleLayout({ children, meta }: ArticleLayoutProps) {
   return (
     <Container className="mt-16 lg:mt-32">
       <div className="xl:relative">
@@ -50,7 +50,10 @@ export function ArticleLayout({children, meta}: ArticleLayoutProps) {
                   rel="noreferrer noopener"
                   className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
                 >
-                  <MediumIcon className="h-5 w-5 fill-current" aria-hidden="true" />
+                  <MediumIcon
+                    className="h-5 w-5 fill-current"
+                    aria-hidden="true"
+                  />
                   <span>Read on Medium</span>
                 </a>
               ) : null}

@@ -1,18 +1,17 @@
 'use client';
 
-import type {ReactNode} from 'react';
-import {usePathname} from 'next/navigation';
-
-import {Footer} from '@/components/Footer';
-import {Header} from '@/components/Header';
-import {Providers} from '@/app/providers';
+import { usePathname } from 'next/navigation';
+import type { ReactNode } from 'react';
+import { Providers } from '@/app/providers';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
 
 const IMMERSIVE_ROUTES = ['/tools/focus-noise-box'];
 
-export function AppShell({children}: {children: ReactNode}) {
+export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isImmersive = IMMERSIVE_ROUTES.some(
-    route => pathname === route || pathname.startsWith(`${route}/`)
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
 
   if (isImmersive) {

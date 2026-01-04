@@ -1,10 +1,9 @@
 'use client';
 
-import {useState} from 'react';
-import type {ReactNode} from 'react';
-import {HugeiconsIcon} from '@hugeicons/react';
-import {Link01Icon, CheckmarkCircle02Icon} from '@hugeicons/core-free-icons';
-import type {JSX} from 'react/jsx-runtime';
+import { CircleCheck, Link } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { useState } from 'react';
+import type { JSX } from 'react/jsx-runtime';
 
 interface HeadingProps {
   level: 1 | 2 | 3 | 4 | 5 | 6;
@@ -13,7 +12,7 @@ interface HeadingProps {
   className?: string;
 }
 
-export function Heading({level, children, id, className = ''}: HeadingProps) {
+export function Heading({ level, children, id, className = '' }: HeadingProps) {
   const [showIndicator, setShowIndicator] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -80,19 +79,19 @@ export function Heading({level, children, id, className = ''}: HeadingProps) {
       onMouseLeave={() => setShowIndicator(false)}
     >
       <button
+        type="button"
         onClick={handleAnchorClick}
         className={`absolute top-0 bottom-0 -left-[1.2em] flex hidden items-center justify-center text-zinc-400 transition-all duration-200 hover:text-zinc-600 focus:rounded-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none md:flex dark:text-zinc-500 dark:hover:text-zinc-400 ${showIndicator ? 'opacity-100' : 'opacity-0'} `}
         aria-label={`Copy link to ${children}`}
         title={copied ? 'Copied!' : 'Copy link'}
       >
         {copied ? (
-          <HugeiconsIcon
-            icon={CheckmarkCircle02Icon}
+          <CircleCheck
             className={`${iconSizes[level]} text-green-600`}
             strokeWidth={1.5}
           />
         ) : (
-          <HugeiconsIcon icon={Link01Icon} className={iconSizes[level]} strokeWidth={1.5} />
+          <Link className={iconSizes[level]} strokeWidth={1.5} />
         )}
       </button>
       {children}
