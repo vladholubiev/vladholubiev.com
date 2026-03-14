@@ -64,6 +64,12 @@ export default function Speaking() {
       <div className="space-y-20">
         <SpeakingSection title="Meetups">
           <Appearance
+            date="2026-03-05"
+            title="Demo of the App I Built"
+            description="I demoed one of the apps I've been building with Codex. It measures, scores, and promotes thoughtful AI usage across Shelf, and surfaces adoption-equality stats across the team."
+            event="OpenAI Codex Meetup"
+          />
+          <Appearance
             date="2025-03-06"
             title="Getting the Most out of AI: Secrets of Expert-Level Usage"
             description="Shared insights on avoiding common AI pitfalls, selecting suitable models, managing knowledge context, and practical AI application strategies."
